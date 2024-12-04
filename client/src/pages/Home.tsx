@@ -179,16 +179,7 @@ export default function Home() {
           ))}
         </motion.div>
 
-        {/* Mouse Follow Effect */}
-        <motion.div
-          className="absolute w-40 h-40 rounded-full pointer-events-none mix-blend-multiply"
-          style={{
-            background: "radial-gradient(circle, rgba(18,62,116,0.2) 0%, transparent 70%)",
-          }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        />
+        {/* Remove old mouse follow effect */}
         <div className="max-w-7xl mx-auto text-center relative">
           <motion.h1 
             className="text-4xl md:text-6xl font-bold text-slate-900 mb-6"
