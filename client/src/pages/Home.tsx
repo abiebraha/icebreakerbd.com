@@ -6,7 +6,7 @@ import { ArrowDown } from "lucide-react";
 import PricingCard from "@/components/PricingCard";
 import Testimonials from "@/components/Testimonials";
 import FAQSection from "@/components/FAQSection";
-import CalendlyEmbed from "@/components/CalendlyEmbed";
+
 import MouseEffect from "@/components/MouseEffect";
 
 export default function Home() {
@@ -322,17 +322,7 @@ export default function Home() {
         </Suspense>
       </ErrorBoundary>
 
-      {/* Schedule Consultation Section */}
-      <section id="contact" className="bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Schedule a Consultation</h2>
-          <ErrorBoundary>
-            <Suspense fallback={<div className="p-12 text-center">Loading calendar...</div>}>
-              <CalendlyEmbed />
-            </Suspense>
-          </ErrorBoundary>
-        </div>
-      </section>
+      
     </div>
   );
 }
