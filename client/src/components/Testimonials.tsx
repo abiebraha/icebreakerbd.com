@@ -6,25 +6,22 @@ import { useRef } from "react";
 
 const testimonials = [
   {
-    name: "Sarah Johnson",
-    role: "Sales Director",
-    company: "TechCorp Inc.",
+    role: "Sales Director in SaaS Industry",
     content: "The two-step approach helped us build a high-performing sales team from scratch. Our conversion rates have increased by 150% since implementation.",
-    avatar: "/testimonials/sarah.jpg"
+    avatar: "/testimonials/saas.jpg",
+    initials: "SD"
   },
   {
-    name: "Michael Chen",
-    role: "CEO",
-    company: "GrowthMasters",
+    role: "CEO in Technology Industry",
     content: "The sales system setup was exactly what we needed. It streamlined our processes and gave us the foundation to scale effectively.",
-    avatar: "/testimonials/michael.jpg"
+    avatar: "/testimonials/tech.jpg",
+    initials: "CT"
   },
   {
-    name: "Emma Davis",
-    role: "Sales Operations Manager",
-    company: "ScaleUp Solutions",
+    role: "Operations Manager in Software Industry",
     content: "The fractional sales management has been a game-changer. We got enterprise-level expertise without the enterprise-level cost.",
-    avatar: "/testimonials/emma.jpg"
+    avatar: "/testimonials/software.jpg",
+    initials: "OS"
   }
 ];
 
@@ -96,15 +93,14 @@ export default function Testimonials() {
                     transition={{ delay: index * 0.2 }}
                   >
                     <Avatar>
-                      <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+                      <AvatarImage src={testimonial.avatar} alt={testimonial.role} />
                       <AvatarFallback>
-                        {testimonial.name.split(' ').map(n => n[0]).join('')}
+                        {testimonial.initials}
                       </AvatarFallback>
                     </Avatar>
                     <div>
-                      <h3 className="font-semibold">{testimonial.name}</h3>
-                      <p className="text-sm text-slate-600">
-                        {testimonial.role}, {testimonial.company}
+                      <p className="text-sm text-slate-600 font-medium">
+                        {testimonial.role}
                       </p>
                     </div>
                   </motion.div>

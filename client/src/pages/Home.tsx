@@ -21,53 +21,135 @@ export default function Home() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
-        {/* 3D Perspective Grid Background */}
+        {/* Enhanced 3D Perspective Grid Background */}
         <motion.div 
           className="absolute inset-0 bg-gradient-to-br from-[#123e74]/5 via-transparent to-transparent"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
         >
-          <div className="absolute inset-0" style={{ perspective: "1000px" }}>
-            {[...Array(10)].map((_, i) => (
+          <div className="absolute inset-0" style={{ perspective: "2000px" }}>
+            {[...Array(15)].map((_, i) => (
               <motion.div
                 key={`grid-${i}`}
-                className="absolute w-full h-[1px] bg-gradient-to-r from-transparent via-[#123e74]/10 to-transparent"
+                className="absolute w-full h-[1px] bg-gradient-to-r from-transparent via-[#123e74]/15 to-transparent"
                 style={{
-                  top: `${(i + 1) * 10}%`,
-                  transform: "rotateX(60deg)",
+                  top: `${(i + 1) * 6.66}%`,
+                  transform: "rotateX(75deg)",
                 }}
                 animate={{
-                  scaleX: [0.95, 1.05, 0.95],
-                  opacity: [0.2, 0.4, 0.2],
+                  scaleX: [0.9, 1.1, 0.9],
+                  opacity: [0.15, 0.3, 0.15],
+                  z: [0, 50, 0],
                 }}
                 transition={{
-                  duration: 3,
+                  duration: 4,
                   repeat: Infinity,
-                  delay: i * 0.2,
+                  delay: i * 0.15,
                 }}
               />
             ))}
-            {[...Array(10)].map((_, i) => (
+            {[...Array(15)].map((_, i) => (
               <motion.div
                 key={`grid-v-${i}`}
-                className="absolute h-full w-[1px] bg-gradient-to-b from-transparent via-[#123e74]/10 to-transparent"
+                className="absolute h-full w-[1px] bg-gradient-to-b from-transparent via-[#123e74]/15 to-transparent"
                 style={{
-                  left: `${(i + 1) * 10}%`,
-                  transform: "rotateY(-60deg)",
+                  left: `${(i + 1) * 6.66}%`,
+                  transform: "rotateY(-75deg)",
                 }}
                 animate={{
-                  scaleY: [0.95, 1.05, 0.95],
-                  opacity: [0.2, 0.4, 0.2],
+                  scaleY: [0.9, 1.1, 0.9],
+                  opacity: [0.15, 0.3, 0.15],
+                  z: [0, 50, 0],
                 }}
                 transition={{
-                  duration: 3,
+                  duration: 4,
                   repeat: Infinity,
-                  delay: i * 0.2,
+                  delay: i * 0.15,
                 }}
               />
             ))}
           </div>
+        </motion.div>
+
+        {/* Wave Animations */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(3)].map((_, i) => (
+            <motion.div
+              key={`wave-${i}`}
+              className="absolute w-[200%] h-[50px] left-[-50%]"
+              style={{
+                top: `${30 + i * 15}%`,
+                background: `linear-gradient(90deg, transparent, rgba(18,62,116,${0.04 - i * 0.01}) 50%, transparent)`,
+                transform: 'rotate(-5deg)',
+              }}
+              animate={{
+                x: [0, -100, 0],
+              }}
+              transition={{
+                duration: 15 + i * 5,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Dynamic Particle System */}
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={`particle-${i}`}
+            className="absolute rounded-full"
+            style={{
+              width: Math.random() * 4 + 2 + 'px',
+              height: Math.random() * 4 + 2 + 'px',
+              background: '#123e74',
+              opacity: 0.2,
+              left: Math.random() * 100 + '%',
+              top: Math.random() * 100 + '%',
+            }}
+            animate={{
+              y: [0, -30, 0],
+              opacity: [0.2, 0.5, 0.2],
+              scale: [1, 1.5, 1],
+            }}
+            transition={{
+              duration: 3 + Math.random() * 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
+
+        {/* Light Beam Effects */}
+        <motion.div
+          className="absolute inset-0 overflow-hidden"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          {[...Array(2)].map((_, i) => (
+            <motion.div
+              key={`beam-${i}`}
+              className="absolute w-[1px] h-[200%] bg-gradient-to-b from-transparent via-[#123e74]/20 to-transparent"
+              style={{
+                left: '50%',
+                top: '-50%',
+                transform: `rotate(${45 + i * 90}deg)`,
+              }}
+              animate={{
+                opacity: [0, 0.4, 0],
+                scale: [1, 1.2, 1],
+                x: [-500, 500],
+              }}
+              transition={{
+                duration: 7 + i * 3,
+                repeat: Infinity,
+                ease: "linear",
+                delay: i * 3.5,
+              }}
+            />
+          ))}
         </motion.div>
 
         {/* Parallax Layers */}
