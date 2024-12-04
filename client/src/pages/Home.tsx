@@ -4,7 +4,7 @@ import FAQSection from "../components/FAQSection";
 import ContactForm from "../components/ContactForm";
 import Testimonials from "../components/Testimonials";
 import { ArrowDown } from "lucide-react";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { motion, useScroll, useTransform, useInView, useMotionValue, useSpring } from "framer-motion";
 import { useEffect, useRef } from "react";
 
 export default function Home() {
@@ -21,53 +21,139 @@ export default function Home() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
-        {/* Parallax Background */}
+        {/* Animated Geometric Shapes */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(6)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute"
+              style={{
+                width: (i % 2 ? 60 : 40) + 'px',
+                height: (i % 2 ? 60 : 40) + 'px',
+                left: (i * 20) + '%',
+                top: (i * 15) + '%',
+                background: i % 3 === 0 ? '#123e74' : 'transparent',
+                border: i % 3 !== 0 ? '2px solid #123e74' : 'none',
+                borderRadius: i % 3 === 1 ? '0%' : '50%',
+                opacity: 0.1,
+              }}
+              animate={{
+                rotate: [0, 360],
+                scale: [1, 1.2, 1],
+                y: [0, -20, 0],
+              }}
+              transition={{
+                duration: 20 + i * 2,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Parallax Layers */}
         <motion.div 
           className="absolute inset-0 w-full h-full"
           style={{
-            backgroundImage: 'radial-gradient(circle at 10% 20%, rgba(18,62,116,0.03) 0%, transparent 50%)',
             y: useTransform(useScroll().scrollY, [0, 1000], [0, 400]),
           }}
         >
-          <motion.div
-            className="absolute inset-0"
-            animate={{
-              background: [
-                "radial-gradient(circle at 20% 20%, rgba(18,62,116,0.05) 0%, transparent 50%)",
-                "radial-gradient(circle at 80% 80%, rgba(18,62,116,0.05) 0%, transparent 50%)",
-                "radial-gradient(circle at 20% 20%, rgba(18,62,116,0.05) 0%, transparent 50%)",
-              ]
-            }}
-            transition={{
-              duration: 15,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          />
+          {[...Array(3)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `radial-gradient(circle at ${20 + i * 30}% ${20 + i * 20}%, rgba(18,62,116,${0.05 - i * 0.01}) 0%, transparent ${40 + i * 10}%)`,
+                transform: `translateZ(${i * 10}px)`,
+              }}
+              animate={{
+                scale: [1, 1.1, 1],
+              }}
+              transition={{
+                duration: 15 + i * 5,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            />
+          ))}
         </motion.div>
+
+        {/* Mouse Follow Effect */}
+        <motion.div
+          className="absolute w-40 h-40 rounded-full pointer-events-none"
+          style={{
+            background: "radial-gradient(circle, rgba(18,62,116,0.1) 0%, transparent 70%)",
+          }}
+          animate={{
+            x: useMotionValue(0),
+            y: useMotionValue(0),
+          }}
+          whileHover={{
+            scale: 1.2,
+          }}
+        />
         <div className="max-w-7xl mx-auto text-center relative">
           <motion.h1 
             className="text-4xl md:text-6xl font-bold text-slate-900 mb-6"
             initial={{ opacity: 1 }}
           >
             {/* Typing animation for the headline */}
-            <motion.span
-              initial={{ width: "0%" }}
-              animate={{ width: "100%" }}
-              transition={{ duration: 1.5, ease: "easeOut" }}
-              className="inline-block whitespace-nowrap overflow-hidden"
-            >
-              Accelerate Your Sales Growth
-            </motion.span>
+            <motion.div className="relative inline-block">
+              <motion.span
+                initial={{ width: "0%" }}
+                animate={{ width: "100%" }}
+                transition={{ 
+                  duration: 1.5, 
+                  ease: [0.43, 0.13, 0.23, 0.96],
+                  bounce: 0.4 
+                }}
+                className="inline-block whitespace-nowrap overflow-hidden"
+              >
+                Accelerate Your Sales Growth
+              </motion.span>
+              <motion.div
+                className="absolute right-0 top-0 h-full w-1 bg-[#123e74]"
+                animate={{
+                  opacity: [1, 0],
+                  scaleY: [1, 1.2, 1],
+                }}
+                transition={{
+                  duration: 0.8,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+            </motion.div>
             <br />
-            <motion.span
-              initial={{ width: "0%" }}
-              animate={{ width: "100%" }}
-              transition={{ duration: 1, ease: "easeOut", delay: 1.5 }}
-              className="inline-block whitespace-nowrap overflow-hidden"
-            >
-              in Two Steps
-            </motion.span>
+            <motion.div className="relative inline-block">
+              <motion.span
+                initial={{ width: "0%" }}
+                animate={{ width: "100%" }}
+                transition={{ 
+                  duration: 1, 
+                  ease: [0.43, 0.13, 0.23, 0.96], 
+                  delay: 1.5,
+                  bounce: 0.4 
+                }}
+                className="inline-block whitespace-nowrap overflow-hidden"
+              >
+                in Two Steps
+              </motion.span>
+              <motion.div
+                className="absolute right-0 top-0 h-full w-1 bg-[#123e74]"
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: [1, 0],
+                  scaleY: [1, 1.2, 1],
+                }}
+                transition={{
+                  duration: 0.8,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 2.5,
+                }}
+              />
+            </motion.div>
           </motion.h1>
           <motion.p 
             className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto"
