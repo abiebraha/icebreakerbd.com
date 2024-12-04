@@ -48,39 +48,26 @@ export default function Home() {
         <div className="max-w-7xl mx-auto text-center relative">
           <motion.h1 
             className="text-4xl md:text-6xl font-bold text-slate-900 mb-6"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 1 }}
           >
-            <motion.div
-              initial={{ width: 0 }}
+            {/* Typing animation for the headline */}
+            <motion.span
+              initial={{ width: "0%" }}
               animate={{ width: "100%" }}
-              className="overflow-hidden"
+              transition={{ duration: 1.5, ease: "easeOut" }}
+              className="inline-block whitespace-nowrap overflow-hidden"
             >
-              <motion.span
-                initial={{ x: -20, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="inline-block"
-              >
-                Accelerate Your Sales Growth
-              </motion.span>
-            </motion.div>
-            <motion.div
-              initial={{ width: 0 }}
+              Accelerate Your Sales Growth
+            </motion.span>
+            <br />
+            <motion.span
+              initial={{ width: "0%" }}
               animate={{ width: "100%" }}
-              transition={{ delay: 0.8 }}
-              className="overflow-hidden"
+              transition={{ duration: 1, ease: "easeOut", delay: 1.5 }}
+              className="inline-block whitespace-nowrap overflow-hidden"
             >
-              <motion.span
-                initial={{ x: -20, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
-                className="inline-block"
-              >
-                in Two Steps
-              </motion.span>
-            </motion.div>
+              in Two Steps
+            </motion.span>
           </motion.h1>
           <motion.p 
             className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto"
@@ -110,7 +97,7 @@ export default function Home() {
       <section id="pricing" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">Our Pricing Model</h2>
-          <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <PricingCard
               step="1"
               title="Sales System Setup"
