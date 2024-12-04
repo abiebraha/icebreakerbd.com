@@ -57,7 +57,7 @@ export default function FAQSection() {
   return (
     <motion.section 
       ref={ref}
-      className="py-20 px-4 sm:px-6 lg:px-8"
+      className="py-12 px-4 sm:px-6 lg:px-8"
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={containerVariants}

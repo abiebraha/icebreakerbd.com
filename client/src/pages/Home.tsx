@@ -21,58 +21,54 @@ export default function Home() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
-        {/* Animated Background Waves */}
-        <div className="absolute inset-0 overflow-hidden">
-          {[...Array(3)].map((_, i) => (
-            <motion.div
-              key={`wave-${i}`}
-              className="absolute w-[200%] h-[50px] left-[-50%]"
-              style={{
-                top: `${30 + i * 15}%`,
-                background: `linear-gradient(90deg, transparent, rgba(18,62,116,${0.03 - i * 0.01}) 50%, transparent)`,
-                transform: 'rotate(-5deg)',
-              }}
-              animate={{
-                x: [0, -100, 0],
-              }}
-              transition={{
-                duration: 20 + i * 5,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-            />
-          ))}
-        </div>
-        {/* Animated Geometric Shapes */}
-        {/* Dynamic Particle Animations */}
-        <div className="absolute inset-0 overflow-hidden">
-          {[...Array(12)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute"
-              style={{
-                width: (i % 2 ? 60 : 40) + 'px',
-                height: (i % 2 ? 60 : 40) + 'px',
-                left: (i * 20) + '%',
-                top: (i * 15) + '%',
-                background: i % 3 === 0 ? '#123e74' : i % 3 === 1 ? '#1a4e8f' : '#0a2547',
-                border: i % 3 !== 0 ? '2px solid rgba(18,62,116,0.3)' : 'none',
-                borderRadius: i % 3 === 1 ? '0%' : i % 3 === 2 ? '25%' : '50%',
-                opacity: 0.08,
-              }}
-              animate={{
-                rotate: [0, 360],
-                scale: [1, 1.2, 1],
-                y: [0, -20, 0],
-              }}
-              transition={{
-                duration: 20 + i * 2,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-            />
-          ))}
-        </div>
+        {/* 3D Perspective Grid Background */}
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-br from-[#123e74]/5 via-transparent to-transparent"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <div className="absolute inset-0" style={{ perspective: "1000px" }}>
+            {[...Array(10)].map((_, i) => (
+              <motion.div
+                key={`grid-${i}`}
+                className="absolute w-full h-[1px] bg-gradient-to-r from-transparent via-[#123e74]/10 to-transparent"
+                style={{
+                  top: `${(i + 1) * 10}%`,
+                  transform: "rotateX(60deg)",
+                }}
+                animate={{
+                  scaleX: [0.95, 1.05, 0.95],
+                  opacity: [0.2, 0.4, 0.2],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  delay: i * 0.2,
+                }}
+              />
+            ))}
+            {[...Array(10)].map((_, i) => (
+              <motion.div
+                key={`grid-v-${i}`}
+                className="absolute h-full w-[1px] bg-gradient-to-b from-transparent via-[#123e74]/10 to-transparent"
+                style={{
+                  left: `${(i + 1) * 10}%`,
+                  transform: "rotateY(-60deg)",
+                }}
+                animate={{
+                  scaleY: [0.95, 1.05, 0.95],
+                  opacity: [0.2, 0.4, 0.2],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  delay: i * 0.2,
+                }}
+              />
+            ))}
+          </div>
+        </motion.div>
 
         {/* Parallax Layers */}
         <motion.div 
@@ -199,9 +195,9 @@ export default function Home() {
       </motion.section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-20 px-4 sm:px-6 lg:px-8">
+      <section id="pricing" className="py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Our Pricing Model</h2>
+          <h2 className="text-3xl font-bold text-center mb-8">Our Pricing Model</h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <PricingCard
               step="1"
@@ -241,7 +237,7 @@ export default function Home() {
       <FAQSection />
 
       {/* Contact Section */}
-      <section id="contact" className="bg-slate-50 py-20 px-4 sm:px-6 lg:px-8">
+      <section id="contact" className="bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">Get Started Today</h2>
           <ContactForm />

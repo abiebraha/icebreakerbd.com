@@ -27,7 +27,7 @@ export default function PricingCard({
       transition={{ type: "spring", stiffness: 300 }}
       className="group cursor-pointer"
     >
-      <Card className="w-full min-h-[600px] bg-white shadow-lg group-hover:shadow-2xl transition-all duration-300 relative overflow-hidden flex flex-col">
+      <Card className="w-full min-h-[500px] bg-white shadow-lg group-hover:shadow-2xl transition-all duration-300 relative overflow-hidden flex flex-col">
         <motion.div
           className="absolute inset-0 bg-gradient-to-br from-[#123e74]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
         />

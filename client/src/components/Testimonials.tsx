@@ -66,7 +66,7 @@ export default function Testimonials() {
   return (
     <motion.section 
       ref={ref}
-      className="bg-slate-50 py-20 px-4 sm:px-6 lg:px-8"
+      className="bg-slate-50 py-12 px-4 sm:px-6 lg:px-8"
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={containerVariants}
