@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, Suspense } from "react";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
@@ -308,16 +309,28 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <Testimonials />
+      <ErrorBoundary>
+        <Suspense fallback={<div className="p-12 text-center">Loading testimonials...</div>}>
+          <Testimonials />
+        </Suspense>
+      </ErrorBoundary>
 
       {/* FAQ Section */}
-      <FAQSection />
+      <ErrorBoundary>
+        <Suspense fallback={<div className="p-12 text-center">Loading FAQ...</div>}>
+          <FAQSection />
+        </Suspense>
+      </ErrorBoundary>
 
       {/* Schedule Consultation Section */}
       <section id="contact" className="bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">Schedule a Consultation</h2>
-          <CalendlyEmbed />
+          <ErrorBoundary>
+            <Suspense fallback={<div className="p-12 text-center">Loading calendar...</div>}>
+              <CalendlyEmbed />
+            </Suspense>
+          </ErrorBoundary>
         </div>
       </section>
     </div>
