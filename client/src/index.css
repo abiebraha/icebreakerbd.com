@@ -17,16 +17,35 @@ body {
   :root {
     --background: #ffffff;
     --foreground: #000000;
+    --primary: #123e74;
+    --primary-darker: #0d2d54;
+    --secondary: #1a4e8f;
+    --secondary-lighter: #2a5ea0;
   }
 
   html {
-    @apply min-h-screen;
+    @apply min-h-screen scroll-smooth;
     background-color: var(--background);
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
 
   #root {
     @apply min-h-screen flex flex-col;
     background-color: var(--background);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight;
+  }
+
+  p {
+    @apply leading-7;
+  }
+
+  @media (max-width: 640px) {
+    html {
+      font-size: 14px;
+    }
   }
 }
 
