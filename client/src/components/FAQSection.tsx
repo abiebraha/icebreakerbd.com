@@ -4,6 +4,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
 
 const faqs = [
   {
@@ -25,25 +28,72 @@ const faqs = [
 ];
 
 export default function FAQSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    }
+  };
+
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8">
+    <motion.section 
+      ref={ref}
+      className="py-20 px-4 sm:px-6 lg:px-8"
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      variants={containerVariants}
+    >
       <div className="max-w-3xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-12">
+        <motion.h2 
+          className="text-3xl font-bold text-center mb-12"
+          variants={itemVariants}
+        >
           Frequently Asked Questions
-        </h2>
+        </motion.h2>
         <Accordion type="single" collapsible className="w-full">
           {faqs.map((faq, index) => (
-            <AccordionItem key={index} value={`item-${index}`}>
-              <AccordionTrigger className="text-left">
-                {faq.question}
-              </AccordionTrigger>
-              <AccordionContent>
-                {faq.answer}
-              </AccordionContent>
-            </AccordionItem>
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              custom={index}
+            >
+              <AccordionItem value={`item-${index}`}>
+                <AccordionTrigger className="text-left hover:text-[#123e74] transition-colors duration-200">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent>
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {faq.answer}
+                  </motion.div>
+                </AccordionContent>
+              </AccordionItem>
+            </motion.div>
           ))}
         </Accordion>
       </div>
-    </section>
+    </motion.section>
   );
 }

@@ -4,8 +4,8 @@ import FAQSection from "../components/FAQSection";
 import ContactForm from "../components/ContactForm";
 import Testimonials from "../components/Testimonials";
 import { ArrowDown } from "lucide-react";
-import { motion } from "framer-motion";
-import { useEffect } from "react";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { useEffect, useRef } from "react";
 
 export default function Home() {
   const scrollToSection = (id: string) => {
@@ -16,33 +16,58 @@ export default function Home() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <motion.section 
-        className="relative bg-gradient-to-b from-slate-50 to-white py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
+        className="relative bg-gradient-to-b from-slate-50 to-white py-20 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-[80vh]"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
+        {/* Parallax Background */}
         <motion.div 
           className="absolute inset-0 w-full h-full"
           style={{
             backgroundImage: 'radial-gradient(circle at 10% 20%, rgba(18,62,116,0.03) 0%, transparent 50%)',
+            y: useTransform(useScroll().scrollY, [0, 1000], [0, 400]),
           }}
-          animate={{
-            scale: [1, 1.02, 1],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            repeatType: "reverse"
-          }}
-        />
+        >
+          <motion.div
+            className="absolute inset-0"
+            animate={{
+              background: [
+                "radial-gradient(circle at 20% 20%, rgba(18,62,116,0.05) 0%, transparent 50%)",
+                "radial-gradient(circle at 80% 80%, rgba(18,62,116,0.05) 0%, transparent 50%)",
+                "radial-gradient(circle at 20% 20%, rgba(18,62,116,0.05) 0%, transparent 50%)",
+              ]
+            }}
+            transition={{
+              duration: 15,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
+        </motion.div>
         <div className="max-w-7xl mx-auto text-center relative">
           <motion.h1 
             className="text-4xl md:text-6xl font-bold text-slate-900 mb-6"
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 1 }}
           >
-            Accelerate Your Sales Growth in Two Steps
+            {/* Typing animation for the headline */}
+            <motion.span
+              initial={{ width: "0%" }}
+              animate={{ width: "100%" }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
+              className="inline-block whitespace-nowrap overflow-hidden"
+            >
+              Accelerate Your Sales Growth
+            </motion.span>
+            <br />
+            <motion.span
+              initial={{ width: "0%" }}
+              animate={{ width: "100%" }}
+              transition={{ duration: 1, ease: "easeOut", delay: 1.5 }}
+              className="inline-block whitespace-nowrap overflow-hidden"
+            >
+              in Two Steps
+            </motion.span>
           </motion.h1>
           <motion.p 
             className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto"
