@@ -11,3 +11,35 @@
     @apply font-sans antialiased bg-background text-foreground;
   }
 }
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes gradient-reverse {
+  0% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient {
+  animation: gradient 8s linear infinite;
+}
+
+.animate-gradient-reverse {
+  animation: gradient-reverse 8s linear infinite;
+}

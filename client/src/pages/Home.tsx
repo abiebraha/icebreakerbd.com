@@ -16,14 +16,37 @@ export default function Home() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <motion.section 
-        className="relative bg-gradient-to-b from-slate-50 to-white py-20 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-[80vh]"
+        className="relative bg-gradient-to-b from-[#f0f4f9] via-white to-[#edf2f7] py-20 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-[80vh]"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
-        {/* Animated Geometric Shapes */}
+        {/* Animated Background Waves */}
         <div className="absolute inset-0 overflow-hidden">
-          {[...Array(6)].map((_, i) => (
+          {[...Array(3)].map((_, i) => (
+            <motion.div
+              key={`wave-${i}`}
+              className="absolute w-[200%] h-[50px] left-[-50%]"
+              style={{
+                top: `${30 + i * 15}%`,
+                background: `linear-gradient(90deg, transparent, rgba(18,62,116,${0.03 - i * 0.01}) 50%, transparent)`,
+                transform: 'rotate(-5deg)',
+              }}
+              animate={{
+                x: [0, -100, 0],
+              }}
+              transition={{
+                duration: 20 + i * 5,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            />
+          ))}
+        </div>
+        {/* Animated Geometric Shapes */}
+        {/* Dynamic Particle Animations */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(12)].map((_, i) => (
             <motion.div
               key={i}
               className="absolute"
@@ -32,10 +55,10 @@ export default function Home() {
                 height: (i % 2 ? 60 : 40) + 'px',
                 left: (i * 20) + '%',
                 top: (i * 15) + '%',
-                background: i % 3 === 0 ? '#123e74' : 'transparent',
-                border: i % 3 !== 0 ? '2px solid #123e74' : 'none',
-                borderRadius: i % 3 === 1 ? '0%' : '50%',
-                opacity: 0.1,
+                background: i % 3 === 0 ? '#123e74' : i % 3 === 1 ? '#1a4e8f' : '#0a2547',
+                border: i % 3 !== 0 ? '2px solid rgba(18,62,116,0.3)' : 'none',
+                borderRadius: i % 3 === 1 ? '0%' : i % 3 === 2 ? '25%' : '50%',
+                opacity: 0.08,
               }}
               animate={{
                 rotate: [0, 360],
@@ -80,17 +103,13 @@ export default function Home() {
 
         {/* Mouse Follow Effect */}
         <motion.div
-          className="absolute w-40 h-40 rounded-full pointer-events-none"
+          className="absolute w-40 h-40 rounded-full pointer-events-none mix-blend-multiply"
           style={{
-            background: "radial-gradient(circle, rgba(18,62,116,0.1) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(18,62,116,0.2) 0%, transparent 70%)",
           }}
-          animate={{
-            x: useMotionValue(0),
-            y: useMotionValue(0),
-          }}
-          whileHover={{
-            scale: 1.2,
-          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
         />
         <div className="max-w-7xl mx-auto text-center relative">
           <motion.h1 
@@ -107,12 +126,12 @@ export default function Home() {
                   ease: [0.43, 0.13, 0.23, 0.96],
                   bounce: 0.4 
                 }}
-                className="inline-block whitespace-nowrap overflow-hidden"
+                className="inline-block whitespace-nowrap overflow-hidden bg-gradient-to-r from-[#123e74] via-[#1a4e8f] to-[#123e74] bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient"
               >
                 Accelerate Your Sales Growth
               </motion.span>
               <motion.div
-                className="absolute right-0 top-0 h-full w-1 bg-[#123e74]"
+                className="absolute right-0 top-0 h-full w-1 bg-gradient-to-b from-[#123e74] to-[#1a4e8f]"
                 animate={{
                   opacity: [1, 0],
                   scaleY: [1, 1.2, 1],
@@ -135,12 +154,12 @@ export default function Home() {
                   delay: 1.5,
                   bounce: 0.4 
                 }}
-                className="inline-block whitespace-nowrap overflow-hidden"
+                className="inline-block whitespace-nowrap overflow-hidden bg-gradient-to-r from-[#1a4e8f] via-[#123e74] to-[#1a4e8f] bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-reverse"
               >
                 in Two Steps
               </motion.span>
               <motion.div
-                className="absolute right-0 top-0 h-full w-1 bg-[#123e74]"
+                className="absolute right-0 top-0 h-full w-1 bg-gradient-to-b from-[#1a4e8f] to-[#123e74]"
                 initial={{ opacity: 0 }}
                 animate={{
                   opacity: [1, 0],
