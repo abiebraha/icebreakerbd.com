@@ -1,25 +1,28 @@
+import { useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import PricingCard from "../components/PricingCard";
-import FAQSection from "../components/FAQSection";
-import ContactForm from "../components/ContactForm";
-import Testimonials from "../components/Testimonials";
 import { ArrowDown } from "lucide-react";
-import { motion, useScroll, useTransform, useInView, useMotionValue, useSpring } from "framer-motion";
-import { useEffect, useRef } from "react";
+import PricingCard from "@/components/PricingCard";
+import Testimonials from "@/components/Testimonials";
+import FAQSection from "@/components/FAQSection";
+import ContactForm from "@/components/ContactForm";
+import MouseEffect from "@/components/MouseEffect";
 
 export default function Home() {
   const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
+    <div className="overflow-x-hidden">
       <motion.section 
-        className="relative bg-gradient-to-b from-[#f0f4f9] via-white to-[#edf2f7] py-20 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-[80vh]"
+        className="min-h-screen bg-white relative overflow-hidden flex items-center justify-center py-20"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.6 }}
       >
         {/* Enhanced 3D Perspective Grid Background */}
         <motion.div 
@@ -179,7 +182,8 @@ export default function Home() {
           ))}
         </motion.div>
 
-        {/* Remove old mouse follow effect */}
+        {/* Enhanced Mouse Effect */}
+        <MouseEffect />
         <div className="max-w-7xl mx-auto text-center relative">
           <motion.h1 
             className="text-4xl md:text-6xl font-bold text-slate-900 mb-6"

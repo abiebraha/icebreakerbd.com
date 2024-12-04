@@ -7,12 +7,9 @@ import { queryClient } from "./lib/queryClient";
 import { Toaster } from "@/components/ui/toaster";
 import Home from "./pages/Home";
 
-import MouseEffect from "./components/MouseEffect";
-
 function Router() {
   return (
     <>
-      <MouseEffect />
       <Switch>
         <Route path="/" component={Home} />
         <Route>404 Page Not Found</Route>

@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { motion, useMotionValue, useSpring, useScroll } from "framer-motion";
 import { throttle } from "lodash";
 
 interface MousePosition {
@@ -8,6 +8,17 @@ interface MousePosition {
 }
 
 export default function MouseEffect() {
+  const { scrollY } = useScroll();
+  const [opacity, setOpacity] = useState(1);
+
+  // Update opacity based on scroll position
+  useEffect(() => {
+    return scrollY.onChange((latest) => {
+      // Start fading out at 100px scroll, completely hidden by 300px
+      const newOpacity = Math.max(0, Math.min(1, 1 - (latest - 100) / 200));
+      setOpacity(newOpacity);
+    });
+  }, [scrollY]);
   const [mousePosition, setMousePosition] = useState<MousePosition>({ x: 0, y: 0 });
   const springConfig = { damping: 25, stiffness: 200 };
   const mouseX = useSpring(useMotionValue(0), springConfig);
