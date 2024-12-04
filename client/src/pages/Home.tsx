@@ -4,6 +4,8 @@ import FAQSection from "../components/FAQSection";
 import ContactForm from "../components/ContactForm";
 import Testimonials from "../components/Testimonials";
 import { ArrowDown } from "lucide-react";
+import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 export default function Home() {
   const scrollToSection = (id: string) => {
@@ -13,23 +15,58 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-slate-50 py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6">
-            Accelerate Your Sales Growth in Two Steps
-          </h1>
-          <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto">
-            Transform your sales process and build a high-performing SDR team with our proven two-step approach.
-          </p>
-          <Button
-            size="lg"
-            onClick={() => scrollToSection('pricing')}
-            className="gap-2"
+      <motion.section 
+        className="relative bg-gradient-to-b from-slate-50 to-white py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+      >
+        <motion.div 
+          className="absolute inset-0 w-full h-full"
+          style={{
+            backgroundImage: 'radial-gradient(circle at 10% 20%, rgba(18,62,116,0.03) 0%, transparent 50%)',
+          }}
+          animate={{
+            scale: [1, 1.02, 1],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            repeatType: "reverse"
+          }}
+        />
+        <div className="max-w-7xl mx-auto text-center relative">
+          <motion.h1 
+            className="text-4xl md:text-6xl font-bold text-slate-900 mb-6"
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6 }}
           >
-            View Pricing <ArrowDown size={16} />
-          </Button>
+            Accelerate Your Sales Growth in Two Steps
+          </motion.h1>
+          <motion.p 
+            className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto"
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            Transform your sales process and build a high-performing SDR team with our proven two-step approach.
+          </motion.p>
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <Button
+              size="lg"
+              onClick={() => scrollToSection('pricing')}
+              className="gap-2 bg-[#123e74] hover:bg-[#1a4e8f] transition-all duration-300 hover:scale-105"
+            >
+              View Pricing <ArrowDown size={16} className="animate-bounce" />
+            </Button>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Pricing Section */}
       <section id="pricing" className="py-20 px-4 sm:px-6 lg:px-8">
