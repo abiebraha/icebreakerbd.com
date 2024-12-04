@@ -18,15 +18,12 @@ function Router() {
   );
 }
 
-// Create root only if it doesn't exist
 const rootElement = document.getElementById("root");
-if (!rootElement?.hasChildNodes()) {
-  createRoot(rootElement!).render(
-    <StrictMode>
-      <QueryClientProvider client={queryClient}>
-        <Router />
-        <Toaster />
-      </QueryClientProvider>
-    </StrictMode>,
-  );
-}
+createRoot(rootElement!).render(
+  <StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <Router />
+      <Toaster />
+    </QueryClientProvider>
+  </StrictMode>,
+);
