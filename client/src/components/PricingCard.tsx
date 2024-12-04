@@ -1,6 +1,5 @@
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Check, Sparkles } from "lucide-react";
+import { Check, Sparkles, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
 interface PricingCardProps {
@@ -26,15 +25,13 @@ export default function PricingCard({
     <motion.div
       whileHover={{ scale: 1.02 }}
       transition={{ type: "spring", stiffness: 300 }}
+      className="group cursor-pointer"
     >
-      <Card className="w-full bg-white shadow-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden">
+      <Card className="w-full min-h-[600px] bg-white shadow-lg group-hover:shadow-2xl transition-all duration-300 relative overflow-hidden flex flex-col">
         <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-[#123e74]/5 to-transparent"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
+          className="absolute inset-0 bg-gradient-to-br from-[#123e74]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
         />
-        <CardHeader>
+        <CardHeader className="flex-grow">
           <motion.div 
             className="flex items-center gap-2 mb-4"
             initial={{ x: -20, opacity: 0 }}
@@ -74,7 +71,7 @@ export default function PricingCard({
             {description}
           </motion.p>
         </CardHeader>
-        <CardContent>
+        <CardContent className="flex-grow-0">
           <ul className="space-y-4 mb-6">
             {features.map((feature, index) => (
               <motion.li 
@@ -89,16 +86,19 @@ export default function PricingCard({
               </motion.li>
             ))}
           </ul>
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 400 }}
+          <motion.div 
+            className="flex items-center justify-center gap-2 text-[#123e74] group-hover:text-[#1a4e8f] transition-colors duration-300"
+            whileHover={{ x: 5 }}
           >
-            <Button 
-              className="w-full bg-[#123e74] hover:bg-[#1a4e8f] transition-all duration-300"
-              size="lg"
-            >
+            <span className="font-semibold relative">
               {ctaText}
-            </Button>
+              <motion.div 
+                className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#123e74] group-hover:w-full transition-all duration-300"
+                initial={{ width: "0%" }}
+                whileHover={{ width: "100%" }}
+              />
+            </span>
+            <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
           </motion.div>
         </CardContent>
       </Card>
