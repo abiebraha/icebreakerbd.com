@@ -27,14 +27,14 @@ export default function PricingCard({
       whileHover={{ scale: 1.02 }}
       transition={{ type: "spring", stiffness: 300 }}
     >
-      <Card className="w-full bg-white shadow-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden">
+      <Card className="w-full bg-white shadow-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden min-h-[600px] flex flex-col">
         <motion.div
           className="absolute inset-0 bg-gradient-to-br from-[#123e74]/5 to-transparent"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         />
-        <CardHeader>
+        <CardHeader className="flex-none">
           <motion.div 
             className="flex items-center gap-2 mb-4"
             initial={{ x: -20, opacity: 0 }}
@@ -74,7 +74,7 @@ export default function PricingCard({
             {description}
           </motion.p>
         </CardHeader>
-        <CardContent>
+        <CardContent className="flex-1 flex flex-col justify-between">
           <ul className="space-y-4 mb-6">
             {features.map((feature, index) => (
               <motion.li 
