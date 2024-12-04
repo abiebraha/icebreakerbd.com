@@ -4,7 +4,7 @@ import { Loader2 } from 'lucide-react';
 export default function CalendlyEmbed() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const calendlyUrl = import.meta.env.VITE_CALENDLY_URL;
+  const calendlyUrl = import.meta.env.VITE_CALENDLY_URL || import.meta.env.CALENDLY_URL;
 
   useEffect(() => {
     if (!calendlyUrl) {
