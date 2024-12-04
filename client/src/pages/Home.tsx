@@ -5,7 +5,7 @@ import { ArrowDown } from "lucide-react";
 import PricingCard from "@/components/PricingCard";
 import Testimonials from "@/components/Testimonials";
 import FAQSection from "@/components/FAQSection";
-import ContactForm from "@/components/ContactForm";
+import CalendlyEmbed from "@/components/CalendlyEmbed";
 import MouseEffect from "@/components/MouseEffect";
 
 export default function Home() {
@@ -313,11 +313,11 @@ export default function Home() {
       {/* FAQ Section */}
       <FAQSection />
 
-      {/* Contact Section */}
+      {/* Schedule Consultation Section */}
       <section id="contact" className="bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Get Started Today</h2>
-          <ContactForm />
+          <h2 className="text-3xl font-bold text-center mb-12">Schedule a Consultation</h2>
+          <CalendlyEmbed />
         </div>
       </section>
     </div>
