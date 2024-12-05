@@ -1,7 +1,17 @@
 {
-  "variant": "professional",
-  "primary": "#123e74",
-  "secondary": "#1a4e8f",
+  "variant": "minimal",
+  "primary": "#000000",
+  "secondary": "#86868b",
+  "accent": "#0066CC",
+  "background": "#ffffff",
+  "text": "#1d1d1f",
+  "muted": "#86868b",
+  "border": "#d2d2d7",
   "appearance": "light",
-  "radius": 0.75
+  "radius": 0.5,
+  "font": {
+    "sans": "SF Pro Display, -apple-system, BlinkMacSystemFont, system-ui, sans-serif",
+    "heading": "SF Pro Display, -apple-system, BlinkMacSystemFont, system-ui, sans-serif",
+    "mono": "SF Mono, SFMono-Regular, ui-monospace, monospace"
+  }
 }

@@ -7,34 +7,44 @@ export default function Home() {
   const { scrollY } = useScroll();
   const ref = useRef<HTMLDivElement>(null);
   
-  // Create smooth spring animations for parallax effects
-  const springConfig = { stiffness: 100, damping: 30, mass: 1 };
+  // Enhanced spring animations for Apple-like smooth transitions
+  const springConfig = { 
+    stiffness: 50,
+    damping: 20,
+    mass: 1.5
+  };
   
-  // Hero section parallax
+  // Hero animations
   const heroY = useSpring(
-    useTransform(scrollY, [0, 800], [0, -200]),
+    useTransform(scrollY, [0, 1000], [0, -300]),
     springConfig
   );
   
   const heroScale = useSpring(
-    useTransform(scrollY, [0, 800], [1, 0.8]),
+    useTransform(scrollY, [0, 1000], [1, 0.95]),
     springConfig
   );
   
   const heroOpacity = useSpring(
-    useTransform(scrollY, [0, 400], [1, 0]),
+    useTransform(scrollY, [0, 500], [1, 0]),
     springConfig
   );
 
-  // Features section parallax
+  // Features animations with enhanced parallax
   const featuresY = useSpring(
-    useTransform(scrollY, [400, 1200], [200, -100]),
+    useTransform(scrollY, [300, 1200], [200, -100]),
     springConfig
   );
   
-  // Stats section parallax
+  // Stats animations
   const statsY = useSpring(
-    useTransform(scrollY, [800, 1600], [200, -100]),
+    useTransform(scrollY, [600, 1400], [200, -50]),
+    springConfig
+  );
+  
+  // Text reveal animations
+  const textReveal = useSpring(
+    useTransform(scrollY, [100, 500], [50, 0]),
     springConfig
   );
 
@@ -42,36 +52,36 @@ export default function Home() {
     <div className="bg-white overflow-hidden">
       {/* Hero Section */}
       <motion.section 
-        className="min-h-screen relative flex items-center justify-center"
+        className="min-h-screen relative flex items-center justify-center overflow-hidden bg-black text-white"
         style={{ 
           y: heroY,
           scale: heroScale,
           opacity: heroOpacity
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-[#123e74]/10 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-transparent" />
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             className="text-center"
-            initial={{ opacity: 0, y: 100 }}
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h1 className="text-6xl md:text-8xl font-bold text-slate-900 mb-6 tracking-tight">
-              Transform Your
+            <h1 className="text-7xl md:text-[120px] font-bold mb-6 tracking-tight leading-none">
+              Sales Growth.
               <br />
-              <span className="bg-gradient-to-r from-[#123e74] to-[#1a4e8f] bg-clip-text text-transparent">
-                Sales Growth
+              <span className="bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+                Reimagined.
               </span>
             </h1>
             <motion.p 
-              className="text-xl md:text-2xl text-slate-600 mb-8 max-w-3xl mx-auto"
+              className="text-2xl md:text-3xl text-white/90 mb-8 max-w-3xl mx-auto font-medium tracking-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             >
-              Build high-performing SDR teams with our proven approach
+              Build extraordinary SDR teams with our revolutionary approach
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
