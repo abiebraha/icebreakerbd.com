@@ -84,8 +84,8 @@ export default function Testimonials() {
               variants={cardVariants}
               animate={floatingAnimation}
             >
-              <Card className="bg-white shadow-lg hover:shadow-xl transition-all duration-300">
-                <CardContent className="pt-6">
+              <Card className="bg-white shadow-lg hover:shadow-xl transition-all duration-300 h-full">
+                <CardContent className="pt-6 flex flex-col h-full">
                   <motion.div 
                     className="flex items-center gap-4 mb-4"
                     initial={{ x: -20, opacity: 0 }}
@@ -105,7 +105,7 @@ export default function Testimonials() {
                     </div>
                   </motion.div>
                   <motion.p 
-                    className="text-slate-600 italic"
+                    className="text-slate-600 italic flex-grow"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: index * 0.3 }}
