@@ -31,7 +31,7 @@ export default function PricingPage() {
               <span className="text-[#123e74]">Pricing</span>
             </h1>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Choose the plan that best fits your business needs and start scaling your sales team today.
+              Transform your sales process and build a high-performing SDR team with our proven two-step approach.
             </p>
           </motion.div>
         </div>
