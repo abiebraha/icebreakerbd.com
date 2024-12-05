@@ -1,32 +1,7 @@
 import { motion } from "framer-motion";
 import { Shield, Users, Trophy, Brain } from "lucide-react";
 
-const teamMembers = [
-  {
-    name: "Sarah Johnson",
-    role: "CEO & Founder",
-    bio: "15+ years of experience in sales leadership and team development.",
-    image: "/team/sarah.jpg"
-  },
-  {
-    name: "Michael Chen",
-    role: "Head of Sales Strategy",
-    bio: "Former sales director at Fortune 500 companies, specializing in process optimization.",
-    image: "/team/michael.jpg"
-  },
-  {
-    name: "Rachel Torres",
-    role: "SDR Team Lead",
-    bio: "Expert in building and training high-performing SDR teams.",
-    image: "/team/rachel.jpg"
-  },
-  {
-    name: "David Park",
-    role: "Technology Director",
-    bio: "Specialist in sales tech stack implementation and integration.",
-    image: "/team/david.jpg"
-  }
-];
+
 
 const values = [
   {
@@ -137,41 +112,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">Meet Our Team</h2>
-            <p className="text-lg text-slate-600">The experts behind our success stories</p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-4 gap-8">
-            {teamMembers.map((member, index) => (
-              <motion.div
-                key={member.name}
-                className="text-center"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <div className="relative mb-4 rounded-full overflow-hidden w-48 h-48 mx-auto">
-                  <div className="w-full h-full bg-slate-200 flex items-center justify-center">
-                    <Users className="w-12 h-12 text-slate-400" />
-                  </div>
-                </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-1">{member.name}</h3>
-                <p className="text-[#123e74] font-medium mb-2">{member.role}</p>
-                <p className="text-slate-600">{member.bio}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      
     </div>
   );
 }
