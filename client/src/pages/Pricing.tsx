@@ -68,6 +68,13 @@ export default function PricingPage() {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <ErrorBoundary>
+        <Suspense fallback={<div className="p-12 text-center">Loading testimonials...</div>}>
+          <Testimonials />
+        </Suspense>
+      </ErrorBoundary>
+
       {/* FAQ Section */}
       <FAQSection />
     </div>

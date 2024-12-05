@@ -3,8 +3,6 @@ import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Users, LineChart, Target } from "lucide-react";
-import Testimonials from "@/components/Testimonials";
-import FAQSection from "@/components/FAQSection";
 
 import MouseEffect from "@/components/MouseEffect";
 
@@ -342,21 +340,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <ErrorBoundary>
-        <Suspense fallback={<div className="p-12 text-center">Loading testimonials...</div>}>
-          <Testimonials />
-        </Suspense>
-      </ErrorBoundary>
-
-      {/* FAQ Section */}
-      <ErrorBoundary>
-        <Suspense fallback={<div className="p-12 text-center">Loading FAQ...</div>}>
-          <FAQSection />
-        </Suspense>
-      </ErrorBoundary>
-
-      
-    </div>
+      </div>
   );
 }
