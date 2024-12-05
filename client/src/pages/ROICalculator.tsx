@@ -91,63 +91,69 @@ export default function ROICalculator() {
   const exportToPDF = async () => {
     if (!resultsRef.current) return;
 
-    const logoUrl = '/Color logo - no background.png';
-    const canvas = await html2canvas(resultsRef.current, { 
-      scale: 2,
-      logging: true,
-      width: resultsRef.current.scrollWidth,
-      height: resultsRef.current.scrollHeight,
-      windowWidth: resultsRef.current.scrollWidth,
-      windowHeight: resultsRef.current.scrollHeight
-    });
-    const imgData = canvas.toDataURL('image/png');
-    
-    const pdf = new jsPDF('landscape', 'pt', [1200, 800]); // Custom page size for better fit
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = pdf.internal.pageSize.getHeight();
-    
-    // Add logo first
-    const logoImg = new Image();
-    logoImg.src = logoUrl;
-    
-    await new Promise((resolve) => {
-      logoImg.onload = resolve;
-      logoImg.onerror = () => {
-        console.error('Error loading logo');
-        resolve(null);
-      };
-    });
-
-    const logoWidth = 200; // Slightly larger logo
-    const logoHeight = 120;
-    const xLogo = (pdfWidth - logoWidth) / 2;
-    
     try {
-      pdf.addImage(logoImg, 'PNG', xLogo, 20, logoWidth, logoHeight);
+      const canvas = await html2canvas(resultsRef.current, { 
+        scale: 2,
+        logging: true,
+        width: resultsRef.current.scrollWidth,
+        height: resultsRef.current.scrollHeight,
+        windowWidth: resultsRef.current.scrollWidth,
+        windowHeight: resultsRef.current.scrollHeight
+      });
+      
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF('landscape', 'pt', [1200, 800]); // Custom page size for better fit
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = pdf.internal.pageSize.getHeight();
+      
+      // Load and add logo
+      const logoHeight = 120;
+      
+      try {
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        const logoUrl = new URL('/Color logo - no background.png', window.location.origin).href;
+        await new Promise((resolve, reject) => {
+          img.onload = resolve;
+          img.onerror = (e) => {
+            console.error('Failed to load logo:', e);
+            reject(new Error('Failed to load logo'));
+          };
+          img.src = logoUrl;
+        });
+
+        const logoWidth = 200;
+        const xLogo = (pdfWidth - logoWidth) / 2;
+        pdf.addImage(img, 'PNG', xLogo, 20, logoWidth, logoHeight);
+      } catch (logoError) {
+        console.error('Error adding logo to PDF:', logoError);
+        // Continue without logo if it fails to load
+      }
+
+      // Scale and position the table content
+      const contentWidth = pdfWidth - 80;
+      const contentHeight = pdfHeight - logoHeight - 100;
+      const imgWidth = canvas.width;
+      const imgHeight = canvas.height;
+      const ratio = Math.min(contentWidth / imgWidth, contentHeight / imgHeight);
+      
+      const imgX = 40;
+      const imgY = logoHeight + 60;
+
+      pdf.addImage(imgData, 'PNG', imgX, imgY, imgWidth * ratio, imgHeight * ratio);
+      pdf.save('sdr-roi-results.pdf');
     } catch (error) {
-      console.error('Error adding logo to PDF:', error);
+      console.error('Error generating PDF:', error);
+      // You might want to show an error message to the user here
     }
-
-    // Scale and position the table content
-    const contentWidth = pdfWidth - 80; // Leave margins
-    const contentHeight = pdfHeight - logoHeight - 100; // Leave space for logo and margins
-    const imgWidth = canvas.width;
-    const imgHeight = canvas.height;
-    const ratio = Math.min(contentWidth / imgWidth, contentHeight / imgHeight);
-    
-    const imgX = 40; // Left margin
-    const imgY = logoHeight + 60; // Space below logo
-
-    pdf.addImage(imgData, 'PNG', imgX, imgY, imgWidth * ratio, imgHeight * ratio);
-    pdf.save('sdr-roi-results.pdf');
   };
 
   return (
     <div className="bg-white min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
+      <section className="relative py-20 overflow-hidden bg-gradient-to-br from-[#123e74]/5 via-transparent to-transparent">
         <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-[#123e74]/5 via-transparent to-transparent"
+          className="absolute inset-0"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
@@ -182,6 +188,7 @@ export default function ROICalculator() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
+              <h3 className="text-2xl font-bold text-slate-900 mb-4">Calculator Inputs</h3>
               <Card>
                 <CardContent className="pt-6">
                   <div className="space-y-4">
@@ -307,49 +314,52 @@ export default function ROICalculator() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="flex flex-col gap-4 md:col-span-2"
             >
-              <div ref={resultsRef}>
-                <Card>
-                  <CardContent className="pt-6">
-                    <div className="flex justify-between items-center mb-6">
-                      <h3 className="text-2xl font-bold text-slate-900">Monthly Breakdown</h3>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="gap-2"
-                        onClick={exportToPDF}
-                      >
-                        <Download className="w-4 h-4" />
-                        Export PDF
-                      </Button>
-                    </div>
-                    <div className="overflow-x-auto">
-                      <Table>
-                        <TableHeader>
-                          <TableRow>
-                            <TableHead>Month</TableHead>
-                            <TableHead>Meetings</TableHead>
-                            <TableHead>Opportunities</TableHead>
-                            <TableHead>Sales Won</TableHead>
-                            <TableHead>Revenue</TableHead>
-                            <TableHead>Cumulative Revenue</TableHead>
-                          </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                          {monthlyResults.map((result) => (
-                            <TableRow key={result.month}>
-                              <TableCell>{result.month}</TableCell>
-                              <TableCell>{result.meetingsBooked.toFixed(1)}</TableCell>
-                              <TableCell>{result.opportunities.toFixed(1)}</TableCell>
-                              <TableCell>{result.salesWon.toFixed(1)}</TableCell>
-                              <TableCell>${result.revenue.toLocaleString()}</TableCell>
-                              <TableCell>${result.cumulativeRevenue.toLocaleString()}</TableCell>
+              <div>
+                <h3 className="text-2xl font-bold text-slate-900 mb-4">Results</h3>
+                <div ref={resultsRef}>
+                  <Card>
+                    <CardContent className="pt-6">
+                      <div className="flex justify-between items-center mb-6">
+                        <h3 className="text-2xl font-bold text-slate-900">Monthly Breakdown</h3>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="gap-2"
+                          onClick={exportToPDF}
+                        >
+                          <Download className="w-4 h-4" />
+                          Export PDF
+                        </Button>
+                      </div>
+                      <div className="overflow-x-auto">
+                        <Table>
+                          <TableHeader>
+                            <TableRow>
+                              <TableHead>Month</TableHead>
+                              <TableHead>Meetings</TableHead>
+                              <TableHead>Opportunities</TableHead>
+                              <TableHead>Sales Won</TableHead>
+                              <TableHead>Revenue</TableHead>
+                              <TableHead>Cumulative Revenue</TableHead>
                             </TableRow>
-                          ))}
-                        </TableBody>
-                      </Table>
-                    </div>
-                  </CardContent>
-                </Card>
+                          </TableHeader>
+                          <TableBody>
+                            {monthlyResults.map((result) => (
+                              <TableRow key={result.month}>
+                                <TableCell>{result.month}</TableCell>
+                                <TableCell>{result.meetingsBooked.toFixed(1)}</TableCell>
+                                <TableCell>{result.opportunities.toFixed(1)}</TableCell>
+                                <TableCell>{result.salesWon.toFixed(1)}</TableCell>
+                                <TableCell>${result.revenue.toLocaleString()}</TableCell>
+                                <TableCell>${result.cumulativeRevenue.toLocaleString()}</TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
               </div>
             </motion.div>
           </div>
