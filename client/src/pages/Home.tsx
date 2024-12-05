@@ -25,6 +25,7 @@ export default function Home() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
       >
+        <MouseEffect />
         {/* Enhanced 3D Perspective Grid Background */}
         <motion.div 
           className="absolute inset-0 bg-gradient-to-br from-[#123e74]/5 via-transparent to-transparent"
@@ -183,8 +184,7 @@ export default function Home() {
           ))}
         </motion.div>
 
-        {/* Enhanced Mouse Effect */}
-        <MouseEffect />
+        {/* Mouse Effect moved to be scoped to hero section */}
         <div className="max-w-7xl mx-auto text-center relative">
           <motion.h1 
             className="text-4xl md:text-6xl font-bold text-slate-900 mb-6"

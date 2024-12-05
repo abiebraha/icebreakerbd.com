@@ -48,7 +48,7 @@ export default function MouseEffect() {
   }, [handleMouseMove]);
 
   return (
-    <motion.div className="fixed inset-0 pointer-events-none z-50">
+    <motion.div className="absolute inset-0 pointer-events-none">
       {/* Main gradient effect */}
       <motion.div
         className="absolute w-[160px] h-[160px] rounded-full"
