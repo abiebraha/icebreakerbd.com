@@ -227,7 +227,7 @@ export default function Home() {
                 }}
                 className="inline-block whitespace-nowrap overflow-hidden bg-gradient-to-r from-[#1a4e8f] via-[#123e74] to-[#1a4e8f] bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-reverse"
               >
-                in Two Steps
+                in Two Simple Steps
               </motion.span>
               <motion.div
                 className="absolute right-0 top-0 h-full w-1 bg-gradient-to-b from-[#1a4e8f] to-[#123e74]"
