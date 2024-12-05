@@ -172,6 +172,98 @@ export default function Home() {
         </div>
       </motion.section>
 
+      {/* Two-Step Process Section */}
+      <section className="py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="text-center mb-20"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <h2 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
+              Our Two-Step Process
+            </h2>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              A proven approach to building successful sales teams
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-12">
+            <motion.div
+              className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1 }}
+            >
+              <div className="mb-6">
+                <span className="text-6xl font-bold text-[#0066CC]">1</span>
+              </div>
+              <h3 className="text-2xl font-bold mb-4">Sales System Setup</h3>
+              <p className="text-slate-600 mb-6">
+                We optimize your existing sales infrastructure, working with your in-house team to set up essential tools and processes.
+              </p>
+              <ul className="space-y-3 mb-6">
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#0066CC]" />
+                  <span>CRM and tech stack implementation</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#0066CC]" />
+                  <span>Integration of sales tools</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#0066CC]" />
+                  <span>Development of sales scripts</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#0066CC]" />
+                  <span>KPI tracking setup</span>
+                </li>
+              </ul>
+              <p className="font-semibold text-lg mb-2">Starting at $2,000</p>
+            </motion.div>
+
+            <motion.div
+              className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.2 }}
+            >
+              <div className="mb-6">
+                <span className="text-6xl font-bold text-[#0066CC]">2</span>
+              </div>
+              <h3 className="text-2xl font-bold mb-4">Build Your SDR Team</h3>
+              <p className="text-slate-600 mb-6">
+                We help you scale by building a dedicated Sales Development Representative (SDR) team.
+              </p>
+              <ul className="space-y-3 mb-6">
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#0066CC]" />
+                  <span>SDR recruitment and onboarding</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#0066CC]" />
+                  <span>Fractional sales management</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#0066CC]" />
+                  <span>Ongoing training and support</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#0066CC]" />
+                  <span>Performance monitoring</span>
+                </li>
+              </ul>
+              <p className="font-semibold text-lg mb-2">$3,000 per SDR</p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Stats Section */}
       <motion.section 
         className="py-32 bg-gradient-to-b from-white to-slate-50"
