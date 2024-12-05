@@ -72,7 +72,7 @@ export default function Home() {
               Transform Your
               <br />
               <span className="bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
-                Sales Growth
+                Sales Teams
               </span>
             </h1>
             <motion.p 
@@ -81,7 +81,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             >
-              Build high-performing SDR teams with our proven approach
+              One Step at a Time
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -90,7 +90,7 @@ export default function Home() {
             >
               <Button
                 size="lg"
-                className="bg-[#123e74] hover:bg-[#1a4e8f] text-white px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
+                className="bg-[#0066CC] hover:bg-[#0077ED] text-white px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
                 onClick={() => window.open(import.meta.env.VITE_CALENDLY_URL || "https://calendly.com/icebreakerbd/meeting-with-abie-braha", "_blank")}
               >
                 Schedule a Call
@@ -158,7 +158,7 @@ export default function Home() {
                 className="bg-white p-8 rounded-2xl"
               >
                 <motion.div 
-                  className="text-[#123e74] mb-6"
+                  className="text-[#0066CC] mb-6"
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.3 }}
                 >
@@ -209,7 +209,7 @@ export default function Home() {
                 transition={{ duration: 1, delay: index * 0.2, ease: [0.16, 1, 0.3, 1] }}
               >
                 <motion.p 
-                  className="text-5xl font-bold mb-4 bg-gradient-to-r from-[#123e74] to-[#1a4e8f] bg-clip-text text-transparent"
+                  className="text-5xl font-bold mb-4 bg-gradient-to-r from-[#0066CC] to-[#0077ED] bg-clip-text text-transparent"
                   animate={{ 
                     backgroundPosition: ["0%", "100%"],
                   }}
@@ -257,7 +257,7 @@ export default function Home() {
             >
               <Button
                 size="lg"
-                className="bg-[#123e74] hover:bg-[#1a4e8f] text-white px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
+                className="bg-[#0066CC] hover:bg-[#0077ED] text-white px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
                 onClick={() => window.open(import.meta.env.VITE_CALENDLY_URL || "https://calendly.com/icebreakerbd/meeting-with-abie-braha", "_blank")}
               >
                 Schedule a Call
