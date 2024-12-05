@@ -1,0 +1,98 @@
+<script>
+       function calculateROI() {
+            var callingHours = parseFloat(document.getElementById("callingHours").value);
+            var monthlyCost = parseFloat(document.getElementById("monthlyCost").value);
+            var callsPerHour = parseFloat(document.getElementById("callsPerHour").value);
+            var dmMeetingRate = parseFloat(document.getElementById("dmMeetingRate").value) / 100;
+            var meetingToOpportunityRate = parseFloat(document.getElementById("meetingToOpportunityRate").value) / 100;
+            var opportunityToCloseRatio = parseFloat(document.getElementById("opportunityToCloseRatio").value) / 100;
+            var averageSpendPerCustomer = parseFloat(document.getElementById("averageSpendPerCustomer").value);
+            var salesCycle = parseInt(document.getElementById("salesCycle").value);
+			var numberOfSDRs = parseInt(document.getElementById("numberOfSDRs").value);
+
+            var resultsHtml = "";
+            var cumulativeRevenue = 0;
+
+            for (var month = 1; month <= 12; month++) {
+                var rampUpFactor = month === 1 ? 0.15 : month === 2 ? 0.30 : month === 3 ? 0.40 : month === 4 ? 0.65 : month === 5 ? 0.85 : 1;
+                var callsMade = callingHours * callsPerHour * numberOfSDRs * rampUpFactor;
+                var meetingsBooked = callsMade * dmMeetingRate;
+                var opportunities = meetingsBooked * meetingToOpportunityRate;
+                var salesWon = month > salesCycle ? opportunities * opportunityToCloseRatio : 0;
+
+                var revenue = month > salesCycle ? salesWon * averageSpendPerCustomer : 0;
+                revenue -= monthlyCost;
+                cumulativeRevenue += revenue;
+
+                resultsHtml += "<tr><td>" + month + "</td><td>" + numberWithCommas(meetingsBooked.toFixed(2)) + "</td><td>" + numberWithCommas(opportunities.toFixed(2)) + "</td><td>" + numberWithCommas(salesWon.toFixed(2)) + "</td><td>" + numberWithCommas(revenue.toFixed(2)) + "</td><td>" + numberWithCommas(cumulativeRevenue.toFixed(2)) + "</td></tr>";
+            }
+
+            document.getElementById("resultsBody").innerHTML = resultsHtml;
+            document.getElementById("resultsSection").style.display = "block";
+            scrollToResults();
+        }
+
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        function scrollToResults() {
+            document.getElementById("resultsSection").scrollIntoView({ behavior: 'smooth' });
+        }
+
+function exportTableToPDF() {
+    const logoUrl = 'https://cdn.durable.co/blocks/14V9VsdJavZPcaSCPbmtZT4Jw0sotDdQBrEdfDh6qxJtwhMuWw3bOjg0lVWt4YPy.png'; // URL or path to your logo image
+    const scaleFactor = .6; // Adjust this value as needed
+
+    html2canvas(document.getElementById('resultsSection'), { scale: 1 }).then(function(canvas) {
+        // Scale the canvas
+        const canvasScaled = scaleCanvas(canvas, scaleFactor);
+
+        const imgData = canvasScaled.toDataURL('image/png', 3.0);
+        const pdf = new window.jspdf.jsPDF('l', 'pt', 'a4');  // Adjust as needed
+
+        const logoImg = new Image();
+        logoImg.src = logoUrl;
+        logoImg.onload = function() {
+            const pdfPageWidth = 842; // Width of an A4 page in landscape mode
+            const logoWidth = 150; // Width of the logo
+            const logoHeight = 100; // Height of the logo
+
+            // Calculate x-coordinate to center the logo
+            const xLogo = (pdfPageWidth / 2) - (logoWidth / 2);
+
+            // Add centered logo to PDF
+            pdf.addImage(logoImg, 'PNG', xLogo, 10, logoWidth, logoHeight);
+
+            // Adjust the position of the table, moving it down to avoid overlapping the logo
+            pdf.addImage(imgData, 'PNG', 60, 100, canvasScaled.width, canvasScaled.height);
+
+            pdf.save('results.pdf');
+        };
+    });
+}
+
+function scaleCanvas(canvas, scaleFactor) {
+    var scaledCanvas = document.createElement('canvas');
+    scaledCanvas.width = canvas.width * scaleFactor;
+    scaledCanvas.height = canvas.height * scaleFactor;
+
+    var ctx = scaledCanvas.getContext('2d');
+    ctx.scale(scaleFactor, scaleFactor);
+    ctx.drawImage(canvas, 0, 0);
+
+    return scaledCanvas;
+}
+
+// DOMContentLoaded event listener
+        document.addEventListener('DOMContentLoaded', function() {
+// Attach the calculateROI function to the click event of the button
+    var calculatorButton = document.querySelector(".calculator-button");
+    if (calculatorButton) {
+        calculatorButton.addEventListener('click', calculateROI);
+    }
+// Event listener for the export button
+            // Event listener for the export button
+            document.getElementById('exportPdf').addEventListener('click', exportTableToPDF);
+});
+    </script>
