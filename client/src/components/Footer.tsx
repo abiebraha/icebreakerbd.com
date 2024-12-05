@@ -2,7 +2,7 @@ import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { 
   Facebook, 
-  Twitter, 
+  Youtube, 
   Linkedin, 
   Mail, 
   Phone, 
@@ -24,7 +24,7 @@ export default function Footer() {
             </p>
             <div className="flex space-x-4">
               <motion.a
-                href="https://facebook.com"
+                href="https://www.facebook.com/people/Icebreaker-Business-Development/61553567014525/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-slate-400 hover:text-[#123e74] transition-colors"
@@ -33,16 +33,16 @@ export default function Footer() {
                 <Facebook size={20} />
               </motion.a>
               <motion.a
-                href="https://twitter.com"
+                href="https://www.youtube.com/@breakingtheicesdr"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-slate-400 hover:text-[#123e74] transition-colors"
                 whileHover={{ scale: 1.1 }}
               >
-                <Twitter size={20} />
+                <Youtube size={20} />
               </motion.a>
               <motion.a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/abe-braha"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-slate-400 hover:text-[#123e74] transition-colors"
