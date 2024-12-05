@@ -18,9 +18,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <h3 className="font-bold text-2xl text-[#123e74]">SmartSales</h3>
+            <img src="/Color logo - no background.png" alt="ICEBREAKER" className="h-8 mb-4" />
             <p className="text-slate-600 text-sm">
-              Transforming sales processes and building high-performing SDR teams through our proven two-step approach.
+              Breaking the ice in sales development, transforming processes and building high-performing SDR teams.
             </p>
             <div className="flex space-x-4">
               <motion.a
@@ -127,7 +127,7 @@ export default function Footer() {
 
         <div className="mt-12 pt-8 border-t border-slate-200">
           <p className="text-center text-slate-600 text-sm">
-            © {currentYear} SmartSales. All rights reserved.
+            © {currentYear} ICEBREAKER sales development. All rights reserved.
           </p>
         </div>
       </div>
