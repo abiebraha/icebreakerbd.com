@@ -62,14 +62,14 @@ export default function ContactPage() {
                     <Mail className="w-6 h-6 text-[#123e74] mt-1" />
                     <div>
                       <h3 className="font-semibold text-slate-900 mb-1">Email</h3>
-                      <p className="text-slate-600">contact@smartsales.com</p>
+                      <p className="text-slate-600">info@icebreakerbd.com</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
                     <Phone className="w-6 h-6 text-[#123e74] mt-1" />
                     <div>
                       <h3 className="font-semibold text-slate-900 mb-1">Phone</h3>
-                      <p className="text-slate-600">(123) 456-7890</p>
+                      <p className="text-slate-600">917-809-6610</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
@@ -77,9 +77,7 @@ export default function ContactPage() {
                     <div>
                       <h3 className="font-semibold text-slate-900 mb-1">Office</h3>
                       <p className="text-slate-600">
-                        123 Business Avenue<br />
-                        Suite 100<br />
-                        San Francisco, CA 94107
+                        Brooklyn, NY
                       </p>
                     </div>
                   </div>
