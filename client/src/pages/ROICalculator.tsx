@@ -102,39 +102,41 @@ export default function ROICalculator() {
     });
     const imgData = canvas.toDataURL('image/png');
     
-    const pdf = new jsPDF('landscape', 'pt', 'a4');
+    const pdf = new jsPDF('landscape', 'pt', [1200, 800]); // Custom page size for better fit
     const pdfWidth = pdf.internal.pageSize.getWidth();
     const pdfHeight = pdf.internal.pageSize.getHeight();
-    const imgWidth = canvas.width;
-    const imgHeight = canvas.height;
-    const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
     
-    // Add logo
+    // Add logo first
     const logoImg = new Image();
     logoImg.src = logoUrl;
     
     await new Promise((resolve) => {
       logoImg.onload = resolve;
-      // Handle error case
       logoImg.onerror = () => {
         console.error('Error loading logo');
         resolve(null);
       };
     });
 
-    const logoWidth = 150;
-    const logoHeight = 100;
+    const logoWidth = 200; // Slightly larger logo
+    const logoHeight = 120;
     const xLogo = (pdfWidth - logoWidth) / 2;
     
     try {
-      pdf.addImage(logoImg, 'PNG', xLogo, 10, logoWidth, logoHeight);
+      pdf.addImage(logoImg, 'PNG', xLogo, 20, logoWidth, logoHeight);
     } catch (error) {
       console.error('Error adding logo to PDF:', error);
     }
 
-    // Add the table content below the logo
-    const imgX = (pdfWidth - imgWidth * ratio) / 2;
-    const imgY = logoHeight + 30;
+    // Scale and position the table content
+    const contentWidth = pdfWidth - 80; // Leave margins
+    const contentHeight = pdfHeight - logoHeight - 100; // Leave space for logo and margins
+    const imgWidth = canvas.width;
+    const imgHeight = canvas.height;
+    const ratio = Math.min(contentWidth / imgWidth, contentHeight / imgHeight);
+    
+    const imgX = 40; // Left margin
+    const imgY = logoHeight + 60; // Space below logo
 
     pdf.addImage(imgData, 'PNG', imgX, imgY, imgWidth * ratio, imgHeight * ratio);
     pdf.save('sdr-roi-results.pdf');
@@ -173,7 +175,7 @@ export default function ROICalculator() {
       {/* Calculator Section */}
       <section className="py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-3 gap-8">
             {/* Input Form */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -303,7 +305,7 @@ export default function ROICalculator() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="flex flex-col gap-4"
+              className="flex flex-col gap-4 md:col-span-2"
             >
               <div ref={resultsRef}>
                 <Card>
