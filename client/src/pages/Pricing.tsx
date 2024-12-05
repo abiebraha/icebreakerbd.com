@@ -1,6 +1,10 @@
 import { motion } from "framer-motion";
+import { Suspense } from "react";
 import PricingCard from "@/components/PricingCard";
 import FAQSection from "@/components/FAQSection";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
+import Testimonials from "@/components/Testimonials";
+import { LoadingSpinner } from "@/components/ui/loading-spinner";
 
 export default function PricingPage() {
   return (
@@ -70,7 +74,7 @@ export default function PricingPage() {
 
       {/* Testimonials Section */}
       <ErrorBoundary>
-        <Suspense fallback={<div className="p-12 text-center">Loading testimonials...</div>}>
+        <Suspense fallback={<LoadingSpinner />}>
           <Testimonials />
         </Suspense>
       </ErrorBoundary>
