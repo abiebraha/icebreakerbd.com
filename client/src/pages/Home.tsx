@@ -52,7 +52,7 @@ export default function Home() {
     <div className="bg-white overflow-hidden">
       {/* Hero Section */}
       <motion.section 
-        className="min-h-screen relative flex items-center justify-center overflow-hidden bg-[#0066CC] text-white"
+        className="min-h-screen relative flex items-center justify-center overflow-hidden bg-[#123e74] text-white"
         style={{ 
           y: heroY,
           scale: heroScale,
@@ -158,7 +158,7 @@ export default function Home() {
                 className="bg-white p-8 rounded-2xl"
               >
                 <motion.div 
-                  className="text-[#0066CC] mb-6"
+                  className="text-[#123e74] mb-6"
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.3 }}
                 >

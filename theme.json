@@ -1,8 +1,8 @@
 {
-  "variant": "minimal",
-  "primary": "#0066CC",
+  "variant": "professional",
+  "primary": "#123e74",
   "secondary": "#86868b",
-  "accent": "#0066CC",
+  "accent": "#123e74",
   "background": "#ffffff",
   "text": "#1d1d1f",
   "muted": "#86868b",
