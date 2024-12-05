@@ -1,164 +1,127 @@
-import { useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Users, LineChart, Target } from "lucide-react";
-import MouseEffect from "@/components/MouseEffect";
 
 export default function Home() {
   const { scrollY } = useScroll();
+  const ref = useRef<HTMLDivElement>(null);
   
-  // Create scroll-based animations
-  const backgroundOpacity = useTransform(
-    scrollY,
-    [0, 300],
-    ["rgba(255, 255, 255, 1)", "rgba(232, 240, 255, 1)"]
+  // Create smooth spring animations for parallax effects
+  const springConfig = { stiffness: 100, damping: 30, mass: 1 };
+  
+  // Hero section parallax
+  const heroY = useSpring(
+    useTransform(scrollY, [0, 800], [0, -200]),
+    springConfig
   );
   
-  const heroScale = useTransform(scrollY, [0, 300], [1, 0.9]);
-  const heroY = useTransform(scrollY, [0, 300], [0, 50]);
+  const heroScale = useSpring(
+    useTransform(scrollY, [0, 800], [1, 0.8]),
+    springConfig
+  );
   
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  const heroOpacity = useSpring(
+    useTransform(scrollY, [0, 400], [1, 0]),
+    springConfig
+  );
+
+  // Features section parallax
+  const featuresY = useSpring(
+    useTransform(scrollY, [400, 1200], [200, -100]),
+    springConfig
+  );
+  
+  // Stats section parallax
+  const statsY = useSpring(
+    useTransform(scrollY, [800, 1600], [200, -100]),
+    springConfig
+  );
 
   return (
-    <div className="bg-white overflow-x-hidden">
+    <div className="bg-white overflow-hidden">
       {/* Hero Section */}
       <motion.section 
-        className="min-h-screen relative overflow-hidden flex items-center justify-center py-20"
+        className="min-h-screen relative flex items-center justify-center"
         style={{ 
-          background: backgroundOpacity,
+          y: heroY,
           scale: heroScale,
-          y: heroY
+          opacity: heroOpacity
         }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
       >
-        <MouseEffect />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#123e74]/10 to-transparent" />
         
-        {/* Enhanced 3D Perspective Grid Background */}
-        <motion.div 
-          className="absolute inset-0 bg-gradient-to-br from-[#123e74]/5 via-transparent to-transparent"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-        >
-          <div className="absolute inset-0" style={{ perspective: "2000px" }}>
-            {[...Array(15)].map((_, i) => (
-              <motion.div
-                key={`grid-${i}`}
-                className="absolute w-full h-[1px] bg-gradient-to-r from-transparent via-[#123e74]/15 to-transparent"
-                style={{
-                  top: `${(i + 1) * 6.66}%`,
-                  transform: "rotateX(75deg)",
-                }}
-                animate={{
-                  scaleX: [0.9, 1.1, 0.9],
-                  opacity: [0.15, 0.3, 0.15],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  delay: i * 0.15,
-                }}
-              />
-            ))}
-          </div>
-        </motion.div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             className="text-center"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6">
-              <motion.span
-                className="inline-block bg-gradient-to-r from-[#123e74] via-[#1a4e8f] to-[#123e74] bg-clip-text text-transparent"
-                animate={{
-                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-              >
-                Accelerate Your Sales Growth
-              </motion.span>
+            <h1 className="text-6xl md:text-8xl font-bold text-slate-900 mb-6 tracking-tight">
+              Transform Your
               <br />
-              <motion.span
-                className="inline-block bg-gradient-to-r from-[#1a4e8f] via-[#123e74] to-[#1a4e8f] bg-clip-text text-transparent"
-                animate={{
-                  backgroundPosition: ["100% 50%", "0% 50%", "100% 50%"],
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-              >
-                in Two Simple Steps
-              </motion.span>
+              <span className="bg-gradient-to-r from-[#123e74] to-[#1a4e8f] bg-clip-text text-transparent">
+                Sales Growth
+              </span>
             </h1>
             <motion.p 
-              className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto"
+              className="text-xl md:text-2xl text-slate-600 mb-8 max-w-3xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             >
-              Transform your sales process and build a high-performing SDR team with our proven two-step approach.
+              Build high-performing SDR teams with our proven approach
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
             >
               <Button
                 size="lg"
-                className="gap-2 bg-[#123e74] hover:bg-[#1a4e8f] transition-all duration-300 hover:scale-105"
+                className="bg-[#123e74] hover:bg-[#1a4e8f] text-white px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
                 onClick={() => window.open(import.meta.env.VITE_CALENDLY_URL || "https://calendly.com/icebreakerbd/meeting-with-abie-braha", "_blank")}
               >
-                Let's Talk
+                Schedule a Call
               </Button>
             </motion.div>
           </motion.div>
         </div>
+
+        <motion.div 
+          className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <div className="w-6 h-10 border-2 border-slate-600 rounded-full relative">
+            <div className="w-1 h-2 bg-slate-600 rounded-full absolute left-1/2 top-2 transform -translate-x-1/2" />
+          </div>
+        </motion.div>
       </motion.section>
 
       {/* Features Section */}
       <motion.section 
-        className="py-20 px-4 sm:px-6 lg:px-8"
-        style={{
-          background: useTransform(
-            scrollY,
-            [300, 600],
-            ["rgb(255, 255, 255)", "rgb(248, 250, 252)"]
-          )
-        }}
+        className="py-32 relative overflow-hidden"
+        style={{ y: featuresY }}
       >
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
+            className="text-center mb-20"
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-              Our Core Features
+            <h2 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
+              Core Features
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Comprehensive solutions to transform your sales operations
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-12">
             {[
               {
                 icon: Users,
@@ -178,28 +141,21 @@ export default function Home() {
             ].map((feature, index) => (
               <motion.div
                 key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                transition={{ duration: 1, delay: index * 0.2, ease: [0.16, 1, 0.3, 1] }}
+                className="bg-white p-8 rounded-2xl"
               >
                 <motion.div 
-                  className="text-[#123e74] mb-4"
-                  animate={{ 
-                    scale: [1, 1.1, 1],
-                    rotate: [0, 5, -5, 0]
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
+                  className="text-[#123e74] mb-6"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <feature.icon className="w-12 h-12" />
+                  <feature.icon className="w-16 h-16" />
                 </motion.div>
-                <h3 className="text-xl font-semibold mb-4">{feature.title}</h3>
-                <p className="text-slate-600">{feature.description}</p>
+                <h3 className="text-2xl font-semibold mb-4">{feature.title}</h3>
+                <p className="text-slate-600 text-lg">{feature.description}</p>
               </motion.div>
             ))}
           </div>
@@ -208,24 +164,18 @@ export default function Home() {
 
       {/* Stats Section */}
       <motion.section 
-        className="py-20 px-4 sm:px-6 lg:px-8"
-        style={{
-          background: useTransform(
-            scrollY,
-            [600, 900],
-            ["rgb(248, 250, 252)", "rgb(240, 245, 255)"]
-          )
-        }}
+        className="py-32 bg-gradient-to-b from-white to-slate-50"
+        style={{ y: statsY }}
       >
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
+            className="text-center mb-20"
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+            <h2 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
               Proven Results
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
@@ -233,12 +183,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <motion.div
-            className="grid md:grid-cols-4 gap-8"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-          >
+          <div className="grid md:grid-cols-4 gap-12">
             {[
               { number: "150%", label: "Average Increase in Qualified Leads" },
               { number: "45%", label: "Improvement in Conversion Rates" },
@@ -249,76 +194,60 @@ export default function Home() {
                 key={index}
                 className="text-center"
                 initial={{ opacity: 0, y: 40 }}
-                whileInView={{ 
-                  opacity: 1, 
-                  y: 0,
-                  transition: {
-                    type: "spring",
-                    bounce: 0.4,
-                    duration: 1,
-                    delay: index * 0.2
-                  }
-                }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
+                transition={{ duration: 1, delay: index * 0.2, ease: [0.16, 1, 0.3, 1] }}
               >
-                <motion.div 
-                  className="mb-4 relative"
+                <motion.p 
+                  className="text-5xl font-bold mb-4 bg-gradient-to-r from-[#123e74] to-[#1a4e8f] bg-clip-text text-transparent"
                   animate={{ 
-                    y: [0, -10, 0],
+                    backgroundPosition: ["0%", "100%"],
                   }}
                   transition={{
-                    duration: 4,
+                    duration: 3,
                     repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: index * 0.5
+                    repeatType: "reverse"
                   }}
                 >
-                  <motion.span 
-                    className="text-4xl font-bold bg-gradient-to-r from-[#123e74] via-[#1a4e8f] to-[#123e74] text-transparent bg-clip-text"
-                    animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-                    transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                  >
-                    {stat.number}
-                  </motion.span>
-                </motion.div>
-                <p className="text-slate-600">{stat.label}</p>
+                  {stat.number}
+                </motion.p>
+                <p className="text-lg text-slate-600">{stat.label}</p>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </motion.section>
 
-      {/* Call to Action */}
+      {/* CTA Section */}
       <motion.section 
-        className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
-        style={{
-          background: useTransform(
-            scrollY,
-            [900, 1200],
-            ["rgb(240, 245, 255)", "rgb(255, 255, 255)"]
-          )
-        }}
+        className="py-32 relative overflow-hidden"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
       >
-        <div className="max-w-7xl mx-auto relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div
             className="text-center"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-              Ready to Transform Your Sales Process?
+            <h2 className="text-4xl md:text-6xl font-bold text-slate-900 mb-8 tracking-tight">
+              Ready to Transform
+              <br />
+              Your Sales Process?
             </h2>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 1, delay: 0.2 }}
             >
               <Button
                 size="lg"
-                className="gap-2 bg-[#123e74] hover:bg-[#1a4e8f] transition-all duration-300 hover:scale-105"
+                className="bg-[#123e74] hover:bg-[#1a4e8f] text-white px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
                 onClick={() => window.open(import.meta.env.VITE_CALENDLY_URL || "https://calendly.com/icebreakerbd/meeting-with-abie-braha", "_blank")}
               >
                 Schedule a Call
