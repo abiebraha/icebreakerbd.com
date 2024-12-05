@@ -15,6 +15,7 @@ import ServicesPage from "./pages/Services";
 import CaseStudiesPage from "./pages/CaseStudies";
 import PricingPage from "./pages/Pricing";
 import ContactPage from "./pages/Contact";
+import ROICalculator from "./pages/ROICalculator";
 
 console.log("Application initialization started");
 
@@ -60,6 +61,13 @@ function Router() {
             <ErrorBoundary>
               <Suspense fallback={<div>Loading...</div>}>
                 <ContactPage />
+              </Suspense>
+            </ErrorBoundary>
+          </Route>
+          <Route path="/roi-calculator">
+            <ErrorBoundary>
+              <Suspense fallback={<div>Loading...</div>}>
+                <ROICalculator />
               </Suspense>
             </ErrorBoundary>
           </Route>

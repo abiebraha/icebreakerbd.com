@@ -10,6 +10,7 @@ const navItems = [
   { href: "/services", label: "Services" },
   { href: "/case-studies", label: "Case Studies" },
   { href: "/pricing", label: "Pricing" },
+  { href: "/roi-calculator", label: "ROI Calculator" },
   { href: "/contact", label: "Contact" },
 ];
 
