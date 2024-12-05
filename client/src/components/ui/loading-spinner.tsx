@@ -1,63 +1,66 @@
 import { motion } from "framer-motion";
 
 export function LoadingSpinner() {
+  const circles = [...Array(4)].map((_, i) => i);
+  
   return (
-    <div className="flex flex-col items-center justify-center p-8">
-      <motion.div 
-        className="relative w-16 h-16"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.3 }}
-      >
-        {/* Outer circle */}
-        <motion.div
-          className="absolute inset-0 border-4 border-[#123e74]/20 rounded-full"
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        />
+    <div className="flex items-center justify-center p-8">
+      <div className="relative w-24 h-24">
+        {circles.map((index) => (
+          <motion.div
+            key={index}
+            className="absolute top-0 left-0 w-full h-full"
+            style={{
+              border: "4px solid #123e74",
+              borderRadius: "30%",
+              rotate: `${index * 45}deg`,
+            }}
+            animate={{
+              rotate: [index * 45, 360 + index * 45],
+              borderRadius: ["30%", "50%", "30%"],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut",
+              times: [0, 0.5, 1],
+              delay: index * 0.2,
+            }}
+          />
+        ))}
         
-        {/* Spinning circle */}
         <motion.div
-          className="absolute inset-0 border-4 border-transparent border-t-[#123e74] rounded-full"
-          animate={{ rotate: 360 }}
+          className="absolute inset-4 bg-[#123e74]/10 backdrop-blur-sm"
+          animate={{
+            clipPath: [
+              "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+              "polygon(50% 0%, 100% 100%, 50% 100%, 0% 0%)",
+              "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+            ],
+          }}
           transition={{
-            duration: 1,
+            duration: 2,
             repeat: Infinity,
-            ease: "linear"
+            ease: "easeInOut",
           }}
         />
         
-        {/* Pulsing dot */}
         <motion.div
-          className="absolute top-1/2 left-1/2 w-3 h-3 -ml-1.5 -mt-1.5 bg-[#123e74] rounded-full"
+          className="absolute inset-0 flex items-center justify-center"
           animate={{
             scale: [1, 1.2, 1],
-            opacity: [0.7, 1, 0.7],
+            rotate: [0, 180, 360],
           }}
           transition={{
-            duration: 1.5,
+            duration: 4,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "linear",
           }}
-        />
-      </motion.div>
-      
-      {/* Text with fade effect */}
-      <motion.p
-        className="mt-4 text-[#123e74] font-medium"
-        initial={{ opacity: 0 }}
-        animate={{
-          opacity: [0.5, 1, 0.5],
-        }}
-        transition={{
-          duration: 1.5,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      >
-        Loading amazing content...
-      </motion.p>
+        >
+          <div className="w-2 h-2 bg-[#123e74] rounded-full" />
+        </motion.div>
+      </div>
     </div>
   );
 }
