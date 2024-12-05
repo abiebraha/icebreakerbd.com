@@ -351,7 +351,7 @@ export default function ROICalculator() {
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <a 
-              href={process.env.CALENDLY_URL || "https://calendly.com/icebreakerbd/meeting-with-abie-braha"}
+              href={import.meta.env.VITE_CALENDLY_URL || "https://calendly.com/icebreakerbd/meeting-with-abie-braha"}
               target="_blank"
               rel="noopener noreferrer"
             >
