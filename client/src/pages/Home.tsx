@@ -2,8 +2,7 @@ import { useState, Suspense } from "react";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowDown } from "lucide-react";
-import PricingCard from "@/components/PricingCard";
+import { Users, LineChart, Target } from "lucide-react";
 import Testimonials from "@/components/Testimonials";
 import FAQSection from "@/components/FAQSection";
 
@@ -261,49 +260,84 @@ export default function Home() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <Button
-              size="lg"
-              onClick={() => scrollToSection('pricing')}
-              className="gap-2 bg-[#123e74] hover:bg-[#1a4e8f] transition-all duration-300 hover:scale-105"
+            <a 
+              href="https://calendly.com/icebreakerbd/meeting-with-abie-braha" 
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              View Pricing <ArrowDown size={16} className="animate-bounce" />
-            </Button>
+              <Button
+                size="lg"
+                className="gap-2 bg-[#123e74] hover:bg-[#1a4e8f] transition-all duration-300 hover:scale-105"
+              >
+                Let's Talk
+              </Button>
+            </a>
           </motion.div>
         </div>
       </motion.section>
 
-      {/* Pricing Section */}
-      <section id="pricing" className="py-12 px-4 sm:px-6 lg:px-8">
+      {/* About Our Business Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-slate-50">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-8">Our two-step process and pricing</h2>
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <PricingCard
-              step="1"
-              title="Sales System Setup"
-              price="2,000"
-              description="We optimize your existing sales infrastructure, working with your in-house team to set up essential tools and processes."
-              features={[
-                "CRM and tech stack implementation",
-                "Integration of sales tools and data providers",
-                "Development of sales scripts and email templates",
-                "KPI tracking setup"
-              ]}
-              ctaText="Start with Step 1"
-            />
-            <PricingCard
-              step="2"
-              title="Build Your SDR Team"
-              price="3,000"
-              description="We help you scale by building a dedicated Sales Development Representative (SDR) team."
-              features={[
-                "SDR recruitment and onboarding",
-                "Fractional sales management",
-                "Ongoing training and support",
-                "Performance monitoring"
-              ]}
-              ctaText="Expand with Step 2"
-              perSdr={true}
-            />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+              Transforming Sales Development
+            </h2>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              We specialize in revolutionizing sales processes and building high-performing SDR teams that drive exceptional results.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              <div className="text-[#123e74] mb-4">
+                <Users className="w-12 h-12" />
+              </div>
+              <h3 className="text-xl font-semibold mb-4">Expert Team Building</h3>
+              <p className="text-slate-600">
+                We help you build and scale high-performing SDR teams that consistently deliver results and drive growth.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              <div className="text-[#123e74] mb-4">
+                <LineChart className="w-12 h-12" />
+              </div>
+              <h3 className="text-xl font-semibold mb-4">Process Optimization</h3>
+              <p className="text-slate-600">
+                Streamline your sales operations with our proven methodologies and cutting-edge tools.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              <div className="text-[#123e74] mb-4">
+                <Target className="w-12 h-12" />
+              </div>
+              <h3 className="text-xl font-semibold mb-4">Growth Strategy</h3>
+              <p className="text-slate-600">
+                Develop and implement targeted strategies that accelerate your sales growth and market presence.
+              </p>
+            </motion.div>
           </div>
         </div>
       </section>
