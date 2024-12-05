@@ -103,22 +103,20 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-slate-600">
                 <Mail size={16} />
-                <a href="mailto:contact@smartsales.com" className="hover:text-[#123e74] transition-colors">
-                  contact@smartsales.com
+                <a href="mailto:info@icebreakerbd.com" className="hover:text-[#123e74] transition-colors">
+                  info@icebreakerbd.com
                 </a>
               </li>
               <li className="flex items-center gap-2 text-slate-600">
                 <Phone size={16} />
-                <a href="tel:+1234567890" className="hover:text-[#123e74] transition-colors">
-                  (123) 456-7890
+                <a href="tel:+19178096610" className="hover:text-[#123e74] transition-colors">
+                  917-809-6610
                 </a>
               </li>
               <li className="flex items-start gap-2 text-slate-600">
                 <MapPin size={16} className="mt-1" />
                 <span>
-                  123 Business Avenue<br />
-                  Suite 100<br />
-                  San Francisco, CA 94107
+                  Brooklyn, NY
                 </span>
               </li>
             </ul>
