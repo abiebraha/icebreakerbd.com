@@ -340,69 +340,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Founder Profile Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            className="flex flex-col md:flex-row items-center gap-12"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <motion.div 
-              className="w-full md:w-1/3"
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <div className="relative rounded-lg overflow-hidden aspect-square shadow-xl">
-                <img 
-                  src="/abe-profile.png" 
-                  alt="Abe Braha" 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </motion.div>
-            
-            <div className="w-full md:w-2/3 text-center md:text-left">
-              <motion.h2 
-                className="text-3xl md:text-4xl font-bold text-slate-900 mb-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                Abe Braha, Founder
-              </motion.h2>
-              <motion.p 
-                className="text-xl text-slate-600 mb-8"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              >
-                Abe is a seasoned sales and business development professional with a track record in sales and business development. With over a decade of experience, his passion lies in quickly building successful and scalable sales departments.
-              </motion.p>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-              >
-                <a 
-                  href="https://calendly.com/icebreakerbd/meeting-with-abie-braha" 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block"
-                >
-                  <Button
-                    size="lg"
-                    className="gap-2 bg-[#123e74] hover:bg-[#1a4e8f] transition-all duration-300 hover:scale-105"
-                  >
-                    Book a Call With Abe
-                  </Button>
-                </a>
-              </motion.div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      
 
       {/* Why Choose Us Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-50">
