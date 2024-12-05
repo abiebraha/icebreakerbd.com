@@ -65,9 +65,9 @@ export default function Header() {
             ))}
             <Button 
               className="ml-4 bg-[#123e74] hover:bg-[#1a4e8f]"
-              onClick={() => window.location.href = '/contact'}
+              onClick={() => window.location.href = 'https://app.icebreakerbd.com'}
             >
-              Get Started
+              Login
             </Button>
           </div>
 
@@ -109,10 +109,10 @@ export default function Header() {
                   className="w-full mt-4 bg-[#123e74] hover:bg-[#1a4e8f]"
                   onClick={() => {
                     setIsOpen(false);
-                    window.location.href = '/contact';
+                    window.location.href = 'https://app.icebreakerbd.com';
                   }}
                 >
-                  Get Started
+                  Login
                 </Button>
               </div>
             </motion.div>
