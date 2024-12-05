@@ -407,7 +407,7 @@ export default function Home() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-[#123e74] text-white rounded-full flex items-center justify-center text-xl font-bold">
+              <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-[#123e74] text-white rounded-full flex items-center justify-center text-xl font-bold">
                 1
               </div>
               <h3 className="text-2xl font-bold mb-4 text-slate-900">Sales System Setup</h3>
@@ -437,7 +437,7 @@ export default function Home() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-[#123e74] text-white rounded-full flex items-center justify-center text-xl font-bold">
+              <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-[#123e74] text-white rounded-full flex items-center justify-center text-xl font-bold">
                 2
               </div>
               <h3 className="text-2xl font-bold mb-4 text-slate-900">SDR Team Building</h3>
