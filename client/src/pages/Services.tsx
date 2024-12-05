@@ -107,7 +107,7 @@ export default function ServicesPage() {
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
         <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-[#123e74]/5 via-transparent to-transparent"
+          className="absolute inset-0 bg-gradient-to-br from-[#0066CC]/5 via-transparent to-transparent"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
@@ -123,7 +123,7 @@ export default function ServicesPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
               Comprehensive Sales
               <br />
-              <span className="text-[#123e74]">Growth Solutions</span>
+              <span className="text-[#0066CC]">Growth Solutions</span>
             </h1>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               From system setup to team building, we provide end-to-end services to accelerate your sales growth.
@@ -145,7 +145,7 @@ export default function ServicesPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <div className="mb-4">
-                  <service.icon className="w-12 h-12 text-[#123e74]" />
+                  <service.icon className="w-12 h-12 text-[#0066CC]" />
                 </div>
                 <h3 className="text-xl font-semibold text-slate-900 mb-3">
                   {service.title}
@@ -156,7 +156,7 @@ export default function ServicesPage() {
                 <ul className="space-y-2">
                   {service.features.map((feature, i) => (
                     <li key={i} className="text-sm text-slate-600 flex items-center gap-2">
-                      <div className="w-1 h-1 rounded-full bg-[#123e74]" />
+                      <div className="w-1 h-1 rounded-full bg-[#0066CC]" />
                       {feature}
                     </li>
                   ))}

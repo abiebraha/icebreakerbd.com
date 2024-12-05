@@ -24,7 +24,7 @@ export default function ContactPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
               Let's Start Your
               <br />
-              <span className="text-[#123e74]">Sales Growth Journey</span>
+              <span className="text-[#0066CC]">Sales Growth Journey</span>
             </h1>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Ready to transform your sales process? Get in touch with our team today.
@@ -59,21 +59,21 @@ export default function ContactPage() {
                 </h2>
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
-                    <Mail className="w-6 h-6 text-[#123e74] mt-1" />
+                    <Mail className="w-6 h-6 text-[#0066CC] mt-1" />
                     <div>
                       <h3 className="font-semibold text-slate-900 mb-1">Email</h3>
                       <p className="text-slate-600">info@icebreakerbd.com</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
-                    <Phone className="w-6 h-6 text-[#123e74] mt-1" />
+                    <Phone className="w-6 h-6 text-[#0066CC] mt-1" />
                     <div>
                       <h3 className="font-semibold text-slate-900 mb-1">Phone</h3>
                       <p className="text-slate-600">917-809-6610</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
-                    <MapPin className="w-6 h-6 text-[#123e74] mt-1" />
+                    <MapPin className="w-6 h-6 text-[#0066CC] mt-1" />
                     <div>
                       <h3 className="font-semibold text-slate-900 mb-1">Office</h3>
                       <p className="text-slate-600">
