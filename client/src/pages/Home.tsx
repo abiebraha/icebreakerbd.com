@@ -407,7 +407,7 @@ export default function Home() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="absolute -top-4 -left-4 w-12 h-12 bg-[#123e74] text-white rounded-full flex items-center justify-center text-xl font-bold">
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-[#123e74] text-white rounded-full flex items-center justify-center text-xl font-bold">
                 1
               </div>
               <h3 className="text-2xl font-bold mb-4 text-slate-900">Sales System Setup</h3>
@@ -437,7 +437,7 @@ export default function Home() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <div className="absolute -top-4 -left-4 w-12 h-12 bg-[#123e74] text-white rounded-full flex items-center justify-center text-xl font-bold">
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-[#123e74] text-white rounded-full flex items-center justify-center text-xl font-bold">
                 2
               </div>
               <h3 className="text-2xl font-bold mb-4 text-slate-900">SDR Team Building</h3>
@@ -464,56 +464,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Recent Results Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 to-white">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-              Recent Success Stories
-            </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Real results from companies that have implemented our approach
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                company: "Tech Startup",
-                result: "Scaled SDR team from 2 to 8 in 6 months",
-                metric: "3x pipeline growth"
-              },
-              {
-                company: "SaaS Company",
-                result: "Reduced sales cycle by 40%",
-                metric: "2x revenue growth"
-              },
-              {
-                company: "B2B Service Provider",
-                result: "Improved lead quality by 80%",
-                metric: "4x ROI"
-              }
-            ].map((story, index) => (
-              <motion.div
-                key={index}
-                className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <h3 className="text-xl font-semibold text-slate-900 mb-4">{story.company}</h3>
-                <p className="text-slate-600 mb-4">{story.result}</p>
-                <div className="text-[#123e74] font-bold">{story.metric}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      
 
       </div>
   );
