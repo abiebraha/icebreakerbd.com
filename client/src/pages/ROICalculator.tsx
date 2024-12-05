@@ -11,11 +11,11 @@ import html2canvas from "html2canvas";
 
 export default function ROICalculator() {
   const [formData, setFormData] = useState({
-    callingHours: 6,
+    callingHours: 7,
     monthlyCost: 5000,
-    callsPerHour: 12,
-    dmMeetingRate: 2,
-    meetingToOpportunityRate: 30,
+    callsPerHour: 15,
+    dmMeetingRate: 1,
+    meetingToOpportunityRate: 35,
     opportunityToCloseRatio: 20,
     averageSpendPerCustomer: 25000,
     salesCycle: 3,
@@ -57,7 +57,8 @@ export default function ROICalculator() {
         : month === 5 ? 0.85 
         : 1;
 
-      const callsMade = formData.callingHours * formData.callsPerHour * formData.numberOfSDRs * rampUpFactor;
+      const workingDaysPerMonth = 22; // Average working days in a month
+      const callsMade = formData.callingHours * formData.callsPerHour * workingDaysPerMonth * formData.numberOfSDRs * rampUpFactor;
       const meetingsBooked = callsMade * (formData.dmMeetingRate / 100);
       const opportunities = meetingsBooked * (formData.meetingToOpportunityRate / 100);
       const salesWon = month > formData.salesCycle ? opportunities * (formData.opportunityToCloseRatio / 100) : 0;
@@ -91,7 +92,14 @@ export default function ROICalculator() {
     if (!resultsRef.current) return;
 
     const logoUrl = '/Color logo - no background.png';
-    const canvas = await html2canvas(resultsRef.current, { scale: 2 });
+    const canvas = await html2canvas(resultsRef.current, { 
+      scale: 2,
+      logging: true,
+      width: resultsRef.current.scrollWidth,
+      height: resultsRef.current.scrollHeight,
+      windowWidth: resultsRef.current.scrollWidth,
+      windowHeight: resultsRef.current.scrollHeight
+    });
     const imgData = canvas.toDataURL('image/png');
     
     const pdf = new jsPDF('landscape', 'pt', 'a4');
@@ -176,7 +184,7 @@ export default function ROICalculator() {
                 <CardContent className="pt-6">
                   <div className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="callingHours">Calling Hours (per day)</Label>
+                      <Label htmlFor="callingHours">Actual Calling Hours (per day)</Label>
                       <Input
                         id="callingHours"
                         name="callingHours"
@@ -188,7 +196,7 @@ export default function ROICalculator() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="monthlyCost">Monthly Cost ($)</Label>
+                      <Label htmlFor="monthlyCost">Monthly Cost of SDR Operation ($)</Label>
                       <Input
                         id="monthlyCost"
                         name="monthlyCost"
@@ -212,7 +220,7 @@ export default function ROICalculator() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="dmMeetingRate">DM Meeting Rate (%)</Label>
+                      <Label htmlFor="dmMeetingRate">Meeting Rate (%)</Label>
                       <Input
                         id="dmMeetingRate"
                         name="dmMeetingRate"
@@ -251,7 +259,7 @@ export default function ROICalculator() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="averageSpendPerCustomer">Average Spend Per Customer ($)</Label>
+                      <Label htmlFor="averageSpendPerCustomer">Average Spend Per Customer Annually ($)</Label>
                       <Input
                         id="averageSpendPerCustomer"
                         name="averageSpendPerCustomer"
@@ -321,7 +329,7 @@ export default function ROICalculator() {
                             <TableHead>Opportunities</TableHead>
                             <TableHead>Sales Won</TableHead>
                             <TableHead>Revenue</TableHead>
-                            <TableHead>Cumulative</TableHead>
+                            <TableHead>Cumulative Revenue</TableHead>
                           </TableRow>
                         </TableHeader>
                         <TableBody>
