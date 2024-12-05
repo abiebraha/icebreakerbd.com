@@ -39,7 +39,7 @@ export default function Header() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center gap-2 hover:opacity-90 transition-opacity">
-            <img src="/Color logo - no background.png" alt="ICEBREAKER" className="h-8" />
+            <img src="/logo.png" alt="ICEBREAKER" className="h-8" />
           </Link>
 
           {/* Desktop Navigation */}

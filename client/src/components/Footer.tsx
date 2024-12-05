@@ -18,7 +18,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <img src="/Color logo - no background.png" alt="ICEBREAKER" className="h-8 mb-4" />
+            <img src="/logo.png" alt="ICEBREAKER" className="h-8 mb-4" />
             <p className="text-slate-600 text-sm">
               Breaking the ice in sales development, transforming processes and building high-performing SDR teams.
             </p>
