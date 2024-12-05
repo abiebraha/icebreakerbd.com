@@ -52,7 +52,7 @@ export default function Home() {
     <div className="bg-white overflow-hidden">
       {/* Hero Section */}
       <motion.section 
-        className="min-h-screen relative flex items-center justify-center overflow-hidden bg-black text-white"
+        className="min-h-screen relative flex items-center justify-center overflow-hidden bg-[#0066CC] text-white"
         style={{ 
           y: heroY,
           scale: heroScale,
