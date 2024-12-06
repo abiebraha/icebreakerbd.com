@@ -85,7 +85,7 @@ export default function Header() {
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              className="md:hidden"
+              className="md:hidden fixed inset-x-0 top-16 bg-white shadow-lg"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
