@@ -107,24 +107,25 @@ export default function ServicesPage() {
   
   // Spring configuration for smooth animations
   const springConfig = { 
-    stiffness: 50,
-    damping: 20,
-    mass: 1.5
+    stiffness: 40,
+    damping: 25,
+    mass: 2.0,
+    restDelta: 0.01
   };
   
   // Hero section animations
   const heroY = useSpring(
-    useTransform(scrollY, [0, 1000], [0, -300]),
+    useTransform(scrollY, [0, 800], [0, -200]),
     springConfig
   );
   
   const heroScale = useSpring(
-    useTransform(scrollY, [0, 1000], [1, 0.95]),
+    useTransform(scrollY, [0, 800], [1, 0.98]),
     springConfig
   );
   
   const heroOpacity = useSpring(
-    useTransform(scrollY, [0, 500], [1, 0]),
+    useTransform(scrollY, [0, 600], [1, 0]),
     springConfig
   );
 
@@ -174,13 +175,13 @@ export default function ServicesPage() {
               <motion.div
                 key={service.title}
                 className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-10%" }}
                 transition={{ 
-                  duration: 0.8, 
-                  delay: index * 0.1,
-                  ease: [0.16, 1, 0.3, 1]
+                  duration: 0.6, 
+                  delay: index * 0.08,
+                  ease: "easeOut"
                 }}
               >
                 <motion.div 
