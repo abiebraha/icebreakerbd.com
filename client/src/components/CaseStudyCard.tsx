@@ -28,17 +28,17 @@ export default function CaseStudyCard({
       transition={{ type: "spring", stiffness: 300 }}
       className="group cursor-pointer"
     >
-      <Card className="w-full bg-white shadow-lg group-hover:shadow-2xl transition-all duration-300 relative">
+      <Card className="relative w-full h-[500px] bg-white shadow-lg group-hover:shadow-2xl transition-all duration-300">
         <div 
-          className="relative preserve-3d transition-transform duration-1000 ease-in-out" 
+          className="w-full h-full preserve-3d transition-transform duration-1000 ease-in-out" 
           style={{ transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)" }}
         >
           {/* Front of card */}
           <div 
-            className="backface-hidden"
+            className="backface-hidden w-full h-full"
             onClick={() => setIsFlipped(true)}
           >
-            <div className="bg-white rounded-2xl p-12 flex flex-col items-center justify-between min-h-[500px]">
+            <div className="w-full h-full bg-white rounded-2xl p-12 flex flex-col items-center justify-between">
               <div className="w-full text-center space-y-8">
                 <div className="relative w-56 h-56 mx-auto">
                   <img
@@ -66,10 +66,10 @@ export default function CaseStudyCard({
 
           {/* Back of card */}
           <div 
-            className="backface-hidden absolute inset-0"
+            className="backface-hidden w-full h-full"
             style={{ transform: "rotateY(180deg)" }}
           >
-            <div className="bg-[#123e74] rounded-2xl p-12 flex flex-col min-h-[500px]">
+            <div className="w-full h-full bg-[#123e74] rounded-2xl p-12 flex flex-col">
               <button
                 onClick={(e) => {
                   e.stopPropagation();
@@ -80,29 +80,29 @@ export default function CaseStudyCard({
                 <Minus className="w-5 h-5 text-white" />
               </button>
               
-              <div className="space-y-8 text-white">
+              <div className="space-y-6 text-white overflow-y-auto flex-1">
                 <div>
                   <h3 className="text-3xl font-bold mb-3">{company}</h3>
                   <p className="text-xl font-medium text-white/90">{industry}</p>
                 </div>
                 
                 <div>
-                  <h4 className="text-xl font-semibold mb-3">The Challenge</h4>
-                  <p className="text-lg text-white/80">{challenge}</p>
+                  <h4 className="text-xl font-semibold mb-2">The Challenge</h4>
+                  <p className="text-base text-white/80">{challenge}</p>
                 </div>
                 
                 <div>
-                  <h4 className="text-xl font-semibold mb-3">Our Solution</h4>
-                  <p className="text-lg text-white/80">{solution}</p>
+                  <h4 className="text-xl font-semibold mb-2">Our Solution</h4>
+                  <p className="text-base text-white/80">{solution}</p>
                 </div>
                 
                 <div>
-                  <h4 className="text-xl font-semibold mb-4">Key Results</h4>
-                  <ul className="space-y-4">
+                  <h4 className="text-xl font-semibold mb-3">Key Results</h4>
+                  <ul className="space-y-3">
                     {results.map((result, i) => (
-                      <li key={i} className="flex items-center gap-3 text-lg text-white/80">
-                        <div className="w-2 h-2 rounded-full bg-white" />
-                        {result}
+                      <li key={i} className="flex items-start gap-2 text-base text-white/80">
+                        <div className="w-2 h-2 rounded-full bg-white mt-2" />
+                        <span>{result}</span>
                       </li>
                     ))}
                   </ul>
