@@ -18,7 +18,7 @@ const caseStudies = [
   },
   {
     company: "Enso Brands",
-    industry: "Consumer Products",
+    industry: "Amazon Store Management",
     challenge: "Exclusively reliant on SEO with no proactive outbound sales strategy",
     solution: "Built complete outbound sales motion from ground up",
     results: [
@@ -31,7 +31,7 @@ const caseStudies = [
     color: "from-purple-500/20"
   },
   {
-    company: "AccuFin Solutions",
+    company: "Leading Accounting Software Provider",
     industry: "Accounting Software",
     challenge: "No existing sales team or processes in place",
     solution: "Created comprehensive sales infrastructure and team from scratch",
