@@ -3,45 +3,45 @@ import { ChevronRight } from "lucide-react";
 
 const caseStudies = [
   {
-    company: "TechStart Solutions",
-    industry: "SaaS",
-    challenge: "Struggling to scale sales team and processes efficiently",
-    solution: "Implemented our two-step approach with sales system optimization and SDR team building",
+    company: "NBX Expo",
+    industry: "Event Management",
+    challenge: "Inefficient and inconsistent outbound sales processes leading to missed opportunities",
+    solution: "Implemented structured sales system with clear processes and metrics tracking",
     results: [
-      "150% increase in qualified leads",
-      "45% improvement in conversion rates",
-      "Scaled SDR team from 2 to 8 members",
-      "ROI achieved within 4 months"
+      "Established first dedicated outbound sales team",
+      "Created standardized sales playbook",
+      "300% increase in qualified meetings",
+      "Reduced sales cycle by 45%"
     ],
-    image: "/case-studies/tech-start.jpg",
+    image: "/case-studies/nbx-expo.jpg",
     color: "from-blue-500/20"
   },
   {
-    company: "Global Innovations Corp",
-    industry: "Technology Services",
-    challenge: "Inefficient sales processes and low team productivity",
-    solution: "Complete sales system overhaul and implementation of performance analytics",
+    company: "Enso Brands",
+    industry: "Consumer Products",
+    challenge: "Exclusively reliant on SEO with no proactive outbound sales strategy",
+    solution: "Built complete outbound sales motion from ground up",
     results: [
-      "200% increase in sales productivity",
-      "60% reduction in sales cycle length",
-      "35% improvement in close rates",
-      "Standardized sales processes across teams"
+      "Developed first outbound sales program",
+      "Generated 200+ new qualified opportunities",
+      "Achieved 150% revenue growth in 6 months",
+      "Successfully diversified lead sources"
     ],
-    image: "/case-studies/global-innovations.jpg",
+    image: "/case-studies/enso-brands.jpg",
     color: "from-purple-500/20"
   },
   {
-    company: "DataFlow Analytics",
-    industry: "Data Analytics",
-    challenge: "Difficulty in maintaining consistent sales growth",
-    solution: "Implementation of fractional sales management and SDR team development",
+    company: "AccuFin Solutions",
+    industry: "Accounting Software",
+    challenge: "No existing sales team or processes in place",
+    solution: "Created comprehensive sales infrastructure and team from scratch",
     results: [
-      "85% growth in monthly recurring revenue",
-      "40% increase in average deal size",
-      "Built high-performing SDR team of 5",
-      "Established predictable sales pipeline"
+      "Built and trained first SDR team",
+      "Implemented complete sales tech stack",
+      "Achieved 250% growth in pipeline value",
+      "Established predictable revenue model"
     ],
-    image: "/case-studies/data-flow.jpg",
+    image: "/case-studies/accufin.jpg",
     color: "from-green-500/20"
   }
 ];
