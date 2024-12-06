@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { Switch, Route, Link } from "wouter";
 import { QueryClientProvider } from "@tanstack/react-query";
-import { Suspense } from "react";
+
 import "./index.css";
 
 import { queryClient } from "./lib/queryClient";
@@ -31,44 +31,32 @@ function Router() {
           </Route>
           <Route path="/about">
             <ErrorBoundary>
-              <Suspense fallback={<div>Loading...</div>}>
-                <AboutPage />
-              </Suspense>
+              <AboutPage />
             </ErrorBoundary>
           </Route>
           <Route path="/services">
             <ErrorBoundary>
-              <Suspense fallback={<div>Loading...</div>}>
-                <ServicesPage />
-              </Suspense>
+              <ServicesPage />
             </ErrorBoundary>
           </Route>
           <Route path="/case-studies">
             <ErrorBoundary>
-              <Suspense fallback={<div>Loading...</div>}>
-                <CaseStudiesPage />
-              </Suspense>
+              <CaseStudiesPage />
             </ErrorBoundary>
           </Route>
           <Route path="/pricing">
             <ErrorBoundary>
-              <Suspense fallback={<div>Loading...</div>}>
-                <PricingPage />
-              </Suspense>
+              <PricingPage />
             </ErrorBoundary>
           </Route>
           <Route path="/contact">
             <ErrorBoundary>
-              <Suspense fallback={<div>Loading...</div>}>
-                <ContactPage />
-              </Suspense>
+              <ContactPage />
             </ErrorBoundary>
           </Route>
           <Route path="/roi-calculator">
             <ErrorBoundary>
-              <Suspense fallback={<div>Loading...</div>}>
-                <ROICalculator />
-              </Suspense>
+              <ROICalculator />
             </ErrorBoundary>
           </Route>
           <Route>

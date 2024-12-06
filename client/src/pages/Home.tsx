@@ -64,9 +64,11 @@ export default function Home() {
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             className="text-center"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            variants={{
+              hidden: { opacity: 0, x: -100 },
+              visible: { opacity: 1, x: 0 },
+              exit: { opacity: 0, x: -100 }
+            }}
           >
             <h1 className="text-7xl md:text-[120px] font-bold mb-6 tracking-tight leading-none">
               Accelerate Your
