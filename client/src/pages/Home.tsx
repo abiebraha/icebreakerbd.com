@@ -90,7 +90,7 @@ export default function Home() {
             >
               <Button
                 size="lg"
-                className="bg-[#0066CC] hover:bg-[#0077ED] text-white px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
+                className="bg-[#123e74] hover:bg-[#1a4e8f] text-white px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
                 onClick={() => window.open(import.meta.env.VITE_CALENDLY_URL || "https://calendly.com/icebreakerbd/meeting-with-abie-braha", "_blank")}
               >
                 Schedule a Call
@@ -199,7 +199,7 @@ export default function Home() {
               transition={{ duration: 1 }}
             >
               <div className="mb-6">
-                <span className="text-6xl font-bold text-[#0066CC]">1</span>
+                <span className="text-6xl font-bold text-[#123e74]">1</span>
               </div>
               <h3 className="text-2xl font-bold mb-4">Sales System Setup</h3>
               <p className="text-slate-600 mb-6">
@@ -207,23 +207,23 @@ export default function Home() {
               </p>
               <ul className="space-y-3 mb-6">
                 <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#0066CC]" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#123e74]" />
                   <span>CRM and tech stack implementation</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#0066CC]" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#123e74]" />
                   <span>Integration of sales tools</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#0066CC]" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#123e74]" />
                   <span>Development of sales scripts</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#0066CC]" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#123e74]" />
                   <span>KPI tracking setup</span>
                 </li>
               </ul>
-              <p className="font-semibold text-lg mb-2">Starting at $2,000</p>
+              <p className="text-slate-600 mb-2">Contact us for pricing details</p>
             </motion.div>
 
             <motion.div
@@ -234,7 +234,7 @@ export default function Home() {
               transition={{ duration: 1, delay: 0.2 }}
             >
               <div className="mb-6">
-                <span className="text-6xl font-bold text-[#0066CC]">2</span>
+                <span className="text-6xl font-bold text-[#123e74]">2</span>
               </div>
               <h3 className="text-2xl font-bold mb-4">Build Your SDR Team</h3>
               <p className="text-slate-600 mb-6">
@@ -242,23 +242,23 @@ export default function Home() {
               </p>
               <ul className="space-y-3 mb-6">
                 <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#0066CC]" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#123e74]" />
                   <span>SDR recruitment and onboarding</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#0066CC]" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#123e74]" />
                   <span>Fractional sales management</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#0066CC]" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#123e74]" />
                   <span>Ongoing training and support</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#0066CC]" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#123e74]" />
                   <span>Performance monitoring</span>
                 </li>
               </ul>
-              <p className="font-semibold text-lg mb-2">$3,000 per SDR</p>
+              <p className="text-slate-600 mb-2">Contact us for pricing details</p>
             </motion.div>
           </div>
         </div>
@@ -301,7 +301,7 @@ export default function Home() {
                 transition={{ duration: 1, delay: index * 0.2, ease: [0.16, 1, 0.3, 1] }}
               >
                 <motion.p 
-                  className="text-5xl font-bold mb-4 bg-gradient-to-r from-[#0066CC] to-[#0077ED] bg-clip-text text-transparent"
+                  className="text-5xl font-bold mb-4 bg-gradient-to-r from-[#123e74] to-[#1a4e8f] bg-clip-text text-transparent"
                   animate={{ 
                     backgroundPosition: ["0%", "100%"],
                   }}
@@ -349,7 +349,7 @@ export default function Home() {
             >
               <Button
                 size="lg"
-                className="bg-[#0066CC] hover:bg-[#0077ED] text-white px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
+                className="bg-[#123e74] hover:bg-[#1a4e8f] text-white px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
                 onClick={() => window.open(import.meta.env.VITE_CALENDLY_URL || "https://calendly.com/icebreakerbd/meeting-with-abie-braha", "_blank")}
               >
                 Schedule a Call
