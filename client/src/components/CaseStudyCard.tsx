@@ -30,12 +30,20 @@ export default function CaseStudyCard({
     >
       <Card className="relative w-full h-[500px] bg-white shadow-lg group-hover:shadow-2xl transition-all duration-300">
         <div 
-          className="w-full h-full preserve-3d transition-transform duration-1000 ease-in-out" 
-          style={{ transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)" }}
+          className="relative w-full h-full preserve-3d"
+          style={{ 
+            transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
+            transition: "transform 0.6s",
+            transformStyle: "preserve-3d"
+          }}
         >
           {/* Front of card */}
           <div 
-            className="backface-hidden w-full h-full"
+            className="absolute w-full h-full backface-hidden"
+            style={{ 
+              backfaceVisibility: "hidden",
+              WebkitBackfaceVisibility: "hidden"
+            }}
             onClick={() => setIsFlipped(true)}
           >
             <div className="w-full h-full bg-white rounded-2xl p-12 flex flex-col items-center justify-between">
@@ -66,8 +74,16 @@ export default function CaseStudyCard({
 
           {/* Back of card */}
           <div 
-            className="backface-hidden w-full h-full"
-            style={{ transform: "rotateY(180deg)" }}
+            className="absolute w-full h-full backface-hidden"
+            style={{ 
+              transform: "rotateY(180deg)",
+              backfaceVisibility: "hidden",
+              WebkitBackfaceVisibility: "hidden"
+            }}
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsFlipped(false);
+            }}
           >
             <div className="w-full h-full bg-[#123e74] rounded-2xl p-12 flex flex-col">
               <button
