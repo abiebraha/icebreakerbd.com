@@ -69,10 +69,10 @@ export default function Home() {
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           >
             <h1 className="text-7xl md:text-[120px] font-bold mb-6 tracking-tight leading-none">
-              Transform Your
+              Accelerating
               <br />
               <span className="bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
-                Sales Teams
+                Sales Growth
               </span>
             </h1>
             <motion.p 
@@ -81,7 +81,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             >
-              One Step at a Time
+              Transform Your Sales Teams
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
