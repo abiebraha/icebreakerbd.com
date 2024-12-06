@@ -69,7 +69,7 @@ export default function Home() {
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           >
             <h1 className="text-7xl md:text-[120px] font-bold mb-6 tracking-tight leading-none">
-              Accelerating
+              Accelerate Your
               <br />
               <span className="bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
                 Sales Growth
@@ -81,7 +81,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             >
-              Transform Your Sales Growth with Our Proven Two-Step Approach
+              With Our Proven Two-Step Approach
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
