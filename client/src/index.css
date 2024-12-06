@@ -23,6 +23,16 @@ body {
     --secondary-lighter: #2a5ea0;
   }
 
+  .preserve-3d {
+    transform-style: preserve-3d;
+    perspective: 2000px;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
   html {
     @apply min-h-screen scroll-smooth;
     background-color: var(--background);

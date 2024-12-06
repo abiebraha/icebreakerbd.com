@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, X } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { Card } from "@/components/ui/card";
 
 interface CaseStudyCardProps {
   company: string;
@@ -22,19 +23,22 @@ export default function CaseStudyCard({
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
-    <div className="relative h-[700px] w-full" style={{ perspective: "2000px" }}>
-      <AnimatePresence mode="wait" initial={false}>
-        {!isFlipped ? (
-          <motion.div
-            key="front"
-            className="absolute inset-0"
-            style={{ backfaceVisibility: "hidden" }}
-            initial={{ rotateY: 0 }}
-            animate={{ rotateY: 0 }}
-            exit={{ rotateY: 180 }}
-            transition={{ duration: 0.7, ease: "easeInOut" }}
-          >
-            <div className="h-full w-full bg-white rounded-2xl shadow-lg p-12 flex flex-col items-center justify-between hover:shadow-xl transition-shadow">
+    <motion.div
+      whileHover={{ scale: 1.02 }}
+      transition={{ type: "spring", stiffness: 300 }}
+      className="group cursor-pointer"
+    >
+      <Card className="w-full min-h-[500px] bg-white shadow-lg group-hover:shadow-2xl transition-all duration-300 relative overflow-hidden flex flex-col">
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-br from-[#123e74]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        />
+        <div className="relative h-[700px] preserve-3d transition-transform duration-1000 ease-in-out" 
+          style={{ transform: isFlipped ? "rotateX(180deg)" : "rotateX(0deg)" }}
+          onClick={() => setIsFlipped(!isFlipped)}
+        >
+          {/* Front of card */}
+          <div className="absolute inset-0 backface-hidden">
+            <div className="h-full w-full bg-white rounded-2xl shadow-lg p-12 flex flex-col items-center justify-between group-hover:shadow-2xl transition-shadow">
               <div className="w-full text-center space-y-8">
                 <div className="relative w-56 h-56 mx-auto">
                   <img
@@ -53,33 +57,16 @@ export default function CaseStudyCard({
                 </div>
               </div>
               
-              <button
-                onClick={() => setIsFlipped(true)}
-                className="group flex items-center gap-2 text-[#123e74] hover:text-[#1a4e8f] transition-colors text-lg"
-              >
+              <div className="flex items-center gap-2 text-[#123e74] group-hover:text-[#1a4e8f] transition-colors text-lg">
                 <span className="font-semibold">Read Case Study</span>
                 <ArrowRight className="w-6 h-6 transform group-hover:translate-x-1 transition-transform" />
-              </button>
+              </div>
             </div>
-          </motion.div>
-        ) : (
-          <motion.div
-            key="back"
-            className="absolute inset-0"
-            style={{ backfaceVisibility: "hidden" }}
-            initial={{ rotateY: -180 }}
-            animate={{ rotateY: -180 }}
-            exit={{ rotateY: 0 }}
-            transition={{ duration: 0.7, ease: "easeInOut" }}
-          >
-            <div className="h-full w-full bg-[#123e74] rounded-2xl shadow-lg p-12 flex flex-col relative hover:shadow-xl transition-shadow text-white">
-              <button
-                onClick={() => setIsFlipped(false)}
-                className="absolute top-6 right-6 p-2 rounded-full hover:bg-white/10 transition-colors text-white"
-              >
-                <X className="w-6 h-6" />
-              </button>
-              
+          </div>
+
+          {/* Back of card */}
+          <div className="absolute inset-0 backface-hidden" style={{ transform: "rotateX(180deg)" }}>
+            <div className="h-full w-full bg-[#123e74] rounded-2xl shadow-lg p-12 flex flex-col relative group-hover:shadow-2xl transition-shadow text-white">
               <div className="space-y-8 overflow-y-auto">
                 <div>
                   <h3 className="text-3xl font-bold mb-3">{company}</h3>
@@ -109,9 +96,9 @@ export default function CaseStudyCard({
                 </div>
               </div>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+          </div>
+        </div>
+      </Card>
+    </motion.div>
   );
 }
