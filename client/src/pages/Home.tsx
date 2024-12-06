@@ -121,7 +121,7 @@ export default function Home() {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <h2 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
-              Core Features
+              Growth Accelerators
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Comprehensive solutions to transform your sales operations
