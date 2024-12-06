@@ -13,7 +13,7 @@ const caseStudies = [
       "Achieved 150% growth in qualified meetings",
       "Improved pipeline velocity by 45%"
     ],
-    image: "/case-studies/nbx-expo.jpg",
+    image: "/case-studies/nbx-expo.svg",
     color: "from-blue-500/20"
   },
   {
@@ -27,7 +27,7 @@ const caseStudies = [
       "Achieved 150% revenue growth in 6 months",
       "Successfully diversified lead sources"
     ],
-    image: "/case-studies/enso-brands.jpg",
+    image: "/case-studies/enso-brands.svg",
     color: "from-purple-500/20"
   },
   {
@@ -41,7 +41,7 @@ const caseStudies = [
       "Achieved 250% growth in pipeline value",
       "Established predictable revenue model"
     ],
-    image: "/case-studies/accufin.jpg",
+    image: "/case-studies/accounting-software.svg",
     color: "from-green-500/20"
   }
 ];
@@ -128,8 +128,13 @@ export default function CaseStudiesPage() {
                   </div>
                   
                   <div className="order-1 md:order-2">
-                    <div className="relative rounded-lg overflow-hidden bg-slate-100 aspect-[4/3]">
-                      <div className="absolute inset-0 bg-gradient-to-br from-[#0066CC]/20 to-transparent" />
+                    <div className="relative rounded-lg overflow-hidden bg-white aspect-[4/3] shadow-lg hover:shadow-xl transition-shadow duration-300">
+                      <div className="absolute inset-0 bg-gradient-to-br from-[#0066CC]/10 to-transparent" />
+                      <img 
+                        src={study.image}
+                        alt={`${study.company} logo`}
+                        className="absolute inset-0 w-full h-full object-contain p-8"
+                      />
                     </div>
                   </div>
                 </div>
