@@ -23,7 +23,7 @@ const caseStudies = [
     solution: "Built complete outbound sales motion from ground up",
     results: [
       "Developed first outbound sales program",
-      "Generated 200+ new qualified opportunities",
+      "Increased qualified opportunities by 175%",
       "Achieved 150% revenue growth in 6 months",
       "Successfully diversified lead sources"
     ],
