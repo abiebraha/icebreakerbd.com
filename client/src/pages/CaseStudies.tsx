@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
 const caseStudies = [
   {
@@ -123,13 +123,7 @@ export default function CaseStudiesPage() {
                         </ul>
                       </div>
                       
-                      <motion.div 
-                        className="inline-flex items-center gap-2 text-[#123e74] font-medium cursor-pointer group"
-                        whileHover={{ x: 5 }}
-                      >
-                        Read Full Case Study
-                        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                      </motion.div>
+                      
                     </div>
                   </div>
                   
