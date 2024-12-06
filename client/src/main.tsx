@@ -9,6 +9,7 @@ import { queryClient } from "./lib/queryClient";
 import { Toaster } from "@/components/ui/toaster";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import Layout from "./components/Layout";
+import ScrollToTop from "./components/ScrollToTop";
 import Home from "./pages/Home";
 import AboutPage from "./pages/About";
 import ServicesPage from "./pages/Services";
@@ -23,6 +24,7 @@ function Router() {
   return (
     <ErrorBoundary>
       <Layout>
+        <ScrollToTop />
         <Switch>
           <Route path="/">
             <ErrorBoundary>
