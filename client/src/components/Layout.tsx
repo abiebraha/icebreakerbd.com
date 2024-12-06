@@ -1,35 +1,36 @@
-import { ReactNode, Suspense, useState, useEffect } from "react";
+import { ReactNode, Suspense } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useLocation } from "wouter";
 import Header from "./Header";
 import Footer from "./Footer";
-import { LoadingSpinner } from "./ui/loading-spinner";
-import { LoadingScreen } from "./ui/loading-screen";
 
 interface LayoutProps {
   children: ReactNode;
 }
 
 export default function Layout({ children }: LayoutProps) {
-  const [isInitialLoad, setIsInitialLoad] = useState(true);
-
-  useEffect(() => {
-    // Remove initial loading screen after a short delay
-    const timer = setTimeout(() => {
-      setIsInitialLoad(false);
-    }, 800);
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (isInitialLoad) {
-    return <LoadingScreen />;
-  }
+  const [location] = useLocation();
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col overflow-hidden">
       <Header />
-      <main className="flex-grow pt-16">
-        <Suspense fallback={<LoadingSpinner />}>
-          {children}
-        </Suspense>
+      <main className="flex-grow pt-16 relative">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={location}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ 
+              type: "spring",
+              stiffness: 300,
+              damping: 30
+            }}
+            className="h-full w-full"
+          >
+            {children}
+          </motion.div>
+        </AnimatePresence>
       </main>
       <Footer />
     </div>
