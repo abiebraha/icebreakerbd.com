@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion } from "framer-motion";
 import { 
   BarChart3, 
   Users, 
@@ -9,7 +9,6 @@ import {
   HeartHandshake,
   Rocket
 } from "lucide-react";
-import AnimatedGrid from "@/components/AnimatedGrid";
 
 const services = [
   {
@@ -103,44 +102,16 @@ const services = [
 ];
 
 export default function ServicesPage() {
-  const { scrollY } = useScroll();
-  
-  // Spring configuration for smooth animations
-  const springConfig = { 
-    stiffness: 40,
-    damping: 25,
-    mass: 2.0,
-    restDelta: 0.01
-  };
-  
-  // Hero section animations
-  const heroY = useSpring(
-    useTransform(scrollY, [0, 800], [0, -200]),
-    springConfig
-  );
-  
-  const heroScale = useSpring(
-    useTransform(scrollY, [0, 800], [1, 0.98]),
-    springConfig
-  );
-  
-  const heroOpacity = useSpring(
-    useTransform(scrollY, [0, 600], [1, 0]),
-    springConfig
-  );
-
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <motion.section 
-        className="relative py-20 overflow-hidden"
-        style={{ 
-          y: heroY,
-          scale: heroScale,
-          opacity: heroOpacity
-        }}
-      >
-        <AnimatedGrid opacity={0.15} color="#0066CC" />
+      <section className="relative py-20 overflow-hidden">
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-br from-[#0066CC]/5 via-transparent to-transparent"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div
@@ -159,49 +130,33 @@ export default function ServicesPage() {
             </p>
           </motion.div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Services Grid */}
-      <motion.section 
-        className="py-20"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1 }}
-      >
+      <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <motion.div
                 key={service.title}
-                className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
+                className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "0px" }}
-                transition={{ 
-                  duration: 0.5,
-                  delay: index * 0.1
-                }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <motion.div 
-                  className="mb-6 text-[#123e74] transition-transform duration-300"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                >
-                  <service.icon className="w-12 h-12" />
-                </motion.div>
-                <h3 className="text-2xl font-semibold text-slate-900 mb-4 group-hover:text-[#123e74] transition-colors">
+                <div className="mb-4">
+                  <service.icon className="w-12 h-12 text-[#123e74]" />
+                </div>
+                <h3 className="text-xl font-semibold text-slate-900 mb-3">
                   {service.title}
                 </h3>
-                <p className="text-lg text-slate-600 mb-6">
+                <p className="text-slate-600 mb-4">
                   {service.description}
                 </p>
-                <ul className="space-y-3">
+                <ul className="space-y-2">
                   {service.features.map((feature, i) => (
-                    <li 
-                      key={i} 
-                      className="text-base text-slate-600 flex items-center gap-3"
-                    >
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#123e74]" />
+                    <li key={i} className="text-sm text-slate-600 flex items-center gap-2">
+                      <div className="w-1 h-1 rounded-full bg-[#123e74]" />
                       {feature}
                     </li>
                   ))}
@@ -210,7 +165,7 @@ export default function ServicesPage() {
             ))}
           </div>
         </div>
-      </motion.section>
+      </section>
     </div>
   );
 }
