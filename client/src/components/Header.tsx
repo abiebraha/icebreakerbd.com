@@ -28,10 +28,15 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const isHome = location === "/";
+  const isTransparent = isHome && !isScrolled;
+
   return (
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white/90 backdrop-blur-md shadow-sm" : "bg-transparent"
+        isTransparent 
+          ? "bg-[#1a4e8f]" 
+          : "bg-white/90 backdrop-blur-md shadow-sm"
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -40,7 +45,11 @@ export default function Header() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center gap-2 hover:opacity-90 transition-opacity">
-            <img src="/logo.png" alt="ICEBREAKER" className="h-8" />
+            <img 
+              src={isTransparent ? "/White logo - no background.png" : "/Color logo - no background.png"} 
+              alt="ICEBREAKER" 
+              className="h-8 w-auto object-contain" 
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -50,13 +59,15 @@ export default function Header() {
                 key={item.href} 
                 href={item.href}
                 className={`relative py-2 text-sm font-medium transition-colors ${
-                  location === item.href
+                  isTransparent
+                    ? "text-white hover:text-white/90"
+                    : location === item.href
                     ? "text-[#123e74]"
                     : "text-slate-600 hover:text-[#123e74]"
                 }`}
               >
                 {item.label}
-                {location === item.href && (
+                {location === item.href && !isTransparent && (
                   <motion.div
                     className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#123e74]"
                     layoutId="underline"
@@ -65,7 +76,11 @@ export default function Header() {
               </Link>
             ))}
             <Button 
-              className="ml-4 bg-[#123e74] hover:bg-[#1a4e8f]"
+              className={`ml-4 transition-colors ${
+                isTransparent
+                  ? "bg-white text-[#123e74] hover:bg-white/90"
+                  : "bg-[#123e74] text-white hover:bg-[#1a4e8f]"
+              }`}
               onClick={() => window.location.href = 'https://app.icebreakerbd.com'}
             >
               Login
@@ -74,7 +89,11 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-slate-600 hover:text-[#123e74] transition-colors"
+            className={`md:hidden p-2 transition-colors ${
+              isTransparent
+                ? "text-white hover:text-white/90"
+                : "text-slate-600 hover:text-[#123e74]"
+            }`}
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -85,7 +104,9 @@ export default function Header() {
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              className="md:hidden fixed inset-x-0 top-16 bg-white shadow-lg"
+              className={`md:hidden fixed inset-x-0 top-16 shadow-lg transition-all duration-300 ${
+                isTransparent ? "bg-[#1a4e8f]" : "bg-white"
+              }`}
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
@@ -97,7 +118,11 @@ export default function Header() {
                     key={item.href} 
                     href={item.href}
                     className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                      location === item.href
+                      isTransparent
+                        ? location === item.href
+                          ? "text-white bg-white/10"
+                          : "text-white/90 hover:text-white hover:bg-white/10"
+                        : location === item.href
                         ? "text-[#123e74] bg-slate-50"
                         : "text-slate-600 hover:text-[#123e74] hover:bg-slate-50"
                     }`}
@@ -107,7 +132,11 @@ export default function Header() {
                   </Link>
                 ))}
                 <Button 
-                  className="w-full mt-4 bg-[#123e74] hover:bg-[#1a4e8f]"
+                  className={`w-full mt-4 transition-colors ${
+                    isTransparent
+                      ? "bg-white text-[#123e74] hover:bg-white/90"
+                      : "bg-[#123e74] text-white hover:bg-[#1a4e8f]"
+                  }`}
                   onClick={() => {
                     setIsOpen(false);
                     window.location.href = 'https://app.icebreakerbd.com';
