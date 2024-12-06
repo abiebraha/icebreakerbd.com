@@ -62,14 +62,14 @@ export default function Header() {
                   isTransparent
                     ? "text-white hover:text-white/90"
                     : location === item.href
-                    ? "text-[#123e74]"
-                    : "text-slate-600 hover:text-[#123e74]"
+                    ? "text-[#1a4e8f]"
+                    : "text-slate-600 hover:text-[#1a4e8f]"
                 }`}
               >
                 {item.label}
                 {location === item.href && !isTransparent && (
                   <motion.div
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#123e74]"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#1a4e8f]"
                     layoutId="underline"
                   />
                 )}
@@ -78,8 +78,8 @@ export default function Header() {
             <Button 
               className={`ml-4 transition-colors ${
                 isTransparent
-                  ? "bg-white text-[#123e74] hover:bg-white/90"
-                  : "bg-[#123e74] text-white hover:bg-[#1a4e8f]"
+                  ? "bg-white text-[#1a4e8f] hover:bg-white/90"
+                  : "bg-[#1a4e8f] text-white hover:bg-[#1a4e8f]/90"
               }`}
               onClick={() => window.location.href = 'https://app.icebreakerbd.com'}
             >
@@ -92,7 +92,7 @@ export default function Header() {
             className={`md:hidden p-2 transition-colors ${
               isTransparent
                 ? "text-white hover:text-white/90"
-                : "text-slate-600 hover:text-[#123e74]"
+                : "text-slate-600 hover:text-[#1a4e8f]"
             }`}
             onClick={() => setIsOpen(!isOpen)}
           >
@@ -123,8 +123,8 @@ export default function Header() {
                           ? "text-white bg-white/10"
                           : "text-white/90 hover:text-white hover:bg-white/10"
                         : location === item.href
-                        ? "text-[#123e74] bg-slate-50"
-                        : "text-slate-600 hover:text-[#123e74] hover:bg-slate-50"
+                        ? "text-[#1a4e8f] bg-slate-50"
+                        : "text-slate-600 hover:text-[#1a4e8f] hover:bg-slate-50"
                     }`}
                     onClick={() => setIsOpen(false)}
                   >
@@ -134,8 +134,8 @@ export default function Header() {
                 <Button 
                   className={`w-full mt-4 transition-colors ${
                     isTransparent
-                      ? "bg-white text-[#123e74] hover:bg-white/90"
-                      : "bg-[#123e74] text-white hover:bg-[#1a4e8f]"
+                      ? "bg-white text-[#1a4e8f] hover:bg-white/90"
+                      : "bg-[#1a4e8f] text-white hover:bg-[#1a4e8f]/90"
                   }`}
                   onClick={() => {
                     setIsOpen(false);
