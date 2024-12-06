@@ -28,19 +28,17 @@ export default function CaseStudyCard({
       transition={{ type: "spring", stiffness: 300 }}
       className="group cursor-pointer"
     >
-      <Card className="w-full min-h-[500px] bg-white shadow-lg group-hover:shadow-2xl transition-all duration-300 relative overflow-hidden flex flex-col">
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-[#123e74]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-        />
-        <div className="relative h-[700px] preserve-3d transition-transform duration-1000 ease-in-out" 
+      <Card className="w-full bg-white shadow-lg group-hover:shadow-2xl transition-all duration-300 relative">
+        <div 
+          className="relative preserve-3d transition-transform duration-1000 ease-in-out" 
           style={{ transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)" }}
         >
           {/* Front of card */}
-          <div className="absolute inset-0 backface-hidden">
-            <div 
-              className="h-full w-full bg-white rounded-2xl shadow-lg p-12 flex flex-col items-center justify-between group-hover:shadow-2xl transition-shadow"
-              onClick={() => setIsFlipped(true)}
-            >
+          <div 
+            className="backface-hidden"
+            onClick={() => setIsFlipped(true)}
+          >
+            <div className="bg-white rounded-2xl p-12 flex flex-col items-center justify-between min-h-[500px]">
               <div className="w-full text-center space-y-8">
                 <div className="relative w-56 h-56 mx-auto">
                   <img
@@ -67,8 +65,11 @@ export default function CaseStudyCard({
           </div>
 
           {/* Back of card */}
-          <div className="absolute inset-0 backface-hidden" style={{ transform: "rotateY(180deg)" }}>
-            <div className="h-full w-full bg-[#123e74] rounded-2xl shadow-lg p-12 flex flex-col relative group-hover:shadow-2xl transition-shadow text-white">
+          <div 
+            className="backface-hidden absolute inset-0"
+            style={{ transform: "rotateY(180deg)" }}
+          >
+            <div className="bg-[#123e74] rounded-2xl p-12 flex flex-col min-h-[500px]">
               <button
                 onClick={(e) => {
                   e.stopPropagation();
@@ -79,7 +80,7 @@ export default function CaseStudyCard({
                 <Minus className="w-5 h-5 text-white" />
               </button>
               
-              <div className="space-y-8 overflow-y-auto">
+              <div className="space-y-8 text-white">
                 <div>
                   <h3 className="text-3xl font-bold mb-3">{company}</h3>
                   <p className="text-xl font-medium text-white/90">{industry}</p>
