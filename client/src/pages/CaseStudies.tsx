@@ -5,13 +5,13 @@ const caseStudies = [
   {
     company: "NBX Expo",
     industry: "Event Management",
-    challenge: "Inefficient and inconsistent outbound sales processes leading to missed opportunities",
+    challenge: "Limited pipeline generation and inconsistent outbound processes causing missed revenue targets",
     solution: "Implemented structured sales system with clear processes and metrics tracking",
     results: [
-      "Established first dedicated outbound sales team",
+      "Increased pipeline generation by 250%",
       "Created standardized sales playbook",
-      "300% increase in qualified meetings",
-      "Reduced sales cycle by 45%"
+      "Achieved 150% growth in qualified meetings",
+      "Improved pipeline velocity by 45%"
     ],
     image: "/case-studies/nbx-expo.jpg",
     color: "from-blue-500/20"
