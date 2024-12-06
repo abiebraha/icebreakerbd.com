@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Minus } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 interface CaseStudyCardProps {
@@ -33,12 +33,14 @@ export default function CaseStudyCard({
           className="absolute inset-0 bg-gradient-to-br from-[#123e74]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
         />
         <div className="relative h-[700px] preserve-3d transition-transform duration-1000 ease-in-out" 
-          style={{ transform: isFlipped ? "rotateX(180deg)" : "rotateX(0deg)" }}
-          onClick={() => setIsFlipped(!isFlipped)}
+          style={{ transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)" }}
         >
           {/* Front of card */}
           <div className="absolute inset-0 backface-hidden">
-            <div className="h-full w-full bg-white rounded-2xl shadow-lg p-12 flex flex-col items-center justify-between group-hover:shadow-2xl transition-shadow">
+            <div 
+              className="h-full w-full bg-white rounded-2xl shadow-lg p-12 flex flex-col items-center justify-between group-hover:shadow-2xl transition-shadow"
+              onClick={() => setIsFlipped(true)}
+            >
               <div className="w-full text-center space-y-8">
                 <div className="relative w-56 h-56 mx-auto">
                   <img
@@ -65,8 +67,18 @@ export default function CaseStudyCard({
           </div>
 
           {/* Back of card */}
-          <div className="absolute inset-0 backface-hidden" style={{ transform: "rotateX(180deg)" }}>
+          <div className="absolute inset-0 backface-hidden" style={{ transform: "rotateY(180deg)" }}>
             <div className="h-full w-full bg-[#123e74] rounded-2xl shadow-lg p-12 flex flex-col relative group-hover:shadow-2xl transition-shadow text-white">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsFlipped(false);
+                }}
+                className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+              >
+                <Minus className="w-5 h-5 text-white" />
+              </button>
+              
               <div className="space-y-8 overflow-y-auto">
                 <div>
                   <h3 className="text-3xl font-bold mb-3">{company}</h3>
