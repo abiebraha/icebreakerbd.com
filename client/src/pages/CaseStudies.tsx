@@ -77,7 +77,7 @@ export default function CaseStudiesPage() {
       {/* Case Studies Grid */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 max-w-4xl mx-auto gap-16">
+          <div className="grid grid-cols-1 max-w-2xl mx-auto gap-12">
             {caseStudies.map((study, index) => (
               <motion.div
                 key={study.company}
