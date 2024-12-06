@@ -175,13 +175,12 @@ export default function ServicesPage() {
               <motion.div
                 key={service.title}
                 className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-10%" }}
+                viewport={{ once: true, margin: "0px" }}
                 transition={{ 
-                  duration: 0.6, 
-                  delay: index * 0.08,
-                  ease: "easeOut"
+                  duration: 0.5,
+                  delay: index * 0.1
                 }}
               >
                 <motion.div 
@@ -198,17 +197,13 @@ export default function ServicesPage() {
                 </p>
                 <ul className="space-y-3">
                   {service.features.map((feature, i) => (
-                    <motion.li 
+                    <li 
                       key={i} 
                       className="text-base text-slate-600 flex items-center gap-3"
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 + (i * 0.1) }}
                     >
                       <div className="w-1.5 h-1.5 rounded-full bg-[#123e74]" />
                       {feature}
-                    </motion.li>
+                    </li>
                   ))}
                 </ul>
               </motion.div>
