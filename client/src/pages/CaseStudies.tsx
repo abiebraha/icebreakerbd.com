@@ -13,7 +13,7 @@ const caseStudies = [
       "Achieved 150% growth in qualified meetings",
       "Improved pipeline velocity by 45%"
     ],
-    image: "/case-studies/nbx-expo.svg",
+    image: "/nbx.webp",
     color: "from-blue-500/20"
   },
   {
@@ -27,7 +27,7 @@ const caseStudies = [
       "Achieved 150% revenue growth in 6 months",
       "Successfully diversified lead sources"
     ],
-    image: "/case-studies/enso-brands.svg",
+    image: "/enso.png",
     color: "from-purple-500/20"
   },
   {
