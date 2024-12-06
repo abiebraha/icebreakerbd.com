@@ -27,10 +27,11 @@ export default function CaseStudyCard({
         {!isFlipped ? (
           <motion.div
             key="front"
-            className="absolute inset-0 backface-hidden"
-            initial={{ rotateY: 180 }}
+            className="absolute inset-0"
+            style={{ backfaceVisibility: "hidden" }}
+            initial={{ rotateY: 0 }}
             animate={{ rotateY: 0 }}
-            exit={{ rotateY: -180 }}
+            exit={{ rotateY: 180 }}
             transition={{ duration: 0.7, ease: "easeInOut" }}
           >
             <div className="h-full w-full bg-white rounded-2xl shadow-lg p-12 flex flex-col items-center justify-between hover:shadow-xl transition-shadow">
@@ -64,10 +65,11 @@ export default function CaseStudyCard({
         ) : (
           <motion.div
             key="back"
-            className="absolute inset-0 backface-hidden"
+            className="absolute inset-0"
+            style={{ backfaceVisibility: "hidden" }}
             initial={{ rotateY: -180 }}
-            animate={{ rotateY: 0 }}
-            exit={{ rotateY: 180 }}
+            animate={{ rotateY: -180 }}
+            exit={{ rotateY: 0 }}
             transition={{ duration: 0.7, ease: "easeInOut" }}
           >
             <div className="h-full w-full bg-white rounded-2xl shadow-lg p-12 flex flex-col relative hover:shadow-xl transition-shadow">
