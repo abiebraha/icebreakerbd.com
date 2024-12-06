@@ -81,7 +81,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             >
-              Build High-Performing Sales Teams
+              A Two-Step Approach to Sales Success
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
