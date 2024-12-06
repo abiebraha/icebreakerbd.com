@@ -3,20 +3,6 @@ import { ChevronRight } from "lucide-react";
 
 const caseStudies = [
   {
-    company: "NBX Expo",
-    industry: "Event Management",
-    challenge: "Limited pipeline generation and inconsistent outbound processes causing missed revenue targets",
-    solution: "Implemented structured sales system with clear processes and metrics tracking",
-    results: [
-      "Increased pipeline generation by 250%",
-      "Created standardized sales playbook",
-      "Achieved 150% growth in qualified meetings",
-      "Improved pipeline velocity by 45%"
-    ],
-    image: "/case-studies/nbx.webp",
-    color: "from-blue-500/20"
-  },
-  {
     company: "Enso Brands",
     industry: "Amazon Store Management",
     challenge: "Exclusively reliant on SEO with no proactive outbound sales strategy",
@@ -31,6 +17,20 @@ const caseStudies = [
     color: "from-purple-500/20"
   },
   {
+    company: "NBX Expo",
+    industry: "Event Management",
+    challenge: "Limited pipeline generation and inconsistent outbound processes causing missed revenue targets",
+    solution: "Implemented structured sales system with clear processes and metrics tracking",
+    results: [
+      "Increased pipeline generation by 250%",
+      "Created standardized sales playbook",
+      "Achieved 150% growth in qualified meetings",
+      "Improved pipeline velocity by 45%"
+    ],
+    image: "/case-studies/nbx.webp",
+    color: "from-blue-500/20"
+  },
+  {
     company: "Leading Accounting Software Provider",
     industry: "Accounting Software",
     challenge: "No existing sales team or processes in place",
@@ -41,7 +41,7 @@ const caseStudies = [
       "Achieved 250% growth in pipeline value",
       "Established predictable revenue model"
     ],
-    image: "/case-studies/accounting.png",
+    image: "/case-studies/accounting-icon.png",
     color: "from-green-500/20"
   }
 ];
