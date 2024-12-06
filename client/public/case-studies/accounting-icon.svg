@@ -1,0 +1,6 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="200" cy="200" r="150" fill="#0066CC" opacity="0.1"/>
+  <circle cx="200" cy="200" r="140" fill="none" stroke="#0066CC" stroke-width="8"/>
+  <text x="200" y="220" font-family="Arial" font-size="180" font-weight="bold" text-anchor="middle" fill="#0066CC">$</text>
+  <text x="200" y="320" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="#0066CC">Finance</text>
+</svg>
