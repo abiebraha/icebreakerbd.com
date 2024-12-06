@@ -41,7 +41,7 @@ const caseStudies = [
       "Achieved 250% growth in pipeline value",
       "Established predictable revenue model"
     ],
-    image: "/case-studies/accounting-software.svg",
+    image: "/case-studies/accounting.png",
     color: "from-green-500/20"
   }
 ];
