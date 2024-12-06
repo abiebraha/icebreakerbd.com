@@ -145,7 +145,7 @@ export default function ServicesPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <div className="mb-4">
-                  <service.icon className="w-12 h-12 text-[#0066CC]" />
+                  <service.icon className="w-12 h-12 text-[#123e74]" />
                 </div>
                 <h3 className="text-xl font-semibold text-slate-900 mb-3">
                   {service.title}
@@ -156,7 +156,7 @@ export default function ServicesPage() {
                 <ul className="space-y-2">
                   {service.features.map((feature, i) => (
                     <li key={i} className="text-sm text-slate-600 flex items-center gap-2">
-                      <div className="w-1 h-1 rounded-full bg-[#0066CC]" />
+                      <div className="w-1 h-1 rounded-full bg-[#123e74]" />
                       {feature}
                     </li>
                   ))}
