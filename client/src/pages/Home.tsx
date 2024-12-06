@@ -62,54 +62,49 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-transparent" />
         
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div
-            className="text-center"
-            variants={{
-              hidden: { opacity: 0, x: -100 },
-              visible: { opacity: 1, x: 0 },
-              exit: { opacity: 0, x: -100 }
-            }}
-          >
-            <h1 className="text-7xl md:text-[120px] font-bold mb-6 tracking-tight leading-none">
-              Accelerate Your
-              <br />
-              <span className="bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+          <div className="text-center">
+            <h1 className="text-7xl md:text-[120px] font-bold mb-6 tracking-tight leading-none flex flex-col items-center">
+              <motion.span
+                initial={{ opacity: 0, x: -100 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+              >
+                Accelerate Your
+              </motion.span>
+              <motion.span
+                className="bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent"
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              >
                 Sales Growth
-              </span>
+              </motion.span>
             </h1>
             <motion.p 
               className="text-2xl md:text-3xl text-white/90 mb-8 max-w-3xl mx-auto font-medium tracking-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 1, delay: 0.9 }}
             >
               With Our Proven Two-Step Approach
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 1, delay: 1.2 }}
             >
               <Button
                 size="lg"
-                className="bg-[#123e74] hover:bg-[#1a4e8f] text-white px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
+                className="bg-white hover:bg-white/90 text-[#123e74] px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
                 onClick={() => window.open(import.meta.env.VITE_CALENDLY_URL || "https://calendly.com/icebreakerbd/meeting-with-abie-braha", "_blank")}
               >
                 Schedule a Call
               </Button>
             </motion.div>
-          </motion.div>
+          </div>
         </div>
 
-        <motion.div 
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <div className="w-6 h-10 border-2 border-slate-600 rounded-full relative">
-            <div className="w-1 h-2 bg-slate-600 rounded-full absolute left-1/2 top-2 transform -translate-x-1/2" />
-          </div>
-        </motion.div>
+        {/* Removed loading animation div */}
       </motion.section>
 
       {/* Features Section */}
