@@ -68,7 +68,7 @@ export default function CaseStudiesPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
               Success Stories That
               <br />
-              <span className="text-[#123e74]">Drive Results</span>
+              <span className="text-[#0066CC]">Drive Results</span>
             </h1>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Discover how we've helped companies transform their sales operations and achieve remarkable growth.
@@ -116,7 +116,7 @@ export default function CaseStudiesPage() {
                         <ul className="space-y-3">
                           {study.results.map((result, i) => (
                             <li key={i} className="flex items-center gap-2 text-slate-600">
-                              <ChevronRight className="w-4 h-4 text-[#123e74]" />
+                              <ChevronRight className="w-4 h-4 text-[#0066CC]" />
                               {result}
                             </li>
                           ))}
@@ -135,7 +135,7 @@ export default function CaseStudiesPage() {
                   
                   <div className="order-1 md:order-2">
                     <div className="relative rounded-lg overflow-hidden bg-slate-100 aspect-[4/3]">
-                      <div className="absolute inset-0 bg-gradient-to-br from-[#123e74]/20 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-[#0066CC]/20 to-transparent" />
                     </div>
                   </div>
                 </div>
