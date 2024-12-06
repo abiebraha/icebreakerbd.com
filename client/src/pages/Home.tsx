@@ -100,38 +100,13 @@ export default function Home() {
         </div>
 
         <motion.div 
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-1"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
+          className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >
-          <motion.div
-            className="w-4 h-4 border-r-2 border-b-2 border-white transform rotate-45"
-            animate={{ 
-              opacity: [0.3, 0.8, 0.3],
-              scale: [1, 1.1, 1],
-              y: [0, 4, 0]
-            }}
-            transition={{ 
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-          <motion.div
-            className="w-4 h-4 border-r-2 border-b-2 border-white transform rotate-45 -mt-2"
-            animate={{ 
-              opacity: [0.15, 0.5, 0.15],
-              scale: [1, 1.05, 1],
-              y: [0, 4, 0]
-            }}
-            transition={{ 
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 0.2
-            }}
-          />
+          <div className="w-6 h-10 border-2 border-slate-600 rounded-full relative">
+            <div className="w-1 h-2 bg-slate-600 rounded-full absolute left-1/2 top-2 transform -translate-x-1/2" />
+          </div>
         </motion.div>
       </motion.section>
 
