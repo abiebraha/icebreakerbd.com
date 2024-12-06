@@ -169,7 +169,7 @@ export default function ROICalculator() {
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
               SDR Team ROI
               <br />
-              <span className="text-[#123e74]">Calculator</span>
+              <span className="text-[#0066CC]">Calculator</span>
             </h1>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Calculate the potential return on investment from building your SDR team
