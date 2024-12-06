@@ -72,36 +72,36 @@ export default function CaseStudyCard({
             exit={{ rotateY: 0 }}
             transition={{ duration: 0.7, ease: "easeInOut" }}
           >
-            <div className="h-full w-full bg-white rounded-2xl shadow-lg p-12 flex flex-col relative hover:shadow-xl transition-shadow">
+            <div className="h-full w-full bg-[#123e74] rounded-2xl shadow-lg p-12 flex flex-col relative hover:shadow-xl transition-shadow text-white">
               <button
                 onClick={() => setIsFlipped(false)}
-                className="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-100 transition-colors"
+                className="absolute top-6 right-6 p-2 rounded-full hover:bg-white/10 transition-colors text-white"
               >
                 <X className="w-6 h-6" />
               </button>
               
               <div className="space-y-8 overflow-y-auto">
                 <div>
-                  <h3 className="text-3xl font-bold text-slate-900 mb-3">{company}</h3>
-                  <p className="text-xl text-[#123e74] font-medium">{industry}</p>
+                  <h3 className="text-3xl font-bold mb-3">{company}</h3>
+                  <p className="text-xl font-medium text-white/90">{industry}</p>
                 </div>
                 
                 <div>
-                  <h4 className="text-xl font-semibold text-slate-900 mb-3">The Challenge</h4>
-                  <p className="text-lg text-slate-600">{challenge}</p>
+                  <h4 className="text-xl font-semibold mb-3">The Challenge</h4>
+                  <p className="text-lg text-white/80">{challenge}</p>
                 </div>
                 
                 <div>
-                  <h4 className="text-xl font-semibold text-slate-900 mb-3">Our Solution</h4>
-                  <p className="text-lg text-slate-600">{solution}</p>
+                  <h4 className="text-xl font-semibold mb-3">Our Solution</h4>
+                  <p className="text-lg text-white/80">{solution}</p>
                 </div>
                 
                 <div>
-                  <h4 className="text-xl font-semibold text-slate-900 mb-4">Key Results</h4>
+                  <h4 className="text-xl font-semibold mb-4">Key Results</h4>
                   <ul className="space-y-4">
                     {results.map((result, i) => (
-                      <li key={i} className="flex items-center gap-3 text-lg text-slate-600">
-                        <div className="w-2 h-2 rounded-full bg-[#123e74]" />
+                      <li key={i} className="flex items-center gap-3 text-lg text-white/80">
+                        <div className="w-2 h-2 rounded-full bg-white" />
                         {result}
                       </li>
                     ))}
