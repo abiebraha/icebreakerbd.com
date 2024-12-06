@@ -220,7 +220,6 @@ export default function Home() {
                   <span>KPI tracking setup</span>
                 </li>
               </ul>
-              <p className="text-slate-600 mb-2">Contact us for pricing details</p>
             </motion.div>
 
             <motion.div
@@ -255,7 +254,6 @@ export default function Home() {
                   <span>Performance monitoring</span>
                 </li>
               </ul>
-              <p className="text-slate-600 mb-2">Contact us for pricing details</p>
             </motion.div>
           </div>
         </div>
