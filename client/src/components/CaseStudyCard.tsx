@@ -46,7 +46,12 @@ export default function CaseStudyCard({
             }}
             onClick={() => setIsFlipped(true)}
           >
-            <div className="w-full h-full bg-slate-900/5 rounded-2xl p-12 flex flex-col items-center justify-center">
+            <div className={`w-full h-full rounded-2xl p-12 flex flex-col items-center justify-center ${
+              company === "Platinum Travel" ? "bg-[#1e3a8a]" :
+              company === "Enso Brands" ? "bg-[#065f46]" :
+              company === "NBX Expo" ? "bg-[#581c87]" :
+              "bg-[#334155]" // Default for Accounting Software
+            }`}>
               <div className="w-full text-center">
                 <div className="relative w-full h-48 mx-auto mb-8 flex items-center justify-center">
                   <div className="w-3/4 h-3/4">
@@ -57,10 +62,10 @@ export default function CaseStudyCard({
                     />
                   </div>
                 </div>
-                <h3 className="text-3xl font-bold text-slate-900">
+                <h3 className="text-3xl font-bold text-white">
                   {company}
                 </h3>
-                <div className="mt-8 flex items-center justify-center gap-2 text-[#123e74] group-hover:text-[#1a4e8f] transition-colors text-lg">
+                <div className="mt-8 flex items-center justify-center gap-2 text-white/90 group-hover:text-white transition-colors text-lg">
                   <span className="font-semibold">View Case Study</span>
                   <ArrowRight className="w-6 h-6 transform group-hover:translate-x-1 transition-transform" />
                 </div>
