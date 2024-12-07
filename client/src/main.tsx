@@ -17,6 +17,7 @@ import CaseStudiesPage from "./pages/CaseStudies";
 import PricingPage from "./pages/Pricing";
 import ContactPage from "./pages/Contact";
 import ROICalculator from "./pages/ROICalculator";
+import ScheduleCallPage from "./pages/ScheduleCall";
 
 console.log("Application initialization started");
 
@@ -59,6 +60,11 @@ function Router() {
           <Route path="/roi-calculator">
             <ErrorBoundary>
               <ROICalculator />
+            </ErrorBoundary>
+          </Route>
+          <Route path="/schedule-call">
+            <ErrorBoundary>
+              <ScheduleCallPage />
             </ErrorBoundary>
           </Route>
           <Route>
