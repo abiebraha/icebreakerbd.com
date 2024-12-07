@@ -46,7 +46,7 @@ export default function CaseStudyCard({
             }}
             onClick={() => setIsFlipped(true)}
           >
-            <div className="w-full h-full bg-[#123e74]/5 rounded-2xl p-12 flex flex-col items-center justify-center">
+            <div className="w-full h-full bg-[#0066CC]/5 rounded-2xl p-12 flex flex-col items-center justify-center">
               <div className="w-full text-center">
                 <div className="relative w-full h-48 mx-auto mb-8 flex items-center justify-center">
                   <div className="w-3/4 h-3/4">
