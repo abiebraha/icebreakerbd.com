@@ -11,7 +11,7 @@ const navItems = [
   { href: "/case-studies", label: "Case Studies" },
   { href: "/pricing", label: "Pricing" },
   { href: "/roi-calculator", label: "ROI Calculator" },
-  { href: "/contact", label: "Contact" },
+  { href: "/schedule-call", label: "Schedule Call" },
 ];
 
 export default function Header() {

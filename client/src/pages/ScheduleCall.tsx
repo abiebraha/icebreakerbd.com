@@ -50,12 +50,12 @@ export default function ScheduleCallPage() {
       </section>
 
       {/* Calendly inline widget */}
-      <section className="py-12">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="flex-1">
+        <div className="h-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div 
             className="calendly-inline-widget" 
             data-url="https://calendly.com/icebreakerbd/meeting-with-abie-braha?hide_gdpr_banner=1"
-            style={{ minWidth: '320px', height: '700px' }}
+            style={{ minWidth: '320px', height: 'calc(100vh - 300px)' }}
           />
         </div>
       </section>
