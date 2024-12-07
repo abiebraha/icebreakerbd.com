@@ -48,8 +48,8 @@ export default function CaseStudyCard({
           >
             <div className={`w-full h-full rounded-2xl p-12 flex flex-col items-center justify-center ${
               company === "Platinum Travel" ? "bg-[#1e3a8a]" :
-              company === "Enso Brands" ? "bg-[#065f46]" :
-              company === "NBX Expo" ? "bg-[#581c87]" :
+              company === "Enso Brands" ? "bg-[#0f766e]" :
+              company === "NBX Expo" ? "bg-[#9f1239]" :
               "bg-[#334155]" // Default for Accounting Software
             }`}>
               <div className="w-full text-center">
