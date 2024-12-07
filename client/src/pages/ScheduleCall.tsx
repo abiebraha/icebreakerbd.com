@@ -22,7 +22,7 @@ export default function ScheduleCallPage() {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
+      <section className="relative py-12 overflow-hidden">
         <motion.div
           className="absolute inset-0 bg-gradient-to-br from-[#0066CC]/5 via-transparent to-transparent"
           initial={{ opacity: 0 }}
@@ -37,12 +37,11 @@ export default function ScheduleCallPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+            <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
               Schedule a Call
-              <br />
-              <span className="text-[#0066CC]">With Our Team</span>
+              <span className="text-[#0066CC]"> With Our Team</span>
             </h1>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            <p className="text-lg text-slate-600 max-w-3xl mx-auto">
               Book a consultation to discuss how we can help accelerate your sales growth
             </p>
           </motion.div>
@@ -50,8 +49,8 @@ export default function ScheduleCallPage() {
       </section>
 
       {/* Calendly inline widget */}
-      <section className="flex-1 pb-12">
-        <div className="h-[calc(100vh-380px)] max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="flex-1 pb-8">
+        <div className="h-[calc(100vh-250px)] max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div 
             className="calendly-inline-widget w-full h-full" 
             data-url="https://calendly.com/icebreakerbd/meeting-with-abie-braha?hide_gdpr_banner=1"
