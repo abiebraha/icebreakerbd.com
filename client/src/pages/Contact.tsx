@@ -89,8 +89,8 @@ export default function ContactPage() {
                   Office Hours
                 </h2>
                 <div className="space-y-2 text-slate-600">
-                  <p>Monday - Friday: 9:00 AM - 6:00 PM PST</p>
-                  <p>Saturday - Sunday: Closed</p>
+                  <p>Monday - Thursday: 9:00 AM - 5:00 PM ET</p>
+                  <p>Friday - Sunday: Closed</p>
                 </div>
               </div>
             </motion.div>
