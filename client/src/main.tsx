@@ -18,9 +18,6 @@ import PricingPage from "./pages/Pricing";
 import ContactPage from "./pages/Contact";
 import ROICalculator from "./pages/ROICalculator";
 import ScheduleCallPage from "./pages/ScheduleCall";
-import ColdEmailPage from "./pages/generators/ColdEmailPage";
-import ColdCallPage from "./pages/generators/ColdCallPage";
-import LinkedInPage from "./pages/generators/LinkedInPage";
 
 console.log("Application initialization started");
 
@@ -68,21 +65,6 @@ function Router() {
           <Route path="/schedule-call">
             <ErrorBoundary>
               <ScheduleCallPage />
-            </ErrorBoundary>
-          </Route>
-          <Route path="/tools/cold-email">
-            <ErrorBoundary>
-              <ColdEmailPage />
-            </ErrorBoundary>
-          </Route>
-          <Route path="/tools/cold-call">
-            <ErrorBoundary>
-              <ColdCallPage />
-            </ErrorBoundary>
-          </Route>
-          <Route path="/tools/linkedin">
-            <ErrorBoundary>
-              <LinkedInPage />
             </ErrorBoundary>
           </Route>
           <Route>

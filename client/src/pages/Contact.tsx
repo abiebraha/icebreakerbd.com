@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import ContactForm from "@/components/ContactForm";
-import { ChatBot } from "@/components/ChatBot";
 import { Mail, Phone, MapPin } from "lucide-react";
 
 export default function ContactPage() {
@@ -96,26 +95,6 @@ export default function ContactPage() {
               </div>
             </motion.div>
           </div>
-        </div>
-      </section>
-
-      {/* Chat Section */}
-      <section className="py-20 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">
-              Chat with Our AI Assistant
-            </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Get instant answers to your questions about our services and sales development solutions.
-            </p>
-          </motion.div>
-          <ChatBot />
         </div>
       </section>
     </div>
