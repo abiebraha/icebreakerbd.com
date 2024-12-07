@@ -123,7 +123,7 @@ export default function ContactForm() {
           name="teamSize"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Size of your current sales team *</FormLabel>
+              <FormLabel>Size of your current sales team</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
@@ -146,7 +146,7 @@ export default function ContactForm() {
           name="improvementArea"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>What would you say needs the most improvement in your sales department? *</FormLabel>
+              <FormLabel>What would you say needs the most improvement in your sales department?</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
