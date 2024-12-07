@@ -47,7 +47,7 @@ export default function CaseStudyCard({
             onClick={() => setIsFlipped(true)}
           >
             <div className={`w-full h-full rounded-2xl p-12 flex flex-col items-center justify-center ${
-              company === "Platinum Travel" ? "bg-[#1e3a8a]" :
+              company === "Platinum Travel" ? "bg-[#b7791f]" : // Changed to gold
               company === "Enso Brands" ? "bg-[#0f766e]" :
               company === "NBX Expo" ? "bg-[#9f1239]" :
               "bg-[#334155]" // Default for Accounting Software
