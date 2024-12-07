@@ -1,0 +1,41 @@
+import { motion } from "framer-motion";
+import { LinkedInGenerator } from "@/components/generators/LinkedInGenerator";
+
+export default function LinkedInPage() {
+  return (
+    <div className="bg-white">
+      <section className="relative py-20 overflow-hidden">
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-br from-[#0066CC]/5 via-transparent to-transparent"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        />
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <motion.div
+            className="text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+              LinkedIn Post
+              <br />
+              <span className="text-[#0066CC]">Generator</span>
+            </h1>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              Create engaging LinkedIn posts that boost your professional presence and generate leads.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <LinkedInGenerator />
+        </div>
+      </section>
+    </div>
+  );
+}
