@@ -48,8 +48,8 @@ export default function CaseStudyCard({
           >
             <div className="w-full h-full bg-white rounded-2xl p-12 flex flex-col items-center justify-center">
               <div className="w-full text-center">
-                <div className="relative w-full h-64 mx-auto mb-8 bg-[#123e74]/10 rounded-xl flex items-center justify-center p-6">
-                  <div className="w-9/10 h-9/10">
+                <div className="relative w-full h-48 mx-auto mb-8 bg-[#123e74]/10 rounded-xl flex items-center justify-center p-4">
+                  <div className="w-3/4 h-3/4">
                     <img
                       src={image}
                       alt={`${company} logo`}
