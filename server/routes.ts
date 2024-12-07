@@ -3,15 +3,25 @@ import type { Express } from "express";
 export function registerRoutes(app: Express) {
   app.post('/api/contact', (req, res) => {
     try {
-      const { name, email, company, message } = req.body;
+      const { name, email, company, teamSize, improvementArea, additionalInfo } = req.body;
       
-      // In a real application, you would:
-      // 1. Validate the input
-      // 2. Store in database
-      // 3. Send notification email
-      // 4. Handle errors appropriately
-      
-      console.log('Contact form submission:', { name, email, company, message });
+      // Validate required fields
+      if (!name || !email || !company || !teamSize || !improvementArea) {
+        return res.status(400).json({
+          success: false,
+          message: 'Missing required fields'
+        });
+      }
+
+      // Log the submission for now
+      console.log('Contact form submission:', {
+        name,
+        email,
+        company,
+        teamSize,
+        improvementArea,
+        additionalInfo
+      });
       
       res.status(200).json({ 
         success: true, 
