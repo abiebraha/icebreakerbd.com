@@ -1,7 +1,14 @@
 import type { Express } from "express";
+import sgMail from '@sendgrid/mail';
 
 export function registerRoutes(app: Express) {
-  app.post('/api/contact', (req, res) => {
+  // Initialize SendGrid with API key if available
+  const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
+  if (SENDGRID_API_KEY) {
+    sgMail.setApiKey(SENDGRID_API_KEY);
+  }
+
+  app.post('/api/contact', async (req, res) => {
     try {
       const { name, email, company, teamSize, improvementArea, additionalInfo } = req.body;
       
@@ -13,7 +20,7 @@ export function registerRoutes(app: Express) {
         });
       }
 
-      // Log the submission for now
+      // Log the submission
       console.log('Contact form submission:', {
         name,
         email,
@@ -22,12 +29,52 @@ export function registerRoutes(app: Express) {
         improvementArea,
         additionalInfo
       });
+
+      // Send email notification if SendGrid is configured
+      if (SENDGRID_API_KEY) {
+        try {
+          const msg = {
+            to: 'info@icebreakerbd.com', // Your email address
+            from: 'notifications@icebreakerbd.com', // Your verified sender
+            subject: 'New Contact Form Submission',
+            text: `
+New contact form submission received:
+
+Name: ${name}
+Email: ${email}
+Company: ${company}
+Team Size: ${teamSize}
+Area for Improvement: ${improvementArea}
+Additional Information: ${additionalInfo || 'None provided'}
+            `,
+            html: `
+<h2>New Contact Form Submission</h2>
+<p>You have received a new contact form submission with the following details:</p>
+<ul>
+  <li><strong>Name:</strong> ${name}</li>
+  <li><strong>Email:</strong> ${email}</li>
+  <li><strong>Company:</strong> ${company}</li>
+  <li><strong>Team Size:</strong> ${teamSize}</li>
+  <li><strong>Area for Improvement:</strong> ${improvementArea}</li>
+  <li><strong>Additional Information:</strong> ${additionalInfo || 'None provided'}</li>
+</ul>
+            `,
+          };
+
+          await sgMail.send(msg);
+          console.log('Email notification sent successfully');
+        } catch (emailError) {
+          console.error('Failed to send email notification:', emailError);
+          // Don't fail the request if email fails
+        }
+      }
       
       res.status(200).json({ 
         success: true, 
         message: 'Message received successfully' 
       });
     } catch (error) {
+      console.error('Error processing contact form:', error);
       res.status(500).json({ 
         success: false, 
         message: 'Failed to process contact form submission' 
