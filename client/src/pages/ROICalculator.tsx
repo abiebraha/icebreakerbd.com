@@ -181,12 +181,13 @@ export default function ROICalculator() {
       {/* Calculator Section */}
       <section className="py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             {/* Input Form */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
+              className="w-full"
             >
               <h3 className="text-2xl font-bold text-slate-900 mb-4">Calculator Inputs</h3>
               <Card>
@@ -312,7 +313,7 @@ export default function ROICalculator() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="flex flex-col gap-4 md:col-span-2"
+              className="flex flex-col gap-4 w-full"
             >
               <div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-4">Results</h3>
