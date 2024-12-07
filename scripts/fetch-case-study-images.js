@@ -57,6 +57,9 @@ async function main() {
   // Ensure output directory exists
   await fs.mkdir(outputDir, { recursive: true });
   
+  // Process Platinum Travel logo
+  await processLogo('Untitled design (1).png', `${outputDir}/platinum-travel.png`);
+  
   // Download and process NBX Expo logo
   await downloadImage('https://nbxexpo.com/wp-content/uploads/2023/05/NBX-logo-PNG.png', `${outputDir}/nbx-temp.png`);
   await processLogo(`${outputDir}/nbx-temp.png`, `${outputDir}/nbx-expo.jpg`);
