@@ -3,6 +3,19 @@ import CaseStudyCard from "@/components/CaseStudyCard";
 
 const caseStudies = [
   {
+    company: "Platinum Travel",
+    industry: "Corporate Travel Management",
+    challenge: "Small outbound sales team struggling to generate results and meet growth targets",
+    solution: "Restructured and expanded sales team with proven methodologies",
+    results: [
+      "Successfully scaled to a high-performing team of 3 SDRs",
+      "Implemented standardized outbound processes",
+      "Increased qualified meeting generation",
+      "Established consistent revenue growth"
+    ],
+    image: "/case-studies/platinum-travel.png"
+  },
+  {
     company: "Enso Brands",
     industry: "Amazon Store Management",
     challenge: "Exclusively reliant on SEO with no proactive outbound sales strategy",
