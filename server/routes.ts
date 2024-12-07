@@ -1,5 +1,6 @@
 import type { Express } from "express";
 import sgMail from '@sendgrid/mail';
+import { handleChatSession } from './services/openai';
 
 export function registerRoutes(app: Express) {
   // Initialize SendGrid with API key if available
@@ -78,6 +79,29 @@ Additional Information: ${additionalInfo || 'None provided'}
       res.status(500).json({ 
         success: false, 
         message: 'Failed to process contact form submission' 
+      });
+    }
+  });
+  // Chat endpoint
+  app.post('/api/chat', async (req, res) => {
+    try {
+      const { messages } = req.body;
+      const userEmail = req.body.email; // Optional email for notifications
+      
+      if (!messages || !Array.isArray(messages)) {
+        return res.status(400).json({
+          success: false,
+          message: 'Invalid request format - messages array required'
+        });
+      }
+
+      const result = await handleChatSession(messages, userEmail);
+      res.json(result);
+    } catch (error) {
+      console.error('Chat endpoint error:', error);
+      res.status(500).json({
+        success: false,
+        message: error instanceof Error ? error.message : 'An unknown error occurred'
       });
     }
   });
