@@ -46,28 +46,22 @@ export default function CaseStudyCard({
             }}
             onClick={() => setIsFlipped(true)}
           >
-            <div className="w-full h-full bg-white rounded-2xl p-12 flex flex-col items-center justify-between">
-              <div className="w-full text-center space-y-8">
-                <div className="relative w-56 h-56 mx-auto">
+            <div className="w-full h-full bg-white rounded-2xl p-12 flex flex-col items-center justify-center">
+              <div className="w-full text-center">
+                <div className="relative w-64 h-64 mx-auto mb-8">
                   <img
                     src={image}
                     alt={`${company} logo`}
                     className="w-full h-full object-contain"
                   />
                 </div>
-                <div>
-                  <h3 className="text-3xl font-bold text-slate-900 mb-3">
-                    {company}
-                  </h3>
-                  <p className="text-xl text-[#123e74] font-medium">
-                    {industry}
-                  </p>
+                <h3 className="text-3xl font-bold text-slate-900">
+                  {company}
+                </h3>
+                <div className="mt-8 flex items-center justify-center gap-2 text-[#123e74] group-hover:text-[#1a4e8f] transition-colors text-lg">
+                  <span className="font-semibold">View Case Study</span>
+                  <ArrowRight className="w-6 h-6 transform group-hover:translate-x-1 transition-transform" />
                 </div>
-              </div>
-              
-              <div className="flex items-center gap-2 text-[#123e74] group-hover:text-[#1a4e8f] transition-colors text-lg">
-                <span className="font-semibold">Read Case Study</span>
-                <ArrowRight className="w-6 h-6 transform group-hover:translate-x-1 transition-transform" />
               </div>
             </div>
           </div>
@@ -85,7 +79,7 @@ export default function CaseStudyCard({
               setIsFlipped(false);
             }}
           >
-            <div className="w-full h-full bg-[#123e74] rounded-2xl p-12 flex flex-col">
+            <div className="w-full h-full bg-[#123e74] rounded-2xl p-8 flex flex-col">
               <button
                 onClick={(e) => {
                   e.stopPropagation();
@@ -98,26 +92,26 @@ export default function CaseStudyCard({
               
               <div className="space-y-6 text-white overflow-y-auto flex-1">
                 <div>
-                  <h3 className="text-3xl font-bold mb-3">{company}</h3>
-                  <p className="text-xl font-medium text-white/90">{industry}</p>
+                  <h3 className="text-2xl font-bold mb-2">{company}</h3>
+                  <p className="text-lg font-medium text-white/90">{industry}</p>
                 </div>
                 
                 <div>
-                  <h4 className="text-xl font-semibold mb-2">The Challenge</h4>
-                  <p className="text-base text-white/80">{challenge}</p>
+                  <h4 className="text-lg font-semibold mb-2">The Challenge</h4>
+                  <p className="text-sm text-white/90">{challenge}</p>
                 </div>
                 
                 <div>
-                  <h4 className="text-xl font-semibold mb-2">Our Solution</h4>
-                  <p className="text-base text-white/80">{solution}</p>
+                  <h4 className="text-lg font-semibold mb-2">Our Solution</h4>
+                  <p className="text-sm text-white/90">{solution}</p>
                 </div>
                 
                 <div>
-                  <h4 className="text-xl font-semibold mb-3">Key Results</h4>
-                  <ul className="space-y-3">
+                  <h4 className="text-lg font-semibold mb-2">Key Results</h4>
+                  <ul className="space-y-2">
                     {results.map((result, i) => (
-                      <li key={i} className="flex items-start gap-2 text-base text-white/80">
-                        <div className="w-2 h-2 rounded-full bg-white mt-2" />
+                      <li key={i} className="flex items-start gap-2 text-sm text-white/90">
+                        <div className="w-1.5 h-1.5 rounded-full bg-white mt-1.5" />
                         <span>{result}</span>
                       </li>
                     ))}
