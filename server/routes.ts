@@ -35,7 +35,7 @@ export function registerRoutes(app: Express) {
         try {
           const msg = {
             to: 'info@icebreakerbd.com', // Your email address
-            from: 'notifications@icebreakerbd.com', // Your verified sender
+            from: 'info@icebreakerbd.com', // Your verified sender
             subject: 'New Contact Form Submission',
             text: `
 New contact form submission received:
