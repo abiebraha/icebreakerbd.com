@@ -71,7 +71,9 @@ Remember to follow the exact template structure, keep it conversational but prof
         body: JSON.stringify({ 
           messages: [...messages, userMessage],
           email: email,
-          type: 'cold_email'
+          type: 'cold_email',
+          linkedinUrl,
+          websiteUrl
         }),
       });
 

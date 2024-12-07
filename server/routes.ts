@@ -85,8 +85,7 @@ Additional Information: ${additionalInfo || 'None provided'}
   // Chat endpoint
   app.post('/api/chat', async (req, res) => {
     try {
-      const { messages } = req.body;
-      const userEmail = req.body.email; // Optional email for notifications
+      const { messages, type, linkedinUrl, websiteUrl, email } = req.body;
       
       if (!messages || !Array.isArray(messages)) {
         return res.status(400).json({
@@ -95,7 +94,13 @@ Additional Information: ${additionalInfo || 'None provided'}
         });
       }
 
-      const result = await handleChatSession(messages, userEmail);
+      let result;
+      if (type === 'cold_email') {
+        result = await handleColdEmailSession(messages, linkedinUrl, websiteUrl, email);
+      } else {
+        result = await handleChatSession(messages, email);
+      }
+      
       res.json(result);
     } catch (error) {
       console.error('Chat endpoint error:', error);
