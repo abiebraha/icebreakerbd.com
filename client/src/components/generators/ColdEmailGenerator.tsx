@@ -15,11 +15,28 @@ export function ColdEmailGenerator() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'system',
-      content: 'Welcome! I\'ll help you generate effective cold emails. Please provide details about your target audience and key value propositions.'
+      content: `I'll help you generate personalized cold emails following this exact template:
+
+{Highlight a solution found on the sellers website, keep it to one sentence maximum}. {Derisk the offer in a maximum 3 words}.
+
+{Very soft CTA}?
+
+P.S. {Use their LinkedIn profile or other information to highlight something not related to the pitch that shows personal interest}.
+
+Guidelines:
+- Keep subject lines lowercase and max 4 words
+- Use professional but conversational tone
+- Incorporate personalized LinkedIn details
+- Focus on clear, straightforward messages
+- Maintain plain text aesthetic
+- Review mentioned websites for specific solutions
+- Keep language neutral when discussing pain points`
     }
   ]);
   const [input, setInput] = useState('');
   const [email, setEmail] = useState('');
+  const [linkedinUrl, setLinkedinUrl] = useState('');
+  const [websiteUrl, setWebsiteUrl] = useState('');
   const [loading, setLoading] = useState(false);
   const [showEmailInput, setShowEmailInput] = useState(true);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -36,7 +53,12 @@ export function ColdEmailGenerator() {
 
     const userMessage = { 
       role: 'user' as const, 
-      content: `Generate a cold email with the following context: ${input}`
+      content: `Generate a cold email using this information:
+LinkedIn Profile: ${linkedinUrl}
+Company Website: ${websiteUrl}
+Additional Context: ${input}
+
+Remember to follow the exact template structure, keep it conversational but professional, and include specific details from their LinkedIn profile and website.`
     };
     setMessages(prev => [...prev, userMessage]);
     setInput('');
@@ -124,13 +146,31 @@ export function ColdEmailGenerator() {
           </div>
         )}
         <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-          <Textarea
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Describe your target audience, product/service, and key value propositions..."
-            disabled={loading}
-            className="flex-1 min-h-[100px]"
-          />
+          <div className="space-y-4">
+            <Input
+              type="url"
+              placeholder="LinkedIn Profile URL of the prospect"
+              value={linkedinUrl}
+              onChange={(e) => setLinkedinUrl(e.target.value)}
+              disabled={loading}
+              className="w-full"
+            />
+            <Input
+              type="url"
+              placeholder="Company Website URL"
+              value={websiteUrl}
+              onChange={(e) => setWebsiteUrl(e.target.value)}
+              disabled={loading}
+              className="w-full"
+            />
+            <Textarea
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Additional context about the prospect and your offering..."
+              disabled={loading}
+              className="flex-1 min-h-[100px]"
+            />
+          </div>
           <Button type="submit" disabled={loading || !input.trim()}>
             {loading ? 'Generating...' : 'Generate Cold Email'}
           </Button>
