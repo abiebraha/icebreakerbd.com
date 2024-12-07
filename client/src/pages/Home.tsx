@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Users, LineChart, Target } from "lucide-react";
 
@@ -93,13 +94,14 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 1.2 }}
             >
-              <Button
-                size="lg"
-                className="bg-white hover:bg-white/90 text-[#123e74] px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
-                onClick={() => window.open(import.meta.env.VITE_CALENDLY_URL || "https://calendly.com/icebreakerbd/meeting-with-abie-braha", "_blank")}
-              >
-                Schedule a Call
-              </Button>
+              <Link href="/schedule-call">
+                <Button
+                  size="lg"
+                  className="bg-white hover:bg-white/90 text-[#123e74] px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
+                >
+                  Schedule a Call
+                </Button>
+              </Link>
             </motion.div>
           </div>
         </div>
@@ -342,13 +344,14 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 1, delay: 0.2 }}
             >
-              <Button
-                size="lg"
-                className="bg-[#123e74] hover:bg-[#1a4e8f] text-white px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
-                onClick={() => window.open(import.meta.env.VITE_CALENDLY_URL || "https://calendly.com/icebreakerbd/meeting-with-abie-braha", "_blank")}
-              >
-                Schedule a Call
-              </Button>
+              <Link href="/schedule-call">
+                <Button
+                  size="lg"
+                  className="bg-[#123e74] hover:bg-[#1a4e8f] text-white px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
+                >
+                  Schedule a Call
+                </Button>
+              </Link>
             </motion.div>
           </motion.div>
         </div>

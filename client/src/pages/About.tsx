@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "wouter";
 import { Shield, Users, Trophy, Brain } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -155,19 +156,14 @@ export default function AboutPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                <a 
-                  href={import.meta.env.VITE_CALENDLY_URL || "https://calendly.com/icebreakerbd/meeting-with-abie-braha"}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block"
-                >
+                <Link href="/schedule-call" className="inline-block">
                   <Button
                     size="lg"
                     className="bg-[#0066CC] hover:bg-[#0077ED] text-white px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
                   >
                     Book a Call With Abe
                   </Button>
-                </a>
+                </Link>
               </motion.div>
             </div>
           </motion.div>
