@@ -8,12 +8,12 @@ import { LoadingSpinner } from "@/components/ui/loading-spinner";
 
 export default function PricingPage() {
   return (
-    <div className="bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-[#123e74] via-[#2a9d8f]/80 to-[#123e74]">
       {/* Hero Section */}
       <section className="relative py-24 overflow-hidden">
         {/* Animated Background Pattern */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#123e74] via-[#2a9d8f]/80 to-[#123e74] opacity-90" />
+          <div className="absolute inset-0 bg-white/5" />
           <div className="absolute inset-0 grid grid-cols-3 md:grid-cols-6 gap-4 p-4 opacity-20">
             {[...Array(18)].map((_, i) => (
               <motion.div
@@ -55,7 +55,7 @@ export default function PricingPage() {
       </section>
 
       {/* Pricing Cards */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#123e74]/5 via-white to-white">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
             <motion.div

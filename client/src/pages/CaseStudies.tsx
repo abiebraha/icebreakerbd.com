@@ -58,9 +58,9 @@ const caseStudies = [
 
 export default function CaseStudiesPage() {
   return (
-    <div className="bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-[#123e74] to-[#2a9d8f]">
       {/* Hero Section */}
-      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-[#123e74] to-[#2a9d8f]">
+      <section className="relative py-24 overflow-hidden">
         {/* Animated Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0 grid grid-cols-2 gap-x-4 gap-y-8">
@@ -105,9 +105,9 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* Case Studies Grid */}
-      <section className="py-20 bg-gradient-to-b from-white via-slate-50/50 to-white">
+      <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 max-w-3xl mx-auto gap-16">
+          <div className="grid grid-cols-1 max-w-3xl mx-auto gap-16 relative z-10">
             {caseStudies.map((study, index) => (
               <motion.div
                 key={study.company}
