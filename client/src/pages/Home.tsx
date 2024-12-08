@@ -88,7 +88,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.9 }}
             >
-              With Our Proven Two-Step Approach
+              For Small & Mid-Size Businesses Ready to Scale Their Sales
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -136,17 +136,17 @@ export default function Home() {
               {
                 icon: Users,
                 title: "Expert Team Building",
-                description: "Build and scale high-performing SDR teams that consistently deliver results."
+                description: "Build your dedicated SDR team within 3-6 months, perfectly sized for your growth phase before transitioning to an in-house team."
               },
               {
                 icon: LineChart,
-                title: "Process Optimization",
-                description: "Streamline your sales operations with proven methodologies."
+                title: "Complete Sales Stack",
+                description: "Implement essential tools including CRM, autoDialer, lead data sources, and custom KPI tracking systems for seamless operations."
               },
               {
                 icon: Target,
-                title: "Growth Strategy",
-                description: "Develop targeted strategies that accelerate your sales growth."
+                title: "Proven Results",
+                description: "Increase qualified leads and booked meetings with highly effective outbound systems and performance-based bonus structures."
               }
             ].map((feature, index) => (
               <motion.div
@@ -285,10 +285,10 @@ export default function Home() {
 
           <div className="grid md:grid-cols-4 gap-12">
             {[
-              { number: "150%", label: "Average Increase in Qualified Leads" },
-              { number: "45%", label: "Improvement in Conversion Rates" },
-              { number: "60%", label: "Faster Sales Cycle" },
-              { number: "90%", label: "Client Satisfaction Rate" }
+              { number: "3-6", label: "Months to Full Implementation" },
+              { number: "200%", label: "More Qualified Meetings Booked" },
+              { number: "5x", label: "Increase in Outbound Efforts" },
+              { number: "100%", label: "Integrated Sales Tools" }
             ].map((stat, index) => (
               <motion.div
                 key={index}
