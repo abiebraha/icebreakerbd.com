@@ -59,17 +59,17 @@ const [expandedSection, setExpandedSection] = useState<string | null>(null);
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-6">
             <NavigationMenu>
-              <NavigationMenuList className="space-x-4">
+              <NavigationMenuList className="flex items-center space-x-2">
                 {navItems.map((item) => (
                   <NavigationMenuItem key={item.label}>
                     {item.items ? (
                       <>
-                        <NavigationMenuTrigger className="group">
+                        <NavigationMenuTrigger className="group px-3 py-2">
                           {item.label}
                         </NavigationMenuTrigger>
-                        <NavigationMenuContent className="absolute top-0 left-1/2 w-[220px] -translate-x-1/2 bg-white rounded-lg shadow-lg border border-slate-200/60">
+                        <NavigationMenuContent className="absolute top-full left-1/2 w-[220px] -translate-x-1/2 mt-2 bg-white rounded-lg shadow-lg border border-slate-200/60">
                           <motion.div
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -91,7 +91,7 @@ const [expandedSection, setExpandedSection] = useState<string | null>(null);
                     ) : (
                       <Link 
                         href={item.href}
-                        className={`relative py-2 text-sm font-medium transition-colors ${
+                        className={`relative px-3 py-2 text-sm font-medium transition-colors ${
                           location === item.href
                             ? "text-[#123e74]"
                             : "text-slate-600 hover:text-[#123e74]"
