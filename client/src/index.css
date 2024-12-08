@@ -23,6 +23,7 @@ body {
     --secondary-lighter: #2a5ea0;
   }
 
+  /* 3D Effects */
   .preserve-3d {
     transform-style: preserve-3d;
     perspective: 2000px;
@@ -37,6 +38,7 @@ body {
     transform-style: preserve-3d;
   }
 
+  /* Base HTML Elements */
   html {
     @apply min-h-screen scroll-smooth;
     background-color: var(--background);
@@ -48,14 +50,63 @@ body {
     background-color: var(--background);
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply tracking-tight;
+  /* Typography System */
+  h1 {
+    @apply text-4xl md:text-5xl font-bold tracking-tight text-slate-900;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl font-bold tracking-tight text-slate-900;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl font-bold tracking-tight text-slate-900;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl font-semibold tracking-tight text-slate-900;
   }
 
   p {
-    @apply leading-7;
+    @apply leading-7 text-slate-600;
   }
 
+  /* Button System */
+  .btn-primary {
+    @apply bg-[#123e74] hover:bg-[#1a4e8f] text-white px-8 py-6 text-lg font-semibold rounded-full transition-all duration-300 hover:scale-105 shadow-lg;
+  }
+
+  .btn-secondary {
+    @apply bg-white hover:bg-slate-50 text-[#123e74] px-8 py-6 text-lg font-semibold rounded-full transition-all duration-300 hover:scale-105 shadow-lg border border-[#123e74];
+  }
+
+  /* Call-to-Action Sections */
+  .cta-section {
+    @apply py-20 bg-gradient-to-b from-white to-slate-50;
+  }
+
+  .cta-container {
+    @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center;
+  }
+
+  .cta-heading {
+    @apply text-4xl md:text-6xl font-bold text-slate-900 mb-6 tracking-tight;
+  }
+
+  .cta-description {
+    @apply text-xl text-slate-600 max-w-3xl mx-auto mb-8;
+  }
+
+  /* Form Elements */
+  .form-input {
+    @apply w-full rounded-lg border border-slate-200 px-4 py-3 text-slate-900 focus:border-[#123e74] focus:ring-2 focus:ring-[#123e74] focus:ring-opacity-50;
+  }
+
+  .form-label {
+    @apply text-sm font-medium text-slate-900 mb-2 block;
+  }
+
+  /* Responsive Design */
   @media (max-width: 640px) {
     html {
       font-size: 14px;
