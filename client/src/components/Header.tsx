@@ -23,9 +23,9 @@ const navItems = [
       { href: "/tools/cold-email", label: "Cold Email Generator" },
       { href: "/tools/sales-script", label: "Sales Script Generator" },
       { href: "/tools/linkedin-post", label: "LinkedIn Post Generator" },
+      { href: "/roi-calculator", label: "ROI Calculator" },
     ],
   },
-  { href: "/roi-calculator", label: "ROI Calculator" },
   { href: "/schedule-call", label: "Schedule Call" },
 ];
 
