@@ -76,8 +76,10 @@ export default function LinkedInPostGenerator() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl font-bold text-slate-900 mb-4">
-              LinkedIn Post Generator
+            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-2">
+              LinkedIn Post
+              <br />
+              <span className="text-[#0066CC]">Generator</span>
             </h1>
             <p className="text-xl text-slate-600">
               Create engaging LinkedIn content that drives engagement and establishes thought leadership.
