@@ -18,6 +18,9 @@ import PricingPage from "./pages/Pricing";
 import ContactPage from "./pages/Contact";
 import ROICalculator from "./pages/ROICalculator";
 import ScheduleCallPage from "./pages/ScheduleCall";
+import ColdEmailGenerator from "./pages/tools/ColdEmailGenerator";
+import SalesScriptGenerator from "./pages/tools/SalesScriptGenerator";
+import LinkedInPostGenerator from "./pages/tools/LinkedInPostGenerator";
 
 console.log("Application initialization started");
 
@@ -65,6 +68,21 @@ function Router() {
           <Route path="/schedule-call">
             <ErrorBoundary>
               <ScheduleCallPage />
+            </ErrorBoundary>
+          </Route>
+          <Route path="/tools/cold-email">
+            <ErrorBoundary>
+              <ColdEmailGenerator />
+            </ErrorBoundary>
+          </Route>
+          <Route path="/tools/sales-script">
+            <ErrorBoundary>
+              <SalesScriptGenerator />
+            </ErrorBoundary>
+          </Route>
+          <Route path="/tools/linkedin-post">
+            <ErrorBoundary>
+              <LinkedInPostGenerator />
             </ErrorBoundary>
           </Route>
           <Route>
