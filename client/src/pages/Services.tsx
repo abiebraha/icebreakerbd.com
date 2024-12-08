@@ -107,10 +107,20 @@ export default function ServicesPage() {
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
         <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-[#0066CC]/5 via-transparent to-transparent"
+          className="absolute inset-0 bg-gradient-to-br from-accent/10 via-primary/5 to-transparent"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
+        />
+        
+        <div 
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: "url('/IMG_1518.jpeg')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            filter: 'grayscale(50%)'
+          }}
         />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -121,12 +131,15 @@ export default function ServicesPage() {
             transition={{ duration: 0.6 }}
           >
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-              Comprehensive Sales
+              Transform Your Sales
               <br />
-              <span className="text-[#0066CC]">Growth Solutions</span>
+              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                Into Growth Stories
+              </span>
             </h1>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              From system setup to team building, we provide end-to-end services to accelerate your sales growth.
+              Experience the transformation as we turn your sales challenges into success stories. 
+              Our proven approach doesn't just build systems – it creates lasting growth.
             </p>
           </motion.div>
         </div>
@@ -139,13 +152,13 @@ export default function ServicesPage() {
             {services.map((service, index) => (
               <motion.div
                 key={service.title}
-                className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+                className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] border border-border/50 hover:border-accent/20 group"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <div className="mb-4">
-                  <service.icon className="w-12 h-12 text-[#123e74]" />
+                  <service.icon className="w-12 h-12 text-primary group-hover:text-accent transition-colors duration-300" />
                 </div>
                 <h3 className="text-xl font-semibold text-slate-900 mb-3">
                   {service.title}
