@@ -46,7 +46,9 @@ const [expandedSection, setExpandedSection] = useState<string | null>(null);
   return (
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white/90 backdrop-blur-md shadow-sm" : "bg-transparent"
+        isScrolled 
+          ? "bg-gradient-to-r from-[#123e74]/90 via-[#2a6d8f]/90 to-[#2a9d8f]/90 backdrop-blur-md shadow-sm" 
+          : "bg-transparent"
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -93,14 +95,14 @@ const [expandedSection, setExpandedSection] = useState<string | null>(null);
                         href={item.href}
                         className={`relative px-3 py-2 text-sm font-medium transition-colors ${
                           location === item.href
-                            ? "text-[#123e74]"
-                            : "text-slate-600 hover:text-[#123e74]"
+                            ? "text-white font-semibold"
+                            : "text-slate-200 hover:text-white"
                         }`}
                       >
                         {item.label}
                         {location === item.href && (
                           <motion.div
-                            className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#123e74]"
+                            className="absolute bottom-0 left-0 right-0 h-0.5 bg-cyan-300"
                             layoutId="underline"
                           />
                         )}
