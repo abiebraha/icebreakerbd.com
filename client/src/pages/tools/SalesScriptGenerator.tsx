@@ -92,7 +92,7 @@ export default function SalesScriptGenerator() {
                 type="url"
                 value={websiteUrl}
                 onChange={(e) => setWebsiteUrl(e.target.value)}
-                placeholder="Enter the product/service website URL..."
+                placeholder="Enter website URL to research the product/service and industry..."
               />
             </div>
 
@@ -101,7 +101,7 @@ export default function SalesScriptGenerator() {
               <Textarea
                 value={productDescription}
                 onChange={(e) => setProductDescription(e.target.value)}
-                placeholder="Describe the product or service being sold..."
+                placeholder="Describe the product/service, target customers, and key pain points it solves..."
                 className="h-32"
               />
               <p className="text-sm text-slate-500">
@@ -114,7 +114,7 @@ export default function SalesScriptGenerator() {
               <Textarea
                 value={customInstructions}
                 onChange={(e) => setCustomInstructions(e.target.value)}
-                placeholder="Any specific requirements, objection handling needs, or script structure preferences..."
+                placeholder="Add seller's full name, preferred meeting days/times, and any specific instructions for the script..."
                 className="h-24"
               />
             </div>
