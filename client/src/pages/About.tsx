@@ -42,7 +42,7 @@ export default function AboutPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Transforming Sales Teams
               <br />
-              <span className="text-pink-300">One Step at a Time</span>
+              <span className="text-cyan-300">One Step at a Time</span>
             </h1>
             <p className="text-xl text-slate-200 max-w-3xl mx-auto">
               We're a team of sales experts passionate about helping businesses build and optimize their sales processes.
@@ -74,7 +74,7 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <value.icon className="w-12 h-12 text-pink-300 mb-4" />
+                <value.icon className="w-12 h-12 text-cyan-300 mb-4" />
                 <h3 className="text-xl font-semibold text-white mb-2">{value.title}</h3>
                 <p className="text-slate-200">{value.description}</p>
               </motion.div>
@@ -131,7 +131,7 @@ export default function AboutPage() {
                 <Link href="/schedule-call" className="inline-block">
                   <Button
                     size="lg"
-                    className="bg-pink-600 hover:bg-pink-700 text-white px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
+                    className="bg-cyan-600 hover:bg-cyan-700 text-white px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
                   >
                     Book a Call With Abe
                   </Button>
