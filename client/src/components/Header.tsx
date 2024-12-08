@@ -69,23 +69,25 @@ const [expandedSection, setExpandedSection] = useState<string | null>(null);
                         <NavigationMenuTrigger className="group px-3 py-2">
                           {item.label}
                         </NavigationMenuTrigger>
-                        <NavigationMenuContent className="absolute top-full left-1/2 w-[220px] -translate-x-1/2 mt-2 bg-white rounded-lg shadow-lg border border-slate-200/60">
-                          <motion.div
-                            initial={{ opacity: 0, y: -10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -10 }}
-                            className="grid gap-1.5 p-3"
-                          >
-                            {item.items.map((subItem) => (
-                              <Link
-                                key={subItem.href}
-                                href={subItem.href}
-                                className="block select-none rounded-md px-4 py-2.5 text-sm font-medium text-slate-600 no-underline outline-none transition-all duration-200 hover:bg-slate-50 hover:text-[#123e74] focus:bg-slate-50 focus:text-[#123e74]"
-                              >
-                                {subItem.label}
-                              </Link>
-                            ))}
-                          </motion.div>
+                        <NavigationMenuContent>
+                          <div className="absolute top-full left-1/2 w-[220px] -translate-x-1/2 mt-2 bg-white rounded-lg shadow-lg border border-slate-200/60">
+                            <motion.div
+                              initial={{ opacity: 0, y: -10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: -10 }}
+                              className="grid gap-1.5 p-3"
+                            >
+                              {item.items?.map((subItem) => (
+                                <Link
+                                  key={subItem.href}
+                                  href={subItem.href}
+                                  className="block select-none rounded-md px-4 py-2.5 text-sm font-medium text-slate-600 no-underline outline-none transition-all duration-200 hover:bg-slate-50 hover:text-[#123e74] focus:bg-slate-50 focus:text-[#123e74]"
+                                >
+                                  {subItem.label}
+                                </Link>
+                              ))}
+                            </motion.div>
+                          </div>
                         </NavigationMenuContent>
                       </>
                     ) : (
