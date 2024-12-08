@@ -132,10 +132,12 @@ Additional Information: ${additionalInfo || 'None provided'}
         ],
       });
 
-      const generatedContent = completion.choices[0].message.content;
+      const generatedContent = completion.choices[0].message.content || '';
 
-      // Send email transcript
-      await sendEmailTranscript(email, "Cold Email", { context, customInstructions }, generatedContent);
+      // Send email transcript if we have content and an email
+      if (generatedContent && email) {
+        await sendEmailTranscript(email, "Cold Email", { context, customInstructions }, generatedContent);
+      }
 
       res.json({ content: generatedContent });
     } catch (error) {
@@ -162,10 +164,12 @@ Additional Information: ${additionalInfo || 'None provided'}
         ],
       });
 
-      const generatedContent = completion.choices[0].message.content;
+      const generatedContent = completion.choices[0].message.content || '';
 
-      // Send email transcript
-      await sendEmailTranscript(email, "Sales Script", { context, customInstructions }, generatedContent);
+      // Send email transcript if we have content and an email
+      if (generatedContent && email) {
+        await sendEmailTranscript(email, "Sales Script", { context, customInstructions }, generatedContent);
+      }
 
       res.json({ content: generatedContent });
     } catch (error) {
@@ -192,10 +196,12 @@ Additional Information: ${additionalInfo || 'None provided'}
         ],
       });
 
-      const generatedContent = completion.choices[0].message.content;
+      const generatedContent = completion.choices[0].message.content || '';
 
-      // Send email transcript
-      await sendEmailTranscript(email, "LinkedIn Post", { context, customInstructions }, generatedContent);
+      // Send email transcript if we have content and an email
+      if (generatedContent && email) {
+        await sendEmailTranscript(email, "LinkedIn Post", { context, customInstructions }, generatedContent);
+      }
 
       res.json({ content: generatedContent });
     } catch (error) {
