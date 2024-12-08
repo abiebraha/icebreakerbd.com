@@ -181,7 +181,7 @@ export default function ROICalculator() {
       {/* Calculator Section */}
       <section className="py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Input Form */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -332,8 +332,9 @@ export default function ROICalculator() {
                           Export PDF
                         </Button>
                       </div>
-                      <div className="overflow-x-auto">
-                        <Table>
+                      <div className="overflow-x-auto -mx-6 sm:mx-0">
+                        <div className="inline-block min-w-full align-middle">
+                        <Table className="min-w-full">
                           <TableHeader>
                             <TableRow>
                               <TableHead>Month</TableHead>
@@ -357,6 +358,7 @@ export default function ROICalculator() {
                             ))}
                           </TableBody>
                         </Table>
+                        </div>
                       </div>
                     </CardContent>
                   </Card>
@@ -371,11 +373,7 @@ export default function ROICalculator() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <a 
-              href={import.meta.env.VITE_CALENDLY_URL || "https://calendly.com/icebreakerbd/meeting-with-abie-braha"}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <Link href="/schedule-call">
               <Button
                 size="lg"
                 className="gap-2 bg-[#123e74] hover:bg-[#1a4e8f] transition-all duration-300 hover:scale-105"
@@ -383,7 +381,7 @@ export default function ROICalculator() {
                 <Calculator className="w-4 h-4" />
                 Schedule a Call to Learn More
               </Button>
-            </a>
+            </Link>
           </motion.div>
         </div>
       </section>
