@@ -95,7 +95,7 @@ export default function ColdEmailGenerator() {
                 name="website-url"
                 value={websiteUrl}
                 onChange={(e) => setWebsiteUrl(e.target.value)}
-                placeholder="Enter the seller's website URL..."
+                placeholder="Enter website URL (e.g., example.com or www.example.com)..."
                 className="w-full"
                 aria-label="Website URL"
               />

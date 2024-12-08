@@ -84,7 +84,7 @@ export default function SalesScriptGenerator() {
                 name="website-url"
                 value={websiteUrl}
                 onChange={(e) => setWebsiteUrl(e.target.value)}
-                placeholder="Enter website URL to research the product/service and industry..."
+                placeholder="Enter website URL (e.g., example.com or www.example.com)..."
                 className="w-full"
               />
             </div>
