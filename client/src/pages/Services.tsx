@@ -116,9 +116,10 @@ export default function ServicesPage() {
         <div 
           className="absolute inset-0 opacity-10"
           style={{
-            backgroundImage: "url('/IMG_1518.jpeg')",
-            backgroundSize: 'cover',
+            backgroundImage: "url('/Color logo - no background.png')",
+            backgroundSize: 'contain',
             backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
             filter: 'grayscale(50%)'
           }}
         />
@@ -133,7 +134,7 @@ export default function ServicesPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
               Transform Your Sales
               <br />
-              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              <span className="text-[#0066CC]">
                 Into Growth Stories
               </span>
             </h1>
