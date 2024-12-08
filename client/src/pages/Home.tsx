@@ -132,21 +132,18 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { src: '/images/IMG_1392.jpeg', title: 'Sales Excellence', size: 'lg', col: 'md:col-span-8', row: 'md:row-span-2' },
-              { src: '/images/IMG_1395.jpeg', title: 'Team Building', size: 'sm', col: 'md:col-span-4', row: '' },
-              { src: '/images/IMG_1400.jpeg', title: 'Process Optimization', size: 'sm', col: 'md:col-span-4', row: '' },
-              { src: '/images/IMG_1489.jpeg', title: 'Growth Strategy', size: 'md', col: 'md:col-span-6', row: '' },
-              { src: '/images/IMG_1518.jpeg', title: 'Performance Analytics', size: 'md', col: 'md:col-span-6', row: '' },
-              { src: '/images/IMG_1733.jpeg', title: 'Client Success', size: 'lg', col: 'md:col-span-12', row: '' }
+              { src: '/images/IMG_1392.jpeg', title: 'Sales Excellence' },
+              { src: '/images/IMG_1395.jpeg', title: 'Team Building' },
+              { src: '/images/IMG_1400.jpeg', title: 'Process Optimization' },
+              { src: '/images/IMG_1489.jpeg', title: 'Growth Strategy' },
+              { src: '/images/IMG_1518.jpeg', title: 'Performance Analytics' },
+              { src: '/images/IMG_1733.jpeg', title: 'Client Success' }
             ].map((image, index) => (
               <motion.div
                 key={index}
-                className={`relative overflow-hidden rounded-2xl group ${image.col} ${image.row}`}
-                style={{ 
-                  height: image.size === 'lg' ? '600px' : image.size === 'md' ? '400px' : '300px'
-                }}
+                className="relative overflow-hidden rounded-2xl group aspect-square"
                 initial={{ opacity: 0, y: 60 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
