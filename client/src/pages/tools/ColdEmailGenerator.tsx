@@ -108,7 +108,7 @@ export default function ColdEmailGenerator() {
                 name="product-description"
                 value={productDescription}
                 onChange={(e) => setProductDescription(e.target.value)}
-                placeholder="Describe the product or service being sold..."
+                placeholder="Describe the product/service, including unique value propositions and key benefits..."
                 className="min-h-[8rem] w-full resize-y"
                 aria-label="Product Description"
               />
@@ -124,7 +124,7 @@ export default function ColdEmailGenerator() {
                 name="custom-instructions"
                 value={customInstructions}
                 onChange={(e) => setCustomInstructions(e.target.value)}
-                placeholder="Any specific requirements or tone preferences..."
+                placeholder="Add prospect details (name, role, LinkedIn profile) and any specific preferences for tone or approach..."
                 className="min-h-[6rem] w-full resize-y"
                 aria-label="Custom Instructions"
               />
