@@ -14,23 +14,23 @@ const services = [
   {
     icon: Laptop,
     title: "Sales System Setup",
-    description: "Complete implementation and optimization of your sales infrastructure, including CRM setup and tool integration.",
+    description: "Complete implementation of your sales infrastructure within 3-6 months, including CRM setup and essential tool integration.",
     features: [
-      "CRM and tech stack implementation",
-      "Sales tools integration",
-      "Data provider setup",
-      "Process automation"
+      "CRM and autoDialer implementation",
+      "Lead data sources integration",
+      "Custom KPI tracking system setup",
+      "Performance-based bonus structure"
     ]
   },
   {
     icon: Users,
     title: "SDR Team Building",
-    description: "Build and scale your Sales Development Representative team with expert recruitment and training.",
+    description: "Build and transition to your own SDR team within 3-6 months, with expert recruitment, training, and proven performance frameworks.",
     features: [
-      "Talent acquisition",
-      "Onboarding program",
-      "Performance metrics setup",
-      "Team structure optimization"
+      "Dedicated SDR recruitment process",
+      "Comprehensive onboarding & training",
+      "Performance-based bonus structure",
+      "Transition to in-house management"
     ]
   },
   {
@@ -47,23 +47,23 @@ const services = [
   {
     icon: Target,
     title: "Process Optimization",
-    description: "Streamline your sales processes for maximum efficiency and conversion rates.",
+    description: "Implement proven systems that have helped clients achieve 150% increase in pipeline value and 60% shorter sales cycles.",
     features: [
-      "Workflow analysis",
-      "Bottleneck identification",
-      "Process redesign",
-      "Implementation support"
+      "Sales workflow automation",
+      "CRM & autoDialer optimization",
+      "Lead scoring implementation",
+      "Sales cycle acceleration"
     ]
   },
   {
     icon: LineChart,
     title: "Performance Analytics",
-    description: "Data-driven insights to measure and improve sales performance.",
+    description: "Track and improve key metrics with our proven system that has achieved 200% more meetings booked and 5x increase in outbound efforts.",
     features: [
-      "KPI dashboard setup",
-      "Performance tracking",
-      "ROI analysis",
-      "Regular reporting"
+      "Custom KPI tracking dashboard",
+      "Pipeline value monitoring",
+      "Meeting conversion analytics",
+      "Outbound activity metrics"
     ]
   },
   {

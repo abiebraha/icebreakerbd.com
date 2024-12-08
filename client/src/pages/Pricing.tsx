@@ -45,7 +45,7 @@ export default function PricingPage() {
               step="1"
               title="Sales System Setup"
               price="2,000"
-              description="We optimize your existing sales infrastructure, working with your in-house team to set up essential tools and processes."
+              description="Complete implementation of your sales infrastructure within 3-6 months, including CRM setup, autoDialer, and essential tools."
               features={[
                 "CRM and tech stack implementation",
                 "Integration of sales tools and data providers",
@@ -58,7 +58,7 @@ export default function PricingPage() {
               step="2"
               title="Build Your SDR Team"
               price="3,000"
-              description="We help you scale by building a dedicated Sales Development Representative (SDR) team."
+              description="Build and transition to your own SDR team within 3-6 months, achieving 200% more meetings booked and 5x increase in outbound efforts."
               features={[
                 "SDR recruitment and onboarding",
                 "Fractional sales management",
