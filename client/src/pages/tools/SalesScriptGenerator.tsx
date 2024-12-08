@@ -139,7 +139,7 @@ export default function SalesScriptGenerator() {
 
             <Button
               type="submit"
-              className="w-full bg-[#123e74] hover:bg-[#1a4e8f] text-white px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
+              className="cta-button"
               disabled={isLoading}
             >
               {isLoading ? "Generating..." : "Generate Sales Script"}

@@ -348,7 +348,7 @@ export default function Home() {
               <Link href="/schedule-call">
                 <Button
                   size="lg"
-                  className="bg-[#123e74] hover:bg-[#1a4e8f] text-white px-8 py-6 text-lg font-semibold rounded-full transition-all duration-300 hover:scale-105 shadow-lg"
+                  className="btn-secondary"
                 >
                   Schedule a Call
                 </Button>
