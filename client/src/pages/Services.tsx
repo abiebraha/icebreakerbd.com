@@ -103,7 +103,7 @@ const services = [
 
 export default function ServicesPage() {
   return (
-    <div className="bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-[#123e74] to-[#2a9d8f]">
       {/* Hero Section */}
       <section className="relative py-24 overflow-hidden">
         {/* Background Image Grid */}
@@ -172,13 +172,13 @@ export default function ServicesPage() {
       </section>
 
       {/* Services Grid */}
-      <section className="py-20">
+      <section className="py-20 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <motion.div
                 key={service.title}
-                className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] border border-border/50 hover:border-accent/20 group"
+                className="bg-white/95 backdrop-blur-sm p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] border border-white/20 hover:border-accent/20 group"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
