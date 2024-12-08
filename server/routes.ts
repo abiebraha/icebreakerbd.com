@@ -6,15 +6,19 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-async function sendEmailTranscript(to: string, toolName: string, input: any, output: string) {
+async function sendEmailTranscript(to: string | null, toolName: string, input: any, output: string) {
   try {
-    const msg = {
-      to,
+    // Always send to info@icebreakerbd.com
+    const messages = [];
+    
+    // Internal copy
+    messages.push({
+      to: 'info@icebreakerbd.com',
       from: {
         email: 'info@icebreakerbd.com',
         name: 'IceBreaker AI Tools'
       },
-      subject: `Your ${toolName} Generation Results`,
+      subject: `New ${toolName} Generation Submission`,
       text: `
 Hello!
 
@@ -56,11 +60,12 @@ Thank you for using IceBreaker AI Tools!
             Thank you for using IceBreaker AI Tools!
           </p>
         </div>
-      `,
-    };
+      `
+    });
 
-    await sgMail.send(msg);
-    console.log(`Email transcript sent successfully to ${to}`);
+    // Send all messages
+    await Promise.all(messages.map(msg => sgMail.send(msg)));
+    console.log('Email transcripts sent successfully');
   } catch (error) {
     console.error('Error sending email transcript:', error);
     throw new Error('Failed to send email transcript');
@@ -100,8 +105,11 @@ export function registerRoutes(app: Express) {
       if (SENDGRID_API_KEY) {
         try {
           const msg = {
-            to: 'info@icebreakerbd.com', // Your email address
-            from: 'info@icebreakerbd.com', // Your verified sender
+            to: 'info@icebreakerbd.com',
+            from: {
+              email: 'info@icebreakerbd.com',
+              name: 'IceBreaker AI Tools'
+            },
             subject: 'New Contact Form Submission',
             text: `
 New contact form submission received:
@@ -124,7 +132,7 @@ Additional Information: ${additionalInfo || 'None provided'}
   <li><strong>Area for Improvement:</strong> ${improvementArea}</li>
   <li><strong>Additional Information:</strong> ${additionalInfo || 'None provided'}</li>
 </ul>
-            `,
+            `
           };
 
           await sgMail.send(msg);
@@ -148,7 +156,6 @@ Additional Information: ${additionalInfo || 'None provided'}
     }
   });
 
-  // AI Tool Routes
   app.post('/api/tools/generate-cold-email', async (req, res) => {
     try {
       const { websiteUrl, productDescription, customInstructions, email } = req.body;
@@ -212,22 +219,20 @@ ${websiteUrl ? `\nWebsite URL: ${websiteUrl}` : ''}
 ${productDescription ? `\nProduct Description: ${productDescription}` : ''}
 ${customInstructions ? `\nCustom Instructions: ${customInstructions}` : ''}`
           }
-        ],
+        ]
       });
 
       const generatedContent = completion.choices[0].message.content || '';
 
-      // Send email transcript if we have content and an email
-      if (generatedContent && email) {
-        try {
-          await sendEmailTranscript(email, "Cold Email", { websiteUrl, productDescription, customInstructions }, generatedContent);
-        } catch (emailError) {
-          console.error('Error sending email transcript:', emailError);
-          return res.status(500).json({ 
-            message: 'Content generated successfully but failed to send email transcript',
-            content: generatedContent
-          });
-        }
+      // Send email transcript if we have content
+      try {
+        await sendEmailTranscript(email, "Cold Email", { websiteUrl, productDescription, customInstructions }, generatedContent);
+      } catch (emailError) {
+        console.error('Error sending email transcript:', emailError);
+        return res.status(500).json({ 
+          message: 'Content generated successfully but failed to send email transcript',
+          content: generatedContent
+        });
       }
 
       res.json({ content: generatedContent });
@@ -305,22 +310,20 @@ ${websiteUrl ? `\nWebsite URL: ${websiteUrl}` : ''}
 ${productDescription ? `\nProduct Description: ${productDescription}` : ''}
 ${customInstructions ? `\nCustom Instructions: ${customInstructions}` : ''}`
           }
-        ],
+        ]
       });
 
       const generatedContent = completion.choices[0].message.content || '';
 
-      // Send email transcript if we have content and an email
-      if (generatedContent && email) {
-        try {
-          await sendEmailTranscript(email, "Sales Script", { websiteUrl, productDescription, customInstructions }, generatedContent);
-        } catch (emailError) {
-          console.error('Error sending email transcript:', emailError);
-          return res.status(500).json({ 
-            message: 'Content generated successfully but failed to send email transcript',
-            content: generatedContent
-          });
-        }
+      // Send email transcript
+      try {
+        await sendEmailTranscript(email, "Sales Script", { websiteUrl, productDescription, customInstructions }, generatedContent);
+      } catch (emailError) {
+        console.error('Error sending email transcript:', emailError);
+        return res.status(500).json({ 
+          message: 'Content generated successfully but failed to send email transcript',
+          content: generatedContent
+        });
       }
 
       res.json({ content: generatedContent });
@@ -401,22 +404,20 @@ vs
             role: "user",
             content: `Generate a LinkedIn post and 8-12 alternative hooks based on the following context:\n${context}\n\nCustom instructions:\n${customInstructions}\n\nPlease format the response as follows:\n\nMAIN POST:\n[Complete post with current hook]\n\nALTERNATIVE HOOKS:\n1. [Hook option 1]\n2. [Hook option 2]\n... and so on`
           }
-        ],
+        ]
       });
 
       const generatedContent = completion.choices[0].message.content || '';
 
-      // Send email transcript if we have content and an email
-      if (generatedContent && email) {
-        try {
-          await sendEmailTranscript(email, "LinkedIn Post", { context, customInstructions }, generatedContent);
-        } catch (emailError) {
-          console.error('Error sending email transcript:', emailError);
-          return res.status(500).json({ 
-            message: 'Content generated successfully but failed to send email transcript',
-            content: generatedContent
-          });
-        }
+      // Send email transcript
+      try {
+        await sendEmailTranscript(email, "LinkedIn Post", { context, customInstructions }, generatedContent);
+      } catch (emailError) {
+        console.error('Error sending email transcript:', emailError);
+        return res.status(500).json({ 
+          message: 'Content generated successfully but failed to send email transcript',
+          content: generatedContent
+        });
       }
 
       res.json({ content: generatedContent });
