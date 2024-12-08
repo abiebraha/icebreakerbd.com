@@ -1,5 +1,36 @@
 import type { Express } from "express";
 import sgMail from '@sendgrid/mail';
+import OpenAI from 'openai';
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+async function sendEmailTranscript(to: string, toolName: string, input: any, output: string) {
+  const msg = {
+    to,
+    from: 'info@icebreakerbd.com',
+    subject: `Your ${toolName} Generation Results`,
+    text: `
+Here are your ${toolName} results:
+
+Input:
+${JSON.stringify(input, null, 2)}
+
+Generated Content:
+${output}
+    `,
+    html: `
+      <h2>Your ${toolName} Results</h2>
+      <h3>Input:</h3>
+      <pre>${JSON.stringify(input, null, 2)}</pre>
+      <h3>Generated Content:</h3>
+      <div>${output.replace(/\n/g, '<br/>')}</div>
+    `,
+  };
+
+  await sgMail.send(msg);
+}
 
 export function registerRoutes(app: Express) {
   // Initialize SendGrid with API key if available
@@ -79,6 +110,97 @@ Additional Information: ${additionalInfo || 'None provided'}
         success: false, 
         message: 'Failed to process contact form submission' 
       });
+    }
+  });
+
+  // AI Tool Routes
+  app.post('/api/tools/generate-cold-email', async (req, res) => {
+    try {
+      const { context, customInstructions, email } = req.body;
+
+      const completion = await openai.chat.completions.create({
+        model: "gpt-4",
+        messages: [
+          {
+            role: "system",
+            content: "You are an expert cold email writer. Write a compelling cold email that is professional, persuasive, and personalized."
+          },
+          {
+            role: "user",
+            content: `Write a cold email with the following context:\n${context}\n\nCustom instructions:\n${customInstructions}`
+          }
+        ],
+      });
+
+      const generatedContent = completion.choices[0].message.content;
+
+      // Send email transcript
+      await sendEmailTranscript(email, "Cold Email", { context, customInstructions }, generatedContent);
+
+      res.json({ content: generatedContent });
+    } catch (error) {
+      console.error('Error generating cold email:', error);
+      res.status(500).json({ message: 'Failed to generate cold email' });
+    }
+  });
+
+  app.post('/api/tools/generate-sales-script', async (req, res) => {
+    try {
+      const { context, customInstructions, email } = req.body;
+
+      const completion = await openai.chat.completions.create({
+        model: "gpt-4",
+        messages: [
+          {
+            role: "system",
+            content: "You are an expert sales script writer. Create effective, persuasive sales scripts that convert prospects into customers."
+          },
+          {
+            role: "user",
+            content: `Write a sales script with the following context:\n${context}\n\nCustom instructions:\n${customInstructions}`
+          }
+        ],
+      });
+
+      const generatedContent = completion.choices[0].message.content;
+
+      // Send email transcript
+      await sendEmailTranscript(email, "Sales Script", { context, customInstructions }, generatedContent);
+
+      res.json({ content: generatedContent });
+    } catch (error) {
+      console.error('Error generating sales script:', error);
+      res.status(500).json({ message: 'Failed to generate sales script' });
+    }
+  });
+
+  app.post('/api/tools/generate-linkedin-post', async (req, res) => {
+    try {
+      const { context, customInstructions, email } = req.body;
+
+      const completion = await openai.chat.completions.create({
+        model: "gpt-4",
+        messages: [
+          {
+            role: "system",
+            content: "You are an expert LinkedIn content writer. Create engaging, professional posts that drive engagement and establish thought leadership."
+          },
+          {
+            role: "user",
+            content: `Write a LinkedIn post with the following context:\n${context}\n\nCustom instructions:\n${customInstructions}`
+          }
+        ],
+      });
+
+      const generatedContent = completion.choices[0].message.content;
+
+      // Send email transcript
+      await sendEmailTranscript(email, "LinkedIn Post", { context, customInstructions }, generatedContent);
+
+      res.json({ content: generatedContent });
+    } catch (error) {
+      console.error('Error generating LinkedIn post:', error);
+      res.status(500).json({ message: 'Failed to generate LinkedIn post' });
     }
   });
 }
