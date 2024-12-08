@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
+import { cn } from "@/lib/utils";
 
 export default function SalesScriptGenerator() {
   const [websiteUrl, setWebsiteUrl] = useState("");
@@ -55,16 +56,9 @@ export default function SalesScriptGenerator() {
   };
 
   return (
-    <div className="bg-white min-h-screen">
-      <section className="relative py-20 overflow-hidden">
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-[#0066CC]/5 via-transparent to-transparent"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-        />
-        
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-white">
+      <section className="py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div
             className="text-center mb-12"
             initial={{ opacity: 0, y: 20 }}
@@ -79,15 +73,11 @@ export default function SalesScriptGenerator() {
             </p>
           </motion.div>
 
-          <motion.form
-            onSubmit={handleSubmit}
-            className="space-y-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-900">Website URL</label>
+              <label htmlFor="website-url" className="text-sm font-medium text-slate-900">
+                Website URL
+              </label>
               <Input
                 type="url"
                 id="website-url"
@@ -96,12 +86,13 @@ export default function SalesScriptGenerator() {
                 onChange={(e) => setWebsiteUrl(e.target.value)}
                 placeholder="Enter website URL to research the product/service and industry..."
                 className="w-full"
-                aria-label="Website URL"
               />
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-900">Product Description</label>
+              <label htmlFor="product-description" className="text-sm font-medium text-slate-900">
+                Product Description
+              </label>
               <Textarea
                 id="product-description"
                 name="product-description"
@@ -109,7 +100,6 @@ export default function SalesScriptGenerator() {
                 onChange={(e) => setProductDescription(e.target.value)}
                 placeholder="Describe the product/service, target customers, and key pain points it solves..."
                 className="min-h-[8rem] w-full resize-y"
-                aria-label="Product Description"
               />
               <p className="text-sm text-slate-500">
                 Provide either a website URL or product description
@@ -117,7 +107,9 @@ export default function SalesScriptGenerator() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-900">Custom Instructions</label>
+              <label htmlFor="custom-instructions" className="text-sm font-medium text-slate-900">
+                Custom Instructions
+              </label>
               <Textarea
                 id="custom-instructions"
                 name="custom-instructions"
@@ -125,12 +117,13 @@ export default function SalesScriptGenerator() {
                 onChange={(e) => setCustomInstructions(e.target.value)}
                 placeholder="Add seller's full name, preferred meeting days/times, and any specific instructions for the script..."
                 className="min-h-[6rem] w-full resize-y"
-                aria-label="Custom Instructions"
               />
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-900">Email (optional)</label>
+              <label htmlFor="email" className="text-sm font-medium text-slate-900">
+                Email (optional)
+              </label>
               <Input
                 type="email"
                 id="email"
@@ -139,7 +132,6 @@ export default function SalesScriptGenerator() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email to receive the generated content..."
                 className="w-full"
-                aria-label="Email Address"
               />
             </div>
 
@@ -150,7 +142,7 @@ export default function SalesScriptGenerator() {
             >
               {isLoading ? "Generating..." : "Generate Sales Script"}
             </Button>
-          </motion.form>
+          </form>
 
           {generatedContent && (
             <motion.div
@@ -159,7 +151,9 @@ export default function SalesScriptGenerator() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.4 }}
             >
-              <h2 className="text-lg font-semibold text-slate-900 mb-4">Generated Sales Script</h2>
+              <h2 className="text-lg font-semibold text-slate-900 mb-4">
+                Generated Sales Script
+              </h2>
               <div className="whitespace-pre-wrap text-slate-600">
                 {generatedContent}
               </div>

@@ -49,16 +49,9 @@ export default function LinkedInPostGenerator() {
   };
 
   return (
-    <div className="bg-white min-h-screen">
-      <section className="relative py-20 overflow-hidden">
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-[#0066CC]/5 via-transparent to-transparent"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-        />
-        
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-white">
+      <section className="py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div
             className="text-center mb-12"
             initial={{ opacity: 0, y: 20 }}
@@ -73,15 +66,11 @@ export default function LinkedInPostGenerator() {
             </p>
           </motion.div>
 
-          <motion.form
-            onSubmit={handleSubmit}
-            className="space-y-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-900">Context</label>
+              <label htmlFor="context" className="text-sm font-medium text-slate-900">
+                Context
+              </label>
               <Textarea
                 id="context"
                 name="context"
@@ -90,12 +79,13 @@ export default function LinkedInPostGenerator() {
                 placeholder="Describe the topic, key message, and target audience..."
                 required
                 className="min-h-[8rem] w-full resize-y"
-                aria-label="Context"
               />
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-900">Custom Instructions</label>
+              <label htmlFor="custom-instructions" className="text-sm font-medium text-slate-900">
+                Custom Instructions
+              </label>
               <Textarea
                 id="custom-instructions"
                 name="custom-instructions"
@@ -103,12 +93,13 @@ export default function LinkedInPostGenerator() {
                 onChange={(e) => setCustomInstructions(e.target.value)}
                 placeholder="Any specific content style, tone preferences, or hashtag requirements..."
                 className="min-h-[6rem] w-full resize-y"
-                aria-label="Custom Instructions"
               />
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-900">Email (optional)</label>
+              <label htmlFor="email" className="text-sm font-medium text-slate-900">
+                Email (optional)
+              </label>
               <Input
                 type="email"
                 id="email"
@@ -117,7 +108,6 @@ export default function LinkedInPostGenerator() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email to receive the generated content..."
                 className="w-full"
-                aria-label="Email Address"
               />
             </div>
 
@@ -128,7 +118,7 @@ export default function LinkedInPostGenerator() {
             >
               {isLoading ? "Generating..." : "Generate LinkedIn Post"}
             </Button>
-          </motion.form>
+          </form>
 
           {generatedContent && (
             <motion.div
@@ -137,7 +127,9 @@ export default function LinkedInPostGenerator() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.4 }}
             >
-              <h2 className="text-lg font-semibold text-slate-900 mb-4">Generated LinkedIn Post</h2>
+              <h2 className="text-lg font-semibold text-slate-900 mb-4">
+                Generated LinkedIn Post
+              </h2>
               <div className="whitespace-pre-wrap text-slate-600">
                 {generatedContent}
               </div>
