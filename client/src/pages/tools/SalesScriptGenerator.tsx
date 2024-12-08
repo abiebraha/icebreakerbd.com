@@ -6,7 +6,8 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 
 export default function SalesScriptGenerator() {
-  const [context, setContext] = useState("");
+  const [websiteUrl, setWebsiteUrl] = useState("");
+  const [productDescription, setProductDescription] = useState("");
   const [customInstructions, setCustomInstructions] = useState("");
   const [email, setEmail] = useState("");
   const [generatedContent, setGeneratedContent] = useState("");
@@ -23,7 +24,12 @@ export default function SalesScriptGenerator() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ context, customInstructions, email }),
+        body: JSON.stringify({ 
+          websiteUrl, 
+          productDescription,
+          customInstructions, 
+          email 
+        }),
       });
 
       const data = await response.json();
@@ -81,14 +87,26 @@ export default function SalesScriptGenerator() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-900">Context</label>
+              <label className="text-sm font-medium text-slate-900">Website URL</label>
+              <Input
+                type="url"
+                value={websiteUrl}
+                onChange={(e) => setWebsiteUrl(e.target.value)}
+                placeholder="Enter the product/service website URL..."
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-slate-900">Product Description</label>
               <Textarea
-                value={context}
-                onChange={(e) => setContext(e.target.value)}
-                placeholder="Describe your product/service, target customer, and key selling points..."
-                required
+                value={productDescription}
+                onChange={(e) => setProductDescription(e.target.value)}
+                placeholder="Describe the product or service being sold..."
                 className="h-32"
               />
+              <p className="text-sm text-slate-500">
+                Provide either a website URL or product description
+              </p>
             </div>
 
             <div className="space-y-2">

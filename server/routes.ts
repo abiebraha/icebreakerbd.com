@@ -145,7 +145,7 @@ ${customInstructions ? `\nCustom Instructions: ${customInstructions}` : ''}`
 
       // Send email transcript if we have content and an email
       if (generatedContent && email) {
-        await sendEmailTranscript(email, "Cold Email", { context, customInstructions }, generatedContent);
+        await sendEmailTranscript(email, "Cold Email", { websiteUrl, productDescription, customInstructions }, generatedContent);
       }
 
       res.json({ content: generatedContent });
@@ -157,18 +157,27 @@ ${customInstructions ? `\nCustom Instructions: ${customInstructions}` : ''}`
 
   app.post('/api/tools/generate-sales-script', async (req, res) => {
     try {
-      const { context, customInstructions, email } = req.body;
+      const { websiteUrl, productDescription, customInstructions, email } = req.body;
+
+      if (!websiteUrl && !productDescription) {
+        return res.status(400).json({ 
+          message: 'Please provide either a website URL or product description' 
+        });
+      }
 
       const completion = await openai.chat.completions.create({
         model: "gpt-4",
         messages: [
           {
             role: "system",
-            content: "You are an expert sales script writer. Create effective, persuasive sales scripts that convert prospects into customers."
+            content: "You are an expert sales script writer. Create effective, persuasive sales scripts that convert prospects into customers. Focus on the product or service value proposition and create compelling talking points."
           },
           {
             role: "user",
-            content: `Write a sales script with the following context:\n${context}\n\nCustom instructions:\n${customInstructions}`
+            content: `Write a sales script based on the following information:
+${websiteUrl ? `\nWebsite URL: ${websiteUrl}` : ''}
+${productDescription ? `\nProduct Description: ${productDescription}` : ''}
+${customInstructions ? `\nCustom Instructions: ${customInstructions}` : ''}`
           }
         ],
       });
@@ -177,7 +186,7 @@ ${customInstructions ? `\nCustom Instructions: ${customInstructions}` : ''}`
 
       // Send email transcript if we have content and an email
       if (generatedContent && email) {
-        await sendEmailTranscript(email, "Sales Script", { context, customInstructions }, generatedContent);
+        await sendEmailTranscript(email, "Sales Script", { websiteUrl, productDescription, customInstructions }, generatedContent);
       }
 
       res.json({ content: generatedContent });
