@@ -132,66 +132,94 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { src: '/images/IMG_1392.jpeg', title: 'Sales Excellence' },
-              { src: '/images/IMG_1395.jpeg', title: 'Team Building' },
-              { src: '/images/IMG_1400.jpeg', title: 'Process Optimization' },
-              { src: '/images/IMG_1489.jpeg', title: 'Growth Strategy' },
-              { src: '/images/IMG_1518.jpeg', title: 'Performance Analytics' },
-              { src: '/images/IMG_1733.jpeg', title: 'Client Success' }
-            ].map((image, index) => (
-              <motion.div
-                key={index}
-                className="relative overflow-hidden rounded-2xl group aspect-square"
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ 
-                  duration: 1,
-                  delay: index * 0.2,
-                  ease: [0.16, 1, 0.3, 1]
-                }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#123e74]/40 via-transparent to-[#2a9d8f]/30 opacity-0 
-                  group-hover:opacity-100 transition-all duration-500 ease-out z-10" />
-                
+          <motion.div 
+            className="overflow-hidden cursor-grab active:cursor-grabbing"
+            whileTap={{ cursor: "grabbing" }}
+          >
+            <motion.div
+              className="flex space-x-6"
+              drag="x"
+              dragConstraints={{ right: 0, left: -1600 }}  // Adjusted based on content width
+              initial={{ x: 0 }}
+              style={{
+                paddingBottom: "20px",  // Space for scrollbar
+              }}
+            >
+              {[
+                { src: '/images/IMG_1392.jpeg', title: 'Sales Excellence' },
+                { src: '/images/IMG_1395.jpeg', title: 'Team Building' },
+                { src: '/images/IMG_1400.jpeg', title: 'Process Optimization' },
+                { src: '/images/IMG_1489.jpeg', title: 'Growth Strategy' },
+                { src: '/images/IMG_1518.jpeg', title: 'Performance Analytics' },
+                { src: '/images/IMG_1733.jpeg', title: 'Client Success' }
+              ].map((image, index) => (
                 <motion.div
-                  className="relative w-full h-full transform-gpu"
-                  whileHover={{ scale: 1.05 }}
+                  key={index}
+                  className="relative flex-shrink-0 w-[400px] aspect-square rounded-2xl group overflow-hidden"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, margin: "-100px" }}
                   transition={{ 
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 20
+                    duration: 0.6,
+                    delay: index * 0.1,
+                    ease: [0.16, 1, 0.3, 1]
                   }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-slate-200 to-slate-300 animate-pulse" />
-                  <img
-                    src={image.src}
-                    alt={image.title}
-                    loading="lazy"
-                    className="w-full h-full object-cover opacity-0 transition-all duration-1000"
-                    onError={(e) => {
-                      e.currentTarget.style.display = 'none';
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#123e74]/40 via-transparent to-[#2a9d8f]/30 opacity-0 
+                    group-hover:opacity-100 transition-all duration-500 ease-out z-10" />
+                  
+                  <motion.div
+                    className="relative w-full h-full transform-gpu"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ 
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 20
                     }}
-                    onLoad={(e) => {
-                      e.currentTarget.style.opacity = '1';
-                    }}
-                  />
-                </motion.div>
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-slate-200 to-slate-300 animate-pulse" />
+                    <img
+                      src={image.src}
+                      alt={image.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover opacity-0 transition-all duration-1000"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                      }}
+                      onLoad={(e) => {
+                        e.currentTarget.style.opacity = '1';
+                      }}
+                    />
+                  </motion.div>
 
-                <motion.div 
-                  className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/60 via-black/40 to-transparent z-20"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 + index * 0.1 }}
-                >
-                  <h3 className="text-white font-semibold text-xl md:text-2xl transform group-hover:scale-110 transition-transform duration-300">
-                    {image.title}
-                  </h3>
+                  <motion.div 
+                    className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/60 via-black/40 to-transparent z-20"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 + index * 0.1 }}
+                  >
+                    <h3 className="text-white font-semibold text-xl md:text-2xl transform group-hover:scale-110 transition-transform duration-300">
+                      {image.title}
+                    </h3>
+                  </motion.div>
                 </motion.div>
-              </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
+          
+          <div className="mt-8 flex justify-center space-x-2">
+            {[...Array(6)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="w-2 h-2 rounded-full bg-slate-300"
+                initial={{ opacity: 0.5 }}
+                whileInView={{ opacity: i === 0 ? 1 : 0.5 }}
+                viewport={{ once: true }}
+                style={{
+                  backgroundColor: i === 0 ? '#123e74' : undefined
+                }}
+              />
             ))}
           </div>
         </div>
