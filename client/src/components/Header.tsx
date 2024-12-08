@@ -46,9 +46,7 @@ const [expandedSection, setExpandedSection] = useState<string | null>(null);
   return (
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? "bg-gradient-to-br from-[#123e74]/40 via-[#2a6d8f]/40 to-[#2a9d8f]/40 backdrop-blur-sm border-b border-white/10" 
-          : ""
+        isScrolled ? "bg-white/90 backdrop-blur-md shadow-sm" : "bg-transparent"
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -63,26 +61,26 @@ const [expandedSection, setExpandedSection] = useState<string | null>(null);
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6">
             <NavigationMenu>
-              <NavigationMenuList className="group flex flex-1 list-none items-center justify-center space-x-1 bg-transparent [&>*]:bg-transparent [&_*]:bg-transparent">
+              <NavigationMenuList className="group flex flex-1 list-none items-center justify-center space-x-1">
                 {navItems.map((item) => (
                   <NavigationMenuItem key={item.label}>
                     {item.items ? (
                       <>
-                        <NavigationMenuTrigger className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium text-slate-200 transition-colors hover:text-white focus:bg-white/10 focus:text-white focus:outline-none disabled:pointer-events-none disabled:opacity-50">
+                        <NavigationMenuTrigger className="group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:text-[#123e74] focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50">
                           {item.label}
                         </NavigationMenuTrigger>
-                        <NavigationMenuContent className="data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52 bg-transparent [&>*]:bg-transparent">
+                        <NavigationMenuContent className="data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52">
                           <motion.div
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -10 }}
-                            className="grid gap-1.5 p-3 min-w-[220px] bg-gradient-to-br from-[#123e74] via-[#2a6d8f] to-[#2a9d8f] rounded-lg shadow-lg border border-white/10"
+                            className="grid gap-1.5 p-3 min-w-[220px] bg-white rounded-lg shadow-lg border border-slate-200/60"
                           >
                             {item.items?.map((subItem) => (
                               <Link
                                 key={subItem.href}
                                 href={subItem.href}
-                                className="block select-none rounded-md px-4 py-2.5 text-sm font-medium text-white/90 no-underline outline-none transition-all duration-200 hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white"
+                                className="block select-none rounded-md px-4 py-2.5 text-sm font-medium text-slate-600 no-underline outline-none transition-all duration-200 hover:bg-slate-50 hover:text-[#123e74] focus:bg-slate-50 focus:text-[#123e74]"
                               >
                                 {subItem.label}
                               </Link>
@@ -95,14 +93,14 @@ const [expandedSection, setExpandedSection] = useState<string | null>(null);
                         href={item.href}
                         className={`relative px-3 py-2 text-sm font-medium transition-colors ${
                           location === item.href
-                            ? "text-white font-semibold"
-                            : "text-slate-200 hover:text-white"
+                            ? "text-[#123e74]"
+                            : "text-slate-600 hover:text-[#123e74]"
                         }`}
                       >
                         {item.label}
                         {location === item.href && (
                           <motion.div
-                            className="absolute bottom-0 left-0 right-0 h-0.5 bg-cyan-300"
+                            className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#123e74]"
                             layoutId="underline"
                           />
                         )}
@@ -133,7 +131,7 @@ const [expandedSection, setExpandedSection] = useState<string | null>(null);
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              className="md:hidden fixed inset-x-0 top-16 bg-gradient-to-br from-[#123e74]/95 via-[#2a6d8f]/95 to-[#2a9d8f]/95 backdrop-blur-sm shadow-lg border-b border-white/10"
+              className="md:hidden fixed inset-x-0 top-16 bg-white shadow-lg"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
@@ -144,7 +142,7 @@ const [expandedSection, setExpandedSection] = useState<string | null>(null);
                   item.items ? (
                     <div key={item.label} className="space-y-1">
                       <button
-                        className="w-full px-3 py-2 text-base font-medium text-white/90 hover:text-white flex items-center justify-between"
+                        className="w-full px-3 py-2 text-base font-medium text-slate-600 hover:text-[#123e74] flex items-center justify-between"
                         onClick={() => setExpandedSection(expandedSection === item.label ? null : item.label)}
                       >
                         {item.label}
@@ -168,7 +166,7 @@ const [expandedSection, setExpandedSection] = useState<string | null>(null);
                                 <Link
                                   key={subItem.href}
                                   href={subItem.href}
-                                  className="block px-3 py-2 rounded-md text-sm font-medium text-white/80 hover:text-white hover:bg-white/10"
+                                  className="block px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-[#123e74] hover:bg-slate-50"
                                   onClick={() => {
                                     setIsOpen(false);
                                     setExpandedSection(null);
@@ -188,8 +186,8 @@ const [expandedSection, setExpandedSection] = useState<string | null>(null);
                       href={item.href}
                       className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
                         location === item.href
-                          ? "text-white bg-white/20"
-                          : "text-white/80 hover:text-white hover:bg-white/10"
+                          ? "text-[#123e74] bg-slate-50"
+                          : "text-slate-600 hover:text-[#123e74] hover:bg-slate-50"
                       }`}
                       onClick={() => setIsOpen(false)}
                     >
