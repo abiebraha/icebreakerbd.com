@@ -77,7 +77,7 @@ export default function AIToolForm({
     <div className="max-w-2xl mx-auto p-6">
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold text-slate-900 mb-2">{title}</h1>
-        <p className="text-xl text-[#0066CC]">{description}</p>
+        <p className="text-xl text-slate-600">{description}</p>
       </div>
 
       <Form {...form}>

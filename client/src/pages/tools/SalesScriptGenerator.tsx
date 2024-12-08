@@ -65,8 +65,10 @@ export default function SalesScriptGenerator() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl font-bold text-slate-900 mb-4">
-              Sales Script Generator
+            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-2">
+              Sales Script
+              <br />
+              <span className="text-[#0066CC]">Generator</span>
             </h1>
             <p className="text-xl text-slate-600">
               Create effective sales scripts that convert prospects into customers.
@@ -137,7 +139,7 @@ export default function SalesScriptGenerator() {
 
             <Button
               type="submit"
-              className="w-full bg-[#123e74] hover:bg-[#1a4e8f]"
+              className="w-full bg-[#123e74] hover:bg-[#1a4e8f] text-white px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
               disabled={isLoading}
             >
               {isLoading ? "Generating..." : "Generate Sales Script"}

@@ -72,10 +72,10 @@ export default function ColdEmailGenerator() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl font-bold text-slate-900 mb-2">
-              Cold Email Generator
+            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-2">
+              Cold Email
               <br />
-              <span className="text-[#0066CC]">That Converts</span>
+              <span className="text-[#0066CC]">Generator</span>
             </h1>
             <p className="text-xl text-slate-600">
               Create compelling cold emails that convert prospects into meetings.
@@ -148,7 +148,7 @@ export default function ColdEmailGenerator() {
 
             <Button
               type="submit"
-              className="w-full bg-[#1a4e8f] hover:bg-[#123e74] text-white rounded-lg transition-all duration-300"
+              className="w-full bg-[#123e74] hover:bg-[#1a4e8f] text-white px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
               disabled={isLoading}
             >
               {isLoading ? "Generating..." : "Generate Cold Email"}

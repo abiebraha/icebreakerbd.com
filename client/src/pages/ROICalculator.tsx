@@ -167,7 +167,7 @@ export default function ROICalculator() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-2">
               SDR Team ROI
               <br />
               <span className="text-[#0066CC]">Calculator</span>
@@ -377,7 +377,7 @@ export default function ROICalculator() {
             <Link href="/schedule-call">
               <Button
                 size="lg"
-                className="gap-2 bg-[#1a4e8f] hover:bg-[#123e74] text-white rounded-lg transition-all duration-300"
+                className="gap-2 bg-[#0066CC] hover:bg-[#0052a3] text-white rounded-lg transition-all duration-300"
               >
                 <Calculator className="w-4 h-4" />
                 Schedule a Call to Learn More
