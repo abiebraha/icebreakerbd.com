@@ -35,11 +35,11 @@ export default function SalesScriptGenerator() {
     <AIToolForm
       onSubmit={handleSubmit}
       title={
-        <>
-          Sales Script
-          <br/>
+        <h1 className="text-4xl md:text-5xl font-bold">
+          <span className="text-slate-900">Sales Script</span>
+          <br />
           <span className="text-[#0066CC]">Generator</span>
-        </>
+        </h1>
       }
       description="Create effective sales scripts tailored to your specific needs with AI assistance"
       contextLabel="Sales Scenario"

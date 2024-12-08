@@ -35,11 +35,11 @@ export default function ColdEmailGenerator() {
     <AIToolForm
       onSubmit={handleSubmit}
       title={
-        <>
-          Cold Email
-          <br/>
+        <h1 className="text-4xl md:text-5xl font-bold">
+          <span className="text-slate-900">Cold Email</span>
+          <br />
           <span className="text-[#0066CC]">Generator</span>
-        </>
+        </h1>
       }
       description="Generate personalized cold emails with custom instructions and web-enriched content"
       contextLabel="Prospect Information"

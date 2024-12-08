@@ -33,6 +33,8 @@ interface AIToolFormProps {
   instructionsPlaceholder?: string;
 }
 
+type ElementTitle = React.ReactElement<any, string | React.JSXElementConstructor<any>>;
+
 export default function AIToolForm({
   onSubmit,
   title,
@@ -40,7 +42,7 @@ export default function AIToolForm({
   contextLabel,
   contextPlaceholder,
   instructionsPlaceholder = "Add any specific instructions or preferences...",
-}: AIToolFormProps) {
+}: AIToolFormProps & { title: ElementTitle }) {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
 

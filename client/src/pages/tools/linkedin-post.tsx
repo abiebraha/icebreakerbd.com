@@ -35,11 +35,11 @@ export default function LinkedInPostGenerator() {
     <AIToolForm
       onSubmit={handleSubmit}
       title={
-        <>
-          LinkedIn Post
-          <br/>
+        <h1 className="text-4xl md:text-5xl font-bold">
+          <span className="text-slate-900">LinkedIn Post</span>
+          <br />
           <span className="text-[#0066CC]">Generator</span>
-        </>
+        </h1>
       }
       description="Create engaging LinkedIn posts with AI-powered content generation"
       contextLabel="Post Topic"
