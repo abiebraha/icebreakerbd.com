@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Link } from "wouter";
 import {
   Form,
   FormControl,
@@ -75,8 +76,8 @@ export default function AIToolForm({
   return (
     <div className="max-w-2xl mx-auto p-6">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-slate-900 mb-3">{title}</h1>
-        <p className="text-slate-600">{description}</p>
+        <h1 className="text-4xl font-bold text-slate-900 mb-2">{title}</h1>
+        <p className="text-xl text-[#0066CC]">{description}</p>
       </div>
 
       <Form {...form}>
@@ -136,13 +137,24 @@ export default function AIToolForm({
 
           <Button
             type="submit"
-            className="w-full"
+            className="w-full bg-[#1a4e8f] hover:bg-[#123e74] text-white rounded-lg transition-all duration-300"
             disabled={isLoading}
           >
             {isLoading ? "Processing..." : "Generate"}
           </Button>
         </form>
       </Form>
+      
+      <div className="mt-12 text-center">
+        <p className="text-lg text-slate-600 mb-4">Want to learn more about how we can help your business grow?</p>
+        <Link href="/schedule-call">
+          <Button 
+            className="bg-[#1a4e8f] hover:bg-[#123e74] text-white rounded-lg transition-all duration-300"
+          >
+            Schedule a Call
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 }

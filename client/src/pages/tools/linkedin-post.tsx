@@ -34,7 +34,7 @@ export default function LinkedInPostGenerator() {
   return (
     <AIToolForm
       onSubmit={handleSubmit}
-      title="LinkedIn Post Generator"
+      title={<>LinkedIn Post Generator<br/><span className="text-[#0066CC]">That Engages</span></>}
       description="Create engaging LinkedIn posts with AI-powered content generation"
       contextLabel="Post Topic"
       contextPlaceholder="Describe the topic, key message, or story you want to share"

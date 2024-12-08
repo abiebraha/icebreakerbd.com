@@ -377,7 +377,7 @@ export default function ROICalculator() {
             <Link href="/schedule-call">
               <Button
                 size="lg"
-                className="gap-2 bg-[#123e74] hover:bg-[#1a4e8f] transition-all duration-300 hover:scale-105"
+                className="gap-2 bg-[#1a4e8f] hover:bg-[#123e74] text-white rounded-lg transition-all duration-300"
               >
                 <Calculator className="w-4 h-4" />
                 Schedule a Call to Learn More
