@@ -143,44 +143,76 @@ export default function ServicesPage() {
               >
                 <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity duration-300">
                   {index === 0 && (
-                    <img 
-                      src="/images/IMG_1392.jpeg"
-                      alt="Background"
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        e.currentTarget.style.display = 'none';
-                      }}
-                    />
+                    <div className="relative w-full h-full">
+                      <div className="absolute inset-0 bg-gradient-to-br from-[#123e74]/10 to-[#2a9d8f]/10 animate-pulse" />
+                      <img 
+                        src="/images/IMG_1392.jpeg"
+                        alt="Background"
+                        loading="lazy"
+                        className="w-full h-full object-cover transition-opacity duration-500"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                        }}
+                        onLoad={(e) => {
+                          e.currentTarget.classList.remove('opacity-0');
+                          e.currentTarget.classList.add('opacity-100');
+                        }}
+                      />
+                    </div>
                   )}
                   {index === 1 && (
-                    <img 
-                      src="/images/IMG_1395.jpeg"
-                      alt="Background"
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        e.currentTarget.style.display = 'none';
-                      }}
-                    />
+                    <div className="relative w-full h-full">
+                      <div className="absolute inset-0 bg-gradient-to-br from-[#2a9d8f]/10 to-[#123e74]/10 animate-pulse" />
+                      <img 
+                        src="/images/IMG_1395.jpeg"
+                        alt="Background"
+                        loading="lazy"
+                        className="w-full h-full object-cover transition-opacity duration-500"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                        }}
+                        onLoad={(e) => {
+                          e.currentTarget.classList.remove('opacity-0');
+                          e.currentTarget.classList.add('opacity-100');
+                        }}
+                      />
+                    </div>
                   )}
                   {index === 2 && (
-                    <img 
-                      src="/images/IMG_1400.jpeg"
-                      alt="Background"
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        e.currentTarget.style.display = 'none';
-                      }}
-                    />
+                    <div className="relative w-full h-full">
+                      <div className="absolute inset-0 bg-gradient-to-br from-[#123e74]/10 to-[#2a9d8f]/10 animate-pulse" />
+                      <img 
+                        src="/images/IMG_1400.jpeg"
+                        alt="Background"
+                        loading="lazy"
+                        className="w-full h-full object-cover transition-opacity duration-500"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                        }}
+                        onLoad={(e) => {
+                          e.currentTarget.classList.remove('opacity-0');
+                          e.currentTarget.classList.add('opacity-100');
+                        }}
+                      />
+                    </div>
                   )}
                   {index === 3 && (
-                    <img 
-                      src="/images/IMG_1489.jpeg"
-                      alt="Background"
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        e.currentTarget.style.display = 'none';
-                      }}
-                    />
+                    <div className="relative w-full h-full">
+                      <div className="absolute inset-0 bg-gradient-to-br from-[#2a9d8f]/10 to-[#123e74]/10 animate-pulse" />
+                      <img 
+                        src="/images/IMG_1489.jpeg"
+                        alt="Background"
+                        loading="lazy"
+                        className="w-full h-full object-cover transition-opacity duration-500"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                        }}
+                        onLoad={(e) => {
+                          e.currentTarget.classList.remove('opacity-0');
+                          e.currentTarget.classList.add('opacity-100');
+                        }}
+                      />
+                    </div>
                   )}
                 </div>
                 <div className="relative mb-4">
