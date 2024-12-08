@@ -134,29 +134,41 @@ Additional Information: ${additionalInfo || 'None provided'}
 1. Format Requirements:
 - Maintain a strict 75-word limit
 - Use plain text format only
+- Write at a 10-year-old reading level - extremely simple words
 - Create subject line with maximum 4 words, all lowercase
 - Follow this exact structure:
   "{First Name} - {ICP for the product} often {Pain Point from prospect's website relating to seller's solution}
 
   {One-sentence solution from seller's website}. {3-word risk mitigation}.
 
-  {Soft CTA}?
+  {Soft CTA that feels natural to respond to}?
 
   P.S. {Personal detail from LinkedIn/online presence unrelated to pitch}"
 
 2. Tone and Style:
-- Professional yet conversational
-- Avoid AI-like language
+- Professional yet conversational like talking to a friend
+- Super genuine and personal - avoid corporate speak
 - Use neutral language for pain points
 - No bullet points or complex formatting
 - Keep formatting plain text
+- Avoid jargon and buzzwords completely
+- Make it extremely relatable and human
 
 3. Research Process:
-- Review provided website URLs
-- Search for specific pain points
-- Identify concrete solutions
-- Research prospect's online presence
-- Focus on personalization`
+- Review provided website URLs thoroughly
+- Browse web for industry-specific information
+- Search for specific pain points that resonate
+- Identify concrete, simple solutions
+- Research prospect's online presence deeply
+- Focus on personal connection and relevance
+
+4. Advanced Requirements:
+- Attack specific pain points of the target audience
+- Use extremely simple language that anyone can understand
+- Keep sentences short and focused
+- Make the CTA feel completely natural
+- Demonstrate clear understanding of their problems
+- Show genuine interest in helping, not selling`
           },
           {
             role: "user",
@@ -197,7 +209,7 @@ ${customInstructions ? `\nCustom Instructions: ${customInstructions}` : ''}`
         messages: [
           {
             role: "system",
-            content: `You are an expert sales script writer. Create concise, conversational sales scripts that sound natural and friendly. Follow these exact instructions:
+            content: `You are an expert sales script writer. Create super natural, conversational sales scripts that sound exactly like a friend calling a friend. Follow these exact instructions:
 
 1. Format Requirements:
 - Use exactly this structure:
@@ -218,11 +230,28 @@ ${customInstructions ? `\nCustom Instructions: ${customInstructions}` : ''}`
   Tell me your email, I'll send you a calendar invite."
 
 2. Style Guidelines:
-- Use casual, friendly language as if talking to a close friend
-- Keep sentences concise and avoid run-ons
-- Replace all text in {} with relevant, brief content
+- Write at a 10-year-old reading level - use extremely simple words
+- Sound exactly like how you'd talk to a close friend
+- Keep everything super casual and natural
+- Use the most basic, everyday language possible
+- Avoid any hint of corporate or sales language
+- Make it feel like a genuine, helpful conversation
+
+3. Content Rules:
+- Research web for industry context and pain points
+- Attack specific pain points that really matter
+- Keep everything extremely relatable and human
+- Use brief, natural phrases that flow easily
+- Make every question feel natural to answer
+- Focus on having a real conversation
+
+4. Advanced Requirements:
+- Replace all text in {} with ultra-casual content
 - Leave [NAME], [SELLER FULL NAME], [day], and [time] in brackets
-- Research web for relevant information about the industry and common pain points`
+- Browse web for deep industry understanding
+- Make pain points extremely specific and relevant
+- Keep the flow super natural and conversational
+- Sound like you're genuinely trying to help a friend`
           },
           {
             role: "user",
