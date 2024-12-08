@@ -14,23 +14,23 @@ const services = [
   {
     icon: Laptop,
     title: "Sales System Setup",
-    description: "Complete implementation of your sales infrastructure within 3-6 months, including CRM setup and essential tool integration.",
+    description: "Complete implementation and optimization of your sales infrastructure, including CRM setup and tool integration.",
     features: [
-      "CRM and autoDialer implementation",
-      "Lead data sources integration",
-      "Custom KPI tracking system setup",
-      "Performance-based bonus structure"
+      "CRM and tech stack implementation",
+      "Sales tools integration",
+      "Data provider setup",
+      "Process automation"
     ]
   },
   {
     icon: Users,
     title: "SDR Team Building",
-    description: "Build and transition to your own SDR team within 3-6 months, with expert recruitment, training, and proven performance frameworks.",
+    description: "Build and scale your Sales Development Representative team with expert recruitment and training.",
     features: [
-      "Dedicated SDR recruitment process",
-      "Comprehensive onboarding & training",
-      "Performance-based bonus structure",
-      "Transition to in-house management"
+      "Talent acquisition",
+      "Onboarding program",
+      "Performance metrics setup",
+      "Team structure optimization"
     ]
   },
   {
@@ -47,23 +47,23 @@ const services = [
   {
     icon: Target,
     title: "Process Optimization",
-    description: "Implement proven systems that have helped clients achieve 150% increase in pipeline value and 60% shorter sales cycles.",
+    description: "Streamline your sales processes for maximum efficiency and conversion rates.",
     features: [
-      "Sales workflow automation",
-      "CRM & autoDialer optimization",
-      "Lead scoring implementation",
-      "Sales cycle acceleration"
+      "Workflow analysis",
+      "Bottleneck identification",
+      "Process redesign",
+      "Implementation support"
     ]
   },
   {
     icon: LineChart,
     title: "Performance Analytics",
-    description: "Track and improve key metrics with our proven system that has achieved 200% more meetings booked and 5x increase in outbound efforts.",
+    description: "Data-driven insights to measure and improve sales performance.",
     features: [
-      "Custom KPI tracking dashboard",
-      "Pipeline value monitoring",
-      "Meeting conversion analytics",
-      "Outbound activity metrics"
+      "KPI dashboard setup",
+      "Performance tracking",
+      "ROI analysis",
+      "Regular reporting"
     ]
   },
   {
@@ -103,9 +103,15 @@ const services = [
 
 export default function ServicesPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#123e74] to-[#2a9d8f]">
+    <div className="bg-white">
       {/* Hero Section */}
-      <section className="relative py-24 overflow-hidden">
+      <section className="relative py-20 overflow-hidden">
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-br from-[#0066CC]/5 via-transparent to-transparent"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div
@@ -114,109 +120,32 @@ export default function ServicesPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Transform Your Sales
+            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+              Comprehensive Sales
               <br />
-              <span className="text-[#66b3ff]">
-                Into Growth Stories
-              </span>
+              <span className="text-[#0066CC]">Growth Solutions</span>
             </h1>
-            <p className="text-xl text-slate-100 max-w-3xl mx-auto">
-              Experience the transformation as we turn your sales challenges into success stories. 
-              Our proven approach doesn't just build systems – it creates lasting growth.
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              From system setup to team building, we provide end-to-end services to accelerate your sales growth.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Services Grid */}
-      <section className="py-20 relative z-10">
+      <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <motion.div
                 key={service.title}
-                className="relative bg-white/95 backdrop-blur-sm p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] border border-white/20 hover:border-accent/20 group overflow-hidden"
+                className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity duration-300">
-                  {index === 0 && (
-                    <div className="relative w-full h-full">
-                      <div className="absolute inset-0 bg-gradient-to-br from-[#123e74]/10 to-[#2a9d8f]/10 animate-pulse" />
-                      <img 
-                        src="/images/IMG_1392.jpeg"
-                        alt="Background"
-                        loading="lazy"
-                        className="w-full h-full object-cover transition-opacity duration-500"
-                        onError={(e) => {
-                          e.currentTarget.style.display = 'none';
-                        }}
-                        onLoad={(e) => {
-                          e.currentTarget.classList.remove('opacity-0');
-                          e.currentTarget.classList.add('opacity-100');
-                        }}
-                      />
-                    </div>
-                  )}
-                  {index === 1 && (
-                    <div className="relative w-full h-full">
-                      <div className="absolute inset-0 bg-gradient-to-br from-[#2a9d8f]/10 to-[#123e74]/10 animate-pulse" />
-                      <img 
-                        src="/images/IMG_1395.jpeg"
-                        alt="Background"
-                        loading="lazy"
-                        className="w-full h-full object-cover transition-opacity duration-500"
-                        onError={(e) => {
-                          e.currentTarget.style.display = 'none';
-                        }}
-                        onLoad={(e) => {
-                          e.currentTarget.classList.remove('opacity-0');
-                          e.currentTarget.classList.add('opacity-100');
-                        }}
-                      />
-                    </div>
-                  )}
-                  {index === 2 && (
-                    <div className="relative w-full h-full">
-                      <div className="absolute inset-0 bg-gradient-to-br from-[#123e74]/10 to-[#2a9d8f]/10 animate-pulse" />
-                      <img 
-                        src="/images/IMG_1400.jpeg"
-                        alt="Background"
-                        loading="lazy"
-                        className="w-full h-full object-cover transition-opacity duration-500"
-                        onError={(e) => {
-                          e.currentTarget.style.display = 'none';
-                        }}
-                        onLoad={(e) => {
-                          e.currentTarget.classList.remove('opacity-0');
-                          e.currentTarget.classList.add('opacity-100');
-                        }}
-                      />
-                    </div>
-                  )}
-                  {index === 3 && (
-                    <div className="relative w-full h-full">
-                      <div className="absolute inset-0 bg-gradient-to-br from-[#2a9d8f]/10 to-[#123e74]/10 animate-pulse" />
-                      <img 
-                        src="/images/IMG_1489.jpeg"
-                        alt="Background"
-                        loading="lazy"
-                        className="w-full h-full object-cover transition-opacity duration-500"
-                        onError={(e) => {
-                          e.currentTarget.style.display = 'none';
-                        }}
-                        onLoad={(e) => {
-                          e.currentTarget.classList.remove('opacity-0');
-                          e.currentTarget.classList.add('opacity-100');
-                        }}
-                      />
-                    </div>
-                  )}
-                </div>
-                <div className="relative mb-4">
-                  <service.icon className="w-12 h-12 text-primary group-hover:text-accent transition-colors duration-300" />
+                <div className="mb-4">
+                  <service.icon className="w-12 h-12 text-[#123e74]" />
                 </div>
                 <h3 className="text-xl font-semibold text-slate-900 mb-3">
                   {service.title}

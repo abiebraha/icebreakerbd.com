@@ -69,16 +69,9 @@ app.use((req, res, next) => {
     serveStatic(app);
   }
 
-  // Start with port 3001 for development
-  const PORT = process.env.PORT || 3001;
-  
-  try {
-    server.listen(Number(PORT), '0.0.0.0', () => {
-      log(`Server is running at http://0.0.0.0:${PORT}`);
-      log(`Development server started on port ${PORT}`);
-    });
-  } catch (error) {
-    log(`Failed to start server: ${(error as Error).message}`);
-    process.exit(1);
-  }
+  // Use port 5000 for development server
+  const PORT = parseInt(process.env.PORT || '5000', 10);
+  server.listen(PORT, () => {
+    log(`serving on port ${PORT}`);
+  });
 })();

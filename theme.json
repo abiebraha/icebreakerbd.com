@@ -1,22 +1,14 @@
 {
   "variant": "professional",
   "primary": "#123e74",
-  "secondary": "#2a9d8f",
-  "accent": "#e76f51",
+  "secondary": "#86868b",
+  "accent": "#123e74",
   "background": "#ffffff",
   "text": "#1d1d1f",
   "muted": "#86868b",
   "border": "#d2d2d7",
-  "highlight": "#f4a261",
-  "success": "#2a9d8f",
-  "warning": "#e9c46a",
-  "error": "#e76f51",
   "appearance": "light",
   "radius": 1,
-  "gradient": {
-    "primary": "linear-gradient(135deg, #123e74 0%, #2a9d8f 100%)",
-    "accent": "linear-gradient(135deg, #e76f51 0%, #f4a261 100%)"
-  },
   "font": {
     "sans": "SF Pro Display, -apple-system, BlinkMacSystemFont, system-ui, sans-serif",
     "heading": "SF Pro Display, -apple-system, BlinkMacSystemFont, system-ui, sans-serif",

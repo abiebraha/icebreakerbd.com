@@ -1,64 +1,18 @@
 import { useState, useRef, useEffect } from "react";
-import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Users, LineChart, Target } from "lucide-react";
 
-// Preload images for better performance
-const preloadImage = (src: string) => {
-  const img = new Image();
-  img.src = src;
-};
-
-const cards = [
-  {
-    src: '/images/IMG_1392.jpeg',
-    lowResSrc: '/images/IMG_1392.jpeg?w=10', // Low resolution placeholder
-    title: 'Sales Excellence',
-    description: 'Transform your sales process through our data-driven methodology. We implement cutting-edge tools, strategic frameworks, and proven techniques that drive measurable growth and sustainable success.',
-    details: 'Our comprehensive sales excellence program includes:<br/>• Custom CRM implementation<br/>• Sales process automation<br/>• Performance metrics tracking<br/>• Strategic planning workshops'
-  },
-  {
-    src: '/images/IMG_1395.jpeg',
-    title: 'Team Building',
-    description: 'Build and nurture high-performing sales teams from the ground up. Our expert recruitment and training programs ensure your team has the skills and motivation to exceed targets.',
-    details: 'Complete team development solution:<br/>• Talent acquisition strategy<br/>• Comprehensive onboarding<br/>• Ongoing skill development<br/>• Performance incentive programs'
-  },
-  {
-    src: '/images/IMG_1400.jpeg',
-    title: 'Process Optimization',
-    description: 'Streamline your sales operations for maximum efficiency. We implement automated workflows and optimized systems that reduce friction and accelerate deal closure.',
-    details: 'End-to-end optimization includes:<br/>• Workflow automation<br/>• CRM customization<br/>• Communication protocols<br/>• Process documentation'
-  },
-  {
-    src: '/images/IMG_1489.jpeg',
-    title: 'Growth Strategy',
-    description: 'Develop and execute tailored growth strategies that align perfectly with your business objectives. Our data-driven approach identifies and capitalizes on market opportunities.',
-    details: 'Strategic growth planning:<br/>• Market analysis<br/>• Competitive positioning<br/>• Revenue modeling<br/>• Expansion planning'
-  },
-  {
-    src: '/images/IMG_1518.jpeg',
-    title: 'Performance Analytics',
-    description: 'Leverage advanced analytics to drive decision-making. Our comprehensive tracking and analysis tools provide actionable insights for continuous improvement.',
-    details: 'Analytics capabilities include:<br/>• KPI dashboard setup<br/>• Real-time monitoring<br/>• Performance forecasting<br/>• ROI analysis'
-  },
-  {
-    src: '/images/IMG_1733.jpeg',
-    title: 'Client Success',
-    description: 'Transform leads into lasting partnerships through our proven client engagement approach. We help you build and maintain strong, profitable client relationships.',
-    details: 'Client success framework:<br/>• Relationship mapping<br/>• Account planning<br/>• Value proposition design<br/>• Long-term retention strategy'
-  }
-];
-
 export default function Home() {
   const { scrollY } = useScroll();
+  const ref = useRef<HTMLDivElement>(null);
   
-  // Spring animations configuration
+  // Enhanced spring animations for Apple-like smooth transitions
   const springConfig = { 
-    stiffness: 100,
-    damping: 30,
-    mass: 1,
-    restDelta: 0.001
+    stiffness: 50,
+    damping: 20,
+    mass: 1.5
   };
   
   // Hero animations
@@ -86,6 +40,12 @@ export default function Home() {
   // Stats animations
   const statsY = useSpring(
     useTransform(scrollY, [600, 1400], [200, -50]),
+    springConfig
+  );
+  
+  // Text reveal animations
+  const textReveal = useSpring(
+    useTransform(scrollY, [100, 500], [50, 0]),
     springConfig
   );
 
@@ -146,139 +106,9 @@ export default function Home() {
             </motion.div>
           </div>
         </div>
+
+        {/* Removed loading animation div */}
       </motion.section>
-
-      {/* Innovation Showcase */}
-      <section className="py-32 bg-gradient-to-br from-[#0a192f] to-[#112240] overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="text-center mb-20"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
-              Transforming Sales
-              <br />
-              <span className="bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent">
-                Through Innovation
-              </span>
-            </h2>
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-              Click the + to explore our services
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {cards.map((card, index) => {
-              // Declare all state hooks at the beginning
-              const [isFlipped, setIsFlipped] = useState(false);
-              const [isImageLoaded, setIsImageLoaded] = useState(false);
-              const cardRef = useRef<HTMLDivElement>(null);
-              
-              // Use a single useEffect for all initialization
-              useEffect(() => {
-                const img = new Image();
-                img.src = card.src;
-                img.onload = () => setIsImageLoaded(true);
-                
-                // Cleanup
-                return () => {
-                  img.onload = null;
-                };
-              }, [card.src]);
-
-              return (
-                <motion.div
-                  ref={cardRef}
-                  key={card.title}
-                  className="relative h-[400px] cursor-pointer perspective-[1000px]"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: isImageLoaded ? 1 : 0.5, y: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <motion.div
-                    className="w-full h-full transform-gpu transform-style-3d"
-                    initial={false}
-                    animate={{ rotateY: isFlipped ? 180 : 0 }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 100,
-                      damping: 30,
-                      mass: 1,
-                      restDelta: 0.001
-                    }}
-                  >
-                    {/* Front of card */}
-                    <motion.div
-                      className="absolute w-full h-full rounded-2xl overflow-hidden shadow-xl backface-hidden"
-                      initial={false}
-                      animate={{ scale: isFlipped ? 0.95 : 1 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <div className="relative w-full h-full group">
-                        <div className="absolute inset-0 bg-gradient-to-br from-[#123e74]/40 via-transparent to-[#2a9d8f]/30 opacity-0 
-                          group-hover:opacity-100 transition-all duration-300 ease-out z-10" />
-                        <motion.img
-                          src={card.src}
-                          alt={card.title}
-                          className="w-full h-full object-cover"
-                          style={{
-                            opacity: isImageLoaded ? 1 : 0.3,
-                            transform: isFlipped ? 'scale(0.95)' : 'scale(1)',
-                            transition: 'all 0.3s ease-out'
-                          }}
-                          loading="eager"
-                          onLoad={() => setIsImageLoaded(true)}
-                        />
-                        <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/80 via-black/60 to-transparent">
-                          <h3 className="text-white text-2xl font-semibold mb-2">{card.title}</h3>
-                          <p className="text-white/90 text-sm mb-4">{card.description}</p>
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setIsFlipped(true);
-                            }}
-                            className="text-white/90 hover:text-white text-2xl font-bold transition-colors cursor-pointer"
-                          >
-                            +
-                          </button>
-                        </div>
-                      </div>
-                    </motion.div>
-
-                    {/* Back of card */}
-                    <motion.div
-                      className="absolute w-full h-full rounded-2xl p-8 bg-gradient-to-br from-[#123e74] to-[#2a9d8f] text-white flex flex-col justify-between backface-hidden transform-gpu rotate-y-180"
-                      initial={false}
-                      animate={{ scale: isFlipped ? 1 : 0.95 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <div>
-                        <h3 className="text-white text-2xl font-bold mb-4">{card.title}</h3>
-                        <div 
-                          className="text-white/90 text-lg leading-relaxed"
-                          dangerouslySetInnerHTML={{ __html: card.details }}
-                        />
-                      </div>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setIsFlipped(false);
-                        }}
-                        className="self-start text-white/90 hover:text-white text-2xl font-bold transition-colors cursor-pointer"
-                      >
-                        −
-                      </button>
-                    </motion.div>
-                  </motion.div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
 
       {/* Features Section */}
       <motion.section 
@@ -306,17 +136,17 @@ export default function Home() {
               {
                 icon: Users,
                 title: "Expert Team Building",
-                description: "Build your dedicated SDR team within 3-6 months, perfectly sized for your growth phase before transitioning to an in-house team."
+                description: "Build and scale high-performing SDR teams that consistently deliver results."
               },
               {
                 icon: LineChart,
-                title: "Complete Sales Stack",
-                description: "Implement essential tools including CRM, autoDialer, lead data sources, and custom KPI tracking systems for seamless operations."
+                title: "Process Optimization",
+                description: "Streamline your sales operations with proven methodologies."
               },
               {
                 icon: Target,
-                title: "Proven Results",
-                description: "Increase qualified leads and booked meetings with highly effective outbound systems and performance-based bonus structures."
+                title: "Growth Strategy",
+                description: "Develop targeted strategies that accelerate your sales growth."
               }
             ].map((feature, index) => (
               <motion.div
@@ -455,10 +285,10 @@ export default function Home() {
 
           <div className="grid md:grid-cols-4 gap-12">
             {[
-              { number: "150%", label: "Increase in Pipeline Value" },
-              { number: "200%", label: "More Qualified Meetings Booked" },
-              { number: "5x", label: "Increase in Outbound Efforts" },
-              { number: "60%", label: "Shorter Sales Cycles" }
+              { number: "150%", label: "Average Increase in Qualified Leads" },
+              { number: "45%", label: "Improvement in Conversion Rates" },
+              { number: "60%", label: "Faster Sales Cycle" },
+              { number: "90%", label: "Client Satisfaction Rate" }
             ].map((stat, index) => (
               <motion.div
                 key={index}

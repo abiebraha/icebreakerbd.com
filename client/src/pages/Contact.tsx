@@ -8,21 +8,11 @@ export default function ContactPage() {
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
         <motion.div
-          className="absolute inset-0"
+          className="absolute inset-0 bg-gradient-to-br from-[#123e74]/5 via-transparent to-transparent"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1.5 }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-[#123e74]/40 via-transparent to-transparent z-10" />
-          <img
-            src="/images/IMG_1518.jpeg"
-            alt="Contact Hero Background"
-            className="w-full h-full object-cover opacity-20"
-            onError={(e) => {
-              e.currentTarget.style.display = 'none';
-            }}
-          />
-        </motion.div>
+          transition={{ duration: 1 }}
+        />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div
@@ -31,32 +21,14 @@ export default function ContactPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 relative">
-              <motion.span
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="block"
-              >
-                Let's Start Your
-              </motion.span>
-              <motion.span
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="block text-[#0066CC] drop-shadow-lg"
-              >
-                Sales Growth Journey
-              </motion.span>
+            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+              Let's Start Your
+              <br />
+              <span className="text-[#0066CC]">Sales Growth Journey</span>
             </h1>
-            <motion.p 
-              className="text-xl text-slate-600 max-w-3xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Ready to transform your sales process? Get in touch with our team today.
-            </motion.p>
+            </p>
           </motion.div>
         </div>
       </section>

@@ -16,19 +16,11 @@ body {
 
   :root {
     --background: #ffffff;
-    --foreground: #1d1d1f;
+    --foreground: #000000;
     --primary: #123e74;
     --primary-darker: #0d2d54;
-    --secondary: #2a9d8f;
-    --secondary-lighter: #3eb4a6;
-    --accent: #e76f51;
-    --accent-lighter: #f4a261;
-    --highlight: #f4a261;
-    --success: #2a9d8f;
-    --warning: #e9c46a;
-    --error: #e76f51;
-    --muted: #86868b;
-    --border: #d2d2d7;
+    --secondary: #1a4e8f;
+    --secondary-lighter: #2a5ea0;
   }
 
   /* 3D Effects */
