@@ -28,7 +28,7 @@ const values = [
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#123e74] to-[#2a9d8f]">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-800 to-pink-900">
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
 
@@ -39,12 +39,12 @@ export default function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Transforming Sales Teams
               <br />
-              <span className="text-[#0066CC]">One Step at a Time</span>
+              <span className="text-pink-300">One Step at a Time</span>
             </h1>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            <p className="text-xl text-slate-200 max-w-3xl mx-auto">
               We're a team of sales experts passionate about helping businesses build and optimize their sales processes.
             </p>
           </motion.div>
@@ -52,7 +52,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-transparent">
         <div className="max-w-7xl mx-auto">
           <motion.div
             className="text-left mb-16"
@@ -60,23 +60,23 @@ export default function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">Our Values</h2>
-            <p className="text-xl text-slate-600">The principles that guide our work</p>
+            <h2 className="text-4xl font-bold text-white mb-4">Our Values</h2>
+            <p className="text-xl text-slate-200">The principles that guide our work</p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
               <motion.div
                 key={value.title}
-                className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
+                className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-white/20"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <value.icon className="w-12 h-12 text-[#0066CC] mb-4" />
-                <h3 className="text-xl font-semibold mb-2">{value.title}</h3>
-                <p className="text-slate-600">{value.description}</p>
+                <value.icon className="w-12 h-12 text-pink-300 mb-4" />
+                <h3 className="text-xl font-semibold text-white mb-2">{value.title}</h3>
+                <p className="text-slate-200">{value.description}</p>
               </motion.div>
             ))}
           </div>
@@ -84,7 +84,7 @@ export default function AboutPage() {
       </section>
 
       {/* Founder Profile Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-transparent">
         <div className="max-w-7xl mx-auto">
           <motion.div
             className="flex flex-col md:flex-row items-center gap-12"
@@ -108,7 +108,7 @@ export default function AboutPage() {
             
             <div className="w-full md:w-2/3 text-center md:text-left">
               <motion.h2 
-                className="text-3xl md:text-4xl font-bold text-slate-900 mb-4"
+                className="text-3xl md:text-4xl font-bold text-white mb-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
@@ -116,7 +116,7 @@ export default function AboutPage() {
                 Abe Braha, Founder
               </motion.h2>
               <motion.p 
-                className="text-xl text-slate-600 mb-8"
+                className="text-xl text-slate-200 mb-8"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
@@ -131,7 +131,7 @@ export default function AboutPage() {
                 <Link href="/schedule-call" className="inline-block">
                   <Button
                     size="lg"
-                    className="bg-[#0066CC] hover:bg-[#0077ED] text-white px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
+                    className="bg-pink-600 hover:bg-pink-700 text-white px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
                   >
                     Book a Call With Abe
                   </Button>
