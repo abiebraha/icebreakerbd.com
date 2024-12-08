@@ -61,28 +61,7 @@ export default function CaseStudiesPage() {
     <div className="min-h-screen bg-gradient-to-br from-[#123e74] to-[#2a9d8f]">
       {/* Hero Section */}
       <section className="relative py-24 overflow-hidden">
-        {/* Animated Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 grid grid-cols-2 gap-x-4 gap-y-8">
-            {[...Array(20)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="h-32 bg-white/20 rounded-lg"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ 
-                  opacity: [0.5, 0.8, 0.5],
-                  scale: [1, 1.05, 1],
-                  transition: {
-                    duration: 4,
-                    delay: i * 0.1,
-                    repeat: Infinity,
-                    repeatType: "reverse"
-                  }
-                }}
-              />
-            ))}
-          </div>
-        </div>
+        
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div

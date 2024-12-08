@@ -11,29 +11,7 @@ export default function PricingPage() {
     <div className="min-h-screen bg-gradient-to-br from-[#123e74] via-[#2a9d8f]/80 to-[#123e74]">
       {/* Hero Section */}
       <section className="relative py-24 overflow-hidden">
-        {/* Animated Background Pattern */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-white/5" />
-          <div className="absolute inset-0 grid grid-cols-3 md:grid-cols-6 gap-4 p-4 opacity-20">
-            {[...Array(18)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="h-full bg-white rounded-lg"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ 
-                  opacity: [0.5, 0.8, 0.5],
-                  scale: [1, 1.05, 1],
-                  transition: {
-                    duration: 3,
-                    delay: i * 0.1,
-                    repeat: Infinity,
-                    repeatType: "reverse"
-                  }
-                }}
-              />
-            ))}
-          </div>
-        </div>
+        
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div
