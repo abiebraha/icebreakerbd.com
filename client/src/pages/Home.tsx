@@ -141,8 +141,22 @@ export default function Home() {
               drag="x"
               dragConstraints={{ right: 0, left: -2000 }}
               dragElastic={0.1}
-              dragTransition={{ bounceStiffness: 600, bounceDamping: 30 }}
+              dragTransition={{ 
+                bounceStiffness: 800, 
+                bounceDamping: 50,
+                power: 0.5 
+              }}
               initial={{ x: 0 }}
+              animate={{ 
+                x: [-2000, 0],
+                transition: {
+                  duration: 20,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                  ease: "linear",
+                  repeatDelay: 1
+                }
+              }}
               style={{
                 paddingBottom: "40px",
               }}
@@ -168,6 +182,9 @@ export default function Home() {
                     duration: 0.8,
                     ease: [0.16, 1, 0.3, 1]
                   }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  layoutId={`card-${index}`}
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-[#123e74]/40 via-transparent to-[#2a9d8f]/30 opacity-0 
                     group-hover:opacity-100 transition-all duration-500 ease-out z-10" />
