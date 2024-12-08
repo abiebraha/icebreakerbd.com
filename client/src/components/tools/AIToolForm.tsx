@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -26,7 +26,7 @@ export type BaseFormData = z.infer<typeof baseSchema>;
 
 interface AIToolFormProps {
   onSubmit: (data: BaseFormData) => Promise<void>;
-  title: string;
+  title: React.ReactNode;
   description: string;
   contextLabel: string;
   contextPlaceholder: string;
