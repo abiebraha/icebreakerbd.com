@@ -3,6 +3,10 @@ import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Users, LineChart, Target } from "lucide-react";
+import { PlusIcon, MinusIcon } from "@radix-ui/react-icons";
+
+// Add custom styles
+import "./styles.css";
 
 export default function Home() {
   const { scrollY } = useScroll();
@@ -109,6 +113,99 @@ export default function Home() {
 
         {/* Removed loading animation div */}
       </motion.section>
+
+      {/* Carousel Section */}
+      <section className="py-24 bg-[#40E0D0]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+              Our Key Solutions
+            </h2>
+            <p className="text-xl text-white/90 max-w-3xl mx-auto">
+              Discover how we can transform your sales process
+            </p>
+          </motion.div>
+
+          <div className="relative">
+            <div className="overflow-hidden">
+              <div className="flex gap-8 snap-x snap-mandatory overflow-x-auto pb-8 hide-scrollbar">
+                {[
+                  {
+                    title: "Sales Automation",
+                    image: "/automation.jpg",
+                    description: "Streamline your sales process with cutting-edge automation tools that increase efficiency and reduce manual tasks."
+                  },
+                  {
+                    title: "Team Development",
+                    image: "/team.jpg",
+                    description: "Build and nurture high-performing sales teams through our comprehensive training and development programs."
+                  },
+                  {
+                    title: "Lead Generation",
+                    image: "/leads.jpg",
+                    description: "Generate quality leads consistently with our proven methodologies and advanced targeting strategies."
+                  },
+                  {
+                    title: "Performance Analytics",
+                    image: "/analytics.jpg",
+                    description: "Make data-driven decisions with our advanced analytics and reporting tools."
+                  }
+                ].map((card, index) => (
+                  <motion.div
+                    key={index}
+                    className="min-w-[300px] sm:min-w-[350px] relative group perspective"
+                    initial={{ opacity: 0, x: 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.2 }}
+                  >
+                    <motion.div
+                      className="relative w-full h-[400px] [transform-style:preserve-3d] transition-all duration-500"
+                      animate={{ rotateY: 0 }}
+                      whileHover={{ rotateY: 180 }}
+                    >
+                      {/* Front of card */}
+                      <div className="absolute inset-0 rounded-2xl overflow-hidden">
+                        <div className="absolute inset-0 bg-black/20" />
+                        <img
+                          src={card.image}
+                          alt={card.title}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
+                          <h3 className="text-2xl font-bold text-white mb-2">
+                            {card.title}
+                          </h3>
+                        </div>
+                        <button className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+                          <PlusIcon className="w-5 h-5" />
+                        </button>
+                      </div>
+
+                      {/* Back of card */}
+                      <div className="absolute inset-0 rounded-2xl overflow-hidden [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                        <div className="w-full h-full bg-gradient-to-br from-[#40E0D0] to-[#20B2AA] p-6 flex flex-col justify-center">
+                          <p className="text-lg text-white leading-relaxed">
+                            {card.description}
+                          </p>
+                          <button className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+                            <MinusIcon className="w-5 h-5" />
+                          </button>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Features Section */}
       <motion.section 
