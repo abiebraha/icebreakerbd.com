@@ -17,21 +17,9 @@ function normalizeUrl(url: string): string {
   return url.replace(/\/$/, '');
 }
 
-// Initialize OpenAI client with proper error handling
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-let openai: OpenAI | null = null;
-
-try {
-  if (!OPENAI_API_KEY) {
-    console.error('OpenAI API key is missing. AI features will be disabled.');
-  } else {
-    openai = new OpenAI({
-      apiKey: OPENAI_API_KEY
-    });
-  }
-} catch (error) {
-  console.error('Failed to initialize OpenAI client:', error);
-}
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
 
 async function sendEmailTranscript(to: string | null, toolName: string, input: any, output: string) {
   try {
@@ -185,12 +173,6 @@ Additional Information: ${additionalInfo || 'None provided'}
 
   app.post('/api/tools/generate-cold-email', async (req, res) => {
     try {
-      if (!openai) {
-        return res.status(503).json({
-          message: 'AI features are currently unavailable. Please try again later.'
-        });
-      }
-
       const { websiteUrl: rawWebsiteUrl, productDescription, customInstructions, email } = req.body;
       const websiteUrl = rawWebsiteUrl ? normalizeUrl(rawWebsiteUrl) : '';
 
@@ -280,12 +262,6 @@ ${customInstructions ? `\nCustom Instructions: ${customInstructions}` : ''}`
 
   app.post('/api/tools/generate-sales-script', async (req, res) => {
     try {
-      if (!openai) {
-        return res.status(503).json({
-          message: 'AI features are currently unavailable. Please try again later.'
-        });
-      }
-
       const { websiteUrl: rawWebsiteUrl, productDescription, customInstructions, email } = req.body;
       const websiteUrl = rawWebsiteUrl ? normalizeUrl(rawWebsiteUrl) : '';
 
@@ -378,12 +354,6 @@ ${customInstructions ? `\nCustom Instructions: ${customInstructions}` : ''}`
 
   app.post('/api/tools/generate-linkedin-post', async (req, res) => {
     try {
-      if (!openai) {
-        return res.status(503).json({
-          message: 'AI features are currently unavailable. Please try again later.'
-        });
-      }
-
       const { context, customInstructions, email } = req.body;
 
       const completion = await openai.chat.completions.create({

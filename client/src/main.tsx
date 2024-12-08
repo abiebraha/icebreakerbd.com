@@ -2,7 +2,6 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { Switch, Route, Link } from "wouter";
 import { QueryClientProvider } from "@tanstack/react-query";
-import { HelmetProvider } from "react-helmet-async";
 
 import "./index.css";
 
@@ -115,12 +114,10 @@ if (!rootElement) {
     root.render(
       <StrictMode>
         <ErrorBoundary>
-          <HelmetProvider>
-            <QueryClientProvider client={queryClient}>
-              <Router />
-              <Toaster />
-            </QueryClientProvider>
-          </HelmetProvider>
+          <QueryClientProvider client={queryClient}>
+            <Router />
+            <Toaster />
+          </QueryClientProvider>
         </ErrorBoundary>
       </StrictMode>,
     );

@@ -11,10 +11,6 @@ build = ["npm", "run", "build"]
 run = ["sh", "-c", "npm run dev"]
 
 [[ports]]
-localPort = 3000
-externalPort = 3000
-
-[[ports]]
 localPort = 5000
 externalPort = 80
 
@@ -30,10 +26,6 @@ author = "agent"
 task = "workflow.run"
 args = "Development Server"
 
-[[workflows.workflow.tasks]]
-task = "workflow.run"
-args = "Build Client"
-
 [[workflows.workflow]]
 name = "Development Server"
 author = "agent"
@@ -47,18 +39,4 @@ task = "packager.installForAll"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "npm run dev"
-waitForPort = 3000
-
-[[workflows.workflow]]
-name = "Build Client"
-author = "agent"
-
-[workflows.workflow.metadata]
-agentRequireRestartOnSave = false
-
-[[workflows.workflow.tasks]]
-task = "packager.installForAll"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm run build"
+waitForPort = 5000

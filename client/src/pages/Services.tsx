@@ -9,7 +9,6 @@ import {
   HeartHandshake,
   Rocket
 } from "lucide-react";
-import SEO from "@/components/SEO";
 
 const services = [
   {
@@ -104,13 +103,7 @@ const services = [
 
 export default function ServicesPage() {
   return (
-    <>
-      <SEO 
-        title="Sales Services - Expert Sales System & Team Building Solutions"
-        description="Comprehensive sales services including Sales System Setup, SDR Team Building, Training, Process Optimization, and Performance Analytics. Transform your sales organization today."
-        image="/services-preview.png"
-      />
-      <div className="bg-white">
+    <div className="bg-white">
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
         <motion.div
@@ -174,6 +167,5 @@ export default function ServicesPage() {
         </div>
       </section>
     </div>
-    </>
   );
 }

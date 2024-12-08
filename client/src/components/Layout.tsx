@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "wouter";
 import Header from "./Header";
 import Footer from "./Footer";
-import SEO from "./SEO";
 
 interface LayoutProps {
   children: ReactNode;
@@ -14,7 +13,6 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <div className="min-h-screen flex flex-col overflow-hidden">
-      <SEO />
       <Header />
       <main className="flex-grow pt-16 relative">
         <AnimatePresence mode="wait">

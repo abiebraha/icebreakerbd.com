@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { Shield, Users, Trophy, Brain } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import SEO from "@/components/SEO";
 
 const values = [
   {
@@ -29,13 +28,7 @@ const values = [
 
 export default function AboutPage() {
   return (
-    <>
-      <SEO 
-        title="About Us - Sales System & Team Building Experts"
-        description="Led by founder Abe Braha, we're dedicated to transforming sales teams through proven methodologies, integrity, and continuous innovation. Learn about our values and expertise in sales system development."
-        image="/about-team-preview.png"
-      />
-      <div className="bg-white">
+    <div className="bg-white">
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
         <motion.div
@@ -177,6 +170,5 @@ export default function AboutPage() {
         </div>
       </section>
     </div>
-    </>
   );
 }
