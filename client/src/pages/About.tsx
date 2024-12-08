@@ -33,9 +33,12 @@ export default function AboutPage() {
       <section className="relative py-20 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <img 
-            src="/IMG_1593.jpeg" 
-            alt=""
+            src="/images/IMG_1593.jpeg" 
+            alt="Background"
             className="w-full h-full object-cover"
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+            }}
           />
         </div>
 
@@ -84,30 +87,42 @@ export default function AboutPage() {
                 <div className="absolute inset-0 opacity-5 group-hover:opacity-10 transition-opacity duration-300">
                   {index === 0 && (
                     <img 
-                      src="/IMG_1518.jpeg"
-                      alt=""
+                      src="/images/IMG_1518.jpeg"
+                      alt="Background"
                       className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                      }}
                     />
                   )}
                   {index === 1 && (
                     <img 
-                      src="/IMG_1733.jpeg"
-                      alt=""
+                      src="/images/IMG_1733.jpeg"
+                      alt="Background"
                       className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                      }}
                     />
                   )}
                   {index === 2 && (
                     <img 
-                      src="/IMG_2072.jpeg"
-                      alt=""
+                      src="/images/IMG_2072.jpeg"
+                      alt="Background"
                       className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                      }}
                     />
                   )}
                   {index === 3 && (
                     <img 
-                      src="/IMG_1593.jpeg"
-                      alt=""
+                      src="/images/IMG_1593.jpeg"
+                      alt="Background"
                       className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                      }}
                     />
                   )}
                 </div>

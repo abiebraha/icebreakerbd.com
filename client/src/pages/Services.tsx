@@ -144,30 +144,42 @@ export default function ServicesPage() {
                 <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity duration-300">
                   {index === 0 && (
                     <img 
-                      src="/IMG_1392.jpeg"
-                      alt=""
+                      src="/images/IMG_1392.jpeg"
+                      alt="Background"
                       className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                      }}
                     />
                   )}
                   {index === 1 && (
                     <img 
-                      src="/IMG_1395.jpeg"
-                      alt=""
+                      src="/images/IMG_1395.jpeg"
+                      alt="Background"
                       className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                      }}
                     />
                   )}
                   {index === 2 && (
                     <img 
-                      src="/IMG_1400.jpeg"
-                      alt=""
+                      src="/images/IMG_1400.jpeg"
+                      alt="Background"
                       className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                      }}
                     />
                   )}
                   {index === 3 && (
                     <img 
-                      src="/IMG_1489.jpeg"
-                      alt=""
+                      src="/images/IMG_1489.jpeg"
+                      alt="Background"
                       className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                      }}
                     />
                   )}
                 </div>
