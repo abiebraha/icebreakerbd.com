@@ -2,6 +2,21 @@ import type { Express } from "express";
 import sgMail from '@sendgrid/mail';
 import OpenAI from 'openai';
 
+function normalizeUrl(url: string): string {
+  if (!url) return url;
+  
+  // Remove whitespace
+  url = url.trim();
+  
+  // Add https:// if no protocol is specified
+  if (!url.match(/^https?:\/\//i)) {
+    url = 'https://' + url;
+  }
+  
+  // Remove trailing slash
+  return url.replace(/\/$/, '');
+}
+
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
@@ -158,7 +173,8 @@ Additional Information: ${additionalInfo || 'None provided'}
 
   app.post('/api/tools/generate-cold-email', async (req, res) => {
     try {
-      const { websiteUrl, productDescription, customInstructions, email } = req.body;
+      const { websiteUrl: rawWebsiteUrl, productDescription, customInstructions, email } = req.body;
+      const websiteUrl = rawWebsiteUrl ? normalizeUrl(rawWebsiteUrl) : '';
 
       if (!websiteUrl && !productDescription) {
         return res.status(400).json({ 
@@ -246,7 +262,8 @@ ${customInstructions ? `\nCustom Instructions: ${customInstructions}` : ''}`
 
   app.post('/api/tools/generate-sales-script', async (req, res) => {
     try {
-      const { websiteUrl, productDescription, customInstructions, email } = req.body;
+      const { websiteUrl: rawWebsiteUrl, productDescription, customInstructions, email } = req.body;
+      const websiteUrl = rawWebsiteUrl ? normalizeUrl(rawWebsiteUrl) : '';
 
       if (!websiteUrl && !productDescription) {
         return res.status(400).json({ 
