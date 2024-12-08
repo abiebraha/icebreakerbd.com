@@ -33,6 +33,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [location] = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
+const [expandedSection, setExpandedSection] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -66,19 +67,26 @@ export default function Header() {
                   <NavigationMenuItem key={item.label}>
                     {item.items ? (
                       <>
-                        <NavigationMenuTrigger>{item.label}</NavigationMenuTrigger>
-                        <NavigationMenuContent>
-                          <div className="grid gap-3 p-4 w-[200px]">
+                        <NavigationMenuTrigger className="group">
+                          {item.label}
+                        </NavigationMenuTrigger>
+                        <NavigationMenuContent className="absolute top-0 left-0 w-[200px] bg-white rounded-md shadow-lg">
+                          <motion.div
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            className="grid gap-1 p-2"
+                          >
                             {item.items.map((subItem) => (
                               <Link
                                 key={subItem.href}
                                 href={subItem.href}
-                                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                                className="block select-none rounded-md p-2 text-sm font-medium leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                               >
-                                <div className="text-sm font-medium leading-none">{subItem.label}</div>
+                                {subItem.label}
                               </Link>
                             ))}
-                          </div>
+                          </motion.div>
                         </NavigationMenuContent>
                       </>
                     ) : (
@@ -134,22 +142,44 @@ export default function Header() {
                 {navItems.map((item) => (
                   item.items ? (
                     <div key={item.label} className="space-y-1">
-                      <div className="px-3 py-2 text-base font-medium text-slate-600">
+                      <button
+                        className="w-full px-3 py-2 text-base font-medium text-slate-600 hover:text-[#123e74] flex items-center justify-between"
+                        onClick={() => setExpandedSection(expandedSection === item.label ? null : item.label)}
+                      >
                         {item.label}
-                        <ChevronDown className="inline-block ml-1 h-4 w-4" />
-                      </div>
-                      <div className="pl-4 space-y-1">
-                        {item.items.map((subItem) => (
-                          <Link
-                            key={subItem.href}
-                            href={subItem.href}
-                            className="block px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-[#123e74] hover:bg-slate-50"
-                            onClick={() => setIsOpen(false)}
+                        <ChevronDown 
+                          className={`h-4 w-4 transition-transform ${
+                            expandedSection === item.label ? "rotate-180" : ""
+                          }`} 
+                        />
+                      </button>
+                      <AnimatePresence>
+                        {expandedSection === item.label && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="overflow-hidden"
                           >
-                            {subItem.label}
-                          </Link>
-                        ))}
-                      </div>
+                            <div className="pl-4 space-y-1 py-1">
+                              {item.items.map((subItem) => (
+                                <Link
+                                  key={subItem.href}
+                                  href={subItem.href}
+                                  className="block px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-[#123e74] hover:bg-slate-50"
+                                  onClick={() => {
+                                    setIsOpen(false);
+                                    setExpandedSection(null);
+                                  }}
+                                >
+                                  {subItem.label}
+                                </Link>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
                   ) : (
                     <Link 
