@@ -110,6 +110,70 @@ export default function Home() {
         {/* Removed loading animation div */}
       </motion.section>
 
+      {/* Photo Grid Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-4xl font-bold text-slate-900 mb-4">Our Impact</h2>
+            <p className="text-xl text-slate-600">Transforming businesses through strategic sales development</p>
+          </motion.div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {[
+              { src: '/images/IMG_1392.jpeg', title: 'Sales Excellence' },
+              { src: '/images/IMG_1395.jpeg', title: 'Team Building' },
+              { src: '/images/IMG_1400.jpeg', title: 'Process Optimization' },
+              { src: '/images/IMG_1489.jpeg', title: 'Growth Strategy' },
+              { src: '/images/IMG_1518.jpeg', title: 'Performance Analytics' },
+              { src: '/images/IMG_1733.jpeg', title: 'Client Success' }
+            ].map((image, index) => (
+              <motion.div
+                key={index}
+                className="relative overflow-hidden rounded-lg aspect-square group"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-[#123e74]/20 to-transparent z-10 
+                  group-hover:from-[#123e74]/40 transition-all duration-300" />
+                <motion.div
+                  className="relative w-full h-full"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#123e74]/10 to-[#2a9d8f]/10 animate-pulse" />
+                  <img
+                    src={image.src}
+                    alt={image.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-opacity duration-500"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                    }}
+                    onLoad={(e) => {
+                      e.currentTarget.classList.remove('opacity-0');
+                      e.currentTarget.classList.add('opacity-100');
+                    }}
+                  />
+                  <div className="absolute inset-0 flex items-end p-4 z-20">
+                    <h3 className="text-white font-semibold text-lg opacity-0 group-hover:opacity-100 
+                      transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                      {image.title}
+                    </h3>
+                  </div>
+                </motion.div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
       <motion.section 
         className="py-32 relative overflow-hidden"
