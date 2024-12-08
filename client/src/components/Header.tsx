@@ -12,10 +12,6 @@ import {
 } from "@/components/ui/navigation-menu";
 
 const navItems = [
-  { href: "/about", label: "About" },
-  { href: "/services", label: "Services" },
-  { href: "/case-studies", label: "Case Studies" },
-  { href: "/pricing", label: "Pricing" },
   {
     label: "Tools",
     items: [
@@ -25,6 +21,10 @@ const navItems = [
       { href: "/roi-calculator", label: "ROI Calculator" },
     ],
   },
+  { href: "/services", label: "Services" },
+  { href: "/case-studies", label: "Case Studies" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/about", label: "About" },
   { href: "/schedule-call", label: "Schedule Call" },
 ];
 
