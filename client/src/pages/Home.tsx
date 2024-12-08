@@ -189,14 +189,14 @@ export default function Home() {
                         handleCardSwipe(index, info.offset.x > 0 ? -1 : 1);
                       }
                     }}
-                    initial={{ x: info?.offset?.x || 0 }}
+                    initial={{ x: 0 }}
                     animate={{ 
                       x: 0,
                       rotate: index * 2,
                       translateY: index * 4 
                     }}
                     exit={{ 
-                      x: info?.offset?.x > 0 ? 1000 : -1000,
+                      x: 1000,
                       opacity: 0,
                       transition: { duration: 0.2 }
                     }}
@@ -219,19 +219,23 @@ export default function Home() {
                       group-hover:opacity-100 transition-all duration-500 ease-out z-10" />
                     
                     <motion.div
-                      className="relative w-full h-full transform-gpu"
-                      whileHover={{ scale: 1.02 }}
+                      className="relative w-full h-full transform-gpu group"
+                      whileHover={{ scale: 1.05 }}
                       transition={{ 
                         type: "spring",
                         stiffness: 300,
                         damping: 20
                       }}
                     >
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-br from-[#123e74]/40 via-transparent to-[#2a9d8f]/30 opacity-0 
+                        group-hover:opacity-100 transition-all duration-500 ease-out z-10"
+                      />
                       <img
                         src={image.src}
                         alt={image.title}
                         loading="lazy"
-                        className="w-full h-full object-cover transition-opacity duration-1000"
+                        className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110"
                         onError={(e) => {
                           e.currentTarget.style.display = 'none';
                         }}
