@@ -47,7 +47,7 @@ const [expandedSection, setExpandedSection] = useState<string | null>(null);
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? "bg-gradient-to-r from-[#123e74]/90 via-[#2a6d8f]/90 to-[#2a9d8f]/90 backdrop-blur-md shadow-sm" 
+          ? "bg-gradient-to-br from-[#123e74]/90 via-[#2a6d8f]/90 to-[#2a9d8f]/90 backdrop-blur-sm border-b border-white/10" 
           : "bg-transparent"
       }`}
       initial={{ y: -100 }}
@@ -133,7 +133,7 @@ const [expandedSection, setExpandedSection] = useState<string | null>(null);
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              className="md:hidden fixed inset-x-0 top-16 bg-white shadow-lg"
+              className="md:hidden fixed inset-x-0 top-16 bg-gradient-to-br from-[#123e74]/95 via-[#2a6d8f]/95 to-[#2a9d8f]/95 backdrop-blur-sm shadow-lg border-b border-white/10"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
@@ -144,7 +144,7 @@ const [expandedSection, setExpandedSection] = useState<string | null>(null);
                   item.items ? (
                     <div key={item.label} className="space-y-1">
                       <button
-                        className="w-full px-3 py-2 text-base font-medium text-slate-600 hover:text-[#123e74] flex items-center justify-between"
+                        className="w-full px-3 py-2 text-base font-medium text-white/90 hover:text-white flex items-center justify-between"
                         onClick={() => setExpandedSection(expandedSection === item.label ? null : item.label)}
                       >
                         {item.label}
@@ -168,7 +168,7 @@ const [expandedSection, setExpandedSection] = useState<string | null>(null);
                                 <Link
                                   key={subItem.href}
                                   href={subItem.href}
-                                  className="block px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-[#123e74] hover:bg-slate-50"
+                                  className="block px-3 py-2 rounded-md text-sm font-medium text-white/80 hover:text-white hover:bg-white/10"
                                   onClick={() => {
                                     setIsOpen(false);
                                     setExpandedSection(null);
@@ -188,8 +188,8 @@ const [expandedSection, setExpandedSection] = useState<string | null>(null);
                       href={item.href}
                       className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
                         location === item.href
-                          ? "text-[#123e74] bg-slate-50"
-                          : "text-slate-600 hover:text-[#123e74] hover:bg-slate-50"
+                          ? "text-white bg-white/20"
+                          : "text-white/80 hover:text-white hover:bg-white/10"
                       }`}
                       onClick={() => setIsOpen(false)}
                     >
