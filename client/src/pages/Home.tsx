@@ -137,12 +137,13 @@ export default function Home() {
             whileTap={{ cursor: "grabbing" }}
           >
             <motion.div
-              className="flex space-x-6"
+              className="flex snap-x snap-mandatory"
               drag="x"
-              dragConstraints={{ right: 0, left: -1600 }}  // Adjusted based on content width
+              dragConstraints={{ right: 0, left: -2400 }}  // Adjusted for 6 full-width slides
+              dragElastic={0.1}
               initial={{ x: 0 }}
               style={{
-                paddingBottom: "20px",  // Space for scrollbar
+                paddingBottom: "20px",
               }}
             >
               {[
@@ -155,13 +156,12 @@ export default function Home() {
               ].map((image, index) => (
                 <motion.div
                   key={index}
-                  className="relative flex-shrink-0 w-[400px] aspect-square rounded-2xl group overflow-hidden"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true, margin: "-100px" }}
+                  className="relative flex-shrink-0 w-full snap-start snap-always rounded-2xl group overflow-hidden"
+                  style={{ height: 'calc(100vh - 400px)' }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
                   transition={{ 
-                    duration: 0.6,
-                    delay: index * 0.1,
+                    duration: 0.8,
                     ease: [0.16, 1, 0.3, 1]
                   }}
                 >
@@ -170,36 +170,31 @@ export default function Home() {
                   
                   <motion.div
                     className="relative w-full h-full transform-gpu"
-                    whileHover={{ scale: 1.05 }}
+                    whileHover={{ scale: 1.02 }}
                     transition={{ 
                       type: "spring",
                       stiffness: 300,
                       damping: 20
                     }}
                   >
-                    <div className="absolute inset-0 bg-gradient-to-br from-slate-200 to-slate-300 animate-pulse" />
                     <img
                       src={image.src}
                       alt={image.title}
                       loading="lazy"
-                      className="w-full h-full object-cover opacity-0 transition-all duration-1000"
+                      className="w-full h-full object-cover transition-opacity duration-1000"
                       onError={(e) => {
                         e.currentTarget.style.display = 'none';
-                      }}
-                      onLoad={(e) => {
-                        e.currentTarget.style.opacity = '1';
                       }}
                     />
                   </motion.div>
 
                   <motion.div 
-                    className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/60 via-black/40 to-transparent z-20"
+                    className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-black/60 via-black/40 to-transparent z-20"
                     initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 + index * 0.1 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
                   >
-                    <h3 className="text-white font-semibold text-xl md:text-2xl transform group-hover:scale-110 transition-transform duration-300">
+                    <h3 className="text-white font-semibold text-2xl md:text-3xl transform group-hover:scale-105 transition-transform duration-300">
                       {image.title}
                     </h3>
                   </motion.div>
