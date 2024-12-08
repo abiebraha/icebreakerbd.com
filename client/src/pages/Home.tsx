@@ -137,9 +137,9 @@ export default function Home() {
             whileTap={{ cursor: "grabbing" }}
           >
             <motion.div
-              className="flex snap-x snap-mandatory px-[calc(50%-320px)]"
+              className="flex snap-x snap-mandatory px-[calc(50%-160px)]"
               drag="x"
-              dragConstraints={{ right: 0, left: -4000 }}
+              dragConstraints={{ right: 0, left: -2000 }}
               dragElastic={0.1}
               dragTransition={{ bounceStiffness: 600, bounceDamping: 30 }}
               initial={{ x: 0 }}
@@ -157,9 +157,9 @@ export default function Home() {
               ].map((image, index) => (
                 <motion.div
                   key={index}
-                  className="relative flex-shrink-0 w-[640px] snap-center snap-always rounded-3xl group overflow-hidden mx-4 shadow-2xl border border-white/10"
+                  className="relative flex-shrink-0 w-[320px] snap-center snap-always rounded-3xl group overflow-hidden mx-4 shadow-2xl border border-white/10"
                   style={{ 
-                    height: '896px', // Maintains playing card proportions (640 * 1.4)
+                    height: '448px', // Maintains playing card proportions (320 * 1.4)
                     perspective: '1000px',
                   }}
                   initial={{ opacity: 0 }}
