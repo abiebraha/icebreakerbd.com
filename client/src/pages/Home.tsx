@@ -1,12 +1,19 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Users, LineChart, Target } from "lucide-react";
 
+// Preload images for better performance
+const preloadImage = (src: string) => {
+  const img = new Image();
+  img.src = src;
+};
+
 const cards = [
   {
     src: '/images/IMG_1392.jpeg',
+    lowResSrc: '/images/IMG_1392.jpeg?w=10', // Low resolution placeholder
     title: 'Sales Excellence',
     description: 'Transform your sales process through our data-driven methodology. We implement cutting-edge tools, strategic frameworks, and proven techniques that drive measurable growth and sustainable success.',
     details: 'Our comprehensive sales excellence program includes:<br/>• Custom CRM implementation<br/>• Sales process automation<br/>• Performance metrics tracking<br/>• Strategic planning workshops'
@@ -165,46 +172,75 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {cards.map((card, index) => {
+              // Declare all state hooks at the beginning
               const [isFlipped, setIsFlipped] = useState(false);
+              const [isImageLoaded, setIsImageLoaded] = useState(false);
+              const cardRef = useRef<HTMLDivElement>(null);
               
+              // Use a single useEffect for all initialization
+              useEffect(() => {
+                const img = new Image();
+                img.src = card.src;
+                img.onload = () => setIsImageLoaded(true);
+                
+                // Cleanup
+                return () => {
+                  img.onload = null;
+                };
+              }, [card.src]);
+
               return (
                 <motion.div
+                  ref={cardRef}
                   key={card.title}
-                  className="relative h-[400px] cursor-pointer [perspective:1000px]"
+                  className="relative h-[400px] cursor-pointer perspective-[1000px]"
                   initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  animate={{ opacity: isImageLoaded ? 1 : 0.5, y: 0 }}
+                  transition={{ duration: 0.3 }}
                 >
                   <motion.div
-                    className="w-full h-full [transform-style:preserve-3d]"
+                    className="w-full h-full transform-gpu transform-style-3d"
                     initial={false}
                     animate={{ rotateY: isFlipped ? 180 : 0 }}
                     transition={{
                       type: "spring",
-                      stiffness: 300,
-                      damping: 30
+                      stiffness: 100,
+                      damping: 30,
+                      mass: 1,
+                      restDelta: 0.001
                     }}
                   >
                     {/* Front of card */}
                     <motion.div
-                      className="absolute w-full h-full rounded-2xl overflow-hidden shadow-xl [backface-visibility:hidden]"
+                      className="absolute w-full h-full rounded-2xl overflow-hidden shadow-xl backface-hidden"
+                      initial={false}
+                      animate={{ scale: isFlipped ? 0.95 : 1 }}
+                      transition={{ duration: 0.2 }}
                     >
                       <div className="relative w-full h-full group">
                         <div className="absolute inset-0 bg-gradient-to-br from-[#123e74]/40 via-transparent to-[#2a9d8f]/30 opacity-0 
-                          group-hover:opacity-100 transition-all duration-500 ease-out z-10" />
-                        <img
+                          group-hover:opacity-100 transition-all duration-300 ease-out z-10" />
+                        <motion.img
                           src={card.src}
                           alt={card.title}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                          loading="lazy"
+                          className="w-full h-full object-cover"
+                          style={{
+                            opacity: isImageLoaded ? 1 : 0.3,
+                            transform: isFlipped ? 'scale(0.95)' : 'scale(1)',
+                            transition: 'all 0.3s ease-out'
+                          }}
+                          loading="eager"
+                          onLoad={() => setIsImageLoaded(true)}
                         />
                         <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/80 via-black/60 to-transparent">
                           <h3 className="text-white text-2xl font-semibold mb-2">{card.title}</h3>
                           <p className="text-white/90 text-sm mb-4">{card.description}</p>
                           <button
-                            onClick={() => setIsFlipped(true)}
-                            className="text-white/90 hover:text-white text-2xl font-bold transition-colors"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setIsFlipped(true);
+                            }}
+                            className="text-white/90 hover:text-white text-2xl font-bold transition-colors cursor-pointer"
                           >
                             +
                           </button>
@@ -214,7 +250,10 @@ export default function Home() {
 
                     {/* Back of card */}
                     <motion.div
-                      className="absolute w-full h-full rounded-2xl p-8 bg-gradient-to-br from-[#123e74] to-[#2a9d8f] text-white flex flex-col justify-between [backface-visibility:hidden] [transform:rotateY(180deg)]"
+                      className="absolute w-full h-full rounded-2xl p-8 bg-gradient-to-br from-[#123e74] to-[#2a9d8f] text-white flex flex-col justify-between backface-hidden transform-gpu rotate-y-180"
+                      initial={false}
+                      animate={{ scale: isFlipped ? 1 : 0.95 }}
+                      transition={{ duration: 0.2 }}
                     >
                       <div>
                         <h3 className="text-white text-2xl font-bold mb-4">{card.title}</h3>
@@ -224,8 +263,11 @@ export default function Home() {
                         />
                       </div>
                       <button
-                        onClick={() => setIsFlipped(false)}
-                        className="self-start text-white/90 hover:text-white text-2xl font-bold transition-colors"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setIsFlipped(false);
+                        }}
+                        className="self-start text-white/90 hover:text-white text-2xl font-bold transition-colors cursor-pointer"
                       >
                         −
                       </button>
