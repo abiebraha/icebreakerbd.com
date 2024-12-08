@@ -63,7 +63,7 @@ const [expandedSection, setExpandedSection] = useState<string | null>(null);
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6">
             <NavigationMenu>
-              <NavigationMenuList className="group flex flex-1 list-none items-center justify-center space-x-1 [&>*]:bg-transparent">
+              <NavigationMenuList className="group flex flex-1 list-none items-center justify-center space-x-1 bg-transparent [&>*]:bg-transparent [&_*]:bg-transparent">
                 {navItems.map((item) => (
                   <NavigationMenuItem key={item.label}>
                     {item.items ? (
@@ -71,7 +71,7 @@ const [expandedSection, setExpandedSection] = useState<string | null>(null);
                         <NavigationMenuTrigger className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium text-slate-200 transition-colors hover:text-white focus:bg-white/10 focus:text-white focus:outline-none disabled:pointer-events-none disabled:opacity-50">
                           {item.label}
                         </NavigationMenuTrigger>
-                        <NavigationMenuContent className="data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52 bg-transparent">
+                        <NavigationMenuContent className="data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52 bg-transparent [&>*]:bg-transparent">
                           <motion.div
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
