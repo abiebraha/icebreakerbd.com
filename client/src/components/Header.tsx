@@ -63,7 +63,7 @@ const [expandedSection, setExpandedSection] = useState<string | null>(null);
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6">
             <NavigationMenu>
-              <NavigationMenuList className="group flex flex-1 list-none items-center justify-center space-x-1">
+              <NavigationMenuList className="group flex flex-1 list-none items-center justify-center space-x-1 bg-transparent">
                 {navItems.map((item) => (
                   <NavigationMenuItem key={item.label}>
                     {item.items ? (
@@ -76,13 +76,13 @@ const [expandedSection, setExpandedSection] = useState<string | null>(null);
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -10 }}
-                            className="grid gap-1.5 p-3 min-w-[220px] bg-white rounded-lg shadow-lg border border-slate-200/60"
+                            className="grid gap-1.5 p-3 min-w-[220px] bg-gradient-to-br from-[#123e74] via-[#2a6d8f] to-[#2a9d8f] rounded-lg shadow-lg border border-white/10"
                           >
                             {item.items?.map((subItem) => (
                               <Link
                                 key={subItem.href}
                                 href={subItem.href}
-                                className="block select-none rounded-md px-4 py-2.5 text-sm font-medium text-slate-600 no-underline outline-none transition-all duration-200 hover:bg-slate-50 hover:text-[#123e74] focus:bg-slate-50 focus:text-[#123e74]"
+                                className="block select-none rounded-md px-4 py-2.5 text-sm font-medium text-white/90 no-underline outline-none transition-all duration-200 hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white"
                               >
                                 {subItem.label}
                               </Link>
