@@ -82,11 +82,34 @@ export default function AboutPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <div className="absolute inset-0 opacity-5 group-hover:opacity-10 transition-opacity duration-300">
-                  <img 
-                    src={`/IMG_${1489 + index}.jpeg`}
-                    alt=""
-                    className="w-full h-full object-cover"
-                  />
+                  {index === 0 && (
+                    <img 
+                      src="/IMG_1518.jpeg"
+                      alt=""
+                      className="w-full h-full object-cover"
+                    />
+                  )}
+                  {index === 1 && (
+                    <img 
+                      src="/IMG_1733.jpeg"
+                      alt=""
+                      className="w-full h-full object-cover"
+                    />
+                  )}
+                  {index === 2 && (
+                    <img 
+                      src="/IMG_2072.jpeg"
+                      alt=""
+                      className="w-full h-full object-cover"
+                    />
+                  )}
+                  {index === 3 && (
+                    <img 
+                      src="/IMG_1593.jpeg"
+                      alt=""
+                      className="w-full h-full object-cover"
+                    />
+                  )}
                 </div>
                 <value.icon className="w-12 h-12 text-cyan-300 mb-4" />
                 <h3 className="text-xl font-semibold text-white mb-2">{value.title}</h3>

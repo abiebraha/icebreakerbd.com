@@ -142,11 +142,34 @@ export default function ServicesPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity duration-300">
-                  <img 
-                    src={`/IMG_${1392 + index}.jpeg`}
-                    alt=""
-                    className="w-full h-full object-cover"
-                  />
+                  {index === 0 && (
+                    <img 
+                      src="/IMG_1392.jpeg"
+                      alt=""
+                      className="w-full h-full object-cover"
+                    />
+                  )}
+                  {index === 1 && (
+                    <img 
+                      src="/IMG_1395.jpeg"
+                      alt=""
+                      className="w-full h-full object-cover"
+                    />
+                  )}
+                  {index === 2 && (
+                    <img 
+                      src="/IMG_1400.jpeg"
+                      alt=""
+                      className="w-full h-full object-cover"
+                    />
+                  )}
+                  {index === 3 && (
+                    <img 
+                      src="/IMG_1489.jpeg"
+                      alt=""
+                      className="w-full h-full object-cover"
+                    />
+                  )}
                 </div>
                 <div className="relative mb-4">
                   <service.icon className="w-12 h-12 text-primary group-hover:text-accent transition-colors duration-300" />
