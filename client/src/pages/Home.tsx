@@ -8,32 +8,38 @@ const cards = [
   {
     src: '/images/IMG_1392.jpeg',
     title: 'Sales Excellence',
-    description: 'Our proven methodology transforms your sales process with data-driven strategies and cutting-edge tools, ensuring consistent growth and success.'
+    description: 'Transform your sales process through our data-driven methodology. We implement cutting-edge tools, strategic frameworks, and proven techniques that drive measurable growth and sustainable success.',
+    details: 'Our comprehensive sales excellence program includes:<br/>• Custom CRM implementation<br/>• Sales process automation<br/>• Performance metrics tracking<br/>• Strategic planning workshops'
   },
   {
     src: '/images/IMG_1395.jpeg',
     title: 'Team Building',
-    description: 'Build and nurture high-performing sales teams through expert recruitment, comprehensive training, and continuous development programs.'
+    description: 'Build and nurture high-performing sales teams from the ground up. Our expert recruitment and training programs ensure your team has the skills and motivation to exceed targets.',
+    details: 'Complete team development solution:<br/>• Talent acquisition strategy<br/>• Comprehensive onboarding<br/>• Ongoing skill development<br/>• Performance incentive programs'
   },
   {
     src: '/images/IMG_1400.jpeg',
     title: 'Process Optimization',
-    description: 'Streamline your sales operations with automated workflows, efficient CRM implementation, and optimized communication channels.'
+    description: 'Streamline your sales operations for maximum efficiency. We implement automated workflows and optimized systems that reduce friction and accelerate deal closure.',
+    details: 'End-to-end optimization includes:<br/>• Workflow automation<br/>• CRM customization<br/>• Communication protocols<br/>• Process documentation'
   },
   {
     src: '/images/IMG_1489.jpeg',
     title: 'Growth Strategy',
-    description: 'Develop and execute tailored growth strategies that align with your business objectives and market opportunities.'
+    description: 'Develop and execute tailored growth strategies that align perfectly with your business objectives. Our data-driven approach identifies and capitalizes on market opportunities.',
+    details: 'Strategic growth planning:<br/>• Market analysis<br/>• Competitive positioning<br/>• Revenue modeling<br/>• Expansion planning'
   },
   {
     src: '/images/IMG_1518.jpeg',
     title: 'Performance Analytics',
-    description: "Leverage advanced analytics and KPI tracking to measure, analyze, and improve your sales team's performance continuously."
+    description: 'Leverage advanced analytics to drive decision-making. Our comprehensive tracking and analysis tools provide actionable insights for continuous improvement.',
+    details: 'Analytics capabilities include:<br/>• KPI dashboard setup<br/>• Real-time monitoring<br/>• Performance forecasting<br/>• ROI analysis'
   },
   {
     src: '/images/IMG_1733.jpeg',
     title: 'Client Success',
-    description: 'Transform leads into long-term partnerships through our proven client engagement and relationship management approach.'
+    description: 'Transform leads into lasting partnerships through our proven client engagement approach. We help you build and maintain strong, profitable client relationships.',
+    details: 'Client success framework:<br/>• Relationship mapping<br/>• Account planning<br/>• Value proposition design<br/>• Long-term retention strategy'
   }
 ];
 
@@ -140,8 +146,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-20"
-            initial={{ opacity: 1 }}
-            animate={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
               Transforming Sales
@@ -151,7 +159,7 @@ export default function Home() {
               </span>
             </h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-              Click the cards to learn more about our approach
+              Click the + to explore our services
             </p>
           </motion.div>
 
@@ -163,9 +171,10 @@ export default function Home() {
                 <motion.div
                   key={card.title}
                   className="relative h-[400px] cursor-pointer [perspective:1000px]"
-                  initial={{ opacity: 1 }}
-                  animate={{ opacity: 1 }}
-                  onClick={() => setIsFlipped(!isFlipped)}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
                 >
                   <motion.div
                     className="w-full h-full [transform-style:preserve-3d]"
@@ -190,27 +199,35 @@ export default function Home() {
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                           loading="lazy"
                         />
-                        <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/60 via-black/40 to-transparent">
-                          <h3 className="text-white text-2xl font-semibold">{card.title}</h3>
-                          <p className="text-white/80 mt-2">Click to learn more</p>
+                        <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/80 via-black/60 to-transparent">
+                          <h3 className="text-white text-2xl font-semibold mb-2">{card.title}</h3>
+                          <p className="text-white/90 text-sm mb-4">{card.description}</p>
+                          <button
+                            onClick={() => setIsFlipped(true)}
+                            className="text-white/90 hover:text-white text-2xl font-bold transition-colors"
+                          >
+                            +
+                          </button>
                         </div>
                       </div>
                     </motion.div>
 
                     {/* Back of card */}
                     <motion.div
-                      className="absolute w-full h-full rounded-2xl p-8 bg-gradient-to-br from-[#123e74] to-[#2a9d8f] text-white flex flex-col justify-center [backface-visibility:hidden] [transform:rotateY(180deg)]"
+                      className="absolute w-full h-full rounded-2xl p-8 bg-gradient-to-br from-[#123e74] to-[#2a9d8f] text-white flex flex-col justify-between [backface-visibility:hidden] [transform:rotateY(180deg)]"
                     >
-                      <h3 className="text-2xl font-bold mb-4">{card.title}</h3>
-                      <p className="text-lg leading-relaxed">{card.description}</p>
+                      <div>
+                        <h3 className="text-white text-2xl font-bold mb-4">{card.title}</h3>
+                        <div 
+                          className="text-white/90 text-lg leading-relaxed"
+                          dangerouslySetInnerHTML={{ __html: card.details }}
+                        />
+                      </div>
                       <button
-                        className="mt-6 text-sm font-semibold opacity-80 hover:opacity-100 transition-opacity"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setIsFlipped(false);
-                        }}
+                        onClick={() => setIsFlipped(false)}
+                        className="self-start text-white/90 hover:text-white text-2xl font-bold transition-colors"
                       >
-                        ← Flip back
+                        −
                       </button>
                     </motion.div>
                   </motion.div>

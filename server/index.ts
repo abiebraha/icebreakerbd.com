@@ -73,7 +73,7 @@ app.use((req, res, next) => {
   const PORT = process.env.PORT || 3001;
   
   try {
-    server.listen(PORT, '0.0.0.0', () => {
+    server.listen(Number(PORT), '0.0.0.0', () => {
       log(`Server is running at http://0.0.0.0:${PORT}`);
       log(`Development server started on port ${PORT}`);
     });
