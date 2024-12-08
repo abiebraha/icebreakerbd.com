@@ -1,18 +1,45 @@
-import { useState, useRef, useEffect } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { useState, useRef } from "react";
+import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Users, LineChart, Target } from "lucide-react";
 
+const images = [
+  { src: '/images/IMG_1392.jpeg', title: 'Sales Excellence' },
+  { src: '/images/IMG_1395.jpeg', title: 'Team Building' },
+  { src: '/images/IMG_1400.jpeg', title: 'Process Optimization' },
+  { src: '/images/IMG_1489.jpeg', title: 'Growth Strategy' },
+  { src: '/images/IMG_1518.jpeg', title: 'Performance Analytics' },
+  { src: '/images/IMG_1733.jpeg', title: 'Client Success' }
+];
+
 export default function Home() {
   const { scrollY } = useScroll();
   const ref = useRef<HTMLDivElement>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [cards, setCards] = useState(images);
   
   // Enhanced spring animations for Apple-like smooth transitions
   const springConfig = { 
     stiffness: 50,
     damping: 20,
     mass: 1.5
+  };
+
+  const handleCardSwipe = (index: number, direction: number) => {
+    // Calculate next index with wrap-around
+    const nextIndex = (index + direction + images.length) % images.length;
+    setCurrentIndex(nextIndex);
+
+    // Rotate the cards array
+    const newCards = [...cards];
+    const [removed] = newCards.splice(index, 1);
+    if (direction > 0) {
+      newCards.push(removed);
+    } else {
+      newCards.unshift(removed);
+    }
+    setCards(newCards);
   };
   
   // Hero animations
@@ -40,12 +67,6 @@ export default function Home() {
   // Stats animations
   const statsY = useSpring(
     useTransform(scrollY, [600, 1400], [200, -50]),
-    springConfig
-  );
-  
-  // Text reveal animations
-  const textReveal = useSpring(
-    useTransform(scrollY, [100, 500], [50, 0]),
     springConfig
   );
 
@@ -106,8 +127,6 @@ export default function Home() {
             </motion.div>
           </div>
         </div>
-
-        {/* Removed loading animation div */}
       </motion.section>
 
       {/* Dynamic Photo Showcase */}
@@ -133,110 +152,104 @@ export default function Home() {
           </motion.div>
 
           <motion.div 
-            className="overflow-hidden cursor-grab active:cursor-grabbing"
-            whileTap={{ cursor: "grabbing" }}
+            className="overflow-hidden relative h-[448px]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
           >
-            <motion.div
-              className="flex snap-x snap-mandatory px-[calc(50%-160px)] relative"
-              drag="x"
-              dragConstraints={{ right: 0, left: -1600 }}
-              dragElastic={0.2}
-              dragTransition={{ 
-                bounceStiffness: 400, 
-                bounceDamping: 40,
-                power: 0.4,
-                timeConstant: 200
-              }}
-              initial={{ x: 0 }}
+            <div
+              className="absolute left-1/2 -translate-x-1/2 w-[320px]"
               style={{
-                paddingBottom: "40px",
-                gap: "-260px", // Slightly reduced overlap for better dragging
-                cursor: "grab"
+                perspective: '2000px',
+                transformStyle: 'preserve-3d',
               }}
             >
-              {[
-                { src: '/images/IMG_1392.jpeg', title: 'Sales Excellence' },
-                { src: '/images/IMG_1395.jpeg', title: 'Team Building' },
-                { src: '/images/IMG_1400.jpeg', title: 'Process Optimization' },
-                { src: '/images/IMG_1489.jpeg', title: 'Growth Strategy' },
-                { src: '/images/IMG_1518.jpeg', title: 'Performance Analytics' },
-                { src: '/images/IMG_1733.jpeg', title: 'Client Success' }
-              ].map((image, index) => (
-                <motion.div
-                  key={index}
-                  className="relative flex-shrink-0 w-[320px] snap-center snap-always rounded-3xl group overflow-hidden shadow-2xl border border-white/10"
-                  style={{ 
-                    height: '448px', // Maintains playing card proportions (320 * 1.4)
-                    perspective: '1000px',
-                    zIndex: 6 - index,
-                    transform: `rotate(${index * 1.5}deg)`, // Reduced rotation for better swiping
-                    transformOrigin: 'center center',
-                    marginLeft: index === 0 ? '0' : '-260px', // Adjusted for better drag interaction
-                    transition: 'all 0.3s ease-out'
-                  }}
-                  initial={{ opacity: 0, rotate: index * 2, x: 40 * index }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ 
-                    duration: 0.8,
-                    ease: [0.16, 1, 0.3, 1]
-                  }}
-                  whileHover={{ 
-                    scale: 1.02, 
-                    rotate: 0,
-                    zIndex: 10,
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                  layoutId={`card-${index}`}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#123e74]/40 via-transparent to-[#2a9d8f]/30 opacity-0 
-                    group-hover:opacity-100 transition-all duration-500 ease-out z-10" />
-                  
+              <AnimatePresence mode="popLayout">
+                {cards.map((image, index) => (
                   <motion.div
-                    className="relative w-full h-full transform-gpu"
-                    whileHover={{ scale: 1.02 }}
+                    key={image.src}
+                    className="absolute top-0 w-[320px] rounded-3xl group overflow-hidden shadow-2xl border border-white/10"
+                    style={{ 
+                      height: '448px',
+                      zIndex: cards.length - index,
+                      transformOrigin: 'center center',
+                      cursor: 'grab',
+                      position: 'absolute',
+                      left: '50%',
+                      top: '0',
+                      transform: `translateX(-50%) rotate(${index * 2}deg) translateY(${index * 4}px)`,
+                    }}
+                    drag="x"
+                    dragConstraints={{ left: -200, right: 200 }}
+                    dragElastic={0.2}
+                    onDragEnd={(event, info) => {
+                      if (Math.abs(info.offset.x) > 100) {
+                        handleCardSwipe(index, info.offset.x > 0 ? -1 : 1);
+                      }
+                    }}
                     transition={{ 
                       type: "spring",
                       stiffness: 300,
                       damping: 20
                     }}
+                    whileHover={{ 
+                      scale: 1.02,
+                      rotate: 0,
+                      zIndex: 10,
+                    }}
+                    whileTap={{ 
+                      scale: 0.98,
+                      cursor: 'grabbing'
+                    }}
+                    layout
                   >
-                    <img
-                      src={image.src}
-                      alt={image.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover transition-opacity duration-1000"
-                      onError={(e) => {
-                        e.currentTarget.style.display = 'none';
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#123e74]/40 via-transparent to-[#2a9d8f]/30 opacity-0 
+                      group-hover:opacity-100 transition-all duration-500 ease-out z-10" />
+                    
+                    <motion.div
+                      className="relative w-full h-full transform-gpu"
+                      whileHover={{ scale: 1.02 }}
+                      transition={{ 
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 20
                       }}
-                    />
-                  </motion.div>
+                    >
+                      <img
+                        src={image.src}
+                        alt={image.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover transition-opacity duration-1000"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                        }}
+                      />
+                    </motion.div>
 
-                  <motion.div 
-                    className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-black/60 via-black/40 to-transparent z-20"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 }}
-                  >
-                    <h3 className="text-white font-semibold text-2xl md:text-3xl transform group-hover:scale-105 transition-transform duration-300">
-                      {image.title}
-                    </h3>
+                    <motion.div 
+                      className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-black/60 via-black/40 to-transparent z-20"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 }}
+                    >
+                      <h3 className="text-white font-semibold text-2xl md:text-3xl transform group-hover:scale-105 transition-transform duration-300">
+                        {image.title}
+                      </h3>
+                    </motion.div>
                   </motion.div>
-                </motion.div>
-              ))}
-            </motion.div>
+                ))}
+              </AnimatePresence>
+            </div>
           </motion.div>
           
           <div className="mt-8 flex justify-center space-x-2">
-            {[...Array(6)].map((_, i) => (
+            {cards.map((_, i) => (
               <motion.div
                 key={i}
-                className="w-2 h-2 rounded-full bg-slate-300"
+                className={`w-2 h-2 rounded-full ${i === currentIndex ? 'bg-[#123e74]' : 'bg-slate-300'}`}
                 initial={{ opacity: 0.5 }}
-                whileInView={{ opacity: i === 0 ? 1 : 0.5 }}
-                viewport={{ once: true }}
-                style={{
-                  backgroundColor: i === 0 ? '#123e74' : undefined
-                }}
+                animate={{ opacity: i === currentIndex ? 1 : 0.5 }}
+                transition={{ duration: 0.3 }}
               />
             ))}
           </div>
