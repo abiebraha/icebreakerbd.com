@@ -21,16 +21,23 @@ function normalizeUrl(url: string): string {
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 let openai: OpenAI | null = null;
 
-try {
-  if (!OPENAI_API_KEY) {
-    console.error('OpenAI API key is missing. AI features will be disabled.');
-  } else {
+if (!OPENAI_API_KEY) {
+  console.warn('OpenAI API key is missing. AI features will be disabled.');
+  if (process.env.NODE_ENV === 'production') {
+    console.warn('Running in production without OpenAI API key - AI features will return friendly error messages');
+  }
+} else {
+  try {
     openai = new OpenAI({
       apiKey: OPENAI_API_KEY
     });
+    console.log('OpenAI client initialized successfully');
+  } catch (error) {
+    console.error('Failed to initialize OpenAI client:', error);
+    if (process.env.NODE_ENV === 'production') {
+      console.error('Error initializing OpenAI in production - check environment configuration');
+    }
   }
-} catch (error) {
-  console.error('Failed to initialize OpenAI client:', error);
 }
 
 async function sendEmailTranscript(to: string | null, toolName: string, input: any, output: string) {
