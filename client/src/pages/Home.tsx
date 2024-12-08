@@ -21,9 +21,10 @@ export default function Home() {
   
   // Enhanced spring animations for Apple-like smooth transitions
   const springConfig = { 
-    stiffness: 50,
-    damping: 20,
-    mass: 1.5
+    stiffness: 100,
+    damping: 30,
+    mass: 1,
+    restDelta: 0.001
   };
 
   const handleCardSwipe = (index: number, direction: number) => {
@@ -41,7 +42,15 @@ export default function Home() {
         newCards.unshift(removed);
       }
       setCards(newCards);
-    }, 200); // Match exit animation duration
+      
+      // Add a small delay before allowing the next swipe
+      setTimeout(() => {
+        const carousel = document.querySelector('.carousel-container');
+        if (carousel) {
+          carousel.classList.remove('animating');
+        }
+      }, 300);
+    }, 300); // Match exit animation duration
   };
   
   // Hero animations
@@ -164,9 +173,10 @@ export default function Home() {
               style={{
                 perspective: '2000px',
                 transformStyle: 'preserve-3d',
+                transformOrigin: '50% 50% -100px',
               }}
             >
-              <AnimatePresence initial={false}>
+              <AnimatePresence mode="popLayout">
                 {cards.map((image, index) => (
                   <motion.div
                     key={image.src}
@@ -189,30 +199,80 @@ export default function Home() {
                         handleCardSwipe(index, info.offset.x > 0 ? -1 : 1);
                       }
                     }}
-                    initial={{ x: 0 }}
+                    initial={{ 
+                      x: 300,
+                      opacity: 0,
+                      scale: 0.9,
+                      rotateY: 45,
+                      z: -300
+                    }}
                     animate={{ 
                       x: 0,
-                      rotate: index * 2,
-                      translateY: index * 4 
+                      opacity: 1,
+                      scale: 1 - (index * 0.03),
+                      rotate: index * 1.5,
+                      translateY: index * 8,
+                      rotateY: 0,
+                      z: -index * 40,
+                      transition: {
+                        type: "spring",
+                        stiffness: 150,
+                        damping: 15,
+                        mass: 1,
+                        velocity: 2
+                      }
                     }}
                     exit={{ 
-                      x: 1000,
+                      x: -300,
                       opacity: 0,
-                      transition: { duration: 0.2 }
+                      scale: 0.9,
+                      rotateY: -45,
+                      z: -300,
+                      transition: { 
+                        duration: 0.5,
+                        ease: [0.43, 0.13, 0.23, 0.96]
+                      }
                     }}
                     transition={{ 
                       type: "spring",
                       stiffness: 300,
-                      damping: 20
+                      damping: 25,
+                      mass: 0.8,
+                      restDelta: 0.001
                     }}
                     whileHover={{ 
-                      scale: 1.02,
+                      scale: 1.08,
                       rotate: 0,
-                      zIndex: 10,
+                      translateY: -20,
+                      z: 200,
+                      zIndex: cards.length + 1,
+                      transition: {
+                        type: "spring",
+                        stiffness: 200,
+                        damping: 15,
+                        mass: 0.8,
+                        velocity: 3
+                      }
                     }}
                     whileTap={{ 
-                      scale: 0.98,
-                      cursor: 'grabbing'
+                      scale: 0.95,
+                      cursor: 'grabbing',
+                      rotateY: 0,
+                      transition: {
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 20,
+                        mass: 0.6
+                      }
+                    }}
+                    dragConstraints={{ left: -100, right: 100 }}
+                    dragElastic={0.2}
+                    dragTransition={{
+                      bounceStiffness: 200,
+                      bounceDamping: 20,
+                      power: 0.2,
+                      timeConstant: 150,
+                      restDelta: 0.001
                     }}
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-[#123e74]/40 via-transparent to-[#2a9d8f]/30 opacity-0 

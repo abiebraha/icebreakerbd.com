@@ -69,32 +69,16 @@ app.use((req, res, next) => {
     serveStatic(app);
   }
 
-  // Try port 80 first, fallback to 3001 if not available
-  let PORT = 80;
+  // Start with port 3001 for development
+  const PORT = process.env.PORT || 3001;
   
-  const startServer = (port: number) => {
-    try {
-      server.listen(port, '0.0.0.0', () => {
-        log(`Server is running at http://0.0.0.0:${port}`);
-        log(`Local development server started on port ${port}`);
-      }).on('error', (err: NodeJS.ErrnoException) => {
-        if (err.code === 'EACCES' && port === 80) {
-          log('Permission denied for port 80, falling back to port 3001');
-          startServer(3001);
-        } else if (err.code === 'EADDRINUSE') {
-          log(`Port ${port} is already in use. Trying next available port.`);
-          startServer(port + 1);
-        } else {
-          log(`Failed to start server: ${err.message}`);
-          throw err;
-        }
-      });
-    } catch (error) {
-      log(`Failed to start server: ${(error as Error).message}`);
-      process.exit(1);
-    }
-  };
-
-  // Start server with initial port
-  startServer(PORT);
+  try {
+    server.listen(PORT, '0.0.0.0', () => {
+      log(`Server is running at http://0.0.0.0:${PORT}`);
+      log(`Development server started on port ${PORT}`);
+    });
+  } catch (error) {
+    log(`Failed to start server: ${(error as Error).message}`);
+    process.exit(1);
+  }
 })();
