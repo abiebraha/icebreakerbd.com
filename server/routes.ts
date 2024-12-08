@@ -7,29 +7,64 @@ const openai = new OpenAI({
 });
 
 async function sendEmailTranscript(to: string, toolName: string, input: any, output: string) {
-  const msg = {
-    to,
-    from: 'info@icebreakerbd.com',
-    subject: `Your ${toolName} Generation Results`,
-    text: `
-Here are your ${toolName} results:
+  try {
+    const msg = {
+      to,
+      from: {
+        email: 'info@icebreakerbd.com',
+        name: 'IceBreaker AI Tools'
+      },
+      subject: `Your ${toolName} Generation Results`,
+      text: `
+Hello!
 
-Input:
-${JSON.stringify(input, null, 2)}
+Here are your ${toolName} generation results from IceBreaker AI Tools.
+
+Input Details:
+${Object.entries(input)
+  .filter(([key, value]) => value)
+  .map(([key, value]) => `${key}: ${value}`)
+  .join('\n')}
 
 Generated Content:
 ${output}
-    `,
-    html: `
-      <h2>Your ${toolName} Results</h2>
-      <h3>Input:</h3>
-      <pre>${JSON.stringify(input, null, 2)}</pre>
-      <h3>Generated Content:</h3>
-      <div>${output.replace(/\n/g, '<br/>')}</div>
-    `,
-  };
 
-  await sgMail.send(msg);
+Thank you for using IceBreaker AI Tools!
+      `,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #123e74;">Your ${toolName} Results</h2>
+          
+          <div style="margin: 20px 0;">
+            <h3 style="color: #333;">Input Details:</h3>
+            <div style="background: #f5f5f5; padding: 15px; border-radius: 5px;">
+              ${Object.entries(input)
+                .filter(([key, value]) => value)
+                .map(([key, value]) => `<p><strong>${key}:</strong> ${value}</p>`)
+                .join('')}
+            </div>
+          </div>
+          
+          <div style="margin: 20px 0;">
+            <h3 style="color: #333;">Generated Content:</h3>
+            <div style="background: #f5f5f5; padding: 15px; border-radius: 5px; white-space: pre-wrap;">
+              ${output.replace(/\n/g, '<br/>')}
+            </div>
+          </div>
+          
+          <p style="color: #666; font-size: 14px; margin-top: 30px;">
+            Thank you for using IceBreaker AI Tools!
+          </p>
+        </div>
+      `,
+    };
+
+    await sgMail.send(msg);
+    console.log(`Email transcript sent successfully to ${to}`);
+  } catch (error) {
+    console.error('Error sending email transcript:', error);
+    throw new Error('Failed to send email transcript');
+  }
 }
 
 export function registerRoutes(app: Express) {
@@ -184,13 +219,23 @@ ${customInstructions ? `\nCustom Instructions: ${customInstructions}` : ''}`
 
       // Send email transcript if we have content and an email
       if (generatedContent && email) {
-        await sendEmailTranscript(email, "Cold Email", { websiteUrl, productDescription, customInstructions }, generatedContent);
+        try {
+          await sendEmailTranscript(email, "Cold Email", { websiteUrl, productDescription, customInstructions }, generatedContent);
+        } catch (emailError) {
+          console.error('Error sending email transcript:', emailError);
+          return res.status(500).json({ 
+            message: 'Content generated successfully but failed to send email transcript',
+            content: generatedContent
+          });
+        }
       }
 
       res.json({ content: generatedContent });
     } catch (error) {
       console.error('Error generating cold email:', error);
-      res.status(500).json({ message: 'Failed to generate cold email' });
+      res.status(500).json({ 
+        message: error instanceof Error ? error.message : 'Failed to generate cold email'
+      });
     }
   });
 
@@ -267,13 +312,23 @@ ${customInstructions ? `\nCustom Instructions: ${customInstructions}` : ''}`
 
       // Send email transcript if we have content and an email
       if (generatedContent && email) {
-        await sendEmailTranscript(email, "Sales Script", { websiteUrl, productDescription, customInstructions }, generatedContent);
+        try {
+          await sendEmailTranscript(email, "Sales Script", { websiteUrl, productDescription, customInstructions }, generatedContent);
+        } catch (emailError) {
+          console.error('Error sending email transcript:', emailError);
+          return res.status(500).json({ 
+            message: 'Content generated successfully but failed to send email transcript',
+            content: generatedContent
+          });
+        }
       }
 
       res.json({ content: generatedContent });
     } catch (error) {
       console.error('Error generating sales script:', error);
-      res.status(500).json({ message: 'Failed to generate sales script' });
+      res.status(500).json({ 
+        message: error instanceof Error ? error.message : 'Failed to generate sales script'
+      });
     }
   });
 
@@ -353,13 +408,23 @@ vs
 
       // Send email transcript if we have content and an email
       if (generatedContent && email) {
-        await sendEmailTranscript(email, "LinkedIn Post", { context, customInstructions }, generatedContent);
+        try {
+          await sendEmailTranscript(email, "LinkedIn Post", { context, customInstructions }, generatedContent);
+        } catch (emailError) {
+          console.error('Error sending email transcript:', emailError);
+          return res.status(500).json({ 
+            message: 'Content generated successfully but failed to send email transcript',
+            content: generatedContent
+          });
+        }
       }
 
       res.json({ content: generatedContent });
     } catch (error) {
       console.error('Error generating LinkedIn post:', error);
-      res.status(500).json({ message: 'Failed to generate LinkedIn post' });
+      res.status(500).json({ 
+        message: error instanceof Error ? error.message : 'Failed to generate LinkedIn post'
+      });
     }
   });
 }
