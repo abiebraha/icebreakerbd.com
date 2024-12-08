@@ -109,12 +109,12 @@ export default function ServicesPage() {
         <div 
           className="absolute inset-0"
           style={{
-            backgroundImage: "url('/IMG_1518.jpeg')",
+            backgroundImage: "url('/images/IMG_1518.jpeg')",
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
-            opacity: 0.15,
-            filter: 'grayscale(50%)'
+            opacity: 0.2,
+            filter: 'grayscale(40%) brightness(1.1)'
           }}
         />
         
