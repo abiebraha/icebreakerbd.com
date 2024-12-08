@@ -4,53 +4,48 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Users, LineChart, Target } from "lucide-react";
 
-const images = [
-  { src: '/images/IMG_1392.jpeg', title: 'Sales Excellence' },
-  { src: '/images/IMG_1395.jpeg', title: 'Team Building' },
-  { src: '/images/IMG_1400.jpeg', title: 'Process Optimization' },
-  { src: '/images/IMG_1489.jpeg', title: 'Growth Strategy' },
-  { src: '/images/IMG_1518.jpeg', title: 'Performance Analytics' },
-  { src: '/images/IMG_1733.jpeg', title: 'Client Success' }
+const cards = [
+  {
+    src: '/images/IMG_1392.jpeg',
+    title: 'Sales Excellence',
+    description: 'Our proven methodology transforms your sales process with data-driven strategies and cutting-edge tools, ensuring consistent growth and success.'
+  },
+  {
+    src: '/images/IMG_1395.jpeg',
+    title: 'Team Building',
+    description: 'Build and nurture high-performing sales teams through expert recruitment, comprehensive training, and continuous development programs.'
+  },
+  {
+    src: '/images/IMG_1400.jpeg',
+    title: 'Process Optimization',
+    description: 'Streamline your sales operations with automated workflows, efficient CRM implementation, and optimized communication channels.'
+  },
+  {
+    src: '/images/IMG_1489.jpeg',
+    title: 'Growth Strategy',
+    description: 'Develop and execute tailored growth strategies that align with your business objectives and market opportunities.'
+  },
+  {
+    src: '/images/IMG_1518.jpeg',
+    title: 'Performance Analytics',
+    description: "Leverage advanced analytics and KPI tracking to measure, analyze, and improve your sales team's performance continuously."
+  },
+  {
+    src: '/images/IMG_1733.jpeg',
+    title: 'Client Success',
+    description: 'Transform leads into long-term partnerships through our proven client engagement and relationship management approach.'
+  }
 ];
 
 export default function Home() {
   const { scrollY } = useScroll();
-  const ref = useRef<HTMLDivElement>(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [cards, setCards] = useState(images);
   
-  // Enhanced spring animations for Apple-like smooth transitions
+  // Spring animations configuration
   const springConfig = { 
     stiffness: 100,
     damping: 30,
     mass: 1,
     restDelta: 0.001
-  };
-
-  const handleCardSwipe = (index: number, direction: number) => {
-    // Calculate next index with wrap-around
-    const nextIndex = (index + direction + images.length) % images.length;
-    setCurrentIndex(nextIndex);
-
-    // Wait for exit animation to complete before updating cards
-    setTimeout(() => {
-      const newCards = [...cards];
-      const [removed] = newCards.splice(index, 1);
-      if (direction > 0) {
-        newCards.push(removed);
-      } else {
-        newCards.unshift(removed);
-      }
-      setCards(newCards);
-      
-      // Add a small delay before allowing the next swipe
-      setTimeout(() => {
-        const carousel = document.querySelector('.carousel-container');
-        if (carousel) {
-          carousel.classList.remove('animating');
-        }
-      }, 300);
-    }, 300); // Match exit animation duration
   };
   
   // Hero animations
@@ -140,194 +135,88 @@ export default function Home() {
         </div>
       </motion.section>
 
-      {/* Dynamic Photo Showcase */}
-      <section className="py-32 bg-gradient-to-b from-white to-slate-50 overflow-hidden">
+      {/* Innovation Showcase */}
+      <section className="py-32 bg-gradient-to-br from-[#0a192f] to-[#112240] overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-20"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
               Transforming Sales
               <br />
-              <span className="bg-gradient-to-r from-[#123e74] to-[#2a9d8f] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent">
                 Through Innovation
               </span>
             </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              See how we help businesses achieve exceptional growth
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+              Click the cards to learn more about our approach
             </p>
           </motion.div>
 
-          <motion.div 
-            className="overflow-hidden relative h-[448px]"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div
-              className="absolute left-1/2 -translate-x-1/2 w-[320px]"
-              style={{
-                perspective: '2000px',
-                transformStyle: 'preserve-3d',
-                transformOrigin: '50% 50% -100px',
-              }}
-            >
-              <AnimatePresence mode="popLayout">
-                {cards.map((image, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {cards.map((card, index) => {
+              const [isFlipped, setIsFlipped] = useState(false);
+              
+              return (
+                <motion.div
+                  key={card.title}
+                  className="relative h-[400px] cursor-pointer [perspective:1000px]"
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: 1 }}
+                  onClick={() => setIsFlipped(!isFlipped)}
+                >
                   <motion.div
-                    key={image.src}
-                    className="absolute top-0 w-[320px] rounded-3xl group overflow-hidden shadow-2xl border border-white/10"
-                    style={{ 
-                      height: '448px',
-                      zIndex: cards.length - index,
-                      transformOrigin: 'center center',
-                      cursor: 'grab',
-                      position: 'absolute',
-                      left: '50%',
-                      top: '0',
-                      transform: `translateX(-50%) rotate(${index * 2}deg) translateY(${index * 4}px)`,
-                    }}
-                    drag="x"
-                    dragConstraints={{ left: -200, right: 200 }}
-                    dragElastic={0.2}
-                    onDragEnd={(event, info) => {
-                      if (Math.abs(info.offset.x) > 100) {
-                        handleCardSwipe(index, info.offset.x > 0 ? -1 : 1);
-                      }
-                    }}
-                    initial={{ 
-                      x: 300,
-                      opacity: 0,
-                      scale: 0.9,
-                      rotateY: 45,
-                      z: -300
-                    }}
-                    animate={{ 
-                      x: 0,
-                      opacity: 1,
-                      scale: 1 - (index * 0.03),
-                      rotate: index * 1.5,
-                      translateY: index * 8,
-                      rotateY: 0,
-                      z: -index * 40,
-                      transition: {
-                        type: "spring",
-                        stiffness: 150,
-                        damping: 15,
-                        mass: 1,
-                        velocity: 2
-                      }
-                    }}
-                    exit={{ 
-                      x: -300,
-                      opacity: 0,
-                      scale: 0.9,
-                      rotateY: -45,
-                      z: -300,
-                      transition: { 
-                        duration: 0.5,
-                        ease: [0.43, 0.13, 0.23, 0.96]
-                      }
-                    }}
-                    transition={{ 
+                    className="w-full h-full [transform-style:preserve-3d]"
+                    initial={false}
+                    animate={{ rotateY: isFlipped ? 180 : 0 }}
+                    transition={{
                       type: "spring",
                       stiffness: 300,
-                      damping: 25,
-                      mass: 0.8,
-                      restDelta: 0.001
-                    }}
-                    whileHover={{ 
-                      scale: 1.08,
-                      rotate: 0,
-                      translateY: -20,
-                      z: 200,
-                      zIndex: cards.length + 1,
-                      transition: {
-                        type: "spring",
-                        stiffness: 200,
-                        damping: 15,
-                        mass: 0.8,
-                        velocity: 3
-                      }
-                    }}
-                    whileTap={{ 
-                      scale: 0.95,
-                      cursor: 'grabbing',
-                      rotateY: 0,
-                      transition: {
-                        type: "spring",
-                        stiffness: 300,
-                        damping: 20,
-                        mass: 0.6
-                      }
-                    }}
-                    dragConstraints={{ left: -100, right: 100 }}
-                    dragElastic={0.2}
-                    dragTransition={{
-                      bounceStiffness: 200,
-                      bounceDamping: 20,
-                      power: 0.2,
-                      timeConstant: 150,
-                      restDelta: 0.001
+                      damping: 30
                     }}
                   >
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#123e74]/40 via-transparent to-[#2a9d8f]/30 opacity-0 
-                      group-hover:opacity-100 transition-all duration-500 ease-out z-10" />
-                    
+                    {/* Front of card */}
                     <motion.div
-                      className="relative w-full h-full transform-gpu group"
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ 
-                        type: "spring",
-                        stiffness: 300,
-                        damping: 20
-                      }}
+                      className="absolute w-full h-full rounded-2xl overflow-hidden shadow-xl [backface-visibility:hidden]"
                     >
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-br from-[#123e74]/40 via-transparent to-[#2a9d8f]/30 opacity-0 
-                        group-hover:opacity-100 transition-all duration-500 ease-out z-10"
-                      />
-                      <img
-                        src={image.src}
-                        alt={image.title}
-                        loading="lazy"
-                        className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110"
-                        onError={(e) => {
-                          e.currentTarget.style.display = 'none';
-                        }}
-                      />
+                      <div className="relative w-full h-full group">
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#123e74]/40 via-transparent to-[#2a9d8f]/30 opacity-0 
+                          group-hover:opacity-100 transition-all duration-500 ease-out z-10" />
+                        <img
+                          src={card.src}
+                          alt={card.title}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/60 via-black/40 to-transparent">
+                          <h3 className="text-white text-2xl font-semibold">{card.title}</h3>
+                          <p className="text-white/80 mt-2">Click to learn more</p>
+                        </div>
+                      </div>
                     </motion.div>
 
-                    <motion.div 
-                      className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-black/60 via-black/40 to-transparent z-20"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.3 }}
+                    {/* Back of card */}
+                    <motion.div
+                      className="absolute w-full h-full rounded-2xl p-8 bg-gradient-to-br from-[#123e74] to-[#2a9d8f] text-white flex flex-col justify-center [backface-visibility:hidden] [transform:rotateY(180deg)]"
                     >
-                      <h3 className="text-white font-semibold text-2xl md:text-3xl transform group-hover:scale-105 transition-transform duration-300">
-                        {image.title}
-                      </h3>
+                      <h3 className="text-2xl font-bold mb-4">{card.title}</h3>
+                      <p className="text-lg leading-relaxed">{card.description}</p>
+                      <button
+                        className="mt-6 text-sm font-semibold opacity-80 hover:opacity-100 transition-opacity"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setIsFlipped(false);
+                        }}
+                      >
+                        ← Flip back
+                      </button>
                     </motion.div>
                   </motion.div>
-                ))}
-              </AnimatePresence>
-            </div>
-          </motion.div>
-          
-          <div className="mt-8 flex justify-center space-x-2">
-            {cards.map((_, i) => (
-              <motion.div
-                key={i}
-                className={`w-2 h-2 rounded-full ${i === currentIndex ? 'bg-[#123e74]' : 'bg-slate-300'}`}
-                initial={{ opacity: 0.5 }}
-                animate={{ opacity: i === currentIndex ? 1 : 0.5 }}
-                transition={{ duration: 0.3 }}
-              />
-            ))}
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
