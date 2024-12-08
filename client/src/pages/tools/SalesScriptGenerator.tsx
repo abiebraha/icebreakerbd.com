@@ -90,19 +90,26 @@ export default function SalesScriptGenerator() {
               <label className="text-sm font-medium text-slate-900">Website URL</label>
               <Input
                 type="url"
+                id="website-url"
+                name="website-url"
                 value={websiteUrl}
                 onChange={(e) => setWebsiteUrl(e.target.value)}
                 placeholder="Enter website URL to research the product/service and industry..."
+                className="w-full"
+                aria-label="Website URL"
               />
             </div>
 
             <div className="space-y-2">
               <label className="text-sm font-medium text-slate-900">Product Description</label>
               <Textarea
+                id="product-description"
+                name="product-description"
                 value={productDescription}
                 onChange={(e) => setProductDescription(e.target.value)}
                 placeholder="Describe the product/service, target customers, and key pain points it solves..."
-                className="h-32"
+                className="min-h-[8rem] w-full resize-y"
+                aria-label="Product Description"
               />
               <p className="text-sm text-slate-500">
                 Provide either a website URL or product description
@@ -112,10 +119,13 @@ export default function SalesScriptGenerator() {
             <div className="space-y-2">
               <label className="text-sm font-medium text-slate-900">Custom Instructions</label>
               <Textarea
+                id="custom-instructions"
+                name="custom-instructions"
                 value={customInstructions}
                 onChange={(e) => setCustomInstructions(e.target.value)}
                 placeholder="Add seller's full name, preferred meeting days/times, and any specific instructions for the script..."
-                className="h-24"
+                className="min-h-[6rem] w-full resize-y"
+                aria-label="Custom Instructions"
               />
             </div>
 
@@ -123,9 +133,13 @@ export default function SalesScriptGenerator() {
               <label className="text-sm font-medium text-slate-900">Email (optional)</label>
               <Input
                 type="email"
+                id="email"
+                name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email to receive the generated content..."
+                className="w-full"
+                aria-label="Email Address"
               />
             </div>
 

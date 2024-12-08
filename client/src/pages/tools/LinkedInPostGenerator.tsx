@@ -83,21 +83,27 @@ export default function LinkedInPostGenerator() {
             <div className="space-y-2">
               <label className="text-sm font-medium text-slate-900">Context</label>
               <Textarea
+                id="context"
+                name="context"
                 value={context}
                 onChange={(e) => setContext(e.target.value)}
                 placeholder="Describe the topic, key message, and target audience..."
                 required
-                className="h-32"
+                className="min-h-[8rem] w-full resize-y"
+                aria-label="Context"
               />
             </div>
 
             <div className="space-y-2">
               <label className="text-sm font-medium text-slate-900">Custom Instructions</label>
               <Textarea
+                id="custom-instructions"
+                name="custom-instructions"
                 value={customInstructions}
                 onChange={(e) => setCustomInstructions(e.target.value)}
                 placeholder="Any specific content style, tone preferences, or hashtag requirements..."
-                className="h-24"
+                className="min-h-[6rem] w-full resize-y"
+                aria-label="Custom Instructions"
               />
             </div>
 
@@ -105,9 +111,13 @@ export default function LinkedInPostGenerator() {
               <label className="text-sm font-medium text-slate-900">Email (optional)</label>
               <Input
                 type="email"
+                id="email"
+                name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email to receive the generated content..."
+                className="w-full"
+                aria-label="Email Address"
               />
             </div>
 
