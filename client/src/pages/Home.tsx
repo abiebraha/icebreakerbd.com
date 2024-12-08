@@ -139,27 +139,19 @@ export default function Home() {
             <motion.div
               className="flex snap-x snap-mandatory px-[calc(50%-160px)] relative"
               drag="x"
-              dragConstraints={{ right: 0, left: -2000 }}
-              dragElastic={0.05}
+              dragConstraints={{ right: 0, left: -1600 }}
+              dragElastic={0.2}
               dragTransition={{ 
-                bounceStiffness: 1000, 
-                bounceDamping: 60,
-                power: 0.2 
+                bounceStiffness: 400, 
+                bounceDamping: 40,
+                power: 0.4,
+                timeConstant: 200
               }}
               initial={{ x: 0 }}
-              animate={{ 
-                x: [-2000, 0],
-                transition: {
-                  duration: 20,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                  ease: "linear",
-                  repeatDelay: 1
-                }
-              }}
               style={{
                 paddingBottom: "40px",
-                gap: "-280px", // Creates overlapping effect
+                gap: "-260px", // Slightly reduced overlap for better dragging
+                cursor: "grab"
               }}
             >
               {[
@@ -177,9 +169,10 @@ export default function Home() {
                     height: '448px', // Maintains playing card proportions (320 * 1.4)
                     perspective: '1000px',
                     zIndex: 6 - index,
-                    transform: `rotate(${index * 2}deg)`,
+                    transform: `rotate(${index * 1.5}deg)`, // Reduced rotation for better swiping
                     transformOrigin: 'center center',
-                    marginLeft: index === 0 ? '0' : '-280px',
+                    marginLeft: index === 0 ? '0' : '-260px', // Adjusted for better drag interaction
+                    transition: 'all 0.3s ease-out'
                   }}
                   initial={{ opacity: 0, rotate: index * 2, x: 40 * index }}
                   animate={{ opacity: 1, x: 0 }}
