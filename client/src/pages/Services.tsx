@@ -105,13 +105,49 @@ export default function ServicesPage() {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-[#123e74]/5 via-transparent to-transparent">
-        <div 
-          className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent"
-          style={{
-            background: 'linear-gradient(to bottom right, rgba(18, 62, 116, 0.03), transparent)'
-          }}
-        />
+      <section className="relative py-24 overflow-hidden">
+        {/* Background Image Grid */}
+        <div className="absolute inset-0 grid grid-cols-3 gap-4 opacity-10">
+          <motion.div
+            className="relative h-full"
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.5 }}
+            style={{
+              backgroundImage: "url('/IMG_1518.jpeg')",
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              filter: 'grayscale(40%) brightness(1.1)'
+            }}
+          />
+          <motion.div
+            className="relative h-full"
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.5, delay: 0.2 }}
+            style={{
+              backgroundImage: "url('/IMG_1489.jpeg')",
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              filter: 'grayscale(40%) brightness(1.1)'
+            }}
+          />
+          <motion.div
+            className="relative h-full"
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.5, delay: 0.4 }}
+            style={{
+              backgroundImage: "url('/IMG_1400.jpeg')",
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              filter: 'grayscale(40%) brightness(1.1)'
+            }}
+          />
+        </div>
+        
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#123e74]/90 via-[#123e74]/70 to-transparent" />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div
@@ -120,14 +156,14 @@ export default function ServicesPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Transform Your Sales
               <br />
-              <span className="text-[#0066CC]">
+              <span className="text-[#66b3ff]">
                 Into Growth Stories
               </span>
             </h1>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            <p className="text-xl text-slate-100 max-w-3xl mx-auto">
               Experience the transformation as we turn your sales challenges into success stories. 
               Our proven approach doesn't just build systems – it creates lasting growth.
             </p>
