@@ -106,22 +106,23 @@ export default function ServicesPage() {
     <div className="bg-white">
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
+        <div 
+          className="absolute inset-0"
+          style={{
+            backgroundImage: "url('/IMG_1518.jpeg')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            opacity: 0.15,
+            filter: 'grayscale(50%)'
+          }}
+        />
+        
         <motion.div
           className="absolute inset-0 bg-gradient-to-br from-accent/10 via-primary/5 to-transparent"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
-        />
-        
-        <div 
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: "url('/Color logo - no background.png')",
-            backgroundSize: 'contain',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            filter: 'grayscale(50%)'
-          }}
         />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
