@@ -136,12 +136,19 @@ export default function ServicesPage() {
             {services.map((service, index) => (
               <motion.div
                 key={service.title}
-                className="bg-white/95 backdrop-blur-sm p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] border border-white/20 hover:border-accent/20 group"
+                className="relative bg-white/95 backdrop-blur-sm p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] border border-white/20 hover:border-accent/20 group overflow-hidden"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <div className="mb-4">
+                <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity duration-300">
+                  <img 
+                    src={`/IMG_${1392 + index}.jpeg`}
+                    alt=""
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="relative mb-4">
                   <service.icon className="w-12 h-12 text-primary group-hover:text-accent transition-colors duration-300" />
                 </div>
                 <h3 className="text-xl font-semibold text-slate-900 mb-3">

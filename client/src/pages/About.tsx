@@ -31,6 +31,13 @@ export default function AboutPage() {
     <div className="min-h-screen bg-gradient-to-br from-[#123e74] via-[#1a4e8f] to-[#2a6d8f]">
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <img 
+            src="/IMG_1593.jpeg" 
+            alt=""
+            className="w-full h-full object-cover"
+          />
+        </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div
@@ -68,12 +75,19 @@ export default function AboutPage() {
             {values.map((value, index) => (
               <motion.div
                 key={value.title}
-                className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-white/20"
+                className="relative bg-white/10 backdrop-blur-sm p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-white/20 overflow-hidden group"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
+                <div className="absolute inset-0 opacity-5 group-hover:opacity-10 transition-opacity duration-300">
+                  <img 
+                    src={`/IMG_${1489 + index}.jpeg`}
+                    alt=""
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <value.icon className="w-12 h-12 text-cyan-300 mb-4" />
                 <h3 className="text-xl font-semibold text-white mb-2">{value.title}</h3>
                 <p className="text-slate-200">{value.description}</p>
