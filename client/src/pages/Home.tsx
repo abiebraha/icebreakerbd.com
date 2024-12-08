@@ -88,7 +88,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.9 }}
             >
-              For Small & Mid-Size Businesses Ready to Scale Their Sales
+              With Our Proven Two-Step Approach
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -285,10 +285,10 @@ export default function Home() {
 
           <div className="grid md:grid-cols-4 gap-12">
             {[
-              { number: "3-6", label: "Months to Full Implementation" },
+              { number: "150%", label: "Increase in Pipeline Value" },
               { number: "200%", label: "More Qualified Meetings Booked" },
               { number: "5x", label: "Increase in Outbound Efforts" },
-              { number: "100%", label: "Integrated Sales Tools" }
+              { number: "60%", label: "Shorter Sales Cycles" }
             ].map((stat, index) => (
               <motion.div
                 key={index}
