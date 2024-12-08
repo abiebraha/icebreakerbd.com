@@ -31,15 +31,17 @@ export default function Home() {
     const nextIndex = (index + direction + images.length) % images.length;
     setCurrentIndex(nextIndex);
 
-    // Rotate the cards array
-    const newCards = [...cards];
-    const [removed] = newCards.splice(index, 1);
-    if (direction > 0) {
-      newCards.push(removed);
-    } else {
-      newCards.unshift(removed);
-    }
-    setCards(newCards);
+    // Wait for exit animation to complete before updating cards
+    setTimeout(() => {
+      const newCards = [...cards];
+      const [removed] = newCards.splice(index, 1);
+      if (direction > 0) {
+        newCards.push(removed);
+      } else {
+        newCards.unshift(removed);
+      }
+      setCards(newCards);
+    }, 200); // Match exit animation duration
   };
   
   // Hero animations
@@ -164,7 +166,7 @@ export default function Home() {
                 transformStyle: 'preserve-3d',
               }}
             >
-              <AnimatePresence mode="popLayout">
+              <AnimatePresence initial={false}>
                 {cards.map((image, index) => (
                   <motion.div
                     key={image.src}
@@ -187,6 +189,17 @@ export default function Home() {
                         handleCardSwipe(index, info.offset.x > 0 ? -1 : 1);
                       }
                     }}
+                    initial={{ x: info?.offset?.x || 0 }}
+                    animate={{ 
+                      x: 0,
+                      rotate: index * 2,
+                      translateY: index * 4 
+                    }}
+                    exit={{ 
+                      x: info?.offset?.x > 0 ? 1000 : -1000,
+                      opacity: 0,
+                      transition: { duration: 0.2 }
+                    }}
                     transition={{ 
                       type: "spring",
                       stiffness: 300,
@@ -201,7 +214,6 @@ export default function Home() {
                       scale: 0.98,
                       cursor: 'grabbing'
                     }}
-                    layout
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-[#123e74]/40 via-transparent to-[#2a9d8f]/30 opacity-0 
                       group-hover:opacity-100 transition-all duration-500 ease-out z-10" />

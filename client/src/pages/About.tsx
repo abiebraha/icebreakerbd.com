@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Link } from "wouter";
 import { Shield, Users, Trophy, Brain } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -27,11 +27,31 @@ const values = [
 ];
 
 export default function AboutPage() {
+  const { scrollY } = useScroll();
+  
+  // Create parallax effects for different sections
+  const heroParallax = {
+    y: useTransform(scrollY, [0, 800], [0, 200]),
+    scale: useTransform(scrollY, [0, 800], [1, 1.2]),
+    opacity: useTransform(scrollY, [0, 400], [0.1, 0])
+  };
+
+  const valuesParallax = {
+    y: useTransform(scrollY, [400, 1200], [0, 100])
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#123e74] via-[#1a4e8f] to-[#2a6d8f]">
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
+        <motion.div 
+          className="absolute inset-0 opacity-10"
+          style={{
+            y: heroParallax.y,
+            scale: heroParallax.scale,
+            opacity: heroParallax.opacity
+          }}
+        >
           <img 
             src="/images/IMG_1593.jpeg" 
             alt="Background"
@@ -40,7 +60,7 @@ export default function AboutPage() {
               e.currentTarget.style.display = 'none';
             }}
           />
-        </div>
+        </motion.div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div
@@ -83,6 +103,10 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
+                style={{
+                  y: useTransform(scrollY, [400, 1200], [0, (index + 1) * 50]),
+                  scale: useTransform(scrollY, [400, 1200], [1, 1 + index * 0.05])
+                }}
               >
                 <div className="absolute inset-0 opacity-5 group-hover:opacity-10 transition-opacity duration-300">
                   {index === 0 && (
