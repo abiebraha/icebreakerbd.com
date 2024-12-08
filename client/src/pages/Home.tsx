@@ -137,14 +137,14 @@ export default function Home() {
             whileTap={{ cursor: "grabbing" }}
           >
             <motion.div
-              className="flex snap-x snap-mandatory px-[calc(50%-160px)]"
+              className="flex snap-x snap-mandatory px-[calc(50%-160px)] relative"
               drag="x"
               dragConstraints={{ right: 0, left: -2000 }}
-              dragElastic={0.1}
+              dragElastic={0.05}
               dragTransition={{ 
-                bounceStiffness: 800, 
-                bounceDamping: 50,
-                power: 0.5 
+                bounceStiffness: 1000, 
+                bounceDamping: 60,
+                power: 0.2 
               }}
               initial={{ x: 0 }}
               animate={{ 
@@ -159,6 +159,7 @@ export default function Home() {
               }}
               style={{
                 paddingBottom: "40px",
+                gap: "-280px", // Creates overlapping effect
               }}
             >
               {[
@@ -171,18 +172,26 @@ export default function Home() {
               ].map((image, index) => (
                 <motion.div
                   key={index}
-                  className="relative flex-shrink-0 w-[320px] snap-center snap-always rounded-3xl group overflow-hidden mx-4 shadow-2xl border border-white/10"
+                  className="relative flex-shrink-0 w-[320px] snap-center snap-always rounded-3xl group overflow-hidden shadow-2xl border border-white/10"
                   style={{ 
                     height: '448px', // Maintains playing card proportions (320 * 1.4)
                     perspective: '1000px',
+                    zIndex: 6 - index,
+                    transform: `rotate(${index * 2}deg)`,
+                    transformOrigin: 'center center',
+                    marginLeft: index === 0 ? '0' : '-280px',
                   }}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
+                  initial={{ opacity: 0, rotate: index * 2, x: 40 * index }}
+                  animate={{ opacity: 1, x: 0 }}
                   transition={{ 
                     duration: 0.8,
                     ease: [0.16, 1, 0.3, 1]
                   }}
-                  whileHover={{ scale: 1.02 }}
+                  whileHover={{ 
+                    scale: 1.02, 
+                    rotate: 0,
+                    zIndex: 10,
+                  }}
                   whileTap={{ scale: 0.98 }}
                   layoutId={`card-${index}`}
                 >
