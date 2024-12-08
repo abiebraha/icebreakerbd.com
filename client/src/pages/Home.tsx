@@ -115,7 +115,7 @@ export default function Home() {
       </motion.section>
 
       {/* Carousel Section */}
-      <section className="py-24 bg-[#40E0D0]">
+      <section className="py-24 bg-[#20B2AA]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -138,22 +138,22 @@ export default function Home() {
                 {[
                   {
                     title: "Sales Automation",
-                    image: "/automation.jpg",
+                    image: "https://images.unsplash.com/photo-1560264280-88b68371db39?w=800&auto=format&fit=crop&q=60",
                     description: "Streamline your sales process with cutting-edge automation tools that increase efficiency and reduce manual tasks."
                   },
                   {
                     title: "Team Development",
-                    image: "/team.jpg",
+                    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop&q=60",
                     description: "Build and nurture high-performing sales teams through our comprehensive training and development programs."
                   },
                   {
                     title: "Lead Generation",
-                    image: "/leads.jpg",
+                    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=60",
                     description: "Generate quality leads consistently with our proven methodologies and advanced targeting strategies."
                   },
                   {
                     title: "Performance Analytics",
-                    image: "/analytics.jpg",
+                    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=60",
                     description: "Make data-driven decisions with our advanced analytics and reporting tools."
                   }
                 ].map((card, index) => (
@@ -189,7 +189,7 @@ export default function Home() {
 
                       {/* Back of card */}
                       <div className="absolute inset-0 rounded-2xl overflow-hidden [transform:rotateY(180deg)] [backface-visibility:hidden]">
-                        <div className="w-full h-full bg-gradient-to-br from-[#40E0D0] to-[#20B2AA] p-6 flex flex-col justify-center">
+                        <div className="w-full h-full bg-gradient-to-br from-[#20B2AA] to-[#008B8B] p-6 flex flex-col justify-center">
                           <p className="text-lg text-white leading-relaxed">
                             {card.description}
                           </p>
