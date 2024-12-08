@@ -20,7 +20,7 @@ export default function ScheduleCallPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-rose-900 via-fuchsia-800 to-amber-700">
+    <div className="min-h-screen bg-gradient-to-br from-[#123e74] via-[#2a6d8f] to-[#2a9d8f]">
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
         

@@ -28,7 +28,7 @@ const values = [
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-800 to-pink-900">
+    <div className="min-h-screen bg-gradient-to-br from-[#123e74] via-[#1a4e8f] to-[#2a6d8f]">
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
 
