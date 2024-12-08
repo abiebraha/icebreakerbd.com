@@ -10,6 +10,7 @@ export default function LinkedInPostGenerator() {
   const [customInstructions, setCustomInstructions] = useState("");
   const [email, setEmail] = useState("");
   const [generatedContent, setGeneratedContent] = useState("");
+  const [alternativeHooks, setAlternativeHooks] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
@@ -32,10 +33,27 @@ export default function LinkedInPostGenerator() {
         throw new Error(data.message || "Failed to generate content");
       }
 
-      setGeneratedContent(data.content);
+      // Parse the response to separate main post and alternative hooks
+      const content = data.content;
+      const parts = content.split('\n\nALTERNATIVE HOOKS:');
+      
+      if (parts.length === 2) {
+        const mainPost = parts[0].replace('MAIN POST:\n', '').trim();
+        const hooks = parts[1]
+          .split('\n')
+          .filter((line: string) => line.trim().match(/^\d+\./))
+          .map((line: string) => line.replace(/^\d+\.\s*/, '').trim());
+        
+        setGeneratedContent(mainPost);
+        setAlternativeHooks(hooks);
+      } else {
+        setGeneratedContent(content);
+        setAlternativeHooks([]);
+      }
+
       toast({
         title: "Success!",
-        description: "Your LinkedIn post has been generated. Check your email for the transcript.",
+        description: "Your LinkedIn post has been generated with alternative hooks.",
       });
     } catch (error) {
       toast({
@@ -133,6 +151,24 @@ export default function LinkedInPostGenerator() {
               <div className="whitespace-pre-wrap text-slate-600">
                 {generatedContent}
               </div>
+
+              {alternativeHooks.length > 0 && (
+                <div className="mt-8">
+                  <h3 className="text-lg font-semibold text-slate-900 mb-4">
+                    Alternative Hooks
+                  </h3>
+                  <div className="space-y-3">
+                    {alternativeHooks.map((hook, index) => (
+                      <div 
+                        key={index}
+                        className="p-3 bg-slate-50 rounded-md border border-slate-200"
+                      >
+                        {hook}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </motion.div>
           )}
         </div>

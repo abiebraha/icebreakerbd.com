@@ -297,7 +297,7 @@ ${customInstructions ? `\nCustom Instructions: ${customInstructions}` : ''}`
           },
           {
             role: "user",
-            content: `Write a LinkedIn post with the following context:\n${context}\n\nCustom instructions:\n${customInstructions}`
+            content: `Generate a LinkedIn post and 8-12 alternative hooks based on the following context:\n${context}\n\nCustom instructions:\n${customInstructions}\n\nPlease format the response as follows:\n\nMAIN POST:\n[Complete post with current hook]\n\nALTERNATIVE HOOKS:\n1. [Hook option 1]\n2. [Hook option 2]\n... and so on`
           }
         ],
       });
