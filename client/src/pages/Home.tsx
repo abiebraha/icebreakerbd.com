@@ -66,6 +66,7 @@ export default function Home() {
           <div className="text-center">
             <h1 className="text-7xl md:text-[120px] font-bold mb-6 tracking-tight leading-none flex flex-col items-center">
               <motion.span
+                className="text-white"
                 initial={{ opacity: 0, x: -100 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
@@ -73,7 +74,7 @@ export default function Home() {
                 Accelerate Your
               </motion.span>
               <motion.span
-                className="bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent"
+                className="text-white"
                 initial={{ opacity: 0, x: 100 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
@@ -82,7 +83,7 @@ export default function Home() {
               </motion.span>
             </h1>
             <motion.p 
-              className="text-2xl md:text-3xl text-white/90 mb-8 max-w-3xl mx-auto font-medium tracking-tight"
+              className="text-2xl md:text-3xl text-white mb-8 max-w-3xl mx-auto font-medium tracking-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.9 }}

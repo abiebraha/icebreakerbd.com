@@ -80,6 +80,10 @@ body {
     @apply bg-white hover:bg-slate-50 text-[#123e74] px-8 py-6 text-lg font-semibold rounded-full transition-all duration-300 hover:scale-105 shadow-lg border border-[#123e74];
   }
 
+  .cta-button {
+    @apply bg-[#123e74] hover:bg-[#1a4e8f] text-white px-8 py-6 text-lg font-semibold rounded-full transition-all duration-300 hover:scale-105 shadow-lg w-full md:w-auto;
+  }
+
   /* Call-to-Action Sections */
   .cta-section {
     @apply py-20 bg-gradient-to-b from-white to-slate-50;
