@@ -47,8 +47,8 @@ const [expandedSection, setExpandedSection] = useState<string | null>(null);
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? "bg-gradient-to-br from-[#123e74]/75 via-[#2a6d8f]/75 to-[#2a9d8f]/75 backdrop-blur-md border-b border-white/5" 
-          : "bg-transparent"
+          ? "bg-gradient-to-br from-[#123e74]/40 via-[#2a6d8f]/40 to-[#2a9d8f]/40 backdrop-blur-sm border-b border-white/10" 
+          : ""
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
