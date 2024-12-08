@@ -116,18 +116,27 @@ Additional Information: ${additionalInfo || 'None provided'}
   // AI Tool Routes
   app.post('/api/tools/generate-cold-email', async (req, res) => {
     try {
-      const { context, customInstructions, email } = req.body;
+      const { websiteUrl, productDescription, customInstructions, email } = req.body;
+
+      if (!websiteUrl && !productDescription) {
+        return res.status(400).json({ 
+          message: 'Please provide either a website URL or product description' 
+        });
+      }
 
       const completion = await openai.chat.completions.create({
         model: "gpt-4",
         messages: [
           {
             role: "system",
-            content: "You are an expert cold email writer. Write a compelling cold email that is professional, persuasive, and personalized."
+            content: "You are an expert cold email writer. Write a compelling cold email that is professional, persuasive, and personalized. Focus on the product or service value proposition and create interest in scheduling a meeting."
           },
           {
             role: "user",
-            content: `Write a cold email with the following context:\n${context}\n\nCustom instructions:\n${customInstructions}`
+            content: `Write a cold email based on the following information:
+${websiteUrl ? `\nWebsite URL: ${websiteUrl}` : ''}
+${productDescription ? `\nProduct Description: ${productDescription}` : ''}
+${customInstructions ? `\nCustom Instructions: ${customInstructions}` : ''}`
           }
         ],
       });
