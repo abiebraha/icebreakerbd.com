@@ -113,10 +113,12 @@ export default function Home() {
       </motion.section>
 
       {/* Carousel Section */}
-      <section className="py-24 bg-gradient-to-br from-[#00F5FF] via-[#40E0D0] to-[#0066CC]">
+      <section className="py-24 bg-gradient-to-br from-[#00F5FF] via-[#40E0D0] to-[#0066CC] relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/nbx.webp')] opacity-10 mix-blend-overlay" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-white/20" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            className="text-center mb-16"
+            className="text-center mb-16 relative z-10"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -132,27 +134,27 @@ export default function Home() {
 
           <div className="relative">
             <div className="overflow-hidden">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pb-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6 lg:gap-8 pb-8">
                 {[
                   {
                     title: "Sales Automation",
-                    image: "https://images.unsplash.com/photo-1560264280-88b68371db39?w=800&auto=format&fit=crop&q=60",
-                    description: "Streamline your sales process with cutting-edge automation tools that increase efficiency and reduce manual tasks."
+                    image: "/enso.png",
+                    description: "Transform your sales process with cutting-edge automation:\n\n• AI-powered lead scoring & qualification\n• Intelligent email sequence automation\n• Advanced CRM integration\n• Custom workflow automation\n• Performance tracking dashboards\n• Smart task prioritization\n\nBoost efficiency by 40% and reduce manual work by 60%\nFree your team to focus on closing deals"
                   },
                   {
                     title: "Team Development",
-                    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop&q=60",
-                    description: "Build and nurture high-performing sales teams through our comprehensive training and development programs."
+                    image: "/nbx.webp",
+                    description: "Build & scale high-performing sales teams:\n\n• Customized training programs\n• Real-time coaching & feedback\n• Sales methodology mastery\n• Leadership development\n• Performance benchmarking\n• Skill assessment tools\n\nIncrease team productivity by 75%\nAchieve consistent quota attainment"
                   },
                   {
                     title: "Lead Generation",
-                    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=60",
-                    description: "Generate quality leads consistently with our proven methodologies and advanced targeting strategies."
+                    image: "/Color logo - no background.png",
+                    description: "Generate quality leads at scale:\n\n• Multi-channel prospecting\n• Account-based marketing\n• Social selling strategies\n• Lead scoring optimization\n• Target account mapping\n• Engagement analytics\n\nGenerate 3x more qualified leads\nReduce cost per acquisition by 45%"
                   },
                   {
                     title: "Performance Analytics",
-                    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=60",
-                    description: "Make data-driven decisions with our advanced analytics and reporting tools."
+                    image: "/Untitled design (1).png",
+                    description: "Data-driven sales optimization:\n\n• Real-time performance tracking\n• Predictive analytics\n• Conversion optimization\n• Revenue forecasting\n• Pipeline analytics\n• ROI measurement\n\nImprove forecast accuracy by 85%\nOptimize sales strategies with AI insights"
                   }
                 ].map((card, index) => (
                   <motion.div
@@ -162,7 +164,7 @@ export default function Home() {
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.2 }}
                   >
-                    <div className="relative w-full h-[400px] transform-gpu">
+                    <div className="relative w-full h-[450px] transform-gpu">
                       <div
                         className={`card relative w-full h-full ${hoveredCard === index ? 'flipped' : ''}`}
                         onClick={() => setHoveredCard(hoveredCard === index ? null : index)}
@@ -195,10 +197,12 @@ export default function Home() {
 
                         {/* Back of card */}
                         <div className="card-face card-back absolute inset-0 rounded-2xl overflow-hidden shadow-xl">
-                          <div className="w-full h-full bg-gradient-to-br from-[#40E0D0] to-[#0066CC] p-6 flex flex-col justify-between">
-                            <p className="text-lg text-white leading-relaxed">
-                              {card.description}
-                            </p>
+                          <div className="w-full h-full bg-gradient-to-br from-[#00F5FF] via-[#40E0D0] to-[#0066CC] p-6 flex flex-col justify-between">
+                            <div className="flex flex-col items-center justify-center h-full text-center px-6">
+                              <p className="text-lg text-white leading-relaxed font-medium whitespace-pre-line tracking-wide">
+                                {card.description}
+                              </p>
+                            </div>
                             <button 
                               className="card-button"
                               onClick={(e) => {
