@@ -34,6 +34,7 @@
 .card-back {
   background: linear-gradient(135deg, #40a0aa, #2c8d98);
   transform: rotateY(180deg);
+  color: white;
 }
 
 .hide-scrollbar {

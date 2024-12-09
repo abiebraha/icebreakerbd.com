@@ -112,7 +112,7 @@ export default function Home() {
       </motion.section>
 
       {/* Carousel Section */}
-      <section className="py-24 bg-[#123e74] relative overflow-hidden">
+      <section className="py-24 bg-gradient-to-b from-[#e5f4f5] via-[#f0f8f9] to-[#dff2f3] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -121,10 +121,10 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#2c8d98] mb-6 tracking-tight">
               Our Key Solutions
             </h2>
-            <p className="text-xl text-white/90 max-w-3xl mx-auto">
+            <p className="text-xl text-[#40a0aa] max-w-3xl mx-auto">
               Discover how we can transform your sales process
             </p>
           </motion.div>
@@ -136,22 +136,22 @@ export default function Home() {
                   {
                     title: "Sales Automation",
                     image: "/images/IMG_1392_optimized.jpg",
-                    description: "Transform your sales process with cutting-edge automation:\n\n• AI-powered Lead Scoring: Automatically rank and prioritize leads based on behavior and engagement metrics\n• Smart Email Sequences: Create personalized, trigger-based email campaigns that adapt to recipient responses\n• Enterprise CRM Integration: Seamless connection with Salesforce, HubSpot, and other major platforms\n• Workflow Automation: Custom sales processes that reduce manual tasks by 70%\n• Real-time Analytics Dashboard: Monitor KPIs and team performance with actionable insights\n• Intelligent Task Management: ML-powered prioritization of daily sales activities\n• Advanced Pipeline Tools: Visual deal tracking with probability scoring\n• Meeting Scheduler: Automated calendar management with timezone optimization\n\nResults:\n✓ 40% increase in sales team efficiency\n✓ 60% reduction in administrative tasks\n✓ 85% faster lead response time\n✓ 35% higher conversion rate from lead to opportunity"
+                    description: "Transform your sales process with cutting-edge automation:\n\n• Intelligent Lead Scoring: AI-driven lead prioritization based on 20+ behavioral signals\n• Smart Sequences: Personalized email campaigns with 90% open rates\n• Advanced CRM Integration: Seamless sync with Salesforce, HubSpot & more\n• Workflow Builder: Custom automation reducing manual work by 70%\n• Real-time Dashboard: Live KPI tracking & performance metrics\n• Smart Calendar: AI-powered meeting scheduling across timezones\n• Revenue Forecasting: Predictive analytics with 95% accuracy\n• Task Automation: Auto-assignment & follow-up system\n\nProven Impact:\n✓ 3x increase in qualified meetings booked\n✓ 70% reduction in response time\n✓ 85% increase in pipeline velocity\n✓ 50% higher sales team productivity"
                   },
                   {
                     title: "Team Development",
                     image: "/images/IMG_1542_optimized.jpg",
-                    description: "Build & scale high-performing sales teams:\n\n• Customized Training Programs: Data-driven coaching plans tailored to individual strengths\n• AI Sales Coach: Real-time call analysis and feedback during customer interactions\n• Advanced Sales Methodologies: MEDDIC, Challenger, and Solution Selling frameworks\n• Leadership Training: Specialized programs for sales managers and team leaders\n• Performance Analytics: Individual and team benchmarking against industry standards\n• Skill Development: Targeted improvement in prospecting, negotiation, and closing\n• Collaboration Platform: Shared best practices and team knowledge base\n• Psychology Training: Understanding buyer behavior and decision-making processes\n\nResults:\n✓ 75% increase in team productivity\n✓ 95% of team members achieving quota\n✓ 50% faster new hire ramp-up time\n✓ 40% improvement in team retention"
+                    description: "Scale your sales team with expert coaching:\n\n• Elite Training Program: Customized learning paths for each role\n• Real-time AI Coach: Live call analysis & instant feedback\n• Sales Playbook Creation: Best practices & winning strategies\n• Leadership Academy: Management & team scaling expertise\n• Performance Tracking: Individual & team metrics dashboard\n• Skills Workshop: Advanced negotiation & closing techniques\n• Knowledge Library: Searchable sales resources & templates\n• Behavioral Science: Psychology of B2B decision-making\n\nProven Impact:\n✓ 90% of reps exceeding quota in 6 months\n✓ 45% faster ramp-up for new hires\n✓ 80% improvement in close rates\n✓ 95% team retention rate"
                   },
                   {
                     title: "Lead Generation",
                     image: "/images/IMG_1593_optimized.jpg",
-                    description: "Generate quality leads at scale:\n\n• Multi-channel Prospecting: Integrated approach across LinkedIn, Email, and Phone\n• ABM Campaigns: Targeted account-based marketing strategies for enterprise clients\n• Social Selling Suite: Advanced LinkedIn and Twitter engagement tools\n• Lead Scoring Engine: AI-powered prospect qualification system\n• Account Mapping: Comprehensive organization charts and decision-maker identification\n• Engagement Analytics: Real-time tracking of prospect interactions\n• Nurture Campaigns: Automated multi-touch outreach sequences\n• Market Segmentation: Custom ideal customer profile (ICP) development\n\nResults:\n✓ 300% increase in qualified lead generation\n✓ 45% lower cost per acquisition\n✓ 65% improvement in lead quality scores\n✓ 80% higher engagement rates"
+                    description: "Generate premium leads at enterprise scale:\n\n• Multi-channel Outreach: Integrated LinkedIn, Email & Phone\n• ABM Campaigns: Fortune 500 targeting & engagement\n• Social Selling: Advanced connection & content strategies\n• Prospect Intelligence: Deep insights & buying signals\n• Organization Mapping: Decision-maker identification\n• Engagement Tracking: Real-time response analytics\n• Custom Sequences: Industry-specific outreach paths\n• Buyer Profiling: Ideal customer profile development\n\nProven Impact:\n✓ 4x increase in qualified opportunities\n✓ 60% reduction in acquisition costs\n✓ 75% higher response rates\n✓ 85% better lead quality scores"
                   },
                   {
                     title: "Performance Analytics",
                     image: "/images/IMG_1395_optimized.jpg",
-                    description: "Data-driven sales optimization:\n\n• Real-time Performance Tracking: Live dashboards with AI-powered insights\n• Predictive Analytics: ML models for sales forecasting and trend analysis\n• Attribution Modeling: Multi-touch attribution across all sales channels\n• Revenue Intelligence: AI-powered forecasting with 85% accuracy\n• Pipeline Analytics: Deal velocity and conversion rate optimization\n• ROI Calculator: Custom frameworks for measuring sales activities\n• Sales Efficiency Metrics: Comprehensive activity and outcome tracking\n• Customer Journey Analytics: Detailed analysis of buying patterns\n\nResults:\n✓ 85% more accurate sales forecasts\n✓ 40% higher win rates\n✓ 30% shorter sales cycles\n✓ 25% increase in average deal size"
+                    description: "Optimize sales with data-driven insights:\n\n• Live Performance Hub: Real-time sales activity tracking\n• AI Forecasting: Revenue prediction with 90% accuracy\n• Pipeline Optimization: Deal velocity & conversion analytics\n• Attribution Engine: Multi-touch revenue tracking\n• Efficiency Metrics: Activity & outcome correlation\n• ROI Analysis: Custom measurement frameworks\n• Team Benchmarking: Industry performance standards\n• Growth Modeling: Predictive scaling scenarios\n\nProven Impact:\n✓ 95% forecast accuracy\n✓ 50% higher win rates\n✓ 40% faster sales cycles\n✓ 65% larger average deal size"
                   }
                 ].map((card, index) => (
                   <motion.div
