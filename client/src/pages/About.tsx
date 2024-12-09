@@ -32,7 +32,7 @@ export default function AboutPage() {
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
         <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-[#0066CC]/5 via-transparent to-transparent"
+          className="absolute inset-0"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
@@ -70,7 +70,7 @@ export default function AboutPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
               Transforming Sales Teams
               <br />
-              <span className="text-[#0066CC]">One Step at a Time</span>
+              <span className="text-[#FFE5A3]">One Step at a Time</span>
             </h1>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               We're a team of sales experts passionate about helping businesses build and optimize their sales processes.
@@ -96,15 +96,19 @@ export default function AboutPage() {
             {values.map((value, index) => (
               <motion.div
                 key={value.title}
-                className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
+                className="p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+                style={{ 
+                  background: "linear-gradient(135deg, #FFE5A3, #FFF2CC, #FFFBF0)",
+                  boxShadow: "0 8px 16px -4px rgba(0, 0, 0, 0.1), 0 4px 8px -4px rgba(0, 0, 0, 0.06)"
+                }}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <value.icon className="w-12 h-12 text-[#0066CC] mb-4" />
-                <h3 className="text-xl font-semibold mb-2">{value.title}</h3>
-                <p className="text-slate-600">{value.description}</p>
+                <value.icon className="w-12 h-12 text-slate-800 drop-shadow-sm mb-4" />
+                <h3 className="text-xl font-bold text-slate-800 mb-2 drop-shadow-sm">{value.title}</h3>
+                <p className="text-slate-700 drop-shadow-sm">{value.description}</p>
               </motion.div>
             ))}
           </div>
