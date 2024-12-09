@@ -113,7 +113,7 @@ export default function Home() {
       </motion.section>
 
       {/* Carousel Section */}
-      <section className="py-24 bg-[#123e74]">
+      <section className="py-24 bg-gradient-to-br from-[#20B2AA] to-[#48D1CC]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -132,7 +132,7 @@ export default function Home() {
 
           <div className="relative">
             <div className="overflow-hidden">
-              <div className="flex gap-8 snap-x snap-mandatory overflow-x-auto pb-8 hide-scrollbar">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pb-8">
                 {[
                   {
                     title: "Sales Automation",
@@ -157,24 +157,24 @@ export default function Home() {
                 ].map((card, index) => (
                   <motion.div
                     key={index}
-                    className="min-w-[300px] sm:min-w-[350px] relative group perspective snap-center"
+                    className="relative group perspective"
                     initial={{ opacity: 0, x: 50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.2 }}
                   >
-                    <div className="p-2">
+                    <div className="relative w-full h-[400px] transform-gpu">
                       <div
-                        className={`card relative w-full h-[400px] ${hoveredCard === index ? 'flipped' : ''}`}
+                        className={`card relative w-full h-full ${hoveredCard === index ? 'flipped' : ''}`}
                         onClick={() => setHoveredCard(hoveredCard === index ? null : index)}
                       >
                         {/* Front of card */}
                         <div className="card-face absolute inset-0 rounded-2xl overflow-hidden shadow-xl">
-                          <div className="absolute inset-0 bg-black/20" />
                           <img
                             src={card.image}
                             alt={card.title}
                             className="w-full h-full object-cover"
                           />
+                          <div className="absolute inset-0 bg-black/20" />
                           <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
                             <h3 className="text-2xl font-bold text-white mb-2">
                               {card.title}
@@ -195,7 +195,7 @@ export default function Home() {
 
                         {/* Back of card */}
                         <div className="card-face card-back absolute inset-0 rounded-2xl overflow-hidden shadow-xl">
-                          <div className="w-full h-full bg-gradient-to-br from-[#123e74] to-[#0a2647] p-6 flex flex-col justify-center">
+                          <div className="w-full h-full bg-gradient-to-br from-[#20B2AA] to-[#48D1CC] p-6 flex flex-col justify-between">
                             <p className="text-lg text-white leading-relaxed">
                               {card.description}
                             </p>
