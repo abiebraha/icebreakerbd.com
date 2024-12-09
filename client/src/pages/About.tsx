@@ -30,35 +30,8 @@ export default function AboutPage() {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
-        <motion.div
-          className="absolute inset-0"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-        >
-          <div className="absolute inset-0" style={{ perspective: "2000px" }}>
-            {[...Array(15)].map((_, i) => (
-              <motion.div
-                key={`grid-${i}`}
-                className="absolute w-full h-[1px] bg-gradient-to-r from-transparent via-[#0066CC]/15 to-transparent"
-                style={{
-                  top: `${(i + 1) * 6.66}%`,
-                  transform: "rotateX(75deg)",
-                }}
-                animate={{
-                  scaleX: [0.9, 1.1, 0.9],
-                  opacity: [0.15, 0.3, 0.15],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  delay: i * 0.15,
-                }}
-              />
-            ))}
-          </div>
-        </motion.div>
+      <section className="py-20 relative">
+        <div className="absolute inset-0 bg-white" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div
@@ -70,7 +43,7 @@ export default function AboutPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
               Transforming Sales Teams
               <br />
-              <span className="text-[#FFE5A3]">One Step at a Time</span>
+              <span className="text-[#E5C670]">One Step at a Time</span>
             </h1>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               We're a team of sales experts passionate about helping businesses build and optimize their sales processes.
