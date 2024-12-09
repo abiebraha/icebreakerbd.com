@@ -112,7 +112,7 @@ export default function Home() {
       </motion.section>
 
       {/* Carousel Section */}
-      <section className="py-24 relative overflow-hidden" style={{ background: "linear-gradient(to bottom, #a8bfc0, #b4c8ca, #9cb8ba)" }}>
+      <section className="py-24 relative overflow-hidden" style={{ background: "linear-gradient(to bottom, #e8f6f7, #f4f9fa, #e0f3f4)" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
