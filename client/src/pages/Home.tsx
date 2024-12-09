@@ -112,9 +112,9 @@ export default function Home() {
       </motion.section>
 
       {/* Carousel Section */}
-      <section className="py-24 bg-gradient-to-br from-[#00F5FF] via-[#40E0D0] to-[#0066CC] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/nbx.webp')] opacity-10 mix-blend-overlay" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-white/20" />
+      <section className="py-24 bg-gradient-to-br from-[#123e74] via-[#0066CC] to-[#123e74] relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/nbx.webp')] opacity-5 mix-blend-overlay" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-white/10" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16 relative z-10"
@@ -168,25 +168,29 @@ export default function Home() {
                       ease: [0.16, 1, 0.3, 1]
                     }}
                   >
-                    <div className="relative w-full h-[450px] transform-gpu">
+                    <div className="relative w-full h-[450px] transform-gpu preserve-3d">
                       <motion.div
                         className={`card relative w-full h-full ${hoveredCard === index ? 'flipped' : ''}`}
-                        onClick={() => setHoveredCard(hoveredCard === index ? null : index)}
+                        initial={{ scale: 1 }}
                         whileHover={{ scale: 1.02 }}
                         transition={{ 
                           type: "spring",
                           stiffness: 300,
-                          damping: 20
+                          damping: 20,
+                          mass: 1.2,
+                          duration: 0.6
                         }}
                       >
                         {/* Front of card */}
                         <div className="card-face absolute inset-0 rounded-2xl overflow-hidden">
-                          <img
-                            src={card.image}
-                            alt={card.title}
-                            className="w-full h-full object-cover transform transition-transform duration-700 hover:scale-110"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                          <div className="relative w-full h-full bg-white/10 p-4">
+                            <img
+                              src={card.image}
+                              alt={card.title}
+                              className="w-full h-full object-contain transform transition-transform duration-700 hover:scale-105"
+                            />
+                          </div>
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#123e74]/90 via-[#123e74]/40 to-transparent" />
                           <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/90 via-black/50 to-transparent">
                             <motion.h3 
                               className="text-2xl font-bold text-white mb-2"
@@ -279,7 +283,7 @@ export default function Home() {
                             </button>
                           </div>
                         </div>
-                      </div>
+                      </motion.div>
                     </div>
                   </motion.div>
                 ))}
