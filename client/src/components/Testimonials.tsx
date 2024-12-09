@@ -52,10 +52,14 @@ export default function Testimonials() {
             >
               <Card 
                 className="w-full min-h-[300px] shadow-lg group-hover:shadow-2xl transition-all duration-300 relative overflow-hidden flex flex-col"
-                style={{ background: "linear-gradient(to bottom, #e8f6f7, #f4f9fa, #e0f3f4)" }}
+                style={{ background: "linear-gradient(to bottom right, #e8f6f7, #f4f9fa, #e0f3f4)" }}
               >
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-br from-[#40a0aa]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: [1, 1.4, 1] }}
+                  transition={{ duration: 1, repeat: Infinity, repeatDelay: 2 }}
+                  style={{ opacity: 0.2 }}
                 />
                 <CardContent className="flex-grow">
                   <motion.div 
@@ -70,15 +74,15 @@ export default function Testimonials() {
                         {testimonial.initials}
                       </AvatarFallback>
                     </Avatar>
-                    <div className="text-2xl text-black font-bold">
+                    <div className="text-xl font-bold text-slate-900">
                       {testimonial.role}
                     </div>
                   </motion.div>
                   <motion.p 
-                    className="text-slate-600 text-lg leading-relaxed"
+                    className="text-slate-600"
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
+                    transition={{ type: "spring", stiffness: 300, delay: 0.2 }}
                   >
                     "{testimonial.content}"
                   </motion.p>
