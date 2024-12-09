@@ -112,16 +112,14 @@ export default function Home() {
       </motion.section>
 
       {/* Carousel Section */}
-      <section className="py-24 bg-gradient-to-br from-[#123e74] via-[#0066CC] to-[#123e74] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/nbx.webp')] opacity-5 mix-blend-overlay" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-white/10" />
+      <section className="py-24 bg-[#123e74] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            className="text-center mb-16 relative z-10"
+            className="text-center mb-16"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
               Our Key Solutions
@@ -137,22 +135,22 @@ export default function Home() {
                 {[
                   {
                     title: "Sales Automation",
-                    image: "/images/IMG_1392.jpg",
+                    image: "/images/IMG_1392_optimized.jpg",
                     description: "Transform your sales process with cutting-edge automation:\n\n• AI-powered lead scoring & qualification\n• Intelligent email sequence automation\n• Advanced CRM integration with real-time syncing\n• Custom workflow automation tailored to your needs\n• Performance tracking dashboards with actionable insights\n• Smart task prioritization using machine learning\n• Automated follow-up sequences\n• Advanced pipeline management\n\nResults:\n✓ Boost efficiency by 40%\n✓ Reduce manual work by 60%\n✓ Increase lead response time by 85%\n✓ Improve conversion rates by 35%"
                   },
                   {
                     title: "Team Development",
-                    image: "/images/IMG_1542.jpg",
+                    image: "/images/IMG_1542_optimized.jpg",
                     description: "Build & scale high-performing sales teams:\n\n• Personalized training programs based on data insights\n• Real-time coaching with AI-powered feedback\n• Advanced sales methodology mastery training\n• Leadership development for sales managers\n• Performance benchmarking against industry standards\n• Comprehensive skill assessment and growth tracking\n• Team collaboration tools and best practices\n• Sales psychology and negotiation techniques\n\nResults:\n✓ Increase team productivity by 75%\n✓ Achieve 95% quota attainment\n✓ Reduce ramp-up time by 50%\n✓ Improve team retention by 40%"
                   },
                   {
                     title: "Lead Generation",
-                    image: "/images/IMG_1593.jpg",
+                    image: "/images/IMG_1593_optimized.jpg",
                     description: "Generate quality leads at scale:\n\n• Multi-channel prospecting with AI targeting\n• Account-based marketing campaigns\n• Advanced social selling strategies\n• Predictive lead scoring optimization\n• Comprehensive target account mapping\n• Real-time engagement analytics\n• Automated lead nurturing sequences\n• Custom audience segmentation\n\nResults:\n✓ Generate 3x more qualified leads\n✓ Reduce cost per acquisition by 45%\n✓ Improve lead quality score by 65%\n✓ Increase engagement rates by 80%"
                   },
                   {
                     title: "Performance Analytics",
-                    image: "/images/IMG_1395.jpg",
+                    image: "/images/IMG_1395_optimized.jpg",
                     description: "Data-driven sales optimization:\n\n• Real-time performance tracking with AI insights\n• Advanced predictive analytics for forecasting\n• Multi-touch attribution modeling\n• Revenue forecasting with machine learning\n• Comprehensive pipeline analytics\n• Custom ROI measurement frameworks\n• Sales velocity optimization\n• Customer behavior analysis\n\nResults:\n✓ Improve forecast accuracy by 85%\n✓ Optimize win rates by 40%\n✓ Reduce sales cycle by 30%\n✓ Increase deal size by 25%"
                   }
                 ].map((card, index) => (
@@ -168,101 +166,80 @@ export default function Home() {
                       ease: [0.16, 1, 0.3, 1]
                     }}
                   >
-                    <div className="relative w-full aspect-[3/4]">
-                      <motion.div
+                    <div className="relative w-full aspect-[3/4] card-container">
+                      <div
                         className={`card ${hoveredCard === index ? 'flipped' : ''}`}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                        onClick={() => setHoveredCard(hoveredCard === index ? null : index)}
                       >
                         {/* Front of card */}
                         <div 
-                          className="card-face"
+                          className="card-face card-front"
                           style={{
                             backgroundImage: `url(${card.image})`,
-                            backgroundSize: 'cover',
                             backgroundPosition: 'center',
                             backgroundRepeat: 'no-repeat'
                           }}
+                          loading="lazy"
                         >
-                          <div className="absolute inset-0 bg-gradient-to-t from-[#123e74]/95 via-[#123e74]/50 to-transparent" />
-                          <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/90 via-black/50 to-transparent">
-                            <h3 className="text-2xl font-bold text-white mb-2">
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#123e74]/90 to-transparent" />
+                          <div className="absolute bottom-0 left-0 right-0 p-6">
+                            <h3 className="text-2xl font-bold text-white">
                               {card.title}
                             </h3>
                           </div>
                           <button 
                             className="card-button"
                             onClick={(e) => {
-                              e.preventDefault();
                               e.stopPropagation();
                               setHoveredCard(index);
                             }}
                             aria-label="Show more details"
                           >
-                            <Plus className="w-6 h-6" />
+                            <Plus className="w-5 h-5" />
                           </button>
                         </div>
 
                         {/* Back of card */}
                         <div className="card-face card-back">
-                          <div className="w-full h-full p-6 flex flex-col justify-between relative overflow-y-auto hide-scrollbar">
-                            <div className="flex flex-col items-center justify-start h-full text-center px-4 space-y-6">
-                              <div className="text-lg text-white leading-relaxed whitespace-pre-line">
-                                <div className="space-y-6">
-                                  <motion.p 
-                                    className="text-2xl font-bold text-white/95 bg-clip-text text-transparent bg-gradient-to-r from-white to-white/90"
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.6, delay: 0.3 }}
+                          <div className="h-full p-6 overflow-y-auto hide-scrollbar">
+                            <div className="space-y-4">
+                              <h4 className="text-xl font-bold text-white mb-4">
+                                Key Features
+                              </h4>
+                              <div className="space-y-2">
+                                {card.description.split('\n\n')[0].split('\n').slice(1).map((feature, i) => (
+                                  <p 
+                                    key={i}
+                                    className="text-white/90 text-sm py-1"
                                   >
-                                    Key Features
-                                  </motion.p>
-                                  {card.description.split('\n\n')[0].split('\n').slice(1).map((feature, i) => (
-                                    <motion.p 
-                                      key={i} 
-                                      className="text-white/85 backdrop-blur-sm bg-white/5 rounded-lg px-4 py-2"
-                                      initial={{ opacity: 0, x: -10 }}
-                                      animate={{ opacity: 1, x: 0 }}
-                                      transition={{ duration: 0.4, delay: 0.4 + (i * 0.1) }}
-                                    >
-                                      {feature}
-                                    </motion.p>
-                                  ))}
-                                </div>
-                                <div className="space-y-6">
-                                  <motion.p 
-                                    className="text-2xl font-bold text-white/95 bg-clip-text text-transparent bg-gradient-to-r from-white to-white/90"
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.6, delay: 0.8 }}
+                                    {feature}
+                                  </p>
+                                ))}
+                              </div>
+                              
+                              <h4 className="text-xl font-bold text-white mb-4 mt-6">
+                                Results
+                              </h4>
+                              <div className="space-y-2">
+                                {card.description.split('\n\n')[2].split('\n').map((result, i) => (
+                                  <p 
+                                    key={i}
+                                    className="text-white/90 text-sm py-1"
                                   >
-                                    Results
-                                  </motion.p>
-                                  {card.description.split('\n\n')[2].split('\n').map((result, i) => (
-                                    <motion.p 
-                                      key={i} 
-                                      className="text-white/85 backdrop-blur-sm bg-white/5 rounded-lg px-4 py-2"
-                                      initial={{ opacity: 0, x: 10 }}
-                                      animate={{ opacity: 1, x: 0 }}
-                                      transition={{ duration: 0.4, delay: 0.9 + (i * 0.1) }}
-                                    >
-                                      {result}
-                                    </motion.p>
-                                  ))}
-                                </div>
+                                    {result}
+                                  </p>
+                                ))}
                               </div>
                             </div>
                             <button 
                               className="card-button"
                               onClick={(e) => {
-                                e.preventDefault();
                                 e.stopPropagation();
                                 setHoveredCard(null);
                               }}
                               aria-label="Show less details"
                             >
-                              <Minus className="w-6 h-6" />
+                              <Minus className="w-5 h-5" />
                             </button>
                           </div>
                         </div>
