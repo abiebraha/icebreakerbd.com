@@ -137,22 +137,22 @@ export default function Home() {
                 {[
                   {
                     title: "Sales Automation",
-                    image: "./IMG_1392.jpg",
+                    image: "/IMG_1392.jpg",
                     description: "Transform your sales process with cutting-edge automation:\n\n• AI-powered lead scoring & qualification\n• Intelligent email sequence automation\n• Advanced CRM integration with real-time syncing\n• Custom workflow automation tailored to your needs\n• Performance tracking dashboards with actionable insights\n• Smart task prioritization using machine learning\n• Automated follow-up sequences\n• Advanced pipeline management\n\nResults:\n✓ Boost efficiency by 40%\n✓ Reduce manual work by 60%\n✓ Increase lead response time by 85%\n✓ Improve conversion rates by 35%"
                   },
                   {
                     title: "Team Development",
-                    image: "./IMG_1542.jpg",
+                    image: "/IMG_1542.jpg",
                     description: "Build & scale high-performing sales teams:\n\n• Personalized training programs based on data insights\n• Real-time coaching with AI-powered feedback\n• Advanced sales methodology mastery training\n• Leadership development for sales managers\n• Performance benchmarking against industry standards\n• Comprehensive skill assessment and growth tracking\n• Team collaboration tools and best practices\n• Sales psychology and negotiation techniques\n\nResults:\n✓ Increase team productivity by 75%\n✓ Achieve 95% quota attainment\n✓ Reduce ramp-up time by 50%\n✓ Improve team retention by 40%"
                   },
                   {
                     title: "Lead Generation",
-                    image: "./IMG_1593.jpg",
+                    image: "/IMG_1593.jpg",
                     description: "Generate quality leads at scale:\n\n• Multi-channel prospecting with AI targeting\n• Account-based marketing campaigns\n• Advanced social selling strategies\n• Predictive lead scoring optimization\n• Comprehensive target account mapping\n• Real-time engagement analytics\n• Automated lead nurturing sequences\n• Custom audience segmentation\n\nResults:\n✓ Generate 3x more qualified leads\n✓ Reduce cost per acquisition by 45%\n✓ Improve lead quality score by 65%\n✓ Increase engagement rates by 80%"
                   },
                   {
                     title: "Performance Analytics",
-                    image: "./IMG_1395.jpg",
+                    image: "/IMG_1395.jpg",
                     description: "Data-driven sales optimization:\n\n• Real-time performance tracking with AI insights\n• Advanced predictive analytics for forecasting\n• Multi-touch attribution modeling\n• Revenue forecasting with machine learning\n• Comprehensive pipeline analytics\n• Custom ROI measurement frameworks\n• Sales velocity optimization\n• Customer behavior analysis\n\nResults:\n✓ Improve forecast accuracy by 85%\n✓ Optimize win rates by 40%\n✓ Reduce sales cycle by 30%\n✓ Increase deal size by 25%"
                   }
                 ].map((card, index) => (
@@ -168,38 +168,22 @@ export default function Home() {
                       ease: [0.16, 1, 0.3, 1]
                     }}
                   >
-                    <div className="relative w-full h-[450px] transform-gpu preserve-3d">
-                      <motion.div
-                        className={`card relative w-full h-full ${hoveredCard === index ? 'flipped' : ''}`}
-                        initial={{ scale: 1 }}
-                        whileHover={{ scale: 1.02 }}
-                        transition={{ 
-                          type: "spring",
-                          stiffness: 300,
-                          damping: 20,
-                          mass: 1.2,
-                          duration: 0.6
-                        }}
-                      >
+                    <div className="relative w-full aspect-[3/4]">
+                      <div className={`card ${hoveredCard === index ? 'flipped' : ''}`}>
                         {/* Front of card */}
-                        <div className="card-face absolute inset-0 rounded-2xl overflow-hidden">
-                          <div className="relative w-full h-[300px] bg-gradient-to-b from-white/10 to-white/5 p-8 flex items-center justify-center">
-                            <img
-                              src={card.image}
-                              alt={card.title}
-                              className="w-4/5 h-4/5 object-contain transition-transform duration-700 hover:scale-110"
-                            />
-                          </div>
-                          <div className="absolute inset-0 bg-gradient-to-t from-[#123e74]/90 via-[#123e74]/40 to-transparent" />
+                        <div 
+                          className="card-face"
+                          style={{
+                            backgroundImage: `url(${card.image})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center'
+                          }}
+                        >
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#123e74]/95 via-[#123e74]/50 to-transparent" />
                           <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/90 via-black/50 to-transparent">
-                            <motion.h3 
-                              className="text-2xl font-bold text-white mb-2"
-                              initial={{ opacity: 0, y: 20 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ duration: 0.5 }}
-                            >
+                            <h3 className="text-2xl font-bold text-white mb-2">
                               {card.title}
-                            </motion.h3>
+                            </h3>
                           </div>
                           <button 
                             className="card-button"
@@ -215,17 +199,10 @@ export default function Home() {
                         </div>
 
                         {/* Back of card */}
-                        <div className="card-face card-back absolute inset-0 rounded-2xl overflow-hidden">
-                          <div className="w-full h-full bg-gradient-to-br from-[#00F5FF] via-[#40E0D0] to-[#0066CC] p-6 flex flex-col justify-between relative overflow-y-auto hide-scrollbar">
-                            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_transparent_25%,_rgba(0,0,0,0.4)_100%)] pointer-events-none" />
-                            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.1)_0%,transparent_100%)] mix-blend-overlay pointer-events-none" />
-                            <div className="flex flex-col items-center justify-start h-full text-center px-4 relative z-10 space-y-6">
-                              <motion.div 
-                                className="text-lg text-white leading-relaxed font-medium whitespace-pre-line tracking-wide text-center space-y-8"
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5, delay: 0.2 }}
-                              >
+                        <div className="card-face card-back">
+                          <div className="w-full h-full p-6 flex flex-col justify-between relative overflow-y-auto hide-scrollbar">
+                            <div className="flex flex-col items-center justify-start h-full text-center px-4 space-y-6">
+                              <div className="text-lg text-white leading-relaxed whitespace-pre-line">
                                 <div className="space-y-6">
                                   <motion.p 
                                     className="text-2xl font-bold text-white/95 bg-clip-text text-transparent bg-gradient-to-r from-white to-white/90"
