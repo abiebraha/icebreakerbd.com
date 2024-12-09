@@ -111,7 +111,7 @@ const [expandedSection, setExpandedSection] = useState<string | null>(null);
               </NavigationMenuList>
             </NavigationMenu>
             <Button 
-              className="ml-4 bg-[#123e74] hover:bg-[#1a4e8f]"
+              className="ml-4 bg-[#123e74] hover:bg-[#1a4e8f] text-white"
               onClick={() => window.location.href = 'https://app.icebreakerbd.com'}
             >
               Login
@@ -196,7 +196,7 @@ const [expandedSection, setExpandedSection] = useState<string | null>(null);
                   )
                 ))}
                 <Button 
-                  className="w-full mt-4 bg-[#123e74] hover:bg-[#1a4e8f]"
+                  className="w-full mt-4 bg-[#123e74] hover:bg-[#1a4e8f] text-white"
                   onClick={() => {
                     setIsOpen(false);
                     window.location.href = 'https://app.icebreakerbd.com';

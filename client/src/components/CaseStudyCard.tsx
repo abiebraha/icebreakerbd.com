@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Minus } from "lucide-react";
+import { ArrowRight, Plus, Minus } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 interface CaseStudyCardProps {
@@ -26,24 +26,18 @@ export default function CaseStudyCard({
     <motion.div
       whileHover={{ scale: 1.02 }}
       transition={{ type: "spring", stiffness: 300 }}
-      className="group cursor-pointer"
+      className="group cursor-pointer case-study-container"
     >
       <Card className="relative w-full h-[500px] bg-white shadow-lg group-hover:shadow-2xl transition-all duration-300">
         <div 
-          className="relative w-full h-full preserve-3d"
+          className="card"
           style={{ 
             transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
-            transition: "transform 0.6s",
-            transformStyle: "preserve-3d"
           }}
         >
           {/* Front of card */}
           <div 
-            className="absolute w-full h-full backface-hidden"
-            style={{ 
-              backfaceVisibility: "hidden",
-              WebkitBackfaceVisibility: "hidden"
-            }}
+            className={`card-face card-front ${isFlipped ? 'flipped' : ''}`}
             onClick={() => setIsFlipped(true)}
           >
             <div className={`w-full h-full rounded-2xl p-12 flex flex-col items-center justify-center ${
@@ -70,51 +64,56 @@ export default function CaseStudyCard({
                   <ArrowRight className="w-6 h-6 transform group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
+              <button 
+                className="card-button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsFlipped(true);
+                }}
+                aria-label="Show more details"
+              >
+                <Plus className="w-5 h-5" />
+              </button>
             </div>
           </div>
 
           {/* Back of card */}
           <div 
-            className="absolute w-full h-full backface-hidden"
-            style={{ 
-              transform: "rotateY(180deg)",
-              backfaceVisibility: "hidden",
-              WebkitBackfaceVisibility: "hidden"
-            }}
+            className={`card-face card-back ${isFlipped ? 'flipped' : ''}`}
             onClick={(e) => {
               e.stopPropagation();
               setIsFlipped(false);
             }}
           >
             <div className="w-full h-full bg-[#123e74] rounded-2xl p-8 flex flex-col">
-              <button
+              <button 
+                className="card-button"
                 onClick={(e) => {
                   e.stopPropagation();
                   setIsFlipped(false);
                 }}
-                className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
               >
                 <Minus className="w-5 h-5 text-white" />
               </button>
               
               <div className="space-y-6 text-white overflow-y-auto flex-1">
                 <div>
-                  <h3 className="text-2xl font-bold mb-2">{company}</h3>
+                  <h3 className="text-2xl font-bold mb-2 text-white">{company}</h3>
                   <p className="text-lg font-medium text-white/90">{industry}</p>
                 </div>
                 
                 <div>
-                  <h4 className="text-lg font-semibold mb-2">The Challenge</h4>
+                  <h4 className="text-lg font-semibold mb-2 text-white">The Challenge</h4>
                   <p className="text-sm text-white/90">{challenge}</p>
                 </div>
                 
                 <div>
-                  <h4 className="text-lg font-semibold mb-2">Our Solution</h4>
+                  <h4 className="text-lg font-semibold mb-2 text-white">Our Solution</h4>
                   <p className="text-sm text-white/90">{solution}</p>
                 </div>
                 
                 <div>
-                  <h4 className="text-lg font-semibold mb-2">Key Results</h4>
+                  <h4 className="text-lg font-semibold mb-2 text-white">Key Results</h4>
                   <ul className="space-y-2">
                     {results.map((result, i) => (
                       <li key={i} className="flex items-start gap-2 text-sm text-white/90">
