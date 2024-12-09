@@ -51,17 +51,19 @@ export default function Testimonials() {
               className="group cursor-pointer"
             >
               <Card 
-                className="w-full min-h-[300px] shadow-lg group-hover:shadow-2xl transition-all duration-300 relative overflow-hidden flex flex-col"
-                style={{ background: "linear-gradient(to bottom right, #e8f6f7, #f4f9fa, #e0f3f4)" }}
+                className={`w-full min-h-[300px] shadow-lg group-hover:shadow-2xl transition-all duration-300 relative overflow-hidden flex flex-col`}
+                style={{ 
+                  background: index === 1 
+                    ? "linear-gradient(to bottom, #e8f6f7, #f4f9fa, #e0f3f4)"
+                    : "linear-gradient(to bottom right, #f8fafc, #ffffff)"
+                }}
               >
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-[#40a0aa]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: [1, 1.4, 1] }}
-                  transition={{ duration: 1, repeat: Infinity, repeatDelay: 2 }}
-                  style={{ opacity: 0.2 }}
+                  className={`absolute inset-0 bg-gradient-to-br from-[#40a0aa]/5 via-transparent to-transparent ${
+                    index === 1 ? 'opacity-0 group-hover:opacity-100' : 'opacity-0'
+                  } transition-opacity duration-500`}
                 />
-                <CardContent className="flex-grow">
+                <CardContent className="flex-grow p-6">
                   <motion.div 
                     className="flex items-center gap-2 mb-4"
                     initial={{ x: -20, opacity: 0 }}
@@ -79,10 +81,10 @@ export default function Testimonials() {
                     </div>
                   </motion.div>
                   <motion.p 
-                    className="text-slate-600"
+                    className="text-slate-600 text-lg"
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{ type: "spring", stiffness: 300, delay: 0.2 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
                   >
                     "{testimonial.content}"
                   </motion.p>
