@@ -169,12 +169,18 @@ export default function Home() {
                     }}
                   >
                     <div className="relative w-full h-[450px] transform-gpu">
-                      <div
+                      <motion.div
                         className={`card relative w-full h-full ${hoveredCard === index ? 'flipped' : ''}`}
                         onClick={() => setHoveredCard(hoveredCard === index ? null : index)}
+                        whileHover={{ scale: 1.02 }}
+                        transition={{ 
+                          type: "spring",
+                          stiffness: 300,
+                          damping: 20
+                        }}
                       >
                         {/* Front of card */}
-                        <div className="card-face absolute inset-0 rounded-2xl overflow-hidden shadow-xl">
+                        <div className="card-face absolute inset-0 rounded-2xl overflow-hidden">
                           <img
                             src={card.image}
                             alt={card.title}
@@ -205,26 +211,57 @@ export default function Home() {
                         </div>
 
                         {/* Back of card */}
-                        <div className="card-face card-back absolute inset-0 rounded-2xl overflow-hidden shadow-xl">
+                        <div className="card-face card-back absolute inset-0 rounded-2xl overflow-hidden">
                           <div className="w-full h-full bg-gradient-to-br from-[#00F5FF] via-[#40E0D0] to-[#0066CC] p-6 flex flex-col justify-between relative overflow-y-auto hide-scrollbar">
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
+                            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_transparent_25%,_rgba(0,0,0,0.4)_100%)] pointer-events-none" />
+                            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.1)_0%,transparent_100%)] mix-blend-overlay pointer-events-none" />
                             <div className="flex flex-col items-center justify-start h-full text-center px-4 relative z-10 space-y-6">
                               <motion.div 
-                                className="text-lg text-white leading-relaxed font-medium whitespace-pre-line tracking-wide text-center space-y-6"
+                                className="text-lg text-white leading-relaxed font-medium whitespace-pre-line tracking-wide text-center space-y-8"
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5, delay: 0.2 }}
                               >
-                                <div className="space-y-4">
-                                  <p className="text-xl font-semibold text-white/90">Key Features:</p>
+                                <div className="space-y-6">
+                                  <motion.p 
+                                    className="text-2xl font-bold text-white/95 bg-clip-text text-transparent bg-gradient-to-r from-white to-white/90"
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.6, delay: 0.3 }}
+                                  >
+                                    Key Features
+                                  </motion.p>
                                   {card.description.split('\n\n')[0].split('\n').slice(1).map((feature, i) => (
-                                    <p key={i} className="text-white/80">{feature}</p>
+                                    <motion.p 
+                                      key={i} 
+                                      className="text-white/85 backdrop-blur-sm bg-white/5 rounded-lg px-4 py-2"
+                                      initial={{ opacity: 0, x: -10 }}
+                                      animate={{ opacity: 1, x: 0 }}
+                                      transition={{ duration: 0.4, delay: 0.4 + (i * 0.1) }}
+                                    >
+                                      {feature}
+                                    </motion.p>
                                   ))}
                                 </div>
-                                <div className="space-y-4">
-                                  <p className="text-xl font-semibold text-white/90">Results:</p>
+                                <div className="space-y-6">
+                                  <motion.p 
+                                    className="text-2xl font-bold text-white/95 bg-clip-text text-transparent bg-gradient-to-r from-white to-white/90"
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.6, delay: 0.8 }}
+                                  >
+                                    Results
+                                  </motion.p>
                                   {card.description.split('\n\n')[2].split('\n').map((result, i) => (
-                                    <p key={i} className="text-white/80">{result}</p>
+                                    <motion.p 
+                                      key={i} 
+                                      className="text-white/85 backdrop-blur-sm bg-white/5 rounded-lg px-4 py-2"
+                                      initial={{ opacity: 0, x: 10 }}
+                                      animate={{ opacity: 1, x: 0 }}
+                                      transition={{ duration: 0.4, delay: 0.9 + (i * 0.1) }}
+                                    >
+                                      {result}
+                                    </motion.p>
                                   ))}
                                 </div>
                               </motion.div>
