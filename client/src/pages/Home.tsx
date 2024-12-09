@@ -136,27 +136,27 @@ export default function Home() {
                   {
                     title: "Sales Automation",
                     image: "/images/IMG_1392_optimized.jpg",
-                    description: "Transform your sales process with cutting-edge automation:\n\n• AI-powered lead scoring & qualification\n• Intelligent email sequence automation\n• Advanced CRM integration with real-time syncing\n• Custom workflow automation tailored to your needs\n• Performance tracking dashboards with actionable insights\n• Smart task prioritization using machine learning\n• Automated follow-up sequences\n• Advanced pipeline management\n\nResults:\n✓ Boost efficiency by 40%\n✓ Reduce manual work by 60%\n✓ Increase lead response time by 85%\n✓ Improve conversion rates by 35%"
+                    description: "Transform your sales process with cutting-edge automation:\n\n• AI-powered Lead Scoring: Automatically rank and prioritize leads based on behavior and engagement metrics\n• Smart Email Sequences: Create personalized, trigger-based email campaigns that adapt to recipient responses\n• Enterprise CRM Integration: Seamless connection with Salesforce, HubSpot, and other major platforms\n• Workflow Automation: Custom sales processes that reduce manual tasks by 70%\n• Real-time Analytics Dashboard: Monitor KPIs and team performance with actionable insights\n• Intelligent Task Management: ML-powered prioritization of daily sales activities\n• Advanced Pipeline Tools: Visual deal tracking with probability scoring\n• Meeting Scheduler: Automated calendar management with timezone optimization\n\nResults:\n✓ 40% increase in sales team efficiency\n✓ 60% reduction in administrative tasks\n✓ 85% faster lead response time\n✓ 35% higher conversion rate from lead to opportunity"
                   },
                   {
                     title: "Team Development",
                     image: "/images/IMG_1542_optimized.jpg",
-                    description: "Build & scale high-performing sales teams:\n\n• Personalized training programs based on data insights\n• Real-time coaching with AI-powered feedback\n• Advanced sales methodology mastery training\n• Leadership development for sales managers\n• Performance benchmarking against industry standards\n• Comprehensive skill assessment and growth tracking\n• Team collaboration tools and best practices\n• Sales psychology and negotiation techniques\n\nResults:\n✓ Increase team productivity by 75%\n✓ Achieve 95% quota attainment\n✓ Reduce ramp-up time by 50%\n✓ Improve team retention by 40%"
+                    description: "Build & scale high-performing sales teams:\n\n• Customized Training Programs: Data-driven coaching plans tailored to individual strengths\n• AI Sales Coach: Real-time call analysis and feedback during customer interactions\n• Advanced Sales Methodologies: MEDDIC, Challenger, and Solution Selling frameworks\n• Leadership Training: Specialized programs for sales managers and team leaders\n• Performance Analytics: Individual and team benchmarking against industry standards\n• Skill Development: Targeted improvement in prospecting, negotiation, and closing\n• Collaboration Platform: Shared best practices and team knowledge base\n• Psychology Training: Understanding buyer behavior and decision-making processes\n\nResults:\n✓ 75% increase in team productivity\n✓ 95% of team members achieving quota\n✓ 50% faster new hire ramp-up time\n✓ 40% improvement in team retention"
                   },
                   {
                     title: "Lead Generation",
                     image: "/images/IMG_1593_optimized.jpg",
-                    description: "Generate quality leads at scale:\n\n• Multi-channel prospecting with AI targeting\n• Account-based marketing campaigns\n• Advanced social selling strategies\n• Predictive lead scoring optimization\n• Comprehensive target account mapping\n• Real-time engagement analytics\n• Automated lead nurturing sequences\n• Custom audience segmentation\n\nResults:\n✓ Generate 3x more qualified leads\n✓ Reduce cost per acquisition by 45%\n✓ Improve lead quality score by 65%\n✓ Increase engagement rates by 80%"
+                    description: "Generate quality leads at scale:\n\n• Multi-channel Prospecting: Integrated approach across LinkedIn, Email, and Phone\n• ABM Campaigns: Targeted account-based marketing strategies for enterprise clients\n• Social Selling Suite: Advanced LinkedIn and Twitter engagement tools\n• Lead Scoring Engine: AI-powered prospect qualification system\n• Account Mapping: Comprehensive organization charts and decision-maker identification\n• Engagement Analytics: Real-time tracking of prospect interactions\n• Nurture Campaigns: Automated multi-touch outreach sequences\n• Market Segmentation: Custom ideal customer profile (ICP) development\n\nResults:\n✓ 300% increase in qualified lead generation\n✓ 45% lower cost per acquisition\n✓ 65% improvement in lead quality scores\n✓ 80% higher engagement rates"
                   },
                   {
                     title: "Performance Analytics",
                     image: "/images/IMG_1395_optimized.jpg",
-                    description: "Data-driven sales optimization:\n\n• Real-time performance tracking with AI insights\n• Advanced predictive analytics for forecasting\n• Multi-touch attribution modeling\n• Revenue forecasting with machine learning\n• Comprehensive pipeline analytics\n• Custom ROI measurement frameworks\n• Sales velocity optimization\n• Customer behavior analysis\n\nResults:\n✓ Improve forecast accuracy by 85%\n✓ Optimize win rates by 40%\n✓ Reduce sales cycle by 30%\n✓ Increase deal size by 25%"
+                    description: "Data-driven sales optimization:\n\n• Real-time Performance Tracking: Live dashboards with AI-powered insights\n• Predictive Analytics: ML models for sales forecasting and trend analysis\n• Attribution Modeling: Multi-touch attribution across all sales channels\n• Revenue Intelligence: AI-powered forecasting with 85% accuracy\n• Pipeline Analytics: Deal velocity and conversion rate optimization\n• ROI Calculator: Custom frameworks for measuring sales activities\n• Sales Efficiency Metrics: Comprehensive activity and outcome tracking\n• Customer Journey Analytics: Detailed analysis of buying patterns\n\nResults:\n✓ 85% more accurate sales forecasts\n✓ 40% higher win rates\n✓ 30% shorter sales cycles\n✓ 25% increase in average deal size"
                   }
                 ].map((card, index) => (
                   <motion.div
                     key={index}
-                    className="perspective"
+                    className="card-container"
                     initial={{ opacity: 0, x: 50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -166,7 +166,7 @@ export default function Home() {
                       ease: [0.16, 1, 0.3, 1]
                     }}
                   >
-                    <div className="relative w-full aspect-[3/4] card-container">
+                    <div className="relative w-full aspect-[3/4]">
                       <div
                         className={`card ${hoveredCard === index ? 'flipped' : ''}`}
                         onClick={() => setHoveredCard(hoveredCard === index ? null : index)}
@@ -175,11 +175,10 @@ export default function Home() {
                         <div 
                           className="card-face card-front"
                           style={{
-                            backgroundImage: `url(${card.image})`,
+                            backgroundImage: `url(${card.image}?quality=80&w=800)`,
                             backgroundPosition: 'center',
-                            backgroundRepeat: 'no-repeat'
+                            backgroundSize: 'cover'
                           }}
-                          loading="lazy"
                         >
                           <div className="absolute inset-0 bg-gradient-to-t from-[#123e74]/90 to-transparent" />
                           <div className="absolute bottom-0 left-0 right-0 p-6">
@@ -203,6 +202,10 @@ export default function Home() {
                         <div className="card-face card-back">
                           <div className="h-full p-6 overflow-y-auto hide-scrollbar">
                             <div className="space-y-4">
+                              <h3 className="text-2xl font-bold text-white mb-2">
+                                {card.title}
+                              </h3>
+                              <div className="w-12 h-1 bg-white/30 mb-6"></div>
                               <h4 className="text-xl font-bold text-white mb-4">
                                 Key Features
                               </h4>
@@ -243,7 +246,7 @@ export default function Home() {
                             </button>
                           </div>
                         </div>
-                      </motion.div>
+                      </div>
                     </div>
                   </motion.div>
                 ))}
