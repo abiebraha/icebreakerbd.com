@@ -99,14 +99,13 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 1.2 }}
             >
-              <Link href="/schedule-call">
-                <Button
-                  size="lg"
-                  className="bg-white hover:bg-white/90 text-[#123e74] px-8 py-3 text-lg font-semibold rounded-full transition-all duration-300 hover:scale-105 shadow-lg"
-                >
-                  Schedule a Call
-                </Button>
-              </Link>
+              <Button
+                size="lg"
+                className="bg-white hover:bg-white/90 text-[#123e74] px-8 py-3 text-lg font-semibold rounded-full transition-all duration-300 hover:scale-105 shadow-lg"
+                onClick={() => window.location.href = '/schedule-call'}
+              >
+                Schedule a Call
+              </Button>
             </motion.div>
           </div>
         </div>
@@ -139,22 +138,22 @@ export default function Home() {
                   {
                     title: "Sales Automation",
                     image: "/enso.png",
-                    description: "Transform your sales process with cutting-edge automation:\n\n• AI-powered lead scoring & qualification\n• Intelligent email sequence automation\n• Advanced CRM integration\n• Custom workflow automation\n• Performance tracking dashboards\n• Smart task prioritization\n\nBoost efficiency by 40% and reduce manual work by 60%\nFree your team to focus on closing deals"
+                    description: "Transform your sales process with cutting-edge automation:\n\n• AI-powered lead scoring & qualification\n• Intelligent email sequence automation\n• Advanced CRM integration with real-time syncing\n• Custom workflow automation tailored to your needs\n• Performance tracking dashboards with actionable insights\n• Smart task prioritization using machine learning\n• Automated follow-up sequences\n• Advanced pipeline management\n\nResults:\n✓ Boost efficiency by 40%\n✓ Reduce manual work by 60%\n✓ Increase lead response time by 85%\n✓ Improve conversion rates by 35%"
                   },
                   {
                     title: "Team Development",
                     image: "/nbx.webp",
-                    description: "Build & scale high-performing sales teams:\n\n• Customized training programs\n• Real-time coaching & feedback\n• Sales methodology mastery\n• Leadership development\n• Performance benchmarking\n• Skill assessment tools\n\nIncrease team productivity by 75%\nAchieve consistent quota attainment"
+                    description: "Build & scale high-performing sales teams:\n\n• Personalized training programs based on data insights\n• Real-time coaching with AI-powered feedback\n• Advanced sales methodology mastery training\n• Leadership development for sales managers\n• Performance benchmarking against industry standards\n• Comprehensive skill assessment and growth tracking\n• Team collaboration tools and best practices\n• Sales psychology and negotiation techniques\n\nResults:\n✓ Increase team productivity by 75%\n✓ Achieve 95% quota attainment\n✓ Reduce ramp-up time by 50%\n✓ Improve team retention by 40%"
                   },
                   {
                     title: "Lead Generation",
                     image: "/Color logo - no background.png",
-                    description: "Generate quality leads at scale:\n\n• Multi-channel prospecting\n• Account-based marketing\n• Social selling strategies\n• Lead scoring optimization\n• Target account mapping\n• Engagement analytics\n\nGenerate 3x more qualified leads\nReduce cost per acquisition by 45%"
+                    description: "Generate quality leads at scale:\n\n• Multi-channel prospecting with AI targeting\n• Account-based marketing campaigns\n• Advanced social selling strategies\n• Predictive lead scoring optimization\n• Comprehensive target account mapping\n• Real-time engagement analytics\n• Automated lead nurturing sequences\n• Custom audience segmentation\n\nResults:\n✓ Generate 3x more qualified leads\n✓ Reduce cost per acquisition by 45%\n✓ Improve lead quality score by 65%\n✓ Increase engagement rates by 80%"
                   },
                   {
                     title: "Performance Analytics",
                     image: "/Untitled design (1).png",
-                    description: "Data-driven sales optimization:\n\n• Real-time performance tracking\n• Predictive analytics\n• Conversion optimization\n• Revenue forecasting\n• Pipeline analytics\n• ROI measurement\n\nImprove forecast accuracy by 85%\nOptimize sales strategies with AI insights"
+                    description: "Data-driven sales optimization:\n\n• Real-time performance tracking with AI insights\n• Advanced predictive analytics for forecasting\n• Multi-touch attribution modeling\n• Revenue forecasting with machine learning\n• Comprehensive pipeline analytics\n• Custom ROI measurement frameworks\n• Sales velocity optimization\n• Customer behavior analysis\n\nResults:\n✓ Improve forecast accuracy by 85%\n✓ Optimize win rates by 40%\n✓ Reduce sales cycle by 30%\n✓ Increase deal size by 25%"
                   }
                 ].map((card, index) => (
                   <motion.div
@@ -162,7 +161,12 @@ export default function Home() {
                     className="relative group perspective"
                     initial={{ opacity: 0, x: 50 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.2 }}
+                    viewport={{ once: true }}
+                    transition={{ 
+                      delay: index * 0.2,
+                      duration: 0.8,
+                      ease: [0.16, 1, 0.3, 1]
+                    }}
                   >
                     <div className="relative w-full h-[450px] transform-gpu">
                       <div
@@ -174,13 +178,18 @@ export default function Home() {
                           <img
                             src={card.image}
                             alt={card.title}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover transform transition-transform duration-700 hover:scale-110"
                           />
-                          <div className="absolute inset-0 bg-black/20" />
-                          <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
-                            <h3 className="text-2xl font-bold text-white mb-2">
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                          <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/90 via-black/50 to-transparent">
+                            <motion.h3 
+                              className="text-2xl font-bold text-white mb-2"
+                              initial={{ opacity: 0, y: 20 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.5 }}
+                            >
                               {card.title}
-                            </h3>
+                            </motion.h3>
                           </div>
                           <button 
                             className="card-button"
@@ -197,11 +206,28 @@ export default function Home() {
 
                         {/* Back of card */}
                         <div className="card-face card-back absolute inset-0 rounded-2xl overflow-hidden shadow-xl">
-                          <div className="w-full h-full bg-gradient-to-br from-[#00F5FF] via-[#40E0D0] to-[#0066CC] p-6 flex flex-col justify-between">
-                            <div className="flex flex-col items-center justify-center h-full text-center px-6">
-                              <p className="text-lg text-white leading-relaxed font-medium whitespace-pre-line tracking-wide">
-                                {card.description}
-                              </p>
+                          <div className="w-full h-full bg-gradient-to-br from-[#00F5FF] via-[#40E0D0] to-[#0066CC] p-6 flex flex-col justify-between relative overflow-y-auto hide-scrollbar">
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
+                            <div className="flex flex-col items-center justify-start h-full text-center px-4 relative z-10 space-y-6">
+                              <motion.div 
+                                className="text-lg text-white leading-relaxed font-medium whitespace-pre-line tracking-wide text-center space-y-6"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: 0.2 }}
+                              >
+                                <div className="space-y-4">
+                                  <p className="text-xl font-semibold text-white/90">Key Features:</p>
+                                  {card.description.split('\n\n')[0].split('\n').slice(1).map((feature, i) => (
+                                    <p key={i} className="text-white/80">{feature}</p>
+                                  ))}
+                                </div>
+                                <div className="space-y-4">
+                                  <p className="text-xl font-semibold text-white/90">Results:</p>
+                                  {card.description.split('\n\n')[2].split('\n').map((result, i) => (
+                                    <p key={i} className="text-white/80">{result}</p>
+                                  ))}
+                                </div>
+                              </motion.div>
                             </div>
                             <button 
                               className="card-button"
