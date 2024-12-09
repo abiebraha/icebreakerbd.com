@@ -51,16 +51,6 @@ export default function Testimonials() {
     }
   };
 
-  const floatingAnimation = {
-    y: [-3, 3, -3],
-    transition: {
-      duration: 6,
-      repeat: Infinity,
-      ease: "easeInOut",
-      times: [0, 0.5, 1]
-    }
-  };
-
   return (
     <motion.section 
       ref={ref}
@@ -91,41 +81,50 @@ export default function Testimonials() {
             <motion.div
               key={index}
               variants={cardVariants}
-              animate={floatingAnimation}
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300 }}
+              className="group cursor-pointer"
             >
-              <div className="group">
-                <Card className="bg-white shadow-lg hover:shadow-2xl transition-all duration-500 h-full transform hover:-translate-y-2 rounded-2xl overflow-hidden border-2 border-transparent hover:border-[#2c8d98]/20 hover:bg-gradient-to-b hover:from-white hover:to-slate-50/50">
-                  <CardContent className="pt-8 pb-8 px-8 flex flex-col h-full relative">
-                    <motion.div 
-                      className="flex items-center gap-4 mb-6 relative z-10"
-                      initial={{ x: -20, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      transition={{ delay: index * 0.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                    >
-                      <Avatar className="h-14 w-14 border-2 border-[#2c8d98]/20">
-                        <AvatarImage src={testimonial.avatar} alt={testimonial.role} />
-                        <AvatarFallback className="bg-[#2c8d98]/10 text-[#2c8d98] font-semibold">
-                          {testimonial.initials}
-                        </AvatarFallback>
-                      </Avatar>
-                      <div>
-                        <p className="text-[#2c8d98] font-semibold text-lg">
-                          {testimonial.role}
-                        </p>
-                      </div>
-                    </motion.div>
-                    <motion.p 
-                      className="text-slate-600 text-lg leading-relaxed italic flex-grow relative z-10 font-medium"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: index * 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                    >
-                      "{testimonial.content}"
-                    </motion.p>
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-50/20 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                  </CardContent>
-                </Card>
-              </div>
+              <Card 
+                className="w-full min-h-[300px] shadow-lg group-hover:shadow-2xl transition-all duration-300 relative overflow-hidden flex flex-col"
+                style={{ background: "linear-gradient(to bottom, #e8f6f7, #f4f9fa, #e0f3f4)" }}
+              >
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-br from-[#40a0aa]/5 via-transparent to-transparent"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 0 }}
+                  whileHover={{ opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                />
+                <CardContent className="pt-8 pb-8 px-8 flex flex-col flex-grow relative">
+                  <motion.div 
+                    className="flex items-center gap-4 mb-6 relative z-10"
+                    initial={{ x: -20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: index * 0.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <Avatar className="h-14 w-14 border-2 border-[#40a0aa]/20">
+                      <AvatarImage src={testimonial.avatar} alt={testimonial.role} />
+                      <AvatarFallback className="bg-[#40a0aa]/10 text-[#40a0aa] font-semibold">
+                        {testimonial.initials}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <p className="text-[#40a0aa] font-semibold text-lg">
+                        {testimonial.role}
+                      </p>
+                    </div>
+                  </motion.div>
+                  <motion.p 
+                    className="text-slate-600 text-lg leading-relaxed italic flex-grow relative z-10 font-medium"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: index * 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    "{testimonial.content}"
+                  </motion.p>
+                </CardContent>
+              </Card>
             </motion.div>
           ))}
         </div>
