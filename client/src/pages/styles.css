@@ -22,6 +22,8 @@
   height: 100%;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
   border-radius: 0.75rem;
   overflow: hidden;
 }
@@ -60,7 +62,31 @@
   color: white;
   transition: all 0.2s ease;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  z-index: 10;
+  pointer-events: auto;
+}
+
+.card-front .card-button {
+  z-index: 2;
+  opacity: 1;
+  visibility: visible;
+}
+
+.card-back .card-button {
+  z-index: -1;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.card.flipped .card-back .card-button {
+  z-index: 2;
+  opacity: 1;
+  visibility: visible;
+}
+
+.card.flipped .card-front .card-button {
+  z-index: -1;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .card-button:hover {

@@ -112,7 +112,7 @@ export default function Home() {
       </motion.section>
 
       {/* Carousel Section */}
-      <section className="py-24 bg-gradient-to-b from-[#e5f4f5] via-[#f0f8f9] to-[#dff2f3] relative overflow-hidden">
+      <section className="py-24 relative overflow-hidden" style={{ background: "linear-gradient(to bottom, #e8f6f7, #f4f9fa, #e0f3f4)" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -136,22 +136,22 @@ export default function Home() {
                   {
                     title: "Sales Automation",
                     image: "/images/IMG_1392_optimized.jpg",
-                    description: "Transform your sales process with cutting-edge automation:\n\n• Intelligent Lead Scoring: AI-driven lead prioritization based on 20+ behavioral signals\n• Smart Sequences: Personalized email campaigns with 90% open rates\n• Advanced CRM Integration: Seamless sync with Salesforce, HubSpot & more\n• Workflow Builder: Custom automation reducing manual work by 70%\n• Real-time Dashboard: Live KPI tracking & performance metrics\n• Smart Calendar: AI-powered meeting scheduling across timezones\n• Revenue Forecasting: Predictive analytics with 95% accuracy\n• Task Automation: Auto-assignment & follow-up system\n\nProven Impact:\n✓ 3x increase in qualified meetings booked\n✓ 70% reduction in response time\n✓ 85% increase in pipeline velocity\n✓ 50% higher sales team productivity"
+                    description: "Transform your sales process with cutting-edge automation:\n\n• Intelligent Lead Scoring: AI-driven lead prioritization based on behavioral signals\n• Smart Sequences: Personalized email campaigns for maximum engagement\n• Advanced CRM Integration: Seamless sync with Salesforce, HubSpot & more\n• Workflow Builder: Custom automation reducing manual work\n• Real-time Dashboard: Live KPI tracking & performance metrics\n• Smart Calendar: AI-powered meeting scheduling across timezones\n• Revenue Forecasting: Predictive analytics for accurate planning\n• Task Automation: Auto-assignment & follow-up system\n\nProven Impact:\n✓ Significant increase in qualified meetings booked\n✓ Dramatically reduced response times\n✓ Enhanced pipeline velocity\n✓ Improved sales team productivity"
                   },
                   {
                     title: "Team Development",
                     image: "/images/IMG_1542_optimized.jpg",
-                    description: "Scale your sales team with expert coaching:\n\n• Elite Training Program: Customized learning paths for each role\n• Real-time AI Coach: Live call analysis & instant feedback\n• Sales Playbook Creation: Best practices & winning strategies\n• Leadership Academy: Management & team scaling expertise\n• Performance Tracking: Individual & team metrics dashboard\n• Skills Workshop: Advanced negotiation & closing techniques\n• Knowledge Library: Searchable sales resources & templates\n• Behavioral Science: Psychology of B2B decision-making\n\nProven Impact:\n✓ 90% of reps exceeding quota in 6 months\n✓ 45% faster ramp-up for new hires\n✓ 80% improvement in close rates\n✓ 95% team retention rate"
+                    description: "Scale your sales team with expert coaching:\n\n• Elite Training Program: Customized learning paths for each role\n• Real-time AI Coach: Live call analysis & instant feedback\n• Sales Playbook Creation: Best practices & winning strategies\n• Leadership Academy: Management & team scaling expertise\n• Performance Tracking: Individual & team metrics dashboard\n• Skills Workshop: Advanced negotiation & closing techniques\n• Knowledge Library: Searchable sales resources & templates\n• Behavioral Science: Psychology of B2B decision-making\n\nProven Impact:\n✓ Most reps exceeding quota within months\n✓ Accelerated ramp-up for new hires\n✓ Substantial improvement in close rates\n✓ Outstanding team retention"
                   },
                   {
                     title: "Lead Generation",
                     image: "/images/IMG_1593_optimized.jpg",
-                    description: "Generate premium leads at enterprise scale:\n\n• Multi-channel Outreach: Integrated LinkedIn, Email & Phone\n• ABM Campaigns: Fortune 500 targeting & engagement\n• Social Selling: Advanced connection & content strategies\n• Prospect Intelligence: Deep insights & buying signals\n• Organization Mapping: Decision-maker identification\n• Engagement Tracking: Real-time response analytics\n• Custom Sequences: Industry-specific outreach paths\n• Buyer Profiling: Ideal customer profile development\n\nProven Impact:\n✓ 4x increase in qualified opportunities\n✓ 60% reduction in acquisition costs\n✓ 75% higher response rates\n✓ 85% better lead quality scores"
+                    description: "Generate premium leads at enterprise scale:\n\n• Multi-channel Outreach: Integrated LinkedIn, Email & Phone\n• ABM Campaigns: Fortune 500 targeting & engagement\n• Social Selling: Advanced connection & content strategies\n• Prospect Intelligence: Deep insights & buying signals\n• Organization Mapping: Decision-maker identification\n• Engagement Tracking: Real-time response analytics\n• Custom Sequences: Industry-specific outreach paths\n• Buyer Profiling: Ideal customer profile development\n\nProven Impact:\n✓ Multiplied qualified opportunities\n✓ Reduced acquisition costs\n✓ Improved response rates\n✓ Enhanced lead quality"
                   },
                   {
                     title: "Performance Analytics",
                     image: "/images/IMG_1395_optimized.jpg",
-                    description: "Optimize sales with data-driven insights:\n\n• Live Performance Hub: Real-time sales activity tracking\n• AI Forecasting: Revenue prediction with 90% accuracy\n• Pipeline Optimization: Deal velocity & conversion analytics\n• Attribution Engine: Multi-touch revenue tracking\n• Efficiency Metrics: Activity & outcome correlation\n• ROI Analysis: Custom measurement frameworks\n• Team Benchmarking: Industry performance standards\n• Growth Modeling: Predictive scaling scenarios\n\nProven Impact:\n✓ 95% forecast accuracy\n✓ 50% higher win rates\n✓ 40% faster sales cycles\n✓ 65% larger average deal size"
+                    description: "Optimize sales with data-driven insights:\n\n• Live Performance Hub: Real-time sales activity tracking\n• AI Forecasting: Highly accurate revenue prediction\n• Pipeline Optimization: Deal velocity & conversion analytics\n• Attribution Engine: Multi-touch revenue tracking\n• Efficiency Metrics: Activity & outcome correlation\n• ROI Analysis: Custom measurement frameworks\n• Team Benchmarking: Industry performance standards\n• Growth Modeling: Predictive scaling scenarios\n\nProven Impact:\n✓ Superior forecast accuracy\n✓ Increased win rates\n✓ Accelerated sales cycles\n✓ Larger average deal sizes"
                   }
                 ].map((card, index) => (
                   <motion.div
