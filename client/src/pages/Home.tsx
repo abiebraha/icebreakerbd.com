@@ -113,7 +113,7 @@ export default function Home() {
       </motion.section>
 
       {/* Carousel Section */}
-      <section className="py-24 bg-gradient-to-br from-[#20B2AA] to-[#48D1CC]">
+      <section className="py-24 bg-gradient-to-br from-[#00F5FF] via-[#40E0D0] to-[#0066CC]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -195,7 +195,7 @@ export default function Home() {
 
                         {/* Back of card */}
                         <div className="card-face card-back absolute inset-0 rounded-2xl overflow-hidden shadow-xl">
-                          <div className="w-full h-full bg-gradient-to-br from-[#20B2AA] to-[#48D1CC] p-6 flex flex-col justify-between">
+                          <div className="w-full h-full bg-gradient-to-br from-[#40E0D0] to-[#0066CC] p-6 flex flex-col justify-between">
                             <p className="text-lg text-white leading-relaxed">
                               {card.description}
                             </p>
