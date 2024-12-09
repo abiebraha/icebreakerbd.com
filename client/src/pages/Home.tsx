@@ -11,6 +11,7 @@ import "./styles.css";
 export default function Home() {
   const { scrollY } = useScroll();
   const ref = useRef<HTMLDivElement>(null);
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   
   // Enhanced spring animations for Apple-like smooth transitions
   const springConfig = { 
@@ -110,12 +111,10 @@ export default function Home() {
             </motion.div>
           </div>
         </div>
-
-        {/* Removed loading animation div */}
       </motion.section>
 
       {/* Carousel Section */}
-      <section className="py-24 bg-[#20B2AA]">
+      <section className="py-24 bg-[#005959]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -164,13 +163,13 @@ export default function Home() {
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.2 }}
                   >
-                    <motion.div
-                      className="relative w-full h-[400px] [transform-style:preserve-3d] transition-all duration-500"
-                      animate={{ rotateY: 0 }}
-                      whileHover={{ rotateY: 180 }}
+                    <div
+                      className={`card relative w-full h-[400px] ${hoveredCard === index ? 'flipped' : ''}`}
+                      onMouseEnter={() => setHoveredCard(index)}
+                      onMouseLeave={() => setHoveredCard(null)}
                     >
                       {/* Front of card */}
-                      <div className="absolute inset-0 rounded-2xl overflow-hidden">
+                      <div className="card-face absolute inset-0 rounded-2xl overflow-hidden">
                         <div className="absolute inset-0 bg-black/20" />
                         <img
                           src={card.image}
@@ -182,23 +181,35 @@ export default function Home() {
                             {card.title}
                           </h3>
                         </div>
-                        <button className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+                        <button 
+                          className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white hover:bg-white/30 transition-colors"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setHoveredCard(index);
+                          }}
+                        >
                           <PlusIcon className="w-5 h-5" />
                         </button>
                       </div>
 
                       {/* Back of card */}
-                      <div className="absolute inset-0 rounded-2xl overflow-hidden [transform:rotateY(180deg)] [backface-visibility:hidden]">
-                        <div className="w-full h-full bg-gradient-to-br from-[#20B2AA] to-[#008B8B] p-6 flex flex-col justify-center">
+                      <div className="card-face card-back absolute inset-0 rounded-2xl overflow-hidden">
+                        <div className="w-full h-full bg-gradient-to-br from-[#005959] to-[#003333] p-6 flex flex-col justify-center">
                           <p className="text-lg text-white leading-relaxed">
                             {card.description}
                           </p>
-                          <button className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+                          <button 
+                            className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white hover:bg-white/30 transition-colors"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setHoveredCard(null);
+                            }}
+                          >
                             <MinusIcon className="w-5 h-5" />
                           </button>
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   </motion.div>
                 ))}
               </div>
