@@ -137,22 +137,22 @@ export default function Home() {
                 {[
                   {
                     title: "Sales Automation",
-                    image: "/enso.png",
+                    image: "/images/enso.png",
                     description: "Transform your sales process with cutting-edge automation:\n\n• AI-powered lead scoring & qualification\n• Intelligent email sequence automation\n• Advanced CRM integration with real-time syncing\n• Custom workflow automation tailored to your needs\n• Performance tracking dashboards with actionable insights\n• Smart task prioritization using machine learning\n• Automated follow-up sequences\n• Advanced pipeline management\n\nResults:\n✓ Boost efficiency by 40%\n✓ Reduce manual work by 60%\n✓ Increase lead response time by 85%\n✓ Improve conversion rates by 35%"
                   },
                   {
                     title: "Team Development",
-                    image: "/nbx.webp",
+                    image: "/images/nbx.webp",
                     description: "Build & scale high-performing sales teams:\n\n• Personalized training programs based on data insights\n• Real-time coaching with AI-powered feedback\n• Advanced sales methodology mastery training\n• Leadership development for sales managers\n• Performance benchmarking against industry standards\n• Comprehensive skill assessment and growth tracking\n• Team collaboration tools and best practices\n• Sales psychology and negotiation techniques\n\nResults:\n✓ Increase team productivity by 75%\n✓ Achieve 95% quota attainment\n✓ Reduce ramp-up time by 50%\n✓ Improve team retention by 40%"
                   },
                   {
                     title: "Lead Generation",
-                    image: "/Color logo - no background.png",
+                    image: "/images/Color logo - no background.png",
                     description: "Generate quality leads at scale:\n\n• Multi-channel prospecting with AI targeting\n• Account-based marketing campaigns\n• Advanced social selling strategies\n• Predictive lead scoring optimization\n• Comprehensive target account mapping\n• Real-time engagement analytics\n• Automated lead nurturing sequences\n• Custom audience segmentation\n\nResults:\n✓ Generate 3x more qualified leads\n✓ Reduce cost per acquisition by 45%\n✓ Improve lead quality score by 65%\n✓ Increase engagement rates by 80%"
                   },
                   {
                     title: "Performance Analytics",
-                    image: "/Untitled design (1).png",
+                    image: "/images/Untitled design (1).png",
                     description: "Data-driven sales optimization:\n\n• Real-time performance tracking with AI insights\n• Advanced predictive analytics for forecasting\n• Multi-touch attribution modeling\n• Revenue forecasting with machine learning\n• Comprehensive pipeline analytics\n• Custom ROI measurement frameworks\n• Sales velocity optimization\n• Customer behavior analysis\n\nResults:\n✓ Improve forecast accuracy by 85%\n✓ Optimize win rates by 40%\n✓ Reduce sales cycle by 30%\n✓ Increase deal size by 25%"
                   }
                 ].map((card, index) => (
@@ -183,11 +183,11 @@ export default function Home() {
                       >
                         {/* Front of card */}
                         <div className="card-face absolute inset-0 rounded-2xl overflow-hidden">
-                          <div className="relative w-full h-full bg-white/10 p-4">
+                          <div className="relative w-full h-[300px] bg-gradient-to-b from-white/10 to-white/5 p-8 flex items-center justify-center">
                             <img
                               src={card.image}
                               alt={card.title}
-                              className="w-full h-full object-contain transform transition-transform duration-700 hover:scale-105"
+                              className="w-4/5 h-4/5 object-contain transition-transform duration-700 hover:scale-110"
                             />
                           </div>
                           <div className="absolute inset-0 bg-gradient-to-t from-[#123e74]/90 via-[#123e74]/40 to-transparent" />
