@@ -140,24 +140,27 @@ export default function ServicesPage() {
               <motion.div
                 key={service.title}
                 className="p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
-                style={{ background: "linear-gradient(to bottom right, #FFDFD3, #FFF0DB, #FFE2E2)" }}
+                style={{ 
+                  background: "linear-gradient(135deg, #FFB6A3, #FFD9CC, #FFE5D9)",
+                  boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
+                }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <div className="mb-4">
-                  <service.icon className="w-12 h-12 text-[#123e74]" />
+                  <service.icon className="w-12 h-12 text-slate-800 drop-shadow-sm" />
                 </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-3">
+                <h3 className="text-xl font-bold text-slate-800 mb-3 drop-shadow-sm">
                   {service.title}
                 </h3>
-                <p className="text-slate-600 mb-4">
+                <p className="text-slate-700 mb-4 drop-shadow-sm">
                   {service.description}
                 </p>
                 <ul className="space-y-2">
                   {service.features.map((feature, i) => (
-                    <li key={i} className="text-sm text-slate-600 flex items-center gap-2">
-                      <div className="w-1 h-1 rounded-full bg-[#123e74]" />
+                    <li key={i} className="text-sm text-slate-700 flex items-center gap-2 drop-shadow-sm">
+                      <div className="w-1.5 h-1.5 rounded-full bg-slate-700" />
                       {feature}
                     </li>
                   ))}
