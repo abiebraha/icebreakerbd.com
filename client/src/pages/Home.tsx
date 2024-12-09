@@ -1,9 +1,8 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Users, LineChart, Target } from "lucide-react";
-import { PlusIcon, MinusIcon } from "@radix-ui/react-icons";
+import { Users, LineChart, Target, Plus, Minus } from "lucide-react";
 
 // Add custom styles
 import "./styles.css";
@@ -114,7 +113,7 @@ export default function Home() {
       </motion.section>
 
       {/* Carousel Section */}
-      <section className="py-24 bg-[#005959]">
+      <section className="py-24 bg-[#123e74]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -158,55 +157,60 @@ export default function Home() {
                 ].map((card, index) => (
                   <motion.div
                     key={index}
-                    className="min-w-[300px] sm:min-w-[350px] relative group perspective"
+                    className="min-w-[300px] sm:min-w-[350px] relative group perspective snap-center"
                     initial={{ opacity: 0, x: 50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.2 }}
                   >
-                    <div
-                      className={`card relative w-full h-[400px] ${hoveredCard === index ? 'flipped' : ''}`}
-                      onMouseEnter={() => setHoveredCard(index)}
-                      onMouseLeave={() => setHoveredCard(null)}
-                    >
-                      {/* Front of card */}
-                      <div className="card-face absolute inset-0 rounded-2xl overflow-hidden">
-                        <div className="absolute inset-0 bg-black/20" />
-                        <img
-                          src={card.image}
-                          alt={card.title}
-                          className="w-full h-full object-cover"
-                        />
-                        <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
-                          <h3 className="text-2xl font-bold text-white mb-2">
-                            {card.title}
-                          </h3>
-                        </div>
-                        <button 
-                          className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white hover:bg-white/30 transition-colors"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            setHoveredCard(index);
-                          }}
-                        >
-                          <PlusIcon className="w-5 h-5" />
-                        </button>
-                      </div>
-
-                      {/* Back of card */}
-                      <div className="card-face card-back absolute inset-0 rounded-2xl overflow-hidden">
-                        <div className="w-full h-full bg-gradient-to-br from-[#005959] to-[#003333] p-6 flex flex-col justify-center">
-                          <p className="text-lg text-white leading-relaxed">
-                            {card.description}
-                          </p>
+                    <div className="p-2">
+                      <div
+                        className={`card relative w-full h-[400px] ${hoveredCard === index ? 'flipped' : ''}`}
+                        onClick={() => setHoveredCard(hoveredCard === index ? null : index)}
+                      >
+                        {/* Front of card */}
+                        <div className="card-face absolute inset-0 rounded-2xl overflow-hidden shadow-xl">
+                          <div className="absolute inset-0 bg-black/20" />
+                          <img
+                            src={card.image}
+                            alt={card.title}
+                            className="w-full h-full object-cover"
+                          />
+                          <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
+                            <h3 className="text-2xl font-bold text-white mb-2">
+                              {card.title}
+                            </h3>
+                          </div>
                           <button 
-                            className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white hover:bg-white/30 transition-colors"
+                            className="card-button"
                             onClick={(e) => {
                               e.preventDefault();
-                              setHoveredCard(null);
+                              e.stopPropagation();
+                              setHoveredCard(index);
                             }}
+                            aria-label="Show more details"
                           >
-                            <MinusIcon className="w-5 h-5" />
+                            <Plus className="w-6 h-6" />
                           </button>
+                        </div>
+
+                        {/* Back of card */}
+                        <div className="card-face card-back absolute inset-0 rounded-2xl overflow-hidden shadow-xl">
+                          <div className="w-full h-full bg-gradient-to-br from-[#123e74] to-[#0a2647] p-6 flex flex-col justify-center">
+                            <p className="text-lg text-white leading-relaxed">
+                              {card.description}
+                            </p>
+                            <button 
+                              className="card-button"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                setHoveredCard(null);
+                              }}
+                              aria-label="Show less details"
+                            >
+                              <Minus className="w-6 h-6" />
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>
