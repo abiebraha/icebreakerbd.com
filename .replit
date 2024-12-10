@@ -8,7 +8,7 @@ channel = "stable-24_05"
 [deployment]
 deploymentTarget = "cloudrun"
 build = ["npm", "run", "build"]
-run = ["node", "dist/index.js"]
+run = ["sh", "-c", "cd client && npm run dev -- --host 0.0.0.0 --port 5173"]
 
 [[ports]]
 localPort = 80
@@ -48,64 +48,7 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
-args = "Build Project"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
-args = "Production Server"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
 args = "Development Server"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
-args = "Production Build and Server"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
-args = "Production Build"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
-args = "Clean Production Build"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
-args = "Server Build and Run"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
-args = "Production Build and Deploy"
-
-[[workflows.workflow]]
-name = "Build Project"
-author = "agent"
-
-[workflows.workflow.metadata]
-agentRequireRestartOnSave = false
-
-[[workflows.workflow.tasks]]
-task = "packager.installForAll"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm run build"
-
-[[workflows.workflow]]
-name = "Production Server"
-author = "agent"
-
-[workflows.workflow.metadata]
-agentRequireRestartOnSave = false
-
-[[workflows.workflow.tasks]]
-task = "packager.installForAll"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "cd client && npm run build && cd .. && NODE_ENV=production node server/index.ts"
-waitForPort = 5000
 
 [[workflows.workflow]]
 name = "Development Server"
@@ -119,78 +62,5 @@ task = "packager.installForAll"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "cd client && npm run dev"
+args = "cd client && npm run dev -- --host 0.0.0.0 --port 5173"
 waitForPort = 5173
-
-[[workflows.workflow]]
-name = "Production Build and Server"
-author = "agent"
-
-[workflows.workflow.metadata]
-agentRequireRestartOnSave = false
-
-[[workflows.workflow.tasks]]
-task = "packager.installForAll"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm install && cd client && npm install && npm run build && cd .. && tsc && NODE_ENV=production node dist/index.js"
-waitForPort = 5000
-
-[[workflows.workflow]]
-name = "Production Build"
-author = "agent"
-
-[workflows.workflow.metadata]
-agentRequireRestartOnSave = false
-
-[[workflows.workflow.tasks]]
-task = "packager.installForAll"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm install && cd client && npm install && npm run build && cd .. && tsc"
-
-[[workflows.workflow]]
-name = "Clean Production Build"
-author = "agent"
-
-[workflows.workflow.metadata]
-agentRequireRestartOnSave = false
-
-[[workflows.workflow.tasks]]
-task = "packager.installForAll"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "cd client && rm -rf dist node_modules && npm install && npm run build"
-
-[[workflows.workflow]]
-name = "Server Build and Run"
-author = "agent"
-
-[workflows.workflow.metadata]
-agentRequireRestartOnSave = false
-
-[[workflows.workflow.tasks]]
-task = "packager.installForAll"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "tsc -p tsconfig.server.json && cd client && npm run build && cd .. && NODE_ENV=production node --experimental-specifier-resolution=node dist/server/index.js"
-waitForPort = 5000
-
-[[workflows.workflow]]
-name = "Production Build and Deploy"
-author = "agent"
-
-[workflows.workflow.metadata]
-agentRequireRestartOnSave = false
-
-[[workflows.workflow.tasks]]
-task = "packager.installForAll"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "tsc -p tsconfig.server.json && cd client && npm run build && cd .. && NODE_ENV=production node dist/server/index.js"
-waitForPort = 5000

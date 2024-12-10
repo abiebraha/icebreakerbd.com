@@ -1,4 +1,4 @@
-import type { Express, Request, Response } from "express";
+import type { Express } from "express";
 import sgMail from '@sendgrid/mail';
 import OpenAI from 'openai';
 
@@ -94,7 +94,7 @@ export function registerRoutes(app: Express) {
     sgMail.setApiKey(SENDGRID_API_KEY);
   }
 
-  app.post('/api/contact', async (req: Request, res: Response) => {
+  app.post('/api/contact', async (req, res) => {
     try {
       const { name, email, company, teamSize, improvementArea, additionalInfo } = req.body;
       
@@ -171,7 +171,7 @@ Additional Information: ${additionalInfo || 'None provided'}
     }
   });
 
-  app.post('/api/tools/generate-cold-email', async (req: Request, res: Response) => {
+  app.post('/api/tools/generate-cold-email', async (req, res) => {
     try {
       const { websiteUrl: rawWebsiteUrl, productDescription, customInstructions, email } = req.body;
       const websiteUrl = rawWebsiteUrl ? normalizeUrl(rawWebsiteUrl) : '';
@@ -260,7 +260,7 @@ ${customInstructions ? `\nCustom Instructions: ${customInstructions}` : ''}`
     }
   });
 
-  app.post('/api/tools/generate-sales-script', async (req: Request, res: Response) => {
+  app.post('/api/tools/generate-sales-script', async (req, res) => {
     try {
       const { websiteUrl: rawWebsiteUrl, productDescription, customInstructions, email } = req.body;
       const websiteUrl = rawWebsiteUrl ? normalizeUrl(rawWebsiteUrl) : '';
@@ -352,7 +352,7 @@ ${customInstructions ? `\nCustom Instructions: ${customInstructions}` : ''}`
     }
   });
 
-  app.post('/api/tools/generate-linkedin-post', async (req: Request, res: Response) => {
+  app.post('/api/tools/generate-linkedin-post', async (req, res) => {
     try {
       const { context, customInstructions, email } = req.body;
 

@@ -54,7 +54,7 @@ export default function Testimonials() {
   return (
     <motion.section 
       ref={ref}
-      className="bg-white py-24 px-4 sm:px-6 lg:px-8"
+      className="bg-gradient-to-b from-slate-50 to-white py-24 px-4 sm:px-6 lg:px-8"
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={containerVariants}
@@ -87,10 +87,10 @@ export default function Testimonials() {
             >
               <Card 
                 className="w-full min-h-[300px] shadow-lg group-hover:shadow-2xl transition-all duration-300 relative overflow-hidden flex flex-col"
-                style={{ background: "gradient-to-r from-[#2c8d98] to-[#0066CC]" }}
+                style={{ background: "linear-gradient(to bottom, #e8f6f7, #f4f9fa, #e0f3f4)" }}
               >
                 <motion.div
-                  className="absolute inset-0 -white"
+                  className="absolute inset-0 bg-gradient-to-br from-[#40a0aa]/5 via-transparent to-transparent"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 0 }}
                   whileHover={{ opacity: 1 }}
@@ -105,12 +105,12 @@ export default function Testimonials() {
                   >
                     <Avatar className="h-14 w-14 border-2 border-[#40a0aa]/20">
                       <AvatarImage src={testimonial.avatar} alt={testimonial.role} />
-                      <AvatarFallback className="text-from-[#2c8d98] text-to-[#0066CC] font-semibold">
+                      <AvatarFallback className="bg-[#40a0aa]/10 text-[#40a0aa] font-semibold">
                         {testimonial.initials}
                       </AvatarFallback>
                     </Avatar>
                     <div>
-                      <p className="text-from-[#2c8d98] to-[#0066CC] text-lg font-semibold">
+                      <p className="text-[#40a0aa] font-semibold text-lg">
                         {testimonial.role}
                       </p>
                     </div>

@@ -112,7 +112,7 @@ export default function Home() {
       </motion.section>
 
       {/* Carousel Section */}
-      <section className="py-24 relative overflow-hidden" style={{ background: "linear-gradient(to bottom, #2c8d98, #0066CC)" }}>
+      <section className="py-24 relative overflow-hidden" style={{ background: "linear-gradient(to bottom, #e8f6f7, #f4f9fa, #e0f3f4)" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -121,10 +121,10 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-[white] mb-6 tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#2c8d98] mb-6 tracking-tight">
               Our Key Solutions
             </h2>
-            <p className="text-xl text-[white] max-w-3xl mx-auto">
+            <p className="text-xl text-[#40a0aa] max-w-3xl mx-auto">
               Discover how we can transform your sales process
             </p>
           </motion.div>

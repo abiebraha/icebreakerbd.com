@@ -123,7 +123,7 @@ export default function ServicesPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
               Comprehensive Sales
               <br />
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#FFB6A3] to-[#FFE5D9]">Growth Solutions</span>
+              <span className="text-[#E8927C]">Growth Solutions</span>
             </h1>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               From system setup to team building, we provide end-to-end services to accelerate your sales growth.

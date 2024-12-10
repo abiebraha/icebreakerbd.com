@@ -27,8 +27,8 @@ export default function PricingCard({
       transition={{ type: "spring", stiffness: 300 }}
       className="group cursor-pointer"
     >
-      <Card className="w-full min-h-[500px] shadow-lg group-hover:shadow-2xl transition-all duration-300 relative overflow-hidden flex flex-col border-0"
-        style={{ background: "linear-gradient(to right, #2c8d98, #0066CC)" }}
+      <Card className="w-full min-h-[500px] shadow-lg group-hover:shadow-2xl transition-all duration-300 relative overflow-hidden flex flex-col"
+        style={{ background: "linear-gradient(to bottom, #e8f6f7, #f4f9fa, #e0f3f4)" }}
         >
         <motion.div
           className="absolute inset-0 bg-gradient-to-br from-[#40a0aa]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
@@ -40,10 +40,10 @@ export default function PricingCard({
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-r from-[#2c8d98] to-[#0066CC] text-white text-sm font-bold relative">
+            <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#40a0aa] text-white text-sm font-bold relative">
               {step}
               <motion.div
-                className="absolute inset-0 rounded-full bg-gradient-to-r from-[#2c8d98] to-[#0066CC]"
+                className="absolute inset-0 rounded-full bg-linear-gradient(to bottom, #e8f6f7, #f4f9fa, #e0f3f4)"
                 initial={{ scale: 0 }}
                 animate={{ scale: [1, 1.4, 1] }}
                 transition={{ duration: 1, repeat: Infinity, repeatDelay: 2 }}
@@ -60,7 +60,7 @@ export default function PricingCard({
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <span className="text-4xl font-bold gradient-from-[#2c8d98] to-[#0066CC]">${price}</span>
+            <span className="text-4xl font-bold text-[#40a0aa]">${price}</span>
             <span className="text-slate-600 ml-1">/month{perSdr ? " per SDR" : ""}</span>
           </motion.div>
           <motion.p 
@@ -82,25 +82,24 @@ export default function PricingCard({
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
               >
-                <Check className="w-5 h-5 text-[bg-gradient-to-r from-[#2c8d98] to-[#0066CC]]" />
+                <Check className="w-5 h-5 text-[#40a0aa]" />
                 <span>{feature}</span>
               </motion.li>
             ))}
           </ul>
           <motion.div 
-            className="flex items-center justify-center gap-2 text-[#40a0aa] group-hover:text-[bg-gradient-to-r from-[#2c8d98] to-[#0066CC]] transition-colors duration-300"
+            className="flex items-center justify-center gap-2 text-[#40a0aa] group-hover:text-[#40a0aa] transition-colors duration-300"
             whileHover={{ x: 5 }}
           >
-            <span className="font-semibold relative text-black">
+            <span className="font-semibold relative">
               {ctaText}
               <motion.div 
-                className="absolute bottom-0 left-0 w-0 h-0.5 text-black group-hover:w-full transition-all duration-300"
+                className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#40a0aa] group-hover:w-full transition-all duration-300"
                 initial={{ width: "0%" }}
                 whileHover={{ width: "100%" }}
               />
             </span>
-            <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 text-black"
-              />
+            <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
           </motion.div>
         </CardContent>
       </Card>

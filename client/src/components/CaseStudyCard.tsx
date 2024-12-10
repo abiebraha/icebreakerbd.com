@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Plus, Minus } from "lucide-react";
-import { Card } from "@/components/ui/card"
+import { Card } from "@/components/ui/card";
 
 interface CaseStudyCardProps {
   company: string;
@@ -28,7 +28,7 @@ export default function CaseStudyCard({
       transition={{ type: "spring", stiffness: 300 }}
       className="group cursor-pointer case-study-container"
     >
-      <Card className="relative w-full h-[500px] bg-#fffff00">
+      <Card className="relative w-full h-[500px] bg-white shadow-lg group-hover:shadow-2xl transition-all duration-300">
         <div 
           className="card"
           style={{ 
