@@ -2,6 +2,7 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic } from "./vite";
 import { createServer } from "http";
+import path from "path";
 
 function log(message: string) {
   const formattedTime = new Date().toLocaleTimeString("en-US", {
@@ -55,9 +56,12 @@ app.use((req, res, next) => {
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
     const status = err.status || err.statusCode || 500;
     const message = err.message || "Internal Server Error";
-
+    console.error('Server Error:', err);
     res.status(status).json({ message });
-    throw err;
+    // Don't throw the error in production
+    if (process.env.NODE_ENV === 'development') {
+      throw err;
+    }
   });
 
   // importantly only setup vite in development and after
@@ -66,12 +70,24 @@ app.use((req, res, next) => {
   if (app.get("env") === "development") {
     await setupVite(app, server);
   } else {
-    serveStatic(app);
+    // Serve static files from the built client
+    const publicDir = path.resolve(__dirname, '../dist/public');
+    app.use(express.static(publicDir, {
+      maxAge: '1y',
+      etag: true,
+    }));
+    
+    // Handle client-side routing - serve index.html for all routes
+    app.get('*', (_req, res) => {
+      res.sendFile(path.join(publicDir, 'index.html'));
+    });
+    
+    log(`Static files will be served from: ${publicDir}`);
   }
 
-  // Use port 5000 for development server
-  const PORT = parseInt(process.env.PORT || '80', 10);
-  server.listen(PORT, () => {
-    log(`Server is running on port ${PORT}`);
+  // Default to port 3000 if not specified
+  const PORT = parseInt(process.env.PORT || '3000', 10);
+  server.listen(PORT, '0.0.0.0', () => {
+    log(`Server is running on port ${PORT} in ${app.get('env')} mode`);
   });
 })();

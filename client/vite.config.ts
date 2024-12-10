@@ -17,11 +17,11 @@ export default defineConfig({
       usePolling: true,
     },
   },
-  base: '',
+  base: '/',
   build: {
     outDir: '../dist/public',
     assetsDir: 'assets',
-    sourcemap: true,
+    sourcemap: false,
     emptyOutDir: true,
     minify: 'esbuild',
     cssMinify: true,
@@ -33,7 +33,12 @@ export default defineConfig({
         },
         entryFileNames: 'assets/[name].[hash].js',
         chunkFileNames: 'assets/[name].[hash].js',
-        assetFileNames: 'assets/[name].[hash].[ext]'
+        assetFileNames: ({ name }) => {
+          if (/\.(gif|jpe?g|png|svg)$/.test(name ?? '')) {
+            return 'assets/images/[name].[hash][extname]';
+          }
+          return 'assets/[name].[hash][extname]';
+        }
       },
     },
   },
