@@ -1,6 +1,9 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import path from 'path'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   plugins: [react()],
@@ -8,12 +11,19 @@ export default defineConfig({
   base: '/',
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
-    },
+      '@': path.resolve(__dirname, 'src')
+    }
   },
   server: {
     host: '0.0.0.0',
     port: 5173,
+    watch: {
+      usePolling: true
+    },
+    fs: {
+      strict: false,
+      allow: ['..']
+    }
   },
   build: {
     outDir: path.resolve(__dirname, '../dist/public'),
@@ -29,15 +39,17 @@ export default defineConfig({
           'animations': ['framer-motion']
         },
         assetFileNames: (assetInfo) => {
-          const ext = path.extname(assetInfo.name);
-          if (/\.(gif|jpe?g|png|svg|webp)$/.test(ext)) {
-            return 'assets/images/[name]-[hash][extname]';
+          if (!assetInfo.name) return 'assets/[name]-[hash][extname]';
+          const info = assetInfo.name.split('.');
+          const ext = info[info.length - 1];
+          if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(ext)) {
+            return `assets/images/[name]-[hash][extname]`;
           }
-          return 'assets/[name]-[hash][extname]';
+          return `assets/[name]-[hash][extname]`;
         },
         chunkFileNames: 'assets/js/[name]-[hash].js',
         entryFileNames: 'assets/js/[name]-[hash].js'
       }
     }
   }
-})
+});
