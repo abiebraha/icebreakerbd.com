@@ -1,7 +1,7 @@
 /** @type {import('postcss-load-config').Config} */
 export default {
   plugins: {
-    'tailwindcss/nesting': {},
+    'tailwindcss/nesting': 'postcss-nesting',
     tailwindcss: {},
     autoprefixer: {},
     ...(process.env.NODE_ENV === 'production'
@@ -14,12 +14,7 @@ export default {
               minifySelectors: true,
               minifyFontValues: true,
               normalizeWhitespace: true,
-              cssDeclarationSorter: true,
-              uniqueSelectors: true,
-              calc: { precision: 2 },
-              colormin: false,
-              reduceIdents: false,
-              zindex: false
+              cssDeclarationSorter: true
             }]
           }
         }
