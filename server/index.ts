@@ -27,39 +27,30 @@ async function startServer() {
     await setupVite(app, server);
   } else {
     console.log("Configuring production server");
-    const publicDir = path.join(__dirname, "../dist/public");
+    const publicDir = path.join(__dirname, "..", "dist", "public");
     const indexPath = path.join(publicDir, "index.html");
 
     // Verify build files exist
-    if (!fs.existsSync(publicDir) || !fs.existsSync(indexPath)) {
-      console.error("Build files not found. Please run 'npm run build' first");
+    try {
+      if (!fs.existsSync(publicDir)) {
+        console.error(`Build directory not found at: ${publicDir}`);
+        console.error("Please run 'npm run build' first");
+        process.exit(1);
+      }
+      if (!fs.existsSync(indexPath)) {
+        console.error(`Index.html not found at: ${indexPath}`);
+        console.error("Please run 'npm run build' first");
+        process.exit(1);
+      }
+      console.log(`Serving static files from: ${publicDir}`);
+    } catch (error) {
+      console.error("Error checking build files:", error);
       process.exit(1);
     }
 
-    // Serve static assets with appropriate cache headers
+    // Serve static assets
     app.use(express.static(publicDir, {
-      index: false,
-      etag: true,
-      lastModified: true,
-      setHeaders: (res, filePath) => {
-        // Set appropriate content types
-        if (filePath.endsWith('.js')) {
-          res.setHeader('Content-Type', 'application/javascript');
-        } else if (filePath.endsWith('.css')) {
-          res.setHeader('Content-Type', 'text/css');
-        } else if (filePath.endsWith('.html')) {
-          res.setHeader('Content-Type', 'text/html');
-        }
-        
-        // Set cache headers
-        if (filePath.includes('/assets/')) {
-          // Long cache for assets with hash in filename
-          res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
-        } else {
-          // Shorter cache for other static files
-          res.setHeader('Cache-Control', 'public, max-age=3600');
-        }
-      }
+      index: false // Let our catch-all handle index.html
     }));
 
     // Handle all routes for SPA
