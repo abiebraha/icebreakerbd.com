@@ -4,7 +4,15 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react({
+      babel: {
+        plugins: [
+          ['@babel/plugin-syntax-dynamic-import']
+        ]
+      }
+    })
+  ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
@@ -16,26 +24,35 @@ export default defineConfig({
     watch: {
       usePolling: true,
     },
+    cors: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:80',
+        changeOrigin: true,
+      }
+    }
   },
-  base: '',
+  base: '/',
   build: {
     outDir: '../dist/public',
     assetsDir: 'assets',
     sourcemap: true,
     emptyOutDir: true,
-    minify: 'esbuild',
-    cssMinify: true,
     rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html'),
+      },
       output: {
         manualChunks: {
-          'vendor': ['react', 'react-dom', 'framer-motion'],
-          'ui': ['@radix-ui/react-hover-card', '@radix-ui/react-slot']
-        },
-        entryFileNames: 'assets/[name].[hash].js',
-        chunkFileNames: 'assets/[name].[hash].js',
-        assetFileNames: 'assets/[name].[hash].[ext]'
-      },
+          vendor: ['react', 'react-dom', 'wouter'],
+          styles: ['./src/index.css']
+        }
+      }
     },
   },
   publicDir: 'public',
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'wouter'],
+    exclude: ['@replit/vite-plugin-runtime-error-modal']
+  }
 })
