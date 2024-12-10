@@ -275,7 +275,7 @@ export default function Home() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Link href="/tools/linkedin-generator" className="block h-full">
+            <Link href="/tools/linkedin-post" className="block h-full">
               <motion.div
                 className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer h-full flex flex-col"
                 initial={{ opacity: 0, y: 20 }}
@@ -292,7 +292,7 @@ export default function Home() {
               </motion.div>
             </Link>
 
-            <Link href="/tools/cold-email-generator" className="block h-full">
+            <Link href="/tools/cold-email" className="block h-full">
               <motion.div
                 className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer h-full flex flex-col"
                 initial={{ opacity: 0, y: 20 }}
@@ -309,7 +309,7 @@ export default function Home() {
               </motion.div>
             </Link>
 
-            <Link href="/tools/sales-script-generator" className="block h-full">
+            <Link href="/tools/sales-script" className="block h-full">
               <motion.div
                 className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer h-full flex flex-col"
                 initial={{ opacity: 0, y: 20 }}
