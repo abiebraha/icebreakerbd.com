@@ -27,8 +27,9 @@ export default defineConfig({
     },
     hmr: {
       protocol: process.env.NODE_ENV === 'production' ? 'wss' : 'ws',
-      host: true,
-      port: 5000
+      host: '0.0.0.0',
+      port: 5000,
+      clientPort: 443
     }
   },
   preview: {
@@ -37,7 +38,7 @@ export default defineConfig({
     strictPort: true,
     proxy: {
       '/api': {
-        target: 'http://0.0.0.0:3000',
+        target: 'http://localhost:3000',
         changeOrigin: true,
         secure: false,
       }
@@ -45,22 +46,48 @@ export default defineConfig({
   },
   build: {
     cssCodeSplit: false,
-    cssMinify: true,
+    cssMinify: 'lightningcss',
     outDir: '../dist/public',
     emptyOutDir: true,
     assetsDir: 'assets',
+    manifest: true,
+    sourcemap: true,
     rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html'),
+      },
       output: {
-        manualChunks: undefined,
-        assetFileNames: (assetInfo) => {
-          if (assetInfo.name.endsWith('.css')) {
-            return 'assets/[name]-[hash][extname]';
-          }
-          return 'assets/[name]-[hash][extname]';
+        manualChunks: {
+          vendor: [
+            'react',
+            'react-dom',
+            'framer-motion',
+            'wouter',
+            'lucide-react'
+          ],
+          styles: [
+            './src/index.css',
+            './src/pages/styles.css'
+          ]
         },
-        chunkFileNames: 'assets/[name]-[hash].js',
-        entryFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: (assetInfo) => {
+          if (!assetInfo.name) return 'assets/[name]-[hash][extname]';
+          
+          const extType = assetInfo.name.split('.').pop();
+          if (!extType) return 'assets/[name]-[hash][extname]';
+          
+          if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
+            return `assets/images/[name]-[hash][extname]`;
+          }
+          if (extType === 'css') {
+            return `assets/css/style-[hash][extname]`;
+          }
+          return `assets/[name]-[hash][extname]`;
+        },
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
       },
     },
+    target: ['es2020', 'edge88', 'firefox78', 'chrome87', 'safari14'],
   }
 })

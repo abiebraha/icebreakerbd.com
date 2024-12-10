@@ -4,6 +4,26 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  safelist: [
+    'text-primary',
+    'text-secondary',
+    'text-accent',
+    'text-background',
+    'text-foreground',
+    'text-text',
+    'text-muted',
+    'bg-primary',
+    'bg-secondary',
+    'bg-accent',
+    'bg-background',
+    {
+      pattern: /(bg|text|border)-(primary|secondary|accent|background|foreground|text|muted)/,
+      variants: ['hover', 'focus', 'active']
+    },
+    {
+      pattern: /animate-*/,
+    }
+  ],
   theme: {
     extend: {
       colors: {
@@ -27,20 +47,7 @@ export default {
         heading: ["SF Pro Display", "-apple-system", "BlinkMacSystemFont", "system-ui", "sans-serif"],
         mono: ["SF Mono", "SFMono-Regular", "ui-monospace", "monospace"],
       },
-    },
-    safelist: [
-      'text-primary',
-      'text-secondary',
-      'text-accent',
-      'text-background',
-      'text-foreground',
-      'text-text',
-      'text-muted',
-      'bg-primary',
-      'bg-secondary',
-      'bg-accent',
-      'bg-background'
-    ]
+    }
   },
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 }

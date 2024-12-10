@@ -1,6 +1,8 @@
 export default {
   plugins: {
-    'postcss-nesting': {},
+    'postcss-nesting': {
+      preserveEmpty: true
+    },
     tailwindcss: {},
     autoprefixer: {},
     ...(process.env.NODE_ENV === 'production' ? { 
@@ -10,6 +12,10 @@ export default {
           discardComments: {
             removeAll: true,
           },
+          discardUnused: false,
+          mergeRules: true,
+          reduceIdents: false,
+          zindex: false
         }]
       }
     } : {})
