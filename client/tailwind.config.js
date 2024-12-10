@@ -5,6 +5,7 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   safelist: [
+    // Basic colors and states
     'text-primary',
     'text-secondary',
     'text-accent',
@@ -16,12 +17,27 @@ export default {
     'bg-secondary',
     'bg-accent',
     'bg-background',
+    // Essential UI patterns
+    {
+      pattern: /(bg|text|border)-(slate|white|black|transparent)/,
+      variants: ['hover', 'focus', 'active']
+    },
     {
       pattern: /(bg|text|border)-(primary|secondary|accent|background|foreground|text|muted)/,
       variants: ['hover', 'focus', 'active']
     },
+    // Animation classes
     {
       pattern: /animate-*/,
+    },
+    // Custom color classes used in components
+    {
+      pattern: /text-(\[#123e74\]|\[#1a4e8f\])/,
+      variants: ['hover', 'focus']
+    },
+    {
+      pattern: /bg-(\[#123e74\]|\[#1a4e8f\])/,
+      variants: ['hover', 'focus']
     }
   ],
   theme: {

@@ -44,8 +44,8 @@ export default defineConfig({
       port: 5000,
       clientPort: 5000,
       timeout: 120000,
-      overlay: false,  // Disable the error overlay
-      path: '/vite-hmr' // Custom path to avoid conflicts
+      overlay: false,
+      path: '/vite-hmr'
     }
   },
   preview: {
@@ -64,6 +64,12 @@ export default defineConfig({
     cssCodeSplit: false,
     cssMinify: true,
     minify: 'terser',
+    outDir: '../dist/public',
+    emptyOutDir: true,
+    assetsDir: 'assets',
+    manifest: true,
+    sourcemap: process.env.NODE_ENV !== 'production',
+    modulePreload: { polyfill: true },
     terserOptions: {
       compress: {
         drop_console: process.env.NODE_ENV === 'production',
@@ -77,11 +83,6 @@ export default defineConfig({
         safari10: true
       }
     },
-    outDir: '../dist/public',
-    emptyOutDir: true,
-    assetsDir: 'assets',
-    manifest: true,
-    sourcemap: false,
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, 'index.html'),
@@ -92,16 +93,21 @@ export default defineConfig({
             if (id.includes('react')) return 'react-vendor';
             if (id.includes('@radix-ui')) return 'radix-vendor';
             if (id.includes('framer-motion')) return 'animation-vendor';
+            if (id.includes('lucide-react')) return 'icons-vendor';
+            if (id.includes('tailwindcss')) return 'styles-vendor';
             return 'vendor';
           }
-          if (id.includes('components/ui')) return 'ui-components';
+          if (id.includes('components/ui')) {
+            if (id.includes('button') || id.includes('accordion') || id.includes('navigation-menu')) {
+              return 'ui-core';
+            }
+            return 'ui-components';
+          }
         },
         assetFileNames: (assetInfo) => {
           if (!assetInfo.name) return 'assets/[name]-[hash][extname]';
-          
           const extType = assetInfo.name.split('.').pop();
           if (!extType) return 'assets/[name]-[hash][extname]';
-          
           if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
             return `assets/images/[name]-[hash][extname]`;
           }
@@ -112,9 +118,9 @@ export default defineConfig({
         },
         chunkFileNames: 'assets/js/[name]-[hash].js',
         entryFileNames: 'assets/js/[name]-[hash].js',
-      },
+      }
     },
-    target: ['es2020', 'edge88', 'firefox78', 'chrome87', 'safari14'],
+    target: ['es2020', 'edge88', 'firefox78', 'chrome87', 'safari14']
   },
   optimizeDeps: {
     include: [
