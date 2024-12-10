@@ -107,7 +107,7 @@ export default function ServicesPage() {
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
         <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-[#FF4D4D]/30 via-[#FF00FF]/10 to-transparent"
+          className="absolute inset-0 bg-white"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
