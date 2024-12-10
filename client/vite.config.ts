@@ -4,15 +4,7 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    react({
-      babel: {
-        plugins: [
-          ['@babel/plugin-syntax-dynamic-import']
-        ]
-      }
-    })
-  ],
+  plugins: [react()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
@@ -24,40 +16,26 @@ export default defineConfig({
     watch: {
       usePolling: true,
     },
-    cors: true,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:80',
-        changeOrigin: true,
-      }
-    }
   },
-  base: '/',
+  base: '',
   build: {
     outDir: '../dist/public',
     assetsDir: 'assets',
     sourcemap: true,
     emptyOutDir: true,
-    manifest: true, // Generate manifest file for server-side integration
+    minify: 'esbuild',
+    cssMinify: true,
     rollupOptions: {
-      input: {
-        main: path.resolve(__dirname, 'index.html'),
-      },
       output: {
         manualChunks: {
-          vendor: ['react', 'react-dom', 'wouter'],
-          styles: ['./src/index.css']
+          'vendor': ['react', 'react-dom', 'framer-motion'],
+          'ui': ['@radix-ui/react-hover-card', '@radix-ui/react-slot']
         },
-        // Ensure consistent file naming in production
-        entryFileNames: 'assets/[name]-[hash].js',
-        chunkFileNames: 'assets/[name]-[hash].js',
-        assetFileNames: 'assets/[name]-[hash].[ext]'
-      }
+        entryFileNames: 'assets/[name].[hash].js',
+        chunkFileNames: 'assets/[name].[hash].js',
+        assetFileNames: 'assets/[name].[hash].[ext]'
+      },
     },
   },
   publicDir: 'public',
-  optimizeDeps: {
-    include: ['react', 'react-dom', 'wouter'],
-    exclude: ['@replit/vite-plugin-runtime-error-modal']
-  }
 })
