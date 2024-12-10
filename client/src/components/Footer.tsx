@@ -65,10 +65,8 @@ export default function Footer() {
                 { href: "/contact", label: "Contact" },
               ].map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href}>
-                    <a className="text-slate-600 hover:text-[#123e74] transition-colors">
-                      {link.label}
-                    </a>
+                  <Link href={link.href} className="text-slate-600 hover:text-[#123e74] transition-colors">
+                    {link.label}
                   </Link>
                 </li>
               ))}
@@ -87,10 +85,8 @@ export default function Footer() {
                 "Performance Analytics",
               ].map((service) => (
                 <li key={service}>
-                  <Link href="/services">
-                    <a className="text-slate-600 hover:text-[#123e74] transition-colors">
-                      {service}
-                    </a>
+                  <Link href="/services" className="text-slate-600 hover:text-[#123e74] transition-colors">
+                    {service}
                   </Link>
                 </li>
               ))}

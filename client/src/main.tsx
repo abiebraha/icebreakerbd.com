@@ -27,79 +27,82 @@ console.log("Application initialization started");
 function Router() {
   return (
     <ErrorBoundary>
-      <Layout>
-        <ScrollToTop />
-        <Switch>
-          <Route path="/">
-            <ErrorBoundary>
-              <Home />
-            </ErrorBoundary>
-          </Route>
-          <Route path="/about">
-            <ErrorBoundary>
-              <AboutPage />
-            </ErrorBoundary>
-          </Route>
-          <Route path="/services">
-            <ErrorBoundary>
-              <ServicesPage />
-            </ErrorBoundary>
-          </Route>
-          <Route path="/case-studies">
-            <ErrorBoundary>
-              <CaseStudiesPage />
-            </ErrorBoundary>
-          </Route>
-          <Route path="/pricing">
-            <ErrorBoundary>
-              <PricingPage />
-            </ErrorBoundary>
-          </Route>
-          <Route path="/contact">
-            <ErrorBoundary>
-              <ContactPage />
-            </ErrorBoundary>
-          </Route>
-          <Route path="/roi-calculator">
-            <ErrorBoundary>
-              <ROICalculator />
-            </ErrorBoundary>
-          </Route>
-          <Route path="/schedule-call">
-            <ErrorBoundary>
-              <ScheduleCallPage />
-            </ErrorBoundary>
-          </Route>
-          <Route path="/tools/cold-email">
-            <ErrorBoundary>
-              <ColdEmailGenerator />
-            </ErrorBoundary>
-          </Route>
-          <Route path="/tools/sales-script">
-            <ErrorBoundary>
-              <SalesScriptGenerator />
-            </ErrorBoundary>
-          </Route>
-          <Route path="/tools/linkedin-post">
-            <ErrorBoundary>
-              <LinkedInPostGenerator />
-            </ErrorBoundary>
-          </Route>
-          <Route>
-            <div className="min-h-screen flex items-center justify-center">
-              <div className="text-center">
-                <h1 className="text-4xl font-bold text-[#123e74] mb-4">404</h1>
-                <p className="text-slate-600 mb-6">Page not found</p>
-                <Link href="/">
-                  <a className="text-[#123e74] hover:text-[#1a4e8f] transition-colors">
-                    Go back home
-                  </a>
-                </Link>
-              </div>
-            </div>
-          </Route>
-        </Switch>
-      </Layout>
+      <QueryClientProvider client={queryClient}>
+        <div className="app-container">
+          <Layout>
+            <ScrollToTop />
+            <Switch>
+              <Route path="/">
+                <ErrorBoundary>
+                  <Home />
+                </ErrorBoundary>
+              </Route>
+              <Route path="/about">
+                <ErrorBoundary>
+                  <AboutPage />
+                </ErrorBoundary>
+              </Route>
+              <Route path="/services">
+                <ErrorBoundary>
+                  <ServicesPage />
+                </ErrorBoundary>
+              </Route>
+              <Route path="/case-studies">
+                <ErrorBoundary>
+                  <CaseStudiesPage />
+                </ErrorBoundary>
+              </Route>
+              <Route path="/pricing">
+                <ErrorBoundary>
+                  <PricingPage />
+                </ErrorBoundary>
+              </Route>
+              <Route path="/contact">
+                <ErrorBoundary>
+                  <ContactPage />
+                </ErrorBoundary>
+              </Route>
+              <Route path="/roi-calculator">
+                <ErrorBoundary>
+                  <ROICalculator />
+                </ErrorBoundary>
+              </Route>
+              <Route path="/schedule-call">
+                <ErrorBoundary>
+                  <ScheduleCallPage />
+                </ErrorBoundary>
+              </Route>
+              <Route path="/tools/cold-email">
+                <ErrorBoundary>
+                  <ColdEmailGenerator />
+                </ErrorBoundary>
+              </Route>
+              <Route path="/tools/sales-script">
+                <ErrorBoundary>
+                  <SalesScriptGenerator />
+                </ErrorBoundary>
+              </Route>
+              <Route path="/tools/linkedin-post">
+                <ErrorBoundary>
+                  <LinkedInPostGenerator />
+                </ErrorBoundary>
+              </Route>
+              <Route>
+                <div className="min-h-screen flex items-center justify-center">
+                  <div className="text-center">
+                    <h1 className="text-4xl font-bold text-[#123e74] mb-4">404</h1>
+                    <p className="text-slate-600 mb-6">Page not found</p>
+                    <Link href="/" className="text-[#123e74] hover:text-[#1a4e8f] transition-colors">
+                      Go back home
+                    </Link>
+                  </div>
+                </div>
+              </Route>
+            </Switch>
+          </Layout>
+        </div>
+        <Toaster />
+      </QueryClientProvider>
     </ErrorBoundary>
   );
 }
@@ -113,13 +116,8 @@ if (!rootElement) {
     const root = createRoot(rootElement);
     root.render(
       <StrictMode>
-        <ErrorBoundary>
-          <QueryClientProvider client={queryClient}>
-            <Router />
-            <Toaster />
-          </QueryClientProvider>
-        </ErrorBoundary>
-      </StrictMode>,
+        <Router />
+      </StrictMode>
     );
     console.log("React application rendered successfully");
   } catch (error) {
