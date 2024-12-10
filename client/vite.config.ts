@@ -15,14 +15,31 @@ export default defineConfig({
           '@babel/plugin-transform-react-jsx'
         ]
       }
-    }),
-    checker({ typescript: true })
+    })
   ],
-  root: path.resolve(__dirname),
+  root: __dirname,
   base: '/',
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src')
+      '@': path.resolve(__dirname, 'src'),
+      'src': path.resolve(__dirname, 'src')
+    }
+  },
+  build: {
+    outDir: path.resolve(__dirname, '../dist/public'),
+    emptyOutDir: true,
+    sourcemap: true,
+    manifest: true,
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html')
+      },
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'framer-motion'],
+          ui: ['@radix-ui/react-dialog', '@radix-ui/react-slot']
+        }
+      }
     }
   },
   server: {
@@ -32,21 +49,6 @@ export default defineConfig({
     hmr: {
       protocol: 'ws',
       host: '0.0.0.0'
-    }
-  },
-  build: {
-    outDir: '../dist/public',
-    emptyOutDir: true,
-    sourcemap: true,
-    manifest: true,
-    rollupOptions: {
-      input: path.resolve(__dirname, 'index.html'),
-      output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom', 'framer-motion'],
-          ui: ['@radix-ui/react-dialog', '@radix-ui/react-slot']
-        }
-      }
     }
   },
   optimizeDeps: {

@@ -1,6 +1,4 @@
 {
-  "include": ["client/src/**/*", "server/**/*"],
-  "exclude": ["node_modules", "dist", "build"],
   "compilerOptions": {
     "target": "ES2020",
     "module": "ESNext",
@@ -10,16 +8,17 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "baseUrl": ".",
+    "baseUrl": "./client",
     "paths": {
-      "@/*": ["./client/src/*"],
-      "src/*": ["./client/src/*"]
+      "@/*": ["src/*"],
+      "src/*": ["src/*"]
     },
     "allowJs": true,
-    "noEmit": false,          // Allow output of compiled files
-    "outDir": "dist",         // Specify output directory for compiled files
+    "noEmit": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "forceConsistentCasingInFileNames": true
-  }
+  },
+  "include": ["client/src/**/*"],
+  "exclude": ["node_modules", "dist", "build", "server"]
 }
