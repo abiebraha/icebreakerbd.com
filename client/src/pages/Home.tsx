@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Users, LineChart, Target, Plus, Minus } from "lucide-react";
+import { Users, LineChart, Target, Plus, Minus, Calculator } from "lucide-react";
 
 // Add custom styles
 import "./styles.css";
@@ -252,6 +252,96 @@ export default function Home() {
                 ))}
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Free Tools Section */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
+              Free Sales Tools
+            </h2>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              Boost your sales productivity with our suite of free tools
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <Link href="/tools/linkedin-generator">
+              <motion.div
+                className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                whileHover={{ y: -5 }}
+              >
+                <div className="w-12 h-12 bg-[#0A66C2] rounded-lg flex items-center justify-center mb-4">
+                  <Users className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">LinkedIn Post Generator</h3>
+                <p className="text-slate-600">Create engaging LinkedIn posts that drive engagement and connections</p>
+              </motion.div>
+            </Link>
+
+            <Link href="/tools/cold-email-generator">
+              <motion.div
+                className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                whileHover={{ y: -5 }}
+              >
+                <div className="w-12 h-12 bg-[#00A3E1] rounded-lg flex items-center justify-center mb-4">
+                  <LineChart className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Cold Email Generator</h3>
+                <p className="text-slate-600">Generate personalized cold emails that get responses</p>
+              </motion.div>
+            </Link>
+
+            <Link href="/tools/sales-script-generator">
+              <motion.div
+                className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                whileHover={{ y: -5 }}
+              >
+                <div className="w-12 h-12 bg-[#FF4D4D] rounded-lg flex items-center justify-center mb-4">
+                  <Target className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Sales Script Generator</h3>
+                <p className="text-slate-600">Create effective sales scripts for your outreach calls</p>
+              </motion.div>
+            </Link>
+
+            <Link href="/roi-calculator">
+              <motion.div
+                className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                whileHover={{ y: -5 }}
+              >
+                <div className="w-12 h-12 bg-[#0066CC] rounded-lg flex items-center justify-center mb-4">
+                  <Calculator className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">ROI Calculator</h3>
+                <p className="text-slate-600">Calculate the potential return on investment from your SDR team</p>
+              </motion.div>
+            </Link>
           </div>
         </div>
       </section>
