@@ -24,7 +24,7 @@ export default function ScheduleCallPage() {
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
         <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-pink-400/10 via-purple-300/5 to-transparent"
+          className="absolute inset-0 bg-white"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
@@ -52,7 +52,7 @@ export default function ScheduleCallPage() {
       {/* Calendly inline widget */}
       <section className="py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-xl shadow-lg p-6 mb-12">
+          <div className="p-6 mb-12">
             <div 
               className="calendly-inline-widget" 
               data-url="https://calendly.com/icebreakerbd/meeting-with-abie-braha?hide_gdpr_banner=1"
