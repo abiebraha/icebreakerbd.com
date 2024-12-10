@@ -38,6 +38,7 @@ export default defineConfig({
     assetsDir: 'assets',
     sourcemap: true,
     emptyOutDir: true,
+    manifest: true, // Generate manifest file for server-side integration
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, 'index.html'),
@@ -46,7 +47,11 @@ export default defineConfig({
         manualChunks: {
           vendor: ['react', 'react-dom', 'wouter'],
           styles: ['./src/index.css']
-        }
+        },
+        // Ensure consistent file naming in production
+        entryFileNames: 'assets/[name]-[hash].js',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]'
       }
     },
   },

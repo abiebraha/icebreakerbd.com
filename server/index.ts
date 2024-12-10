@@ -2,6 +2,7 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic } from "./vite";
 import { createServer } from "http";
+import path from "path";
 
 function log(message: string) {
   const formattedTime = new Date().toLocaleTimeString("en-US", {
@@ -66,7 +67,16 @@ app.use((req, res, next) => {
   if (app.get("env") === "development") {
     await setupVite(app, server);
   } else {
+    // In production, serve static files and handle client-side routing
     serveStatic(app);
+    
+    // Handle client-side routing by serving index.html for all routes
+    app.get('*', (req, res) => {
+      // Skip API routes
+      if (!req.path.startsWith('/api')) {
+        res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+      }
+    });
   }
 
   // Use port 5000 for development server
