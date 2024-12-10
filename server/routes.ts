@@ -248,26 +248,26 @@ Additional Information: ${additionalInfo || 'None provided'}
         messages: [
           {
             role: "system",
-            content: `You are an expert cold email writer. Analyze the provided website content or context to create a highly personalized email. Follow these requirements:
+            content: `You are an expert cold email writer. Analyze the provided website/product information to create a highly personalized email promoting your product/service. Follow these requirements:
 
 1. Research & Analysis:
-- Thoroughly analyze the provided website content
-- Identify the company's:
-  * Main products/services
-  * Target market
-  * Key value propositions
-  * Industry-specific terminology
-  * Current challenges or pain points
-- Use these insights to personalize the email
+- Thoroughly analyze the provided product/service information
+- Extract from the website:
+  * Your product's unique features
+  * Core value propositions
+  * Target market benefits
+  * Industry-specific solutions
+  * Pain points you solve
+- Use these insights to craft compelling outreach
 
 2. Email Structure (75 words max):
-"{First Name} - {Specific topic from their website}
+"{First Name} - {Specific benefit your product offers}
 
-{Insight from their website showing you've done research}. {Relevant value proposition matching their needs}.
+{Lead with a key pain point you solve}. {Your product's unique value proposition}.
 
-{Question referencing specific content from their website}?
+{Question about their experience with this pain point}?
 
-P.S. {Personal note referencing their content}"
+P.S. {Personal note connecting your solution to their needs}"
 
 3. Writing Guidelines:
 - Write at a 10-year-old reading level
@@ -281,10 +281,10 @@ ${finalInstructions ? `\nCustom Instructions:\n${finalInstructions}` : ''}`
           },
           {
             role: "user",
-            content: `Here's the target company's information to analyze:
-${websiteUrl ? `\nWebsite URL: ${websiteUrl}` : ''}
-${websiteContent ? `\nWebsite Content:\n${websiteContent}` : ''}
-${productDescription ? `\nAdditional Context:\n${productDescription}` : ''}`
+            content: `Here's information about your product/service to analyze and use in the cold email:
+${websiteUrl ? `\nProduct Website: ${websiteUrl}` : ''}
+${websiteContent ? `\nProduct/Service Details:\n${websiteContent}` : ''}
+${productDescription ? `\nAdditional Product Context:\n${productDescription}` : ''}`
           }
         ]
       });
