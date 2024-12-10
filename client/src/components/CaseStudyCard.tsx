@@ -28,7 +28,7 @@ export default function CaseStudyCard({
       transition={{ type: "spring", stiffness: 300 }}
       className="group cursor-pointer case-study-container"
     >
-      <Card className="relative w-full h-[500px] bg-white shadow-lg group-hover:shadow-2xl transition-all duration-300">
+      <Card className="relative w-full h-[500px] bg-white">
         <div 
           className="card"
           style={{ 
