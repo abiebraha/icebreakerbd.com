@@ -10,10 +10,7 @@ export default defineConfig({
     }
   },
   css: {
-    postcss: path.resolve(__dirname, '../postcss.config.cjs'),
-    modules: {
-      localsConvention: 'camelCase'
-    }
+    postcss: './postcss.config.cjs'
   },
   server: {
     host: '0.0.0.0',
