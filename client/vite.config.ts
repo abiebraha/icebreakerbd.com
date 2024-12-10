@@ -21,10 +21,10 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
-    },
+    }
   },
   server: {
-    host: '0.0.0.0',
+    host: true,
     port: 5000,
     strictPort: true,
     proxy: {
@@ -32,31 +32,30 @@ export default defineConfig({
         target: 'http://localhost:3000',
         changeOrigin: true,
         secure: false,
-        ws: true,
+        ws: true
       }
     },
     watch: {
-      usePolling: true,
+      usePolling: true
     },
     hmr: {
-      protocol: 'ws',
-      host: '0.0.0.0',
+      protocol: 'wss',
+      host: 'localhost',
       port: 5000,
-      clientPort: 5000,
+      clientPort: 443,
       timeout: 120000,
-      overlay: false,
-      path: '/vite-hmr'
+      overlay: true
     }
   },
   preview: {
-    host: '0.0.0.0',
+    host: true,
     port: 5000,
     strictPort: true,
     proxy: {
       '/api': {
         target: 'http://localhost:3000',
         changeOrigin: true,
-        secure: false,
+        secure: false
       }
     }
   },
@@ -85,39 +84,39 @@ export default defineConfig({
     },
     rollupOptions: {
       input: {
-        main: path.resolve(__dirname, 'index.html'),
+        main: path.resolve(__dirname, 'index.html')
       },
       output: {
         manualChunks: (id) => {
           if (id.includes('node_modules')) {
-            if (id.includes('react')) return 'react-vendor';
-            if (id.includes('@radix-ui')) return 'radix-vendor';
-            if (id.includes('framer-motion')) return 'animation-vendor';
-            if (id.includes('lucide-react')) return 'icons-vendor';
-            if (id.includes('tailwindcss')) return 'styles-vendor';
-            return 'vendor';
+            if (id.includes('react')) return 'react-vendor'
+            if (id.includes('@radix-ui')) return 'radix-vendor'
+            if (id.includes('framer-motion')) return 'animation-vendor'
+            if (id.includes('lucide-react')) return 'icons-vendor'
+            if (id.includes('tailwindcss')) return 'styles-vendor'
+            return 'vendor'
           }
           if (id.includes('components/ui')) {
             if (id.includes('button') || id.includes('accordion') || id.includes('navigation-menu')) {
-              return 'ui-core';
+              return 'ui-core'
             }
-            return 'ui-components';
+            return 'ui-components'
           }
         },
         assetFileNames: (assetInfo) => {
-          if (!assetInfo.name) return 'assets/[name]-[hash][extname]';
-          const extType = assetInfo.name.split('.').pop();
-          if (!extType) return 'assets/[name]-[hash][extname]';
+          if (!assetInfo.name) return 'assets/[name]-[hash][extname]'
+          const extType = assetInfo.name.split('.').pop()
+          if (!extType) return 'assets/[name]-[hash][extname]'
           if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
-            return `assets/images/[name]-[hash][extname]`;
+            return `assets/images/[name]-[hash][extname]`
           }
           if (extType === 'css') {
-            return `assets/css/styles-[hash][extname]`;
+            return `assets/css/styles-[hash][extname]`
           }
-          return `assets/[name]-[hash][extname]`;
+          return `assets/[name]-[hash][extname]`
         },
         chunkFileNames: 'assets/js/[name]-[hash].js',
-        entryFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js'
       }
     },
     target: ['es2020', 'edge88', 'firefox78', 'chrome87', 'safari14']
