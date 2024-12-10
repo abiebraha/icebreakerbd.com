@@ -54,6 +54,14 @@ args = "Development Server"
 task = "workflow.run"
 args = "Backend Server"
 
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Client Build"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Production"
+
 [[workflows.workflow]]
 name = "Development Server"
 author = "agent"
@@ -82,4 +90,33 @@ task = "packager.installForAll"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "npm run dev"
+waitForPort = 3000
+
+[[workflows.workflow]]
+name = "Client Build"
+author = "agent"
+
+[workflows.workflow.metadata]
+agentRequireRestartOnSave = false
+
+[[workflows.workflow.tasks]]
+task = "packager.installForAll"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd client && npm run build"
+
+[[workflows.workflow]]
+name = "Production"
+author = "agent"
+
+[workflows.workflow.metadata]
+agentRequireRestartOnSave = false
+
+[[workflows.workflow.tasks]]
+task = "packager.installForAll"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd client && npm run build && cd .. && npm run build && NODE_ENV=production node dist/index.js"
 waitForPort = 3000
