@@ -9,12 +9,20 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-// Store custom instructions for different generators
-const customInstructions = {
-  linkedin: '',
-  salesScript: '',
-  coldEmail: ''
-};
+function normalizeUrl(url: string): string {
+  if (!url) return url;
+  
+  // Remove whitespace
+  url = url.trim();
+  
+  // Add https:// if no protocol is specified
+  if (!url.match(/^https?:\/\//i)) {
+    url = 'https://' + url;
+  }
+  
+  // Remove trailing slash
+  return url.replace(/\/$/, '');
+}
 
 async function fetchWebsiteContent(url: string): Promise<string> {
   try {
@@ -54,20 +62,12 @@ async function fetchWebsiteContent(url: string): Promise<string> {
   }
 }
 
-function normalizeUrl(url: string): string {
-  if (!url) return url;
-  
-  // Remove whitespace
-  url = url.trim();
-  
-  // Add https:// if no protocol is specified
-  if (!url.match(/^https?:\/\//i)) {
-    url = 'https://' + url;
-  }
-  
-  // Remove trailing slash
-  return url.replace(/\/$/, '');
-}
+// Store custom instructions for different generators
+const customInstructions = {
+  linkedin: '',
+  salesScript: '',
+  coldEmail: ''
+};
 
 async function sendEmailTranscript(to: string | null, toolName: string, input: any, output: string) {
   try {
@@ -248,46 +248,43 @@ Additional Information: ${additionalInfo || 'None provided'}
         messages: [
           {
             role: "system",
-            content: `You are an expert cold email writer specializing in creating highly personalized, context-aware messages. Create an email based on the provided context and these requirements:
+            content: `You are an expert cold email writer. Analyze the provided website content or context to create a highly personalized email. Follow these requirements:
 
-1. Format Requirements:
-- Maximum 75 words
-- Plain text format only
+1. Research & Analysis:
+- Thoroughly analyze the provided website content
+- Identify the company's:
+  * Main products/services
+  * Target market
+  * Key value propositions
+  * Industry-specific terminology
+  * Current challenges or pain points
+- Use these insights to personalize the email
+
+2. Email Structure (75 words max):
+"{First Name} - {Specific topic from their website}
+
+{Insight from their website showing you've done research}. {Relevant value proposition matching their needs}.
+
+{Question referencing specific content from their website}?
+
+P.S. {Personal note referencing their content}"
+
+3. Writing Guidelines:
 - Write at a 10-year-old reading level
-- Subject line: maximum 4 words, lowercase
-- Structure:
-  "{First Name} - Quick question about {Main topic from context}
-
-  {One key insight or observation from the provided context}. {One specific value proposition}.
-
-  {Question based on their specific situation}?
-
-  P.S. {Friendly, contextual closing note}"
-
-2. Key Guidelines:
-- Focus entirely on the provided context/description
-- Be genuinely curious about their specific situation
-- Use their language and terminology
-- Keep it conversational and friendly
-- Avoid assumptions about their problems
-- Make every word count
-- Personalize based on the information given
-
-3. Content Rules:
-- Draw insights directly from the provided context
-- Don't mention generic problems or solutions
-- Focus on their specific industry/situation
-- Use their own terms and concepts
-- Make connections to their actual business
-- Stay relevant to their context
+- Use their exact terminology from the website
+- Reference specific details from their content
+- Make direct connections to their business
+- Show clear understanding of their industry
+- Keep everything highly specific to their context
 
 ${finalInstructions ? `\nCustom Instructions:\n${finalInstructions}` : ''}`
           },
           {
             role: "user",
-            content: `Generate a cold email using this context:
-${websiteUrl ? `\nWebsite: ${websiteUrl}` : ''}
-${contextInfo}`
+            content: `Here's the target company's information to analyze:
+${websiteUrl ? `\nWebsite URL: ${websiteUrl}` : ''}
+${websiteContent ? `\nWebsite Content:\n${websiteContent}` : ''}
+${productDescription ? `\nAdditional Context:\n${productDescription}` : ''}`
           }
         ]
       });
