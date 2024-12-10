@@ -1,0 +1,68 @@
+2024-12-08T10:12:47Z info: Deployment: d03ee220-e48f-4f44-bdf7-528b119b201e
+2024-12-08T10:12:47Z info: Build: b32623ca-aa62-4b21-b9cf-a00cae1bfa5a
+2024-12-08T10:12:47Z info: Connecting to builder
+2024-12-08T10:12:52Z info: Builder connected
+2024-12-08T10:12:54Z info: Installing packages
+2024-12-08T10:12:55Z info: Starting Build
+
+> rest-express@1.0.0 build
+> vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+
+
+vite v5.4.11 building for production...
+
+transforming...
+
+✓ 2436 modules transformed.
+
+rendering chunks...
+
+computing gzip size...
+
+../dist/public/index.html                        1.69 kB │ gzip:   0.68 kB
+
+../dist/public/assets/index-m_tTAxBX.css        68.83 kB │ gzip:  11.85 kB
+
+../dist/public/assets/purify.es-a-CayzAK.js     21.97 kB │ gzip:   8.70 kB
+
+../dist/public/assets/index.es-LLSGMMor.js     149.85 kB │ gzip:  51.04 kB
+
+../dist/public/assets/index-CycVVsOR.js      1,169.32 kB │ gzip: 351.05 kB
+
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+
+✓ built in 11.94s
+
+
+  dist/index.js  18.6kb
+
+⚡ Done in 4ms
+
+npm notice
+npm notice New minor version of npm available! 10.8.1 -> 10.9.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v10.9.2
+npm notice To update run: npm install -g npm@10.9.2
+npm notice
+
+2024-12-08T10:13:12Z info: Pushing pid1 binary layer...
+2024-12-08T10:13:20Z info: Pushing Repl layer...
+2024-12-08T10:13:20Z info: Pushing hosting layer...
+2024-12-08T10:13:20Z info: Retrieved cached nix layer
+2024-12-08T10:13:21Z info: Created hosting layer
+2024-12-08T10:13:21Z info: Created pid1 binary layer
+2024-12-08T10:14:27Z info: Created Repl layer
+2024-12-08T10:14:28Z info: Pushed image manifest
+2024-12-08T10:14:30Z info: Pushed soci index manifest
+2024-12-08T10:14:35Z info: Creating Autoscale service
+> tsx watch --clear-screen=false server/index.ts
+> rest-express@1.0.0 dev
+starting up user application
+forwarding local port 5000 to external port 80
+Re-optimizing dependencies because vite config has changed
+10:15:06 AM [express] serving on port 5000
+2024-12-08T10:15:18Z info: Waiting for service to be ready
+2024-12-08T10:15:20Z info: Deployment successful

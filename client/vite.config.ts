@@ -8,15 +8,15 @@ const __dirname = path.dirname(__filename);
 
 export default defineConfig({
   plugins: [react()],
-  root: __dirname,
-  base: './',
+  root: path.resolve(__dirname),
+  base: '/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
       'src': path.resolve(__dirname, 'src')
-    }
+    },
+    extensions: ['.js', '.jsx', '.ts', '.tsx']
   },
-  publicDir: 'public',
   server: {
     host: '0.0.0.0',
     port: 5173,
@@ -26,7 +26,8 @@ export default defineConfig({
     fs: {
       strict: false,
       allow: ['..']
-    }
+    },
+    middlewareMode: false
   },
   build: {
     outDir: '../dist/public',
@@ -34,9 +35,11 @@ export default defineConfig({
     sourcemap: true,
     assetsDir: 'assets',
     rollupOptions: {
-      input: {
-        main: path.resolve(__dirname, 'index.html')
-      }
+      input: path.resolve(__dirname, 'index.html')
     }
+  },
+  optimizeDeps: {
+    force: true,
+    include: ['react', 'react-dom']
   }
 });
