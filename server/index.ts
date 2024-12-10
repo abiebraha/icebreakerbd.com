@@ -1,6 +1,6 @@
 import express from "express";
-import { registerRoutes } from "./routes";
-import { setupVite } from "./vite";
+import { registerRoutes } from "./routes.js";
+import { setupVite } from "./vite.js";
 import { createServer } from "http";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -43,19 +43,11 @@ async function startServer() {
         process.exit(1);
       }
       console.log(`Serving static files from: ${publicDir}`);
+      console.log("Build directory contents:", fs.readdirSync(publicDir));
     } catch (error) {
       console.error("Error checking build files:", error);
       process.exit(1);
     }
-
-    // Verify the build directory exists
-    if (!fs.existsSync(publicDir)) {
-      console.error(`Build directory not found: ${publicDir}`);
-      process.exit(1);
-    }
-
-    // Log the contents of the build directory
-    console.log('Build directory contents:', fs.readdirSync(publicDir));
 
     // Serve static assets with proper headers
     app.use(express.static(publicDir, {
@@ -69,26 +61,23 @@ async function startServer() {
         } else if (filePath.match(/\.(js|css|png|jpg|jpeg|gif|ico|svg)$/)) {
           // Cache static assets
           res.setHeader('Cache-Control', 'public, max-age=31536000');
+
+          // Set correct MIME type for JavaScript files
+          if (filePath.endsWith('.js')) {
+            res.setHeader('Content-Type', 'application/javascript');
+          }
         }
       }
     }));
 
     // Handle all routes for SPA
     app.get('*', (req, res, next) => {
-      // Skip API routes
       if (req.path.startsWith('/api')) {
         return next();
       }
 
-      const indexPath = path.join(publicDir, 'index.html');
       console.log(`[${new Date().toISOString()}] Attempting to serve index.html for path: ${req.path}`);
-      console.log('Index path:', indexPath);
-
       try {
-        if (!fs.existsSync(indexPath)) {
-          throw new Error(`index.html not found at ${indexPath}`);
-        }
-
         res.sendFile(indexPath, {
           headers: {
             'Content-Type': 'text/html',
@@ -104,7 +93,7 @@ async function startServer() {
     });
   }
 
-  const PORT = parseInt(process.env.PORT || "3000", 10);
+  const PORT = parseInt(process.env.PORT || "5000", 10);
   server.listen(PORT, "0.0.0.0", () => {
     console.log(`Server running on http://0.0.0.0:${PORT} in ${process.env.NODE_ENV} mode`);
   });

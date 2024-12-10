@@ -16,7 +16,8 @@
       "src/*": ["./client/src/*"]
     },
     "allowJs": true,
-    "noEmit": true,
+    "noEmit": false,          // Allow output of compiled files
+    "outDir": "dist",         // Specify output directory for compiled files
     "resolveJsonModule": true,
     "isolatedModules": true,
     "forceConsistentCasingInFileNames": true
