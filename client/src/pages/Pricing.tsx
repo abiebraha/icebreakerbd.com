@@ -12,7 +12,7 @@ export default function PricingPage() {
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
         <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-[#0066CC]/5 via-transparent to-transparent"
+          className="absolute inset-0 bg-gradient-to-br from-[#34D399]/10 via-[#059669]/5 to-transparent"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
@@ -28,7 +28,7 @@ export default function PricingPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
               Simple, Transparent
               <br />
-              <span className="text-[#2c8d98]">Pricing</span>
+              <span className="bg-gradient-to-r from-[#34D399] to-[#059669] bg-clip-text text-transparent">Pricing</span>
             </h1>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Transform your sales process and build a high-performing SDR team with our proven two-step approach.
