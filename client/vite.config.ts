@@ -13,22 +13,18 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     port: Number(process.env.PORT) || 3000,
-    strictPort: true,
+    strictPort: false,
     hmr: {
-      host: process.env.REPL_SLUG + '.' + process.env.REPL_OWNER + '.repl.co',
-      port: 443,
-      protocol: 'wss'
-    },
-    watch: {
-      usePolling: true,
-    },
-    proxy: {
-      '/api': {
-        target: `http://localhost:${process.env.SERVER_PORT || 3001}`,
-        changeOrigin: true,
-        secure: false,
-      },
-    },
+      port: Number(process.env.PORT) || 3000,
+      host: process.env.REPL_SLUG ? `${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co` : 'localhost',
+      protocol: 'wss',
+      clientPort: 443
+    }
+  },
+  preview: {
+    host: '0.0.0.0',
+    port: Number(process.env.PORT) || 3000,
+    strictPort: false,
   },
   publicDir: 'public',
 })
