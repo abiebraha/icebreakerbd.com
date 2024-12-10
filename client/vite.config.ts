@@ -21,7 +21,7 @@ export default defineConfig({
   build: {
     outDir: '../dist/public',
     assetsDir: 'assets',
-    sourcemap: false,
+    sourcemap: true,
     emptyOutDir: true,
     minify: 'esbuild',
     cssMinify: true,
@@ -41,6 +41,8 @@ export default defineConfig({
         }
       },
     },
+    reportCompressedSize: true,
+    chunkSizeWarningLimit: 1000,
   },
   publicDir: 'public',
 })

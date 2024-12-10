@@ -53,34 +53,90 @@ app.use((req, res, next) => {
   registerRoutes(app);
   const server = createServer(app);
 
-  app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+  app.use((err: any, req: Request, res: Response, _next: NextFunction) => {
     const status = err.status || err.statusCode || 500;
     const message = err.message || "Internal Server Error";
-    console.error('Server Error:', err);
-    res.status(status).json({ message });
-    // Don't throw the error in production
-    if (process.env.NODE_ENV === 'development') {
-      throw err;
+    console.error('Server Error:', {
+      status,
+      message,
+      stack: err.stack,
+      originalError: err
+    });
+    
+    // Send appropriate response based on the request type
+    if (req.accepts('html')) {
+      res.status(status).sendFile(path.join(__dirname, '../dist/public/index.html'), (err) => {
+        if (err) {
+          console.error('Error serving index.html:', err);
+          res.status(500).send('Error loading page');
+        }
+      });
+    } else {
+      res.status(status).json({ message });
     }
   });
 
   // importantly only setup vite in development and after
   // setting up all the other routes so the catch-all route
   // doesn't interfere with the other routes
+  log(`Current environment: ${app.get('env')}`);
+  log(`NODE_ENV: ${process.env.NODE_ENV}`);
+  
   if (app.get("env") === "development") {
+    log('Starting in development mode with Vite middleware');
     await setupVite(app, server);
   } else {
     // Serve static files from the built client
     const publicDir = path.resolve(__dirname, '../dist/public');
-    app.use(express.static(publicDir, {
-      maxAge: '1y',
-      etag: true,
-    }));
+    log(`Attempting to serve static files from: ${publicDir}`);
     
-    // Handle client-side routing - serve index.html for all routes
-    app.get('*', (_req, res) => {
-      res.sendFile(path.join(publicDir, 'index.html'));
-    });
+    // Check if the directory exists and list contents
+    try {
+      const fs = await import('fs');
+      if (!fs.existsSync(publicDir)) {
+        log(`WARNING: Static directory ${publicDir} does not exist!`);
+        throw new Error('Static directory not found - build may be missing');
+      }
+      
+      // List contents of the directory
+      const files = fs.readdirSync(publicDir);
+      log(`Contents of ${publicDir}:`);
+      files.forEach(file => {
+        const filePath = path.join(publicDir, file);
+        const stats = fs.statSync(filePath);
+        log(`- ${file} (${stats.isDirectory() ? 'directory' : 'file'}, ${stats.size} bytes)`);
+      });
+      
+      // Verify index.html exists
+      const indexPath = path.join(publicDir, 'index.html');
+      if (!fs.existsSync(indexPath)) {
+        throw new Error('index.html not found in build directory');
+      }
+      
+      // Serve static files with proper caching
+      app.use('/', express.static(publicDir, {
+        maxAge: '1y',
+        etag: true,
+        index: false // We'll handle serving index.html ourselves
+      }));
+      
+      // Handle all routes for client-side routing
+      app.get('*', (req, res) => {
+        // Don't serve index.html for API routes
+        if (req.path.startsWith('/api')) {
+          res.status(404).send('Not found');
+          return;
+        }
+        
+        log(`Serving index.html for client-side route: ${req.path}`);
+        res.sendFile(indexPath);
+      });
+      
+    } catch (error) {
+      log(`Critical error with static files: ${error}`);
+      // Let the error handler deal with it
+      throw error;
+    }
     
     log(`Static files will be served from: ${publicDir}`);
   }
