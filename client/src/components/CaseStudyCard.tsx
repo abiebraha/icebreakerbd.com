@@ -85,7 +85,7 @@ export default function CaseStudyCard({
               setIsFlipped(false);
             }}
           >
-            <div className="w-full h-full bg-[#123e74] rounded-2xl p-8 flex flex-col">
+            <div className="w-full h-full bg-white rounded-2xl p-8 flex flex-col shadow-lg">
               <button 
                 className="card-button"
                 onClick={(e) => {
@@ -93,31 +93,31 @@ export default function CaseStudyCard({
                   setIsFlipped(false);
                 }}
               >
-                <Minus className="w-5 h-5 text-white" />
+                <Minus className="w-5 h-5 text-[#123e74]" />
               </button>
               
-              <div className="space-y-6 text-white overflow-y-auto flex-1">
+              <div className="space-y-6 overflow-y-auto flex-1">
                 <div>
-                  <h3 className="text-2xl font-bold mb-2 text-white">{company}</h3>
-                  <p className="text-lg font-medium text-white/90">{industry}</p>
+                  <h3 className="text-2xl font-bold mb-2 bg-gradient-to-r from-red-600 to-white bg-clip-text text-transparent">{company}</h3>
+                  <p className="text-lg font-medium text-slate-600">{industry}</p>
                 </div>
                 
                 <div>
-                  <h4 className="text-lg font-semibold mb-2 text-white">The Challenge</h4>
-                  <p className="text-sm text-white/90">{challenge}</p>
+                  <h4 className="text-lg font-semibold mb-2 bg-gradient-to-r from-red-600 to-white bg-clip-text text-transparent">The Challenge</h4>
+                  <p className="text-sm text-slate-600">{challenge}</p>
                 </div>
                 
                 <div>
-                  <h4 className="text-lg font-semibold mb-2 text-white">Our Solution</h4>
-                  <p className="text-sm text-white/90">{solution}</p>
+                  <h4 className="text-lg font-semibold mb-2 bg-gradient-to-r from-red-600 to-white bg-clip-text text-transparent">Our Solution</h4>
+                  <p className="text-sm text-slate-600">{solution}</p>
                 </div>
                 
                 <div>
-                  <h4 className="text-lg font-semibold mb-2 text-white">Key Results</h4>
+                  <h4 className="text-lg font-semibold mb-2 bg-gradient-to-r from-red-600 to-white bg-clip-text text-transparent">Key Results</h4>
                   <ul className="space-y-2">
                     {results.map((result, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm text-white/90">
-                        <div className="w-1.5 h-1.5 rounded-full bg-white mt-1.5" />
+                      <li key={i} className="flex items-start gap-2 text-sm text-slate-600">
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#123e74] mt-1.5" />
                         <span>{result}</span>
                       </li>
                     ))}
