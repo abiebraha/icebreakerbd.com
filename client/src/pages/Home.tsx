@@ -275,9 +275,9 @@ export default function Home() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Link href="/tools/linkedin-generator">
+            <Link href="/tools/linkedin-generator" className="block h-full">
               <motion.div
-                className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer min-h-[200px] flex flex-col"
+                className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer h-full flex flex-col"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -287,14 +287,14 @@ export default function Home() {
                 <div className="w-12 h-12 bg-[#0A66C2] rounded-lg flex items-center justify-center mb-4">
                   <Users className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">LinkedIn Post Generator</h3>
-                <p className="text-slate-600">Create engaging LinkedIn posts that drive engagement and connections</p>
+                <h3 className="text-xl font-semibold mb-3">LinkedIn Post Generator</h3>
+                <p className="text-slate-600 text-sm flex-grow">Create engaging LinkedIn posts that drive engagement and connections</p>
               </motion.div>
             </Link>
 
-            <Link href="/tools/cold-email-generator">
+            <Link href="/tools/cold-email-generator" className="block h-full">
               <motion.div
-                className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer min-h-[200px] flex flex-col"
+                className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer h-full flex flex-col"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -304,14 +304,14 @@ export default function Home() {
                 <div className="w-12 h-12 bg-[#00A3E1] rounded-lg flex items-center justify-center mb-4">
                   <Mail className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Cold Email Generator</h3>
-                <p className="text-slate-600">Generate personalized cold emails that get responses</p>
+                <h3 className="text-xl font-semibold mb-3">Cold Email Generator</h3>
+                <p className="text-slate-600 text-sm flex-grow">Generate personalized cold emails that get responses</p>
               </motion.div>
             </Link>
 
-            <Link href="/tools/sales-script-generator">
+            <Link href="/tools/sales-script-generator" className="block h-full">
               <motion.div
-                className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer min-h-[200px] flex flex-col"
+                className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer h-full flex flex-col"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -321,14 +321,14 @@ export default function Home() {
                 <div className="w-12 h-12 bg-[#FF4D4D] rounded-lg flex items-center justify-center mb-4">
                   <MessagesSquare className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Sales Script Generator</h3>
-                <p className="text-slate-600">Create effective sales scripts for your outreach calls</p>
+                <h3 className="text-xl font-semibold mb-3">Sales Script Generator</h3>
+                <p className="text-slate-600 text-sm flex-grow">Create effective sales scripts for your outreach calls</p>
               </motion.div>
             </Link>
 
-            <Link href="/roi-calculator">
+            <Link href="/roi-calculator" className="block h-full">
               <motion.div
-                className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer min-h-[200px] flex flex-col"
+                className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer h-full flex flex-col"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -338,8 +338,8 @@ export default function Home() {
                 <div className="w-12 h-12 bg-[#0066CC] rounded-lg flex items-center justify-center mb-4">
                   <Calculator className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">ROI Calculator</h3>
-                <p className="text-slate-600">Calculate the potential return on investment from your SDR team</p>
+                <h3 className="text-xl font-semibold mb-3">ROI Calculator</h3>
+                <p className="text-slate-600 text-sm flex-grow">Calculate the potential return on investment from your SDR team</p>
               </motion.div>
             </Link>
           </div>
