@@ -57,7 +57,7 @@ export default function Home() {
     <div className="bg-white overflow-hidden">
       {/* Hero Section */}
       <motion.section 
-        className="min-h-screen relative flex items-center justify-center overflow-hidden bg-slate-900 text-white"
+        className="min-h-screen relative flex items-center justify-center overflow-hidden bg-[#123e74] text-white"
         style={{ 
           y: heroY,
           scale: heroScale,
@@ -101,7 +101,7 @@ export default function Home() {
             >
               <Button
                 size="lg"
-                className="bg-white hover:bg-white/90 text-slate-900 px-8 py-3 text-lg font-semibold rounded-full transition-all duration-300 hover:scale-105 shadow-lg"
+                className="bg-white hover:bg-white/90 text-[#123e74] px-8 py-3 text-lg font-semibold rounded-full transition-all duration-300 hover:scale-105 shadow-lg"
                 onClick={() => window.location.href = '/schedule-call'}
               >
                 Schedule a Call
@@ -112,7 +112,7 @@ export default function Home() {
       </motion.section>
 
       {/* Carousel Section */}
-      <section className="py-24 relative overflow-hidden" style={{ background: "linear-gradient(to bottom, #f8fafc, #f1f5f9, #e2e8f0)" }}>
+      <section className="py-24 relative overflow-hidden" style={{ background: "linear-gradient(to bottom, #e8f6f7, #f4f9fa, #e0f3f4)" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -121,10 +121,10 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#2c8d98] mb-6 tracking-tight">
               Our Key Solutions
             </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            <p className="text-xl text-[#40a0aa] max-w-3xl mx-auto">
               Discover how we can transform your sales process
             </p>
           </motion.div>
@@ -180,7 +180,7 @@ export default function Home() {
                             backgroundSize: 'cover'
                           }}
                         >
-                          <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 to-transparent" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#123e74]/90 to-transparent" />
                           <div className="absolute bottom-0 left-0 right-0 p-6">
                             <h3 className="text-2xl font-bold text-white">
                               {card.title}
@@ -304,7 +304,7 @@ export default function Home() {
                 className="bg-white p-8 rounded-2xl"
               >
                 <motion.div 
-                  className="text-slate-900 mb-6"
+                  className="text-[#123e74] mb-6"
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.3 }}
                 >
@@ -445,7 +445,7 @@ export default function Home() {
                 transition={{ duration: 1, delay: index * 0.2, ease: [0.16, 1, 0.3, 1] }}
               >
                 <motion.p 
-                  className="text-5xl font-bold mb-4 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent"
+                  className="text-5xl font-bold mb-4 bg-gradient-to-r from-[#123e74] to-[#1a4e8f] bg-clip-text text-transparent"
                   animate={{ 
                     backgroundPosition: ["0%", "100%"],
                   }}
@@ -494,7 +494,7 @@ export default function Home() {
               <Link href="/schedule-call">
                 <Button
                   size="lg"
-                  className="bg-slate-900 hover:bg-slate-800 text-white px-8 py-3 text-lg font-semibold rounded-full transition-all duration-300 hover:scale-105 shadow-lg"
+                  className="bg-[#0066CC] hover:bg-[#0077CC] text-white px-8 py-3 text-lg font-semibold rounded-full transition-all duration-300 hover:scale-105 shadow-lg"
                 >
                   Schedule a Call
                 </Button>
