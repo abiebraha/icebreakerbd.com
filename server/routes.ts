@@ -377,23 +377,29 @@ ${productDescription ? `\nProduct Description: ${productDescription}` : ''}`
   });
 
   app.post('/api/tools/generate-linkedin-post', async (req, res) => {
+    console.log('LinkedIn post generation request received:', req.body);
+    
     try {
       const { context, customInstructions: newInstructions, email } = req.body;
       
       // Update stored custom instructions if provided
       if (newInstructions) {
         customInstructions.linkedin = newInstructions;
+        console.log('Updated custom instructions for LinkedIn generator');
       }
       
       // Use stored instructions if no custom ones provided
       const finalInstructions = newInstructions || customInstructions.linkedin;
 
       if (!context) {
+        console.log('Request rejected: Missing context');
         return res.status(400).json({ 
+          success: false,
           error: 'Context is required'
         });
       }
 
+      console.log('Calling OpenAI API for LinkedIn post generation');
       const completion = await openai.chat.completions.create({
         model: "gpt-4",
         messages: [
@@ -465,28 +471,33 @@ ${finalInstructions ? `\nCustom Instructions:\n${finalInstructions}` : ''}`
       });
 
       const generatedContent = completion.choices[0].message.content || '';
+      console.log('OpenAI API response received:', { contentLength: generatedContent.length });
 
       // Send email transcript
       try {
+        console.log('Sending email transcript');
         await sendEmailTranscript(email, "LinkedIn Post", { context, customInstructions: newInstructions }, generatedContent);
+        console.log('Email transcript sent successfully');
       } catch (emailError) {
         console.error('Error sending email transcript:', emailError);
         // Continue with the response even if email fails
       }
 
-      // Set proper headers and send response
-      res.setHeader('Content-Type', 'application/json');
-      res.status(200).json({
+      const response = {
         success: true,
         content: generatedContent
-      });
+      };
+      
+      console.log('Sending successful response:', { contentLength: generatedContent.length });
+      res.status(200).json(response);
     } catch (error) {
       console.error('Error generating LinkedIn post:', error);
-      res.setHeader('Content-Type', 'application/json');
-      res.status(500).json({
+      const errorResponse = {
         success: false,
         error: error instanceof Error ? error.message : 'Failed to generate LinkedIn post'
-      });
+      };
+      console.log('Sending error response:', errorResponse);
+      res.status(500).json(errorResponse);
     }
   });
 }
