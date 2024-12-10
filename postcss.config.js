@@ -4,16 +4,28 @@ export default {
       preserveEmpty: true
     },
     tailwindcss: {},
-    autoprefixer: {},
+    autoprefixer: {
+      flexbox: true,
+      grid: true
+    },
     ...(process.env.NODE_ENV === 'production' ? { 
       cssnano: { 
         preset: ['default', {
-          colormin: false,
           discardComments: {
             removeAll: true,
           },
-          discardUnused: false,
+          mergeLonghand: true,
           mergeRules: true,
+          minifySelectors: true,
+          minifyFontValues: true,
+          normalizeWhitespace: true,
+          cssDeclarationSorter: true,
+          uniqueSelectors: true,
+          calc: {
+            precision: 2
+          },
+          // Keep color values and z-index for consistency
+          colormin: false,
           reduceIdents: false,
           zindex: false
         }]

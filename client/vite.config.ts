@@ -4,7 +4,20 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react({
+      jsxRuntime: 'automatic',
+      babel: {
+        babelrc: false,
+        configFile: false,
+        presets: [
+          ['@babel/preset-env', { targets: { node: 'current' } }],
+          ['@babel/preset-react', { runtime: 'automatic' }],
+          '@babel/preset-typescript'
+        ]
+      }
+    })
+  ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
@@ -26,10 +39,13 @@ export default defineConfig({
       usePolling: true,
     },
     hmr: {
-      protocol: process.env.NODE_ENV === 'production' ? 'wss' : 'ws',
+      protocol: 'ws',
       host: '0.0.0.0',
       port: 5000,
-      clientPort: 443
+      clientPort: 5000,
+      timeout: 120000,
+      overlay: false,  // Disable the error overlay
+      path: '/vite-hmr' // Custom path to avoid conflicts
     }
   },
   preview: {
@@ -46,29 +62,39 @@ export default defineConfig({
   },
   build: {
     cssCodeSplit: false,
-    cssMinify: 'lightningcss',
+    cssMinify: true,
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: process.env.NODE_ENV === 'production',
+        drop_debugger: process.env.NODE_ENV === 'production',
+        pure_funcs: ['console.log'],
+        passes: 2
+      },
+      format: {
+        comments: false,
+        webkit: true,
+        safari10: true
+      }
+    },
     outDir: '../dist/public',
     emptyOutDir: true,
     assetsDir: 'assets',
     manifest: true,
-    sourcemap: true,
+    sourcemap: false,
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, 'index.html'),
       },
       output: {
-        manualChunks: {
-          vendor: [
-            'react',
-            'react-dom',
-            'framer-motion',
-            'wouter',
-            'lucide-react'
-          ],
-          styles: [
-            './src/index.css',
-            './src/pages/styles.css'
-          ]
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            if (id.includes('react')) return 'react-vendor';
+            if (id.includes('@radix-ui')) return 'radix-vendor';
+            if (id.includes('framer-motion')) return 'animation-vendor';
+            return 'vendor';
+          }
+          if (id.includes('components/ui')) return 'ui-components';
         },
         assetFileNames: (assetInfo) => {
           if (!assetInfo.name) return 'assets/[name]-[hash][extname]';
@@ -80,7 +106,7 @@ export default defineConfig({
             return `assets/images/[name]-[hash][extname]`;
           }
           if (extType === 'css') {
-            return `assets/css/style-[hash][extname]`;
+            return `assets/css/styles-[hash][extname]`;
           }
           return `assets/[name]-[hash][extname]`;
         },
@@ -89,5 +115,16 @@ export default defineConfig({
       },
     },
     target: ['es2020', 'edge88', 'firefox78', 'chrome87', 'safari14'],
+  },
+  optimizeDeps: {
+    include: [
+      'react',
+      'react-dom',
+      'framer-motion',
+      'wouter',
+      'lucide-react',
+      '@radix-ui/react-navigation-menu',
+      '@radix-ui/react-accordion'
+    ]
   }
 })

@@ -15,14 +15,14 @@ export default function Layout({ children }: LayoutProps) {
     <div className="min-h-screen flex flex-col overflow-hidden">
       <Header />
       <main className="flex-grow pt-16 relative">
-        <AnimatePresence mode="sync">
+        <AnimatePresence mode="popLayout">
           <motion.div
-            key={`${location}-content`}
+            key={location}
             className="relative h-full w-full"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.3, type: "spring", stiffness: 260, damping: 20 }}
           >
             {children}
           </motion.div>
