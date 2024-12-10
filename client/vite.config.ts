@@ -11,17 +11,15 @@ export default defineConfig({
     },
   },
   server: {
-    host: true,
+    host: '0.0.0.0',
     port: 3000,
+    strictPort: false,
     hmr: {
       clientPort: 443,
-      path: '/_vite',
-      host: process.env.REPL_SLUG ? `${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co` : 'localhost',
-      protocol: process.env.REPL_SLUG ? 'wss' : 'ws'
+      port: 3000,
+      host: process.env.REPL_SLUG + '.' + process.env.REPL_OWNER + '.repl.co',
+      protocol: 'wss',
+      timeout: 120000
     }
-  },
-  preview: {
-    host: true,
-    port: 3000
   }
 })
