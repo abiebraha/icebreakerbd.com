@@ -29,6 +29,9 @@
   border-radius: 0.75rem;
   overflow: hidden;
   transition: all 0.8s cubic-bezier(0.45, 0, 0.55, 1);
+  border: none !important;
+  outline: none !important;
+  border-color: transparent !important;
 }
 
 .card-front {
@@ -39,10 +42,13 @@
 }
 
 .card-back {
-  background: linear-gradient(135deg, #283048, #859398);
+  background: white !important;
   transform: rotateY(180deg) translateZ(1px);
-  color: white;
+  color: black;
   z-index: 1;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .card.flipped .card-front {

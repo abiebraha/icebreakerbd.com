@@ -107,7 +107,7 @@ export default function ServicesPage() {
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
         <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-[#D97B66]/10 via-transparent to-transparent"
+          className="absolute inset-0 bg-gradient-to-br from-[#FF4D4D]/30 via-[#FF00FF]/10 to-transparent"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
@@ -123,7 +123,7 @@ export default function ServicesPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
               Comprehensive Sales
               <br />
-              <span className="text-[#D97B66]">Growth Solutions</span>
+              <span className="bg-gradient-to-r from-[#FF2D55] to-[#FF00FF] bg-clip-text text-transparent animate-gradient">Growth Solutions</span>
             </h1>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               From system setup to team building, we provide end-to-end services to accelerate your sales growth.
@@ -145,9 +145,9 @@ export default function ServicesPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <div className="mb-4">
-                  <service.icon className="w-12 h-12 text-[#D97B66]" />
+                  <service.icon className="w-12 h-12 text-[#FF4D4D]" />
                 </div>
-                <h3 className="text-xl font-bold bg-gradient-to-r from-[#D97B66] to-[#FF8C42] bg-clip-text text-transparent mb-3">
+                <h3 className="text-xl font-bold bg-gradient-to-r from-[#FF4D4D] to-[#FF00FF] bg-clip-text text-transparent mb-3">
                   {service.title}
                 </h3>
                 <p className="text-slate-600 mb-4">

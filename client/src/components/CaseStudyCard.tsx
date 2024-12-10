@@ -28,7 +28,7 @@ export default function CaseStudyCard({
       transition={{ type: "spring", stiffness: 300 }}
       className="group cursor-pointer case-study-container"
     >
-      <Card className="relative w-full h-[500px] bg-white border-0 shadow-none">
+      <Card className="relative w-full h-[500px] bg-white border-0 !border-none shadow-xl hover:shadow-2xl transition-shadow duration-300">
         <div 
           className="card"
           style={{ 
@@ -98,26 +98,26 @@ export default function CaseStudyCard({
               
               <div className="space-y-6 overflow-y-auto flex-1">
                 <div>
-                  <h3 className="text-2xl font-bold mb-2 bg-gradient-to-r from-[#283048] to-[#859398] bg-clip-text text-transparent">{company}</h3>
+                  <h3 className="text-2xl font-bold mb-2 bg-gradient-to-r from-[#FF8144] to-[#FF2063] bg-clip-text text-transparent">{company}</h3>
                   <p className="text-lg font-medium text-slate-600">{industry}</p>
                 </div>
                 
                 <div>
-                  <h4 className="text-lg font-semibold mb-2 bg-gradient-to-r from-[#283048] to-[#859398] bg-clip-text text-transparent">The Challenge</h4>
+                  <h4 className="text-lg font-semibold mb-2 bg-gradient-to-r from-[#FF8144] to-[#FF2063] bg-clip-text text-transparent">The Challenge</h4>
                   <p className="text-sm text-slate-600">{challenge}</p>
                 </div>
                 
                 <div>
-                  <h4 className="text-lg font-semibold mb-2 bg-gradient-to-r from-[#283048] to-[#859398] bg-clip-text text-transparent">Our Solution</h4>
+                  <h4 className="text-lg font-semibold mb-2 bg-gradient-to-r from-[#FF8144] to-[#FF2063] bg-clip-text text-transparent">Our Solution</h4>
                   <p className="text-sm text-slate-600">{solution}</p>
                 </div>
                 
                 <div>
-                  <h4 className="text-lg font-semibold mb-2 bg-gradient-to-r from-[#283048] to-[#859398] bg-clip-text text-transparent">Key Results</h4>
+                  <h4 className="text-lg font-semibold mb-2 bg-gradient-to-r from-[#FF8144] to-[#FF2063] bg-clip-text text-transparent">Key Results</h4>
                   <ul className="space-y-2">
                     {results.map((result, i) => (
                       <li key={i} className="flex items-start gap-2 text-sm text-slate-600">
-                        <div className="w-1.5 h-1.5 rounded-full bg-[#283048] mt-1.5" />
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#FF8144] mt-1.5" />
                         <span>{result}</span>
                       </li>
                     ))}
