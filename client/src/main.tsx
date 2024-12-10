@@ -85,18 +85,20 @@ function Router() {
               <LinkedInPostGenerator />
             </ErrorBoundary>
           </Route>
-          <Route>
-            <div className="min-h-screen flex items-center justify-center">
-              <div className="text-center">
-                <h1 className="text-4xl font-bold text-[#123e74] mb-4">404</h1>
-                <p className="text-slate-600 mb-6">Page not found</p>
-                <Link href="/">
-                  <a className="text-[#123e74] hover:text-[#1a4e8f] transition-colors">
-                    Go back home
-                  </a>
-                </Link>
+          <Route path="*">
+            {(params) => (
+              <div className="min-h-screen flex items-center justify-center">
+                <div className="text-center">
+                  <h1 className="text-4xl font-bold text-[#123e74] mb-4">404</h1>
+                  <p className="text-slate-600 mb-6">Page not found: {params['*']}</p>
+                  <Link href="/">
+                    <span className="text-[#123e74] hover:text-[#1a4e8f] transition-colors cursor-pointer">
+                      Go back home
+                    </span>
+                  </Link>
+                </div>
               </div>
-            </div>
+            )}
           </Route>
         </Switch>
       </Layout>

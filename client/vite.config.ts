@@ -17,17 +17,23 @@ export default defineConfig({
       usePolling: true,
     },
   },
-  base: '/',
+  base: '',
   build: {
-    outDir: 'dist',
+    outDir: '../dist/public',
     assetsDir: 'assets',
     sourcemap: true,
     emptyOutDir: true,
+    minify: 'esbuild',
+    cssMinify: true,
     rollupOptions: {
       output: {
         manualChunks: {
           'vendor': ['react', 'react-dom', 'framer-motion'],
+          'ui': ['@radix-ui/react-hover-card', '@radix-ui/react-slot']
         },
+        entryFileNames: 'assets/[name].[hash].js',
+        chunkFileNames: 'assets/[name].[hash].js',
+        assetFileNames: 'assets/[name].[hash].[ext]'
       },
     },
   },
