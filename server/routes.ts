@@ -184,63 +184,59 @@ Additional Information: ${additionalInfo || 'None provided'}
 
       if (!websiteUrl && !productDescription) {
         return res.status(400).json({ 
-          message: 'Please provide either a website URL or product description' 
+          success: false,
+          error: 'Please provide either a website URL or product description' 
         });
       }
+
+      const contextInfo = productDescription || 'No specific product description provided';
+      console.log('Generating cold email with context:', { contextInfo, hasCustomInstructions: !!finalInstructions });
 
       const completion = await openai.chat.completions.create({
         model: "gpt-4",
         messages: [
           {
             role: "system",
-            content: `You are an expert cold email writer specializing in concise, high-impact messages. Follow these exact instructions:
+            content: `You are an expert cold email writer specializing in creating highly personalized, context-aware messages. Create an email based on the provided context and these requirements:
 
 1. Format Requirements:
-- Maintain a strict 75-word limit
-- Use plain text format only
-- Write at a 10-year-old reading level - extremely simple words
-- Create subject line with maximum 4 words, all lowercase
-- Follow this exact structure:
-  "{First Name} - {ICP for the product} often {Pain Point from prospect's website relating to seller's solution}
+- Maximum 75 words
+- Plain text format only
+- Write at a 10-year-old reading level
+- Subject line: maximum 4 words, lowercase
+- Structure:
+  "{First Name} - Quick question about {Main topic from context}
 
-  {One-sentence solution from seller's website}. {3-word risk mitigation}.
+  {One key insight or observation from the provided context}. {One specific value proposition}.
 
-  {Soft CTA that feels natural to respond to}?
+  {Question based on their specific situation}?
 
-  P.S. {Personal detail from LinkedIn/online presence unrelated to pitch}"
+  P.S. {Friendly, contextual closing note}"
 
-2. Tone and Style:
-- Professional yet conversational like talking to a friend
-- Super genuine and personal - avoid corporate speak
-- Use neutral language for pain points
-- No bullet points or complex formatting
-- Keep formatting plain text
-- Avoid jargon and buzzwords completely
-- Make it extremely relatable and human
+2. Key Guidelines:
+- Focus entirely on the provided context/description
+- Be genuinely curious about their specific situation
+- Use their language and terminology
+- Keep it conversational and friendly
+- Avoid assumptions about their problems
+- Make every word count
+- Personalize based on the information given
 
-3. Research Process:
-- Review provided website URLs thoroughly
-- Browse web for industry-specific information
-- Search for specific pain points that resonate
-- Identify concrete, simple solutions
-- Research prospect's online presence deeply
-- Focus on personal connection and relevance
-
-4. Advanced Requirements:
-- Attack specific pain points of the target audience
-- Use extremely simple language that anyone can understand
-- Keep sentences short and focused
-- Make the CTA feel completely natural
-- Demonstrate clear understanding of their problems
-- Show genuine interest in helping, not selling
+3. Content Rules:
+- Draw insights directly from the provided context
+- Don't mention generic problems or solutions
+- Focus on their specific industry/situation
+- Use their own terms and concepts
+- Make connections to their actual business
+- Stay relevant to their context
 
 ${finalInstructions ? `\nCustom Instructions:\n${finalInstructions}` : ''}`
           },
           {
             role: "user",
-            content: `Write a cold email based on the following information:
-${websiteUrl ? `\nWebsite URL: ${websiteUrl}` : ''}
-${productDescription ? `\nProduct Description: ${productDescription}` : ''}`
+            content: `Generate a cold email using this context:
+${websiteUrl ? `\nWebsite: ${websiteUrl}` : ''}
+${contextInfo}`
           }
         ]
       });
