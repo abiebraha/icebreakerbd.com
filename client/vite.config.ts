@@ -2,12 +2,17 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
+    }
+  },
+  css: {
+    postcss: path.resolve(__dirname, '../postcss.config.cjs'),
+    modules: {
+      localsConvention: 'camelCase'
     }
   },
   server: {
@@ -23,31 +28,21 @@ export default defineConfig({
   build: {
     outDir: '../dist/public',
     emptyOutDir: true,
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true
-      }
-    },
+    minify: true,
+    cssCodeSplit: true,
     rollupOptions: {
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom', 'framer-motion'],
           ui: ['@radix-ui/react-icons', 'lucide-react']
-        }
+        },
+        assetFileNames: 'assets/[name].[hash][extname]',
+        chunkFileNames: 'assets/[name].[hash].js',
+        entryFileNames: 'assets/[name].[hash].js'
       }
     }
   },
-  css: {
-    devSourcemap: false,
-    postcss: {
-      plugins: [
-        require('tailwindcss/nesting'),
-        require('tailwindcss'),
-        require('autoprefixer'),
-        ...(process.env.NODE_ENV === 'production' ? [require('cssnano')] : [])
-      ]
-    }
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'framer-motion']
   }
 })
