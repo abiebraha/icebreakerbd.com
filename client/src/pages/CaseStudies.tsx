@@ -78,7 +78,7 @@ export default function CaseStudiesPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
               Success Stories That
               <br />
-              <span className="text-[#0066CC]">Drive Results</span>
+              <span className="bg-gradient-to-r from-[#283048] to-[#859398] bg-clip-text text-transparent">Drive Results</span>
             </h1>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Discover how we've helped companies transform their sales operations and achieve remarkable growth.
