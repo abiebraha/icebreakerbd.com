@@ -36,56 +36,49 @@ async function startServer() {
       process.exit(1);
     }
 
-    // Serve static assets from the assets directory with strong caching
-    app.use("/assets", express.static(path.join(publicDir, "assets"), {
-      maxAge: "1y",
-      immutable: true,
-      etag: true,
-      lastModified: true,
-      setHeaders: (res, filePath) => {
-        if (filePath.endsWith('.js')) {
-          res.setHeader('Content-Type', 'application/javascript');
-        } else if (filePath.endsWith('.css')) {
-          res.setHeader('Content-Type', 'text/css');
-        }
-      }
-    }));
-
-    // Serve other static files from the public directory
+    // Serve static assets with appropriate cache headers
     app.use(express.static(publicDir, {
       index: false,
       etag: true,
       lastModified: true,
-      maxAge: "1h",
       setHeaders: (res, filePath) => {
+        // Set appropriate content types
         if (filePath.endsWith('.js')) {
           res.setHeader('Content-Type', 'application/javascript');
         } else if (filePath.endsWith('.css')) {
           res.setHeader('Content-Type', 'text/css');
         } else if (filePath.endsWith('.html')) {
           res.setHeader('Content-Type', 'text/html');
-        } else if (filePath.match(/\.(jpg|jpeg|png|gif|webp)$/)) {
+        }
+        
+        // Set cache headers
+        if (filePath.includes('/assets/')) {
+          // Long cache for assets with hash in filename
           res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+        } else {
+          // Shorter cache for other static files
+          res.setHeader('Cache-Control', 'public, max-age=3600');
         }
       }
     }));
 
     // Handle all routes for SPA
     app.get("*", (req, res, next) => {
-      // Skip API routes
-      if (req.path.startsWith("/api")) {
-        return next();
-      }
-
-      // Skip actual files
-      if (req.path.match(/\.(js|css|png|jpg|jpeg|gif|ico|json|map|woff|woff2|ttf|eot)$/)) {
+      // Skip API routes and static files
+      if (req.path.startsWith("/api") || req.path.match(/\.(js|css|png|jpg|jpeg|gif|ico|json|map|woff|woff2|ttf|eot)$/)) {
         return next();
       }
 
       // Log route handling
       console.log(`[${new Date().toISOString()}] Serving index.html for path: ${req.path}`);
       
-      // Send index.html with proper headers
+      // Ensure the index.html file exists
+      if (!fs.existsSync(indexPath)) {
+        console.error(`[${new Date().toISOString()}] index.html not found at ${indexPath}`);
+        return res.status(500).send("Server configuration error");
+      }
+
+      // Send index.html with proper headers for SPA routing
       res.sendFile(indexPath, {
         headers: {
           'Content-Type': 'text/html',
@@ -95,7 +88,7 @@ async function startServer() {
         }
       }, (err) => {
         if (err) {
-          console.error("Error sending index.html:", err);
+          console.error(`[${new Date().toISOString()}] Error sending index.html:`, err);
           res.status(500).send("Internal Server Error");
         }
       });
