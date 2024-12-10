@@ -32,23 +32,19 @@ export default function LinkedInPostGenerator() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <div className="container mx-auto px-4 py-16">
-        <AIToolForm
-          onSubmit={handleSubmit}
-          title={
-            <h1 className="text-4xl md:text-5xl font-bold">
-              <span className="text-slate-900">LinkedIn Post</span>
-              <br />
-              <span className="bg-gradient-to-r from-indigo-500 to-indigo-700 bg-clip-text text-transparent">Generator</span>
-            </h1>
-          }
-          description="Create engaging LinkedIn posts with AI-powered content generation"
-          contextLabel="Post Topic"
-          contextPlaceholder="Describe the topic, key message, or story you want to share"
-          instructionsPlaceholder="Add specific instructions for post style, tone, hashtags, or call-to-action preferences..."
-        />
-      </div>
-    </div>
+    <AIToolForm
+      onSubmit={handleSubmit}
+      title={
+        <h1 className="text-4xl md:text-5xl font-bold">
+          <span className="text-slate-900">LinkedIn Post</span>
+          <br />
+          <span className="text-[#0066CC]">Generator</span>
+        </h1>
+      }
+      description="Create engaging LinkedIn posts with AI-powered content generation"
+      contextLabel="Post Topic"
+      contextPlaceholder="Describe the topic, key message, or story you want to share"
+      instructionsPlaceholder="Add specific instructions for post style, tone, hashtags, or call-to-action preferences..."
+    />
   );
 }

@@ -148,7 +148,7 @@ export default function ColdEmailGenerator() {
 
             <Button
               type="submit"
-              className="bg-[#123e74] hover:bg-[#1a4e8f] text-white px-8 py-3 text-lg font-semibold rounded-md transition-colors w-full"
+              className="bg-[#0066CC] hover:bg-[#0077CC] text-white px-8 py-3 text-lg font-semibold rounded-full transition-all duration-300 hover:scale-105 shadow-lg w-full"
               disabled={isLoading}
             >
               {isLoading ? "Generating..." : "Generate Cold Email"}

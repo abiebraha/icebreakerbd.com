@@ -32,23 +32,19 @@ export default function ColdEmailGenerator() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <div className="container mx-auto px-4 py-16">
-        <AIToolForm
-          onSubmit={handleSubmit}
-          title={
-            <h1 className="text-4xl md:text-5xl font-bold">
-              <span className="text-slate-900">Cold Email</span>
-              <br />
-              <span className="bg-gradient-to-r from-indigo-500 to-indigo-700 bg-clip-text text-transparent">Generator</span>
-            </h1>
-          }
-          description="Generate personalized cold emails with custom instructions and web-enriched content"
-          contextLabel="Prospect Information"
-          contextPlaceholder="Enter information about your prospect (company name, target person, industry, pain points, etc.)"
-          instructionsPlaceholder="Add specific instructions for email tone, style, or any particular points you want to emphasize..."
-        />
-      </div>
-    </div>
+    <AIToolForm
+      onSubmit={handleSubmit}
+      title={
+        <h1 className="text-4xl md:text-5xl font-bold">
+          <span className="text-slate-900">Cold Email</span>
+          <br />
+          <span className="text-[#0066CC]">Generator</span>
+        </h1>
+      }
+      description="Generate personalized cold emails with custom instructions and web-enriched content"
+      contextLabel="Prospect Information"
+      contextPlaceholder="Enter information about your prospect (company name, target person, industry, pain points, etc.)"
+      instructionsPlaceholder="Add specific instructions for email tone, style, or any particular points you want to emphasize..."
+    />
   );
 }

@@ -76,10 +76,10 @@ export default function LinkedInPostGenerator() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-2">
-              <span className="text-slate-900">LinkedIn Post</span>
+            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-2">
+              LinkedIn Post
               <br />
-              <span className="bg-gradient-to-r from-indigo-500 to-indigo-700 bg-clip-text text-transparent">Generator</span>
+              <span className="text-[#0066CC]">Generator</span>
             </h1>
             <p className="text-xl text-slate-600">
               Create engaging LinkedIn content that drives engagement and establishes thought leadership.
@@ -133,7 +133,7 @@ export default function LinkedInPostGenerator() {
 
             <Button
               type="submit"
-              className="bg-gradient-to-r from-indigo-500 to-indigo-700 hover:from-indigo-600 hover:to-indigo-800 text-white px-8 py-3 text-lg font-semibold rounded-full transition-all duration-300 w-full"
+              className="bg-[#0066CC] hover:bg-[#0077CC] text-white px-8 py-3 text-lg font-semibold rounded-full transition-all duration-300 hover:scale-105 shadow-lg w-full"
               disabled={isLoading}
             >
               {isLoading ? "Generating..." : "Generate LinkedIn Post"}
