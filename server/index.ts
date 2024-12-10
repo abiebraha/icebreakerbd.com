@@ -69,9 +69,17 @@ app.use((req, res, next) => {
     serveStatic(app);
   }
 
-  // Use port 5000 for development server
+  // Default to port 5000 for development, can be overridden by PORT env var
   const PORT = parseInt(process.env.PORT || '5000', 10);
-  server.listen(PORT, () => {
-    log(`serving on port ${PORT}`);
-  });
+  const HOST = '0.0.0.0';
+  log(`attempting to start server on ${HOST}:${PORT}`);
+  
+  server.listen(PORT, HOST)
+    .once('listening', () => {
+      log(`server successfully listening on ${HOST}:${PORT}`);
+    })
+    .once('error', (error) => {
+      log(`failed to start server: ${error}`);
+      process.exit(1);
+    });
 })();

@@ -81,5 +81,5 @@ task = "packager.installForAll"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "cd server && npm run dev"
+args = "npm run build && NODE_ENV=production PORT=5000 node dist/index.js"
 waitForPort = 5000
