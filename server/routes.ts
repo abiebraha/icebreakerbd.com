@@ -2,6 +2,11 @@ import type { Express } from "express";
 import sgMail from '@sendgrid/mail';
 import OpenAI from 'openai';
 
+// Store the custom instructions for each generator globally
+let linkedinCustomInstructions = '';
+let salesScriptCustomInstructions = '';
+let coldEmailCustomInstructions = '';
+
 function normalizeUrl(url: string): string {
   if (!url) return url;
   
@@ -174,6 +179,14 @@ Additional Information: ${additionalInfo || 'None provided'}
   app.post('/api/tools/generate-cold-email', async (req, res) => {
     try {
       const { websiteUrl: rawWebsiteUrl, productDescription, customInstructions, email } = req.body;
+      
+      // Update stored custom instructions if provided
+      if (customInstructions) {
+        coldEmailCustomInstructions = customInstructions;
+      }
+      
+      // Use stored instructions if no custom ones provided
+      const finalInstructions = customInstructions || coldEmailCustomInstructions;
       const websiteUrl = rawWebsiteUrl ? normalizeUrl(rawWebsiteUrl) : '';
 
       if (!websiteUrl && !productDescription) {
@@ -226,14 +239,15 @@ Additional Information: ${additionalInfo || 'None provided'}
 - Keep sentences short and focused
 - Make the CTA feel completely natural
 - Demonstrate clear understanding of their problems
-- Show genuine interest in helping, not selling`
+- Show genuine interest in helping, not selling
+
+${finalInstructions ? `\nCustom Instructions:\n${finalInstructions}` : ''}`
           },
           {
             role: "user",
             content: `Write a cold email based on the following information:
 ${websiteUrl ? `\nWebsite URL: ${websiteUrl}` : ''}
-${productDescription ? `\nProduct Description: ${productDescription}` : ''}
-${customInstructions ? `\nCustom Instructions: ${customInstructions}` : ''}`
+${productDescription ? `\nProduct Description: ${productDescription}` : ''}`
           }
         ]
       });
@@ -263,6 +277,14 @@ ${customInstructions ? `\nCustom Instructions: ${customInstructions}` : ''}`
   app.post('/api/tools/generate-sales-script', async (req, res) => {
     try {
       const { websiteUrl: rawWebsiteUrl, productDescription, customInstructions, email } = req.body;
+      
+      // Update stored custom instructions if provided
+      if (customInstructions) {
+        salesScriptCustomInstructions = customInstructions;
+      }
+      
+      // Use stored instructions if no custom ones provided
+      const finalInstructions = customInstructions || salesScriptCustomInstructions;
       const websiteUrl = rawWebsiteUrl ? normalizeUrl(rawWebsiteUrl) : '';
 
       if (!websiteUrl && !productDescription) {
@@ -318,14 +340,15 @@ ${customInstructions ? `\nCustom Instructions: ${customInstructions}` : ''}`
 - Browse web for deep industry understanding
 - Make pain points extremely specific and relevant
 - Keep the flow super natural and conversational
-- Sound like you're genuinely trying to help a friend`
+- Sound like you're genuinely trying to help a friend
+
+${finalInstructions ? `\nCustom Instructions:\n${finalInstructions}` : ''}`
           },
           {
             role: "user",
             content: `Write a sales script based on the following information:
 ${websiteUrl ? `\nWebsite URL: ${websiteUrl}` : ''}
-${productDescription ? `\nProduct Description: ${productDescription}` : ''}
-${customInstructions ? `\nCustom Instructions: ${customInstructions}` : ''}`
+${productDescription ? `\nProduct Description: ${productDescription}` : ''}`
           }
         ]
       });
@@ -355,6 +378,14 @@ ${customInstructions ? `\nCustom Instructions: ${customInstructions}` : ''}`
   app.post('/api/tools/generate-linkedin-post', async (req, res) => {
     try {
       const { context, customInstructions, email } = req.body;
+      
+      // Update stored custom instructions if provided
+      if (customInstructions) {
+        linkedinCustomInstructions = customInstructions;
+      }
+      
+      // Use stored instructions if no custom ones provided
+      const finalInstructions = customInstructions || linkedinCustomInstructions;
 
       const completion = await openai.chat.completions.create({
         model: "gpt-4",
@@ -415,11 +446,13 @@ vs
 - Make content extremely relatable and human
 - Keep paragraphs short and focused
 - Use stories that demonstrate lessons learned
-- End with thought-provoking questions that naturally invite responses`
+- End with thought-provoking questions that naturally invite responses
+
+${finalInstructions ? `\nCustom Instructions:\n${finalInstructions}` : ''}`
           },
           {
             role: "user",
-            content: `Generate a LinkedIn post and 8-12 alternative hooks based on the following context:\n${context}\n\nCustom instructions:\n${customInstructions}\n\nPlease format the response as follows:\n\nMAIN POST:\n[Complete post with current hook]\n\nALTERNATIVE HOOKS:\n1. [Hook option 1]\n2. [Hook option 2]\n... and so on`
+            content: `Generate a LinkedIn post and 8-12 alternative hooks based on the following context:\n${context}\n\nPlease format the response as follows:\n\nMAIN POST:\n[Complete post with current hook]\n\nALTERNATIVE HOOKS:\n1. [Hook option 1]\n2. [Hook option 2]\n... and so on`
           }
         ]
       });

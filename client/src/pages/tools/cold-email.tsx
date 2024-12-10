@@ -13,7 +13,8 @@ export default function ColdEmailGenerator() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          context: data.context,
+          websiteUrl: data.context,
+          productDescription: data.context,
           customInstructions: data.customInstructions,
           email: data.email,
         }),
