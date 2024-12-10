@@ -107,7 +107,7 @@ export default function ServicesPage() {
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
         <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-[#E8927C]/5 via-transparent to-transparent"
+          className="absolute inset-0 bg-gradient-to-br from-[#D97B66]/10 via-transparent to-transparent"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
@@ -123,7 +123,7 @@ export default function ServicesPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
               Comprehensive Sales
               <br />
-              <span className="text-[#E8927C]">Growth Solutions</span>
+              <span className="text-[#D97B66]">Growth Solutions</span>
             </h1>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               From system setup to team building, we provide end-to-end services to accelerate your sales growth.
@@ -141,7 +141,7 @@ export default function ServicesPage() {
                 key={service.title}
                 className="p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
                 style={{ 
-                  background: "linear-gradient(135deg, #FFB6A3, #FFD9CC, #FFE5D9)",
+                  background: "linear-gradient(135deg, #D97B66, #E38975, #F0A794)",
                   boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
                 }}
                 initial={{ opacity: 0, y: 20 }}
@@ -149,18 +149,18 @@ export default function ServicesPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <div className="mb-4">
-                  <service.icon className="w-12 h-12 text-slate-800 drop-shadow-sm" />
+                  <service.icon className="w-12 h-12 text-white drop-shadow-sm" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-800 mb-3 drop-shadow-sm">
+                <h3 className="text-xl font-bold text-white mb-3 drop-shadow-sm">
                   {service.title}
                 </h3>
-                <p className="text-slate-700 mb-4 drop-shadow-sm">
+                <p className="text-white/90 mb-4 drop-shadow-sm">
                   {service.description}
                 </p>
                 <ul className="space-y-2">
                   {service.features.map((feature, i) => (
-                    <li key={i} className="text-sm text-slate-700 flex items-center gap-2 drop-shadow-sm">
-                      <div className="w-1.5 h-1.5 rounded-full bg-slate-700" />
+                    <li key={i} className="text-sm text-white/90 flex items-center gap-2 drop-shadow-sm">
+                      <div className="w-1.5 h-1.5 rounded-full bg-white" />
                       {feature}
                     </li>
                   ))}
