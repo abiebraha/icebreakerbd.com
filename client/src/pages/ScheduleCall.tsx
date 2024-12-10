@@ -24,7 +24,7 @@ export default function ScheduleCallPage() {
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
         <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-[#0066CC]/5 via-transparent to-transparent"
+          className="absolute inset-0 bg-gradient-to-br from-[#FFD700]/5 via-transparent to-transparent"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
@@ -40,7 +40,7 @@ export default function ScheduleCallPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
               Schedule a Call
               <br />
-              <span className="text-[#0066CC]">With Our Team</span>
+              <span className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] bg-clip-text text-transparent">With Our Team</span>
             </h1>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Book a consultation to discuss how we can help accelerate your sales growth
