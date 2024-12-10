@@ -23,7 +23,11 @@ export default function LinkedInPostGenerator() {
         throw new Error("Failed to generate LinkedIn post");
       }
 
-      const result = await response.json();
+      const text = await response.text();
+      const result = JSON.parse(text);
+      if (!result.success) {
+        throw new Error(result.error || 'Failed to generate LinkedIn post');
+      }
       lastGeneratedContent.current = result.content;
     } catch (error) {
       console.error("Error generating LinkedIn post:", error);

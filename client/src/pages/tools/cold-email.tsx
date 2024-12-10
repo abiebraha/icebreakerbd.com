@@ -24,7 +24,11 @@ export default function ColdEmailGenerator() {
         throw new Error("Failed to generate cold email");
       }
 
-      const result = await response.json();
+      const text = await response.text();
+      const result = JSON.parse(text);
+      if (!result.success) {
+        throw new Error(result.error || 'Failed to generate cold email');
+      }
       lastGeneratedContent.current = result.content;
     } catch (error) {
       console.error("Error generating cold email:", error);

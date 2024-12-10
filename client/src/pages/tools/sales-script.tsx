@@ -24,7 +24,11 @@ export default function SalesScriptGenerator() {
         throw new Error("Failed to generate sales script");
       }
 
-      const result = await response.json();
+      const text = await response.text();
+      const result = JSON.parse(text);
+      if (!result.success) {
+        throw new Error(result.error || 'Failed to generate sales script');
+      }
       lastGeneratedContent.current = result.content;
     } catch (error) {
       console.error("Error generating sales script:", error);
