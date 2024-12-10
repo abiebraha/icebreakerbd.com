@@ -58,6 +58,18 @@ args = "Production Server"
 task = "workflow.run"
 args = "Development Server"
 
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Production Build and Server"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Production Build"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Clean Production Build"
+
 [[workflows.workflow]]
 name = "Build Project"
 author = "agent"
@@ -84,8 +96,8 @@ task = "packager.installForAll"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "NODE_ENV=production node dist/index.js"
-waitForPort = 3000
+args = "cd client && npm run build && cd .. && NODE_ENV=production node server/index.ts"
+waitForPort = 5000
 
 [[workflows.workflow]]
 name = "Development Server"
@@ -101,3 +113,46 @@ task = "packager.installForAll"
 task = "shell.exec"
 args = "cd client && npm run dev"
 waitForPort = 5173
+
+[[workflows.workflow]]
+name = "Production Build and Server"
+author = "agent"
+
+[workflows.workflow.metadata]
+agentRequireRestartOnSave = false
+
+[[workflows.workflow.tasks]]
+task = "packager.installForAll"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install && cd client && npm install && npm run build && cd .. && tsc && NODE_ENV=production node dist/index.js"
+waitForPort = 5000
+
+[[workflows.workflow]]
+name = "Production Build"
+author = "agent"
+
+[workflows.workflow.metadata]
+agentRequireRestartOnSave = false
+
+[[workflows.workflow.tasks]]
+task = "packager.installForAll"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install && cd client && npm install && npm run build && cd .. && tsc"
+
+[[workflows.workflow]]
+name = "Clean Production Build"
+author = "agent"
+
+[workflows.workflow.metadata]
+agentRequireRestartOnSave = false
+
+[[workflows.workflow.tasks]]
+task = "packager.installForAll"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd client && rm -rf dist node_modules && npm install && npm run build"

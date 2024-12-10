@@ -37,7 +37,17 @@ export default defineConfig({
   build: {
     outDir: '../dist/public',
     emptyOutDir: true,
-    sourcemap: true
+    sourcemap: true,
+    manifest: true,
+    rollupOptions: {
+      input: path.resolve(__dirname, 'index.html'),
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'framer-motion'],
+          ui: ['@radix-ui/react-dialog', '@radix-ui/react-slot']
+        }
+      }
+    }
   },
   optimizeDeps: {
     include: ['react', 'react-dom']

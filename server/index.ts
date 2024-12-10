@@ -27,75 +27,97 @@ async function startServer() {
     await setupVite(app, server);
   } else {
     console.log("Configuring production server");
-    const publicDir = path.join(__dirname, "..", "dist", "public");
-    const indexPath = path.join(publicDir, "index.html");
+    
+    // Set up paths for static files
+    const clientDir = path.resolve(__dirname, "..");
+    const publicDir = path.resolve(clientDir, "dist", "public");
+    const indexPath = path.resolve(publicDir, "index.html");
+
+    // Enhanced logging for debugging
+    console.log("Production server configuration:");
+    console.log("- Client directory:", clientDir);
+    console.log("- Public directory:", publicDir);
+    console.log("- Index path:", indexPath);
 
     // Verify build files exist
-    try {
-      if (!fs.existsSync(publicDir)) {
-        console.error(`Build directory not found at: ${publicDir}`);
-        console.error("Please run 'npm run build' first");
-        process.exit(1);
-      }
-      if (!fs.existsSync(indexPath)) {
-        console.error(`Index.html not found at: ${indexPath}`);
-        console.error("Please run 'npm run build' first");
-        process.exit(1);
-      }
-      console.log(`Serving static files from: ${publicDir}`);
-      console.log("Build directory contents:", fs.readdirSync(publicDir));
-    } catch (error) {
-      console.error("Error checking build files:", error);
+    if (!fs.existsSync(publicDir)) {
+      console.error(`Build directory not found at: ${publicDir}`);
+      console.error("Current directory:", __dirname);
+      console.error("Available files:", fs.readdirSync(path.resolve(__dirname, "..")));
       process.exit(1);
     }
 
-    // Serve static assets with proper headers
+    // Log the contents of the build directory
+    console.log("Build directory structure:");
+    const listDirContents = (dir: string, level = 0) => {
+      const items = fs.readdirSync(dir);
+      items.forEach(item => {
+        const fullPath = path.join(dir, item);
+        console.log("  ".repeat(level) + "- " + item);
+        if (fs.statSync(fullPath).isDirectory()) {
+          listDirContents(fullPath, level + 1);
+        }
+      });
+    };
+    listDirContents(publicDir);
+
+    // Serve static files with proper MIME types and caching
     app.use(express.static(publicDir, {
-      index: false, // Don't serve index.html automatically
+      index: false,
       etag: true,
       lastModified: true,
       setHeaders: (res, filePath) => {
+        // Set strict MIME types for security
+        if (filePath.endsWith('.js')) {
+          res.setHeader('Content-Type', 'application/javascript; charset=utf-8');
+        } else if (filePath.endsWith('.css')) {
+          res.setHeader('Content-Type', 'text/css; charset=utf-8');
+        }
+
+        // Set cache headers based on file type
         if (filePath.endsWith('.html')) {
           // Don't cache HTML files
           res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-        } else if (filePath.match(/\.(js|css|png|jpg|jpeg|gif|ico|svg)$/)) {
-          // Cache static assets
+          res.setHeader('Pragma', 'no-cache');
+          res.setHeader('Expires', '0');
+        } else {
+          // Cache other static assets
           res.setHeader('Cache-Control', 'public, max-age=31536000');
-
-          // Set correct MIME type for JavaScript files
-          if (filePath.endsWith('.js')) {
-            res.setHeader('Content-Type', 'application/javascript');
-          }
         }
       }
     }));
 
-    // Handle all routes for SPA
+    // SPA route handler with improved error handling
     app.get('*', (req, res, next) => {
-      if (req.path.startsWith('/api')) {
+      if (req.url.startsWith('/api/')) {
         return next();
       }
-
-      console.log(`[${new Date().toISOString()}] Attempting to serve index.html for path: ${req.path}`);
-      try {
-        res.sendFile(indexPath, {
-          headers: {
-            'Content-Type': 'text/html',
-            'Cache-Control': 'no-cache, no-store, must-revalidate',
-            'Pragma': 'no-cache',
-            'Expires': '0'
-          }
-        });
-      } catch (error) {
-        console.error('Error serving index.html:', error);
-        res.status(500).send('Internal Server Error');
-      }
+      
+      console.log(`Serving index.html for path: ${req.url}`);
+      
+      // Send the index.html file with proper error handling
+      res.sendFile(indexPath, (err) => {
+        if (err) {
+          console.error('Error serving index.html:', err);
+          res.status(500).send('Error loading the application');
+        }
+      });
     });
-  }
+  } // Close the production block
 
   const PORT = parseInt(process.env.PORT || "5000", 10);
-  server.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server running on http://0.0.0.0:${PORT} in ${process.env.NODE_ENV} mode`);
+  const HOST = "0.0.0.0";
+  
+  // Check if port is in use and exit if it is
+  server.on('error', (error: any) => {
+    if (error.code === 'EADDRINUSE') {
+      console.error(`Port ${PORT} is already in use. Please make sure no other server is running.`);
+      process.exit(1);
+    }
+  });
+
+  server.listen(PORT, HOST, () => {
+    console.log(`Server running on http://${HOST}:${PORT} in ${process.env.NODE_ENV} mode`);
   });
 }
 
