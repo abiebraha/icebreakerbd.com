@@ -41,5 +41,25 @@ export default defineConfig({
         secure: false,
       }
     }
+  },
+  build: {
+    cssCodeSplit: false,
+    cssMinify: true,
+    outDir: '../dist/public',
+    emptyOutDir: true,
+    assetsDir: 'assets',
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name.endsWith('.css')) {
+            return 'assets/[name]-[hash][extname]';
+          }
+          return 'assets/[name]-[hash][extname]';
+        },
+        chunkFileNames: 'assets/[name]-[hash].js',
+        entryFileNames: 'assets/[name]-[hash].js',
+      },
+    },
   }
 })

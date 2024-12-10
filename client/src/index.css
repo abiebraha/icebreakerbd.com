@@ -15,8 +15,8 @@ body {
   }
 
   :root {
-    --background: #ffffff;
-    --foreground: #000000;
+    --background: theme('colors.white');
+    --foreground: theme('colors.black');
     --primary: #123e74;
     --primary-darker: #0d2d54;
     --secondary: #1a4e8f;
@@ -31,6 +31,16 @@ body {
     --chart-3: #2a5ea0;
     --chart-4: #3b6eb1;
     --chart-5: #4c7ec2;
+  }
+
+  html {
+    background-color: var(--background);
+    color: var(--text);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--text);
   }
 
   /* 3D Effects */
