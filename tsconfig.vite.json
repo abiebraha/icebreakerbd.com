@@ -3,7 +3,7 @@
     "target": "ES2020",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "outDir": "./dist/server",
+    "outDir": "./dist",
     "rootDir": ".",
     "strict": true,
     "esModuleInterop": true,
@@ -13,12 +13,9 @@
     "allowJs": true,
     "declaration": false,
     "sourceMap": true,
-    "types": ["node", "express", "vite"],
-    "baseUrl": ".",
-    "paths": {
-      "../*": ["./*"]
-    }
+    "types": ["node", "vite/client"],
+    "baseUrl": "."
   },
-  "include": ["server/**/*", "vite.config.ts"],
-  "exclude": ["node_modules", "dist", "build", "client"]
+  "include": ["vite.config.ts"],
+  "exclude": ["node_modules", "dist", "build", "client", "server"]
 }

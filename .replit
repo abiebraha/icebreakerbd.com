@@ -192,5 +192,5 @@ task = "packager.installForAll"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "tsc -p tsconfig.server.json && cd client && npm run build && cd .. && NODE_ENV=production node --experimental-modules dist/server/index.js"
+args = "tsc -p tsconfig.vite.json && tsc -p tsconfig.server.json && cd client && npm run build && cd .. && NODE_ENV=production node --experimental-specifier-resolution=node dist/server/index.js"
 waitForPort = 5000
