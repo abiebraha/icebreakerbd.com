@@ -32,15 +32,15 @@ export default function ColdEmailGenerator() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-500 to-indigo-700">
+    <div className="min-h-screen bg-white">
       <div className="container mx-auto px-4 py-16">
         <AIToolForm
           onSubmit={handleSubmit}
           title={
             <h1 className="text-4xl md:text-5xl font-bold">
-              <span className="text-white">Cold Email</span>
+              <span className="text-slate-900">Cold Email</span>
               <br />
-              <span className="text-purple-200">Generator</span>
+              <span className="bg-gradient-to-r from-indigo-500 to-indigo-700 bg-clip-text text-transparent">Generator</span>
             </h1>
           }
           description="Generate personalized cold emails with custom instructions and web-enriched content"
