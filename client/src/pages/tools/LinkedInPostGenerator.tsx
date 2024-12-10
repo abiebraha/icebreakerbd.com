@@ -133,7 +133,7 @@ export default function LinkedInPostGenerator() {
 
             <Button
               type="submit"
-              className="bg-gradient-to-r from-indigo-500 to-indigo-700 hover:from-indigo-600 hover:to-indigo-800 text-white px-8 py-3 text-lg font-semibold rounded-lg transition-all duration-300 w-full"
+              className="bg-gradient-to-r from-indigo-500 to-indigo-700 hover:from-indigo-600 hover:to-indigo-800 text-white px-8 py-3 text-lg font-semibold rounded-full transition-all duration-300 w-full"
               disabled={isLoading}
             >
               {isLoading ? "Generating..." : "Generate LinkedIn Post"}

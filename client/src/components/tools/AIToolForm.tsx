@@ -139,7 +139,7 @@ export default function AIToolForm({
 
           <Button
             type="submit"
-            className="w-full bg-gradient-to-r from-indigo-500 to-indigo-700 hover:from-indigo-600 hover:to-indigo-800 text-white rounded-full transition-all duration-300 hover:scale-105"
+            className="w-full bg-gradient-to-r from-[#FFD700] to-[#FFA500] hover:from-[#FFA500] hover:to-[#FFD700] text-white rounded-full transition-all duration-300 hover:scale-105"
             disabled={isLoading}
           >
             {isLoading ? "Processing..." : "Generate"}
@@ -151,7 +151,7 @@ export default function AIToolForm({
         <p className="text-lg text-slate-600 mb-4">Want to learn more about how we can help your business grow?</p>
         <Link href="/schedule-call">
           <Button 
-            className="bg-gradient-to-r from-indigo-500 to-indigo-700 hover:from-indigo-600 hover:to-indigo-800 text-white rounded-full transition-all duration-300 hover:scale-105"
+            className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] hover:from-[#FFA500] hover:to-[#FFD700] text-white rounded-full transition-all duration-300 hover:scale-105"
           >
             Schedule a Call
           </Button>
