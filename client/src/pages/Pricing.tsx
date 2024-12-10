@@ -12,7 +12,7 @@ export default function PricingPage() {
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
         <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-[#34D399]/10 via-[#059669]/5 to-transparent"
+          className="absolute inset-0 bg-gradient-to-br from-[#34D399]/5 via-transparent to-transparent"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}

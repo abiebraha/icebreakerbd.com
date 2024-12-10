@@ -86,11 +86,10 @@ export default function Testimonials() {
               className="group cursor-pointer"
             >
               <Card 
-                className="w-full min-h-[300px] shadow-lg group-hover:shadow-2xl transition-all duration-300 relative overflow-hidden flex flex-col"
-                style={{ background: "linear-gradient(to bottom, #e8f6f7, #f4f9fa, #e0f3f4)" }}
+                className="w-full min-h-[300px] shadow-lg group-hover:shadow-2xl transition-all duration-300 relative overflow-hidden flex flex-col bg-white"
               >
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-[#40a0aa]/5 via-transparent to-transparent"
+                  className="absolute inset-0 bg-gradient-to-br from-[#34D399]/5 via-transparent to-transparent"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 0 }}
                   whileHover={{ opacity: 1 }}
@@ -103,14 +102,14 @@ export default function Testimonials() {
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: index * 0.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                   >
-                    <Avatar className="h-14 w-14 border-2 border-[#40a0aa]/20">
+                    <Avatar className="h-14 w-14 border-2 border-[#34D399]/20">
                       <AvatarImage src={testimonial.avatar} alt={testimonial.role} />
-                      <AvatarFallback className="bg-[#40a0aa]/10 text-[#40a0aa] font-semibold">
+                      <AvatarFallback className="bg-[#34D399]/10 text-[#059669] font-semibold">
                         {testimonial.initials}
                       </AvatarFallback>
                     </Avatar>
                     <div>
-                      <p className="text-[#40a0aa] font-semibold text-lg">
+                      <p className="bg-gradient-to-r from-[#34D399] to-[#059669] bg-clip-text text-transparent font-semibold text-lg">
                         {testimonial.role}
                       </p>
                     </div>

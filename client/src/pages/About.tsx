@@ -32,7 +32,7 @@ export default function AboutPage() {
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
         <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-[#0066CC]/5 via-transparent to-transparent"
+          className="absolute inset-0 bg-gradient-to-br from-[#FFD700]/5 via-transparent to-transparent"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
@@ -70,7 +70,7 @@ export default function AboutPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
               Transforming Sales Teams
               <br />
-              <span className="text-[#0066CC]">One Step at a Time</span>
+              <span className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] bg-clip-text text-transparent">One Step at a Time</span>
             </h1>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               We're a team of sales experts passionate about helping businesses build and optimize their sales processes.
@@ -102,7 +102,7 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <value.icon className="w-12 h-12 text-[#0066CC] mb-4" />
+                <value.icon className="w-12 h-12 text-[#FFA500] mb-4" />
                 <h3 className="text-xl font-semibold mb-2">{value.title}</h3>
                 <p className="text-slate-600">{value.description}</p>
               </motion.div>
