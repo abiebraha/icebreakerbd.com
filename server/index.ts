@@ -48,41 +48,59 @@ async function startServer() {
       process.exit(1);
     }
 
-    // Serve static assets
+    // Verify the build directory exists
+    if (!fs.existsSync(publicDir)) {
+      console.error(`Build directory not found: ${publicDir}`);
+      process.exit(1);
+    }
+
+    // Log the contents of the build directory
+    console.log('Build directory contents:', fs.readdirSync(publicDir));
+
+    // Serve static assets with proper headers
     app.use(express.static(publicDir, {
-      index: false // Let our catch-all handle index.html
+      index: false, // Don't serve index.html automatically
+      etag: true,
+      lastModified: true,
+      setHeaders: (res, filePath) => {
+        if (filePath.endsWith('.html')) {
+          // Don't cache HTML files
+          res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+        } else if (filePath.match(/\.(js|css|png|jpg|jpeg|gif|ico|svg)$/)) {
+          // Cache static assets
+          res.setHeader('Cache-Control', 'public, max-age=31536000');
+        }
+      }
     }));
 
     // Handle all routes for SPA
-    app.get("*", (req, res, next) => {
-      // Skip API routes and static files
-      if (req.path.startsWith("/api") || req.path.match(/\.(js|css|png|jpg|jpeg|gif|ico|json|map|woff|woff2|ttf|eot)$/)) {
+    app.get('*', (req, res, next) => {
+      // Skip API routes
+      if (req.path.startsWith('/api')) {
         return next();
       }
 
-      // Log route handling
-      console.log(`[${new Date().toISOString()}] Serving index.html for path: ${req.path}`);
-      
-      // Ensure the index.html file exists
-      if (!fs.existsSync(indexPath)) {
-        console.error(`[${new Date().toISOString()}] index.html not found at ${indexPath}`);
-        return res.status(500).send("Server configuration error");
-      }
+      const indexPath = path.join(publicDir, 'index.html');
+      console.log(`[${new Date().toISOString()}] Attempting to serve index.html for path: ${req.path}`);
+      console.log('Index path:', indexPath);
 
-      // Send index.html with proper headers for SPA routing
-      res.sendFile(indexPath, {
-        headers: {
-          'Content-Type': 'text/html',
-          'Cache-Control': 'no-cache, no-store, must-revalidate',
-          'Pragma': 'no-cache',
-          'Expires': '0'
+      try {
+        if (!fs.existsSync(indexPath)) {
+          throw new Error(`index.html not found at ${indexPath}`);
         }
-      }, (err) => {
-        if (err) {
-          console.error(`[${new Date().toISOString()}] Error sending index.html:`, err);
-          res.status(500).send("Internal Server Error");
-        }
-      });
+
+        res.sendFile(indexPath, {
+          headers: {
+            'Content-Type': 'text/html',
+            'Cache-Control': 'no-cache, no-store, must-revalidate',
+            'Pragma': 'no-cache',
+            'Expires': '0'
+          }
+        });
+      } catch (error) {
+        console.error('Error serving index.html:', error);
+        res.status(500).send('Internal Server Error');
+      }
     });
   }
 

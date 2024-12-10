@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 export default defineConfig({
   plugins: [react()],
   root: __dirname,
-  base: '/',
+  base: './',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
@@ -24,15 +24,19 @@ export default defineConfig({
       usePolling: true
     },
     fs: {
-      strict: true,
-      allow: ['.']
+      strict: false,
+      allow: ['..']
     }
   },
   build: {
-    outDir: path.resolve(__dirname, '../dist/public'),
+    outDir: '../dist/public',
     emptyOutDir: true,
+    sourcemap: true,
+    assetsDir: 'assets',
     rollupOptions: {
-      input: path.resolve(__dirname, 'index.html')
+      input: {
+        main: path.resolve(__dirname, 'index.html')
+      }
     }
   }
 });
