@@ -39,7 +39,7 @@
 }
 
 .card-back {
-  background: linear-gradient(135deg, #40a0aa, #2c8d98);
+  background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
   transform: rotateY(180deg) translateZ(1px);
   color: white;
   z-index: 1;
