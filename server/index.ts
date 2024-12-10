@@ -70,8 +70,8 @@ app.use((req, res, next) => {
   }
 
   // Use port 5000 for development server
-  const PORT = parseInt(process.env.PORT || '5000', 10);
+  const PORT = parseInt(process.env.PORT || '80', 10);
   server.listen(PORT, () => {
-    log(`serving on port ${PORT}`);
+    log(`Server is running on port ${PORT}`);
   });
 })();

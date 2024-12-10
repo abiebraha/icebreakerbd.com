@@ -136,7 +136,7 @@ export default function AboutPage() {
                 <Link href="/schedule-call" className="inline-block">
                   <Button
                     size="lg"
-                    className="bg-[#0066CC] hover:bg-[#0077ED] text-white px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
+                    className="bg-[#E5C670] hover:bg-[#0077ED] text-white px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
                   >
                     Book a Call With Abe
                   </Button>

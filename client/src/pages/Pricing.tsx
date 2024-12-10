@@ -28,7 +28,7 @@ export default function PricingPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
               Simple, Transparent
               <br />
-              <span className="text-[#2c8d98]">Pricing</span>
+              <span className="bg-gradient-to-r from-[#2c8d98] to-[#0066CC] bg-clip-text text-transparent">Pricing</span>
             </h1>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Transform your sales process and build a high-performing SDR team with our proven two-step approach.

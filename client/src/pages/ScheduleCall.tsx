@@ -40,7 +40,9 @@ export default function ScheduleCallPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
               Schedule a Call
               <br />
-              <span className="text-[#0066CC]">With Our Team</span>
+              <span className="bg-gradient-to-br from-purple-400 to-blue-500 text-transparent bg-clip-text">
+                With Our Team 
+              </span>
             </h1>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Book a consultation to discuss how we can help accelerate your sales growth
@@ -50,13 +52,13 @@ export default function ScheduleCallPage() {
       </section>
 
       {/* Calendly inline widget */}
-      <section className="py-20">
+      <section className="py-21">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-xl shadow-lg p-6 mb-12">
+          <div className="bg-white rounded-xl">
             <div 
               className="calendly-inline-widget" 
               data-url="https://calendly.com/icebreakerbd/meeting-with-abie-braha?hide_gdpr_banner=1"
-              style={{ minWidth: '320px', height: '700px' }}
+              style={{ minWidth: '320px', height: '1300px' }}
             />
           </div>
         </div>
