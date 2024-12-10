@@ -1,3 +1,26 @@
 /** @type {import('tailwindcss').Config} */
-import baseConfig from "../tailwind.config";
-export default baseConfig;
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        primary: "var(--primary)",
+        secondary: "var(--secondary)",
+        accent: "var(--accent)",
+        background: "var(--background)",
+        text: "var(--text)",
+        muted: "var(--muted)",
+        border: "var(--border)",
+      },
+      fontFamily: {
+        sans: ["SF Pro Display", "-apple-system", "BlinkMacSystemFont", "system-ui", "sans-serif"],
+        heading: ["SF Pro Display", "-apple-system", "BlinkMacSystemFont", "system-ui", "sans-serif"],
+        mono: ["SF Mono", "SFMono-Regular", "ui-monospace", "monospace"],
+      },
+    },
+  },
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+}
