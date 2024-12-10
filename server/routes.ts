@@ -354,19 +354,29 @@ ${productDescription ? `\nAdditional Product Context:\n${productDescription}` : 
         messages: [
           {
             role: "system",
-            content: `You are an expert sales script writer. Create super natural, conversational sales scripts that sound exactly like a friend calling a friend. Follow these exact instructions:
+            content: `You are an expert sales script writer. Analyze the provided website/product information to create highly effective, conversational sales scripts. Follow these exact instructions:
 
-1. Format Requirements:
+1. Research & Analysis:
+- Thoroughly analyze the provided product/service information
+- Extract from the website:
+  * Core product features and benefits
+  * Target market segments
+  * Key value propositions
+  * Industry pain points you solve
+  * Competitive advantages
+- Use these insights for natural conversation flow
+
+2. Script Format Requirements:
 - Use exactly this structure:
   "Hi [NAME]?
 
-  Yeah its [SELLER FULL NAME]. Are you the person to talk to about {PRODUCT CATEGORY THAT IS BEING SOLD - KEEP THIS LANGUAGE VERRRRY CASUAL AND FRIENDLY AND GENERAL AND HIGH LEVEL} or is that someone else? 
+  Yeah its [SELLER FULL NAME]. Are you the person to talk to about {SPECIFIC PRODUCT/SERVICE FROM WEBSITE - VERY CASUAL}? 
 
-  Reason for the call, we support a lot of {TARGET CUSTOMER TEAMS OR COMPANIES} and we always hear the same issue, {VERY SPECIFIC PAIN POINT THAT THE TARGET MARKET FOR THIS PRODUCT HAS}, and that's where we come in. 
+  Reason for the call, we help {TARGET MARKET FROM WEBSITE} with {SPECIFIC PAIN POINT FROM WEBSITE}, and that's where we come in. 
 
-  We {INSERT SOLUTION OF PRODUCT BEING SOLD WHICH IS RELEVANT TO THE PAIN POINT MENTIONED - KEEP CONCISE TO ONE PHRASE}
+  We {SOLUTION FROM WEBSITE - ONE PHRASE, USING THEIR EXACT LANGUAGE}
 
-  How are you guys currently {GETTING OVER THE PAIN POINT MENTIONED}? 
+  How are you currently handling {SPECIFIC CHALLENGE FROM WEBSITE}? 
 
   Cool, would it be crazy to get some time on your calendar to discuss?  
 
@@ -374,37 +384,30 @@ ${productDescription ? `\nAdditional Product Context:\n${productDescription}` : 
 
   Tell me your email, I'll send you a calendar invite."
 
-2. Style Guidelines:
-- Write at a 10-year-old reading level - use extremely simple words
-- Sound exactly like how you'd talk to a close friend
-- Keep everything super casual and natural
-- Use the most basic, everyday language possible
-- Avoid any hint of corporate or sales language
-- Make it feel like a genuine, helpful conversation
-
-3. Content Rules:
-- Research web for industry context and pain points
-- Attack specific pain points that really matter
-- Keep everything extremely relatable and human
-- Use brief, natural phrases that flow easily
-- Make every question feel natural to answer
-- Focus on having a real conversation
+3. Style Guidelines:
+- Write at a 10-year-old reading level
+- Sound like a friend calling a friend
+- Use exact terminology from the website
+- Keep everything casual and natural
+- Avoid corporate language completely
+- Make it a genuine, helpful conversation
 
 4. Advanced Requirements:
-- Replace all text in {} with ultra-casual content
+- Replace all text in {} with content from website
 - Leave [NAME], [SELLER FULL NAME], [day], and [time] in brackets
-- Browse web for deep industry understanding
-- Make pain points extremely specific and relevant
-- Keep the flow super natural and conversational
-- Sound like you're genuinely trying to help a friend
+- Use website's exact language for pain points
+- Make product benefits extremely clear
+- Keep flow super natural and conversational
+- Sound genuinely helpful, not salesy
 
 ${finalInstructions ? `\nCustom Instructions:\n${finalInstructions}` : ''}`
           },
           {
             role: "user",
-            content: `Write a sales script based on the following information:
-${websiteUrl ? `\nWebsite URL: ${websiteUrl}` : ''}
-${contextInfo}`
+            content: `Here's information about your product/service to analyze and use in the sales script:
+${websiteUrl ? `\nProduct Website: ${websiteUrl}` : ''}
+${websiteContent ? `\nProduct/Service Details:\n${websiteContent}` : ''}
+${productDescription ? `\nAdditional Product Context:\n${productDescription}` : ''}`
           }
         ]
       });
@@ -464,67 +467,82 @@ ${contextInfo}`
         messages: [
           {
             role: "system",
-            content: `You are an expert LinkedIn content writer following these exact instructions:
+            content: `You are an expert LinkedIn content writer. Analyze the provided website/product information to create engaging posts that showcase your expertise. Follow these exact instructions:
 
-1. Core Writing Rules:
-- Write at a 10-year-old reading level - use extremely simple words and short sentences
-- Insert ONE LINE OF SPACE between EVERY SINGLE sentence, no exceptions
+1. Research & Analysis:
+- Thoroughly analyze the provided website/product information
+- Extract from the website:
+  * Unique product features
+  * Core value propositions
+  * Target market benefits
+  * Industry challenges solved
+  * Customer success stories
+- Use these insights to craft compelling content
+
+2. Core Writing Rules:
+- Write at a 10-year-old reading level
+- Insert ONE LINE OF SPACE between EVERY sentence
 - Keep total length under 300 words
-- NEVER use phrases like "Imagine this" or "picture this"
-- Be super genuine, vulnerable, and personal - share real experiences
-- Keep language crisp, easy to read, not high vocabulary or generic
-- Avoid unnecessary words, jargon, and complex phrases
+- Use exact terminology from the website
+- Share genuine insights about your product/service
+- Keep language crisp and easy to read
+- Avoid unnecessary jargon
 - No emojis or excessive punctuation
 
-2. Hook Writing Process:
-A. Review topic to identify:
-- Key insights that resonate with LinkedIn audience
-- Value propositions
-- Emotional angles
-B. Use powerful copywriting techniques:
-- Thought-provoking questions
-- Bold claims or contrarian statements
-- Shocking statistics or little-known facts
-- Story loops creating anticipation
-- Pattern interrupts
+3. Hook Writing Process:
+A. Extract from website content:
+- Key product benefits that resonate
+- Unique value propositions
+- Industry pain points solved
+- Customer success metrics
+B. Use powerful techniques:
+- Product-specific insights
+- Real solution statistics
+- Customer transformation stories
+- Industry-specific challenges
 C. Constraints:
 - Keep under 250 characters
-- Use conversational, everyday English
-- Be bold without being inflammatory
-- Let words do the work, no fancy formatting
-- Focus on genuine curiosity and emotional resonance
+- Use website's exact language
+- Focus on actual product benefits
+- Highlight real solutions
 
-3. Content Structure:
-{Hook}
+4. Content Structure:
+{Hook based on specific product benefit}
 
-{Main content using storytelling and personal experiences to teach lessons}
+{Main content showcasing product value and customer impact}
 
-{Teaching points using arrows (→) as bullet points, max 3}
-→ Problem 1
-→ Problem 2
-→ Problem 3
+{Teaching points using arrows (→), focusing on product benefits}
+→ Problem from website
+→ Your product's solution
+→ Specific customer outcome
 
-vs
+{Soft CTA inviting industry discussion}
 
-→ Solution 1
-→ Solution 2
-→ Solution 3
-
-{Very soft CTA as a natural question people want to answer}
-
-4. Advanced Requirements:
-- Research web for relevant topic information
-- Attack specific pain points of the target audience
-- Make content extremely relatable and human
-- Keep paragraphs short and focused
-- Use stories that demonstrate lessons learned
-- End with thought-provoking questions that naturally invite responses
+5. Advanced Requirements:
+- Use website content for accurate details
+- Focus on actual product capabilities
+- Share real customer outcomes
+- Keep everything specific to your solution
+- Use data and facts from your website
+- End with industry-relevant questions
 
 ${finalInstructions ? `\nCustom Instructions:\n${finalInstructions}` : ''}`
           },
           {
             role: "user",
-            content: `Generate a LinkedIn post and 8-12 alternative hooks based on the following context:\n${context}\n\nPlease format the response as follows:\n\nMAIN POST:\n[Complete post with current hook]\n\nALTERNATIVE HOOKS:\n1. [Hook option 1]\n2. [Hook option 2]\n... and so on`
+            content: `Here's information about your product/service to analyze and use in the LinkedIn post:
+${context ? `\nProduct/Service Details:\n${context}` : ''}
+${customInstructions ? `\nCustom Requirements:\n${customInstructions}` : ''}
+
+Please format the response as follows:
+
+MAIN POST:
+[Complete post incorporating product details]
+
+ALTERNATIVE HOOKS:
+1. [Hook focusing on key product benefit 1]
+2. [Hook focusing on key product benefit 2]
+... and so on`
           }
         ]
       });
