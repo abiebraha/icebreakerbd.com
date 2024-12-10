@@ -2,10 +2,17 @@ import type { Express } from "express";
 import sgMail from '@sendgrid/mail';
 import OpenAI from 'openai';
 
+// Initialize OpenAI client
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
 // Store the custom instructions for each generator globally
-let linkedinCustomInstructions = '';
-let salesScriptCustomInstructions = '';
-let coldEmailCustomInstructions = '';
+const customInstructions = {
+  linkedin: '',
+  salesScript: '',
+  coldEmail: ''
+};
 
 function normalizeUrl(url: string): string {
   if (!url) return url;
@@ -21,10 +28,6 @@ function normalizeUrl(url: string): string {
   // Remove trailing slash
   return url.replace(/\/$/, '');
 }
-
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
 
 async function sendEmailTranscript(to: string | null, toolName: string, input: any, output: string) {
   try {
@@ -111,16 +114,6 @@ export function registerRoutes(app: Express) {
         });
       }
 
-      // Log the submission
-      console.log('Contact form submission:', {
-        name,
-        email,
-        company,
-        teamSize,
-        improvementArea,
-        additionalInfo
-      });
-
       // Send email notification if SendGrid is configured
       if (SENDGRID_API_KEY) {
         try {
@@ -178,15 +171,15 @@ Additional Information: ${additionalInfo || 'None provided'}
 
   app.post('/api/tools/generate-cold-email', async (req, res) => {
     try {
-      const { websiteUrl: rawWebsiteUrl, productDescription, customInstructions, email } = req.body;
+      const { websiteUrl: rawWebsiteUrl, productDescription, customInstructions: newInstructions, email } = req.body;
       
       // Update stored custom instructions if provided
-      if (customInstructions) {
-        coldEmailCustomInstructions = customInstructions;
+      if (newInstructions) {
+        customInstructions.coldEmail = newInstructions;
       }
       
       // Use stored instructions if no custom ones provided
-      const finalInstructions = customInstructions || coldEmailCustomInstructions;
+      const finalInstructions = newInstructions || customInstructions.coldEmail;
       const websiteUrl = rawWebsiteUrl ? normalizeUrl(rawWebsiteUrl) : '';
 
       if (!websiteUrl && !productDescription) {
@@ -254,37 +247,41 @@ ${productDescription ? `\nProduct Description: ${productDescription}` : ''}`
 
       const generatedContent = completion.choices[0].message.content || '';
 
-      // Send email transcript if we have content
+      // Send email transcript
       try {
-        await sendEmailTranscript(email, "Cold Email", { websiteUrl, productDescription, customInstructions }, generatedContent);
+        await sendEmailTranscript(email, "Cold Email", { websiteUrl, productDescription, customInstructions: newInstructions }, generatedContent);
       } catch (emailError) {
         console.error('Error sending email transcript:', emailError);
-        return res.status(500).json({ 
-          message: 'Content generated successfully but failed to send email transcript',
-          content: generatedContent
-        });
+        // Continue with the response even if email fails
       }
 
-      res.json({ content: generatedContent });
+      // Set proper headers and send response
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json({
+        success: true,
+        content: generatedContent
+      });
     } catch (error) {
       console.error('Error generating cold email:', error);
-      res.status(500).json({ 
-        message: error instanceof Error ? error.message : 'Failed to generate cold email'
+      res.setHeader('Content-Type', 'application/json');
+      res.status(500).json({
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to generate cold email'
       });
     }
   });
 
   app.post('/api/tools/generate-sales-script', async (req, res) => {
     try {
-      const { websiteUrl: rawWebsiteUrl, productDescription, customInstructions, email } = req.body;
+      const { websiteUrl: rawWebsiteUrl, productDescription, customInstructions: newInstructions, email } = req.body;
       
       // Update stored custom instructions if provided
-      if (customInstructions) {
-        salesScriptCustomInstructions = customInstructions;
+      if (newInstructions) {
+        customInstructions.salesScript = newInstructions;
       }
       
       // Use stored instructions if no custom ones provided
-      const finalInstructions = customInstructions || salesScriptCustomInstructions;
+      const finalInstructions = newInstructions || customInstructions.salesScript;
       const websiteUrl = rawWebsiteUrl ? normalizeUrl(rawWebsiteUrl) : '';
 
       if (!websiteUrl && !productDescription) {
@@ -357,35 +354,45 @@ ${productDescription ? `\nProduct Description: ${productDescription}` : ''}`
 
       // Send email transcript
       try {
-        await sendEmailTranscript(email, "Sales Script", { websiteUrl, productDescription, customInstructions }, generatedContent);
+        await sendEmailTranscript(email, "Sales Script", { websiteUrl, productDescription, customInstructions: newInstructions }, generatedContent);
       } catch (emailError) {
         console.error('Error sending email transcript:', emailError);
-        return res.status(500).json({ 
-          message: 'Content generated successfully but failed to send email transcript',
-          content: generatedContent
-        });
+        // Continue with the response even if email fails
       }
 
-      res.json({ content: generatedContent });
+      // Set proper headers and send response
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json({
+        success: true,
+        content: generatedContent
+      });
     } catch (error) {
       console.error('Error generating sales script:', error);
-      res.status(500).json({ 
-        message: error instanceof Error ? error.message : 'Failed to generate sales script'
+      res.setHeader('Content-Type', 'application/json');
+      res.status(500).json({
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to generate sales script'
       });
     }
   });
 
   app.post('/api/tools/generate-linkedin-post', async (req, res) => {
     try {
-      const { context, customInstructions, email } = req.body;
+      const { context, customInstructions: newInstructions, email } = req.body;
       
       // Update stored custom instructions if provided
-      if (customInstructions) {
-        linkedinCustomInstructions = customInstructions;
+      if (newInstructions) {
+        customInstructions.linkedin = newInstructions;
       }
       
       // Use stored instructions if no custom ones provided
-      const finalInstructions = customInstructions || linkedinCustomInstructions;
+      const finalInstructions = newInstructions || customInstructions.linkedin;
+
+      if (!context) {
+        return res.status(400).json({ 
+          error: 'Context is required'
+        });
+      }
 
       const completion = await openai.chat.completions.create({
         model: "gpt-4",
@@ -461,20 +468,24 @@ ${finalInstructions ? `\nCustom Instructions:\n${finalInstructions}` : ''}`
 
       // Send email transcript
       try {
-        await sendEmailTranscript(email, "LinkedIn Post", { context, customInstructions }, generatedContent);
+        await sendEmailTranscript(email, "LinkedIn Post", { context, customInstructions: newInstructions }, generatedContent);
       } catch (emailError) {
         console.error('Error sending email transcript:', emailError);
-        return res.status(500).json({ 
-          message: 'Content generated successfully but failed to send email transcript',
-          content: generatedContent
-        });
+        // Continue with the response even if email fails
       }
 
-      res.json({ content: generatedContent });
+      // Set proper headers and send response
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json({
+        success: true,
+        content: generatedContent
+      });
     } catch (error) {
       console.error('Error generating LinkedIn post:', error);
-      res.status(500).json({ 
-        message: error instanceof Error ? error.message : 'Failed to generate LinkedIn post'
+      res.setHeader('Content-Type', 'application/json');
+      res.status(500).json({
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to generate LinkedIn post'
       });
     }
   });
