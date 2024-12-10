@@ -8,13 +8,7 @@ export default {
       ? {
           cssnano: {
             preset: ['default', {
-              discardComments: { removeAll: true },
-              mergeLonghand: true,
-              mergeRules: true,
-              minifySelectors: true,
-              minifyFontValues: true,
-              normalizeWhitespace: true,
-              cssDeclarationSorter: true
+              discardComments: { removeAll: true }
             }]
           }
         }

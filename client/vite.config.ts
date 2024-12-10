@@ -23,14 +23,31 @@ export default defineConfig({
   build: {
     outDir: '../dist/public',
     emptyOutDir: true,
-    manifest: true,
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true
+      }
+    },
     rollupOptions: {
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom', 'framer-motion'],
-          ui: ['@radix-ui/react-navigation-menu', '@radix-ui/react-accordion']
+          ui: ['@radix-ui/react-icons', 'lucide-react']
         }
       }
+    }
+  },
+  css: {
+    devSourcemap: false,
+    postcss: {
+      plugins: [
+        require('tailwindcss/nesting'),
+        require('tailwindcss'),
+        require('autoprefixer'),
+        ...(process.env.NODE_ENV === 'production' ? [require('cssnano')] : [])
+      ]
     }
   }
 })
