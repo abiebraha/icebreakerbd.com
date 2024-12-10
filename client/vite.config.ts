@@ -12,9 +12,22 @@ export default defineConfig({
   },
   server: {
     host: '0.0.0.0',
-    port: 5173,
+    port: Number(process.env.PORT) || 3000,
+    strictPort: true,
+    hmr: {
+      host: process.env.REPL_SLUG + '.' + process.env.REPL_OWNER + '.repl.co',
+      port: 443,
+      protocol: 'wss'
+    },
     watch: {
       usePolling: true,
+    },
+    proxy: {
+      '/api': {
+        target: `http://localhost:${process.env.SERVER_PORT || 3001}`,
+        changeOrigin: true,
+        secure: false,
+      },
     },
   },
   publicDir: 'public',
