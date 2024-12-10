@@ -21,25 +21,21 @@ export default defineConfig({
   build: {
     outDir: '../dist/public',
     assetsDir: 'assets',
-    sourcemap: true,
+    sourcemap: false,
     emptyOutDir: true,
     minify: 'esbuild',
     cssMinify: true,
+    manifest: true,
     rollupOptions: {
       output: {
         manualChunks: {
           'vendor': ['react', 'react-dom', 'framer-motion'],
-          'ui': ['@radix-ui/react-hover-card', '@radix-ui/react-slot']
+          'ui': ['@radix-ui']
         },
         entryFileNames: 'assets/[name].[hash].js',
         chunkFileNames: 'assets/[name].[hash].js',
-        assetFileNames: ({ name }) => {
-          if (/\.(gif|jpe?g|png|svg)$/.test(name ?? '')) {
-            return 'assets/images/[name].[hash][extname]';
-          }
-          return 'assets/[name].[hash][extname]';
-        }
-      },
+        assetFileNames: 'assets/[name].[hash][extname]'
+      }
     },
     reportCompressedSize: true,
     chunkSizeWarningLimit: 1000,

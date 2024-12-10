@@ -3,6 +3,11 @@ import { registerRoutes } from "./routes";
 import { setupVite, serveStatic } from "./vite";
 import { createServer } from "http";
 import path from "path";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 function log(message: string) {
   const formattedTime = new Date().toLocaleTimeString("en-US", {
@@ -59,13 +64,16 @@ app.use((req, res, next) => {
     console.error('Server Error:', {
       status,
       message,
+      path: req.path,
       stack: err.stack,
       originalError: err
     });
     
     // Send appropriate response based on the request type
-    if (req.accepts('html')) {
-      res.status(status).sendFile(path.join(__dirname, '../dist/public/index.html'), (err) => {
+    if (req.accepts('html') && !req.path.startsWith('/api')) {
+      const indexPath = path.join(__dirname, '../dist/public/index.html');
+      log(`Attempting to serve index.html from ${indexPath} for error fallback`);
+      res.status(200).sendFile(indexPath, (err) => {
         if (err) {
           console.error('Error serving index.html:', err);
           res.status(500).send('Error loading page');
@@ -86,59 +94,57 @@ app.use((req, res, next) => {
     log('Starting in development mode with Vite middleware');
     await setupVite(app, server);
   } else {
-    // Serve static files from the built client
-    const publicDir = path.resolve(__dirname, '../dist/public');
-    log(`Attempting to serve static files from: ${publicDir}`);
+    log('Starting in production mode');
+    const distDir = path.join(__dirname, '../dist/public');
+    const indexPath = path.join(distDir, 'index.html');
     
-    // Check if the directory exists and list contents
     try {
       const fs = await import('fs');
-      if (!fs.existsSync(publicDir)) {
-        log(`WARNING: Static directory ${publicDir} does not exist!`);
-        throw new Error('Static directory not found - build may be missing');
+      if (!fs.existsSync(distDir)) {
+        log(`WARNING: Build directory ${distDir} does not exist!`);
+        throw new Error('Build directory not found - run npm run build first');
       }
-      
-      // List contents of the directory
-      const files = fs.readdirSync(publicDir);
-      log(`Contents of ${publicDir}:`);
-      files.forEach(file => {
-        const filePath = path.join(publicDir, file);
-        const stats = fs.statSync(filePath);
-        log(`- ${file} (${stats.isDirectory() ? 'directory' : 'file'}, ${stats.size} bytes)`);
-      });
       
       // Verify index.html exists
-      const indexPath = path.join(publicDir, 'index.html');
       if (!fs.existsSync(indexPath)) {
-        throw new Error('index.html not found in build directory');
+        log(`WARNING: index.html not found at ${indexPath}`);
+        throw new Error('index.html not found - build may be incomplete');
       }
       
-      // Serve static files with proper caching
-      app.use('/', express.static(publicDir, {
-        maxAge: '1y',
+      log(`Serving static files from: ${distDir}`);
+      
+      // Serve static files first
+      app.use(express.static(distDir, {
+        maxAge: '1d',
         etag: true,
-        index: false // We'll handle serving index.html ourselves
+        index: false,
+        lastModified: true
       }));
       
-      // Handle all routes for client-side routing
-      app.get('*', (req, res) => {
-        // Don't serve index.html for API routes
+      // Then handle all other routes for client-side routing
+      app.get('*', (req, res, next) => {
+        // Skip API routes
         if (req.path.startsWith('/api')) {
-          res.status(404).send('Not found');
-          return;
+          return next();
         }
         
-        log(`Serving index.html for client-side route: ${req.path}`);
-        res.sendFile(indexPath);
+        // Skip static assets
+        if (req.path.match(/\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$/)) {
+          return next();
+        }
+        
+        log(`Serving index.html for route: ${req.path}`);
+        res.sendFile(indexPath, (err) => {
+          if (err) {
+            log(`Error serving index.html: ${err}`);
+            next(err);
+          }
+        });
       });
-      
     } catch (error) {
       log(`Critical error with static files: ${error}`);
-      // Let the error handler deal with it
       throw error;
     }
-    
-    log(`Static files will be served from: ${publicDir}`);
   }
 
   // Default to port 3000 if not specified
