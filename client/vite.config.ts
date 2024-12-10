@@ -11,11 +11,16 @@ export default defineConfig({
     },
   },
   server: {
-    host: true, // This enables listening on all addresses
-    strictPort: true, // Ensures server fails if port is in use
-    port: Number(process.env.PORT) || 3000,
+    host: '0.0.0.0',
+    strictPort: true,
+    port: 3001,
     watch: {
-      usePolling: true, // Enables file change detection in Replit
+      usePolling: true,
     },
+  },
+  preview: {
+    host: '0.0.0.0',
+    port: 3001,
+    strictPort: true
   }
 })

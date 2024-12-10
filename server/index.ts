@@ -69,17 +69,49 @@ app.use((req, res, next) => {
     serveStatic(app);
   }
 
-  // Default to port 5000 for development, can be overridden by PORT env var
-  const PORT = parseInt(process.env.PORT || '5000', 10);
+  // Default to port 80 for production, with fallback ports if needed
+  const PRIMARY_PORT = process.env.NODE_ENV === 'production' ? 80 : 5000;
+  const FALLBACK_PORT = 3000;
   const HOST = '0.0.0.0';
-  log(`attempting to start server on ${HOST}:${PORT}`);
   
-  server.listen(PORT, HOST)
-    .once('listening', () => {
-      log(`server successfully listening on ${HOST}:${PORT}`);
-    })
-    .once('error', (error) => {
-      log(`failed to start server: ${error}`);
-      process.exit(1);
+  const PORT = parseInt(process.env.PORT || PRIMARY_PORT.toString(), 10);
+  
+  log(`attempting to start server in ${process.env.NODE_ENV || 'development'} mode on ${HOST}:${PORT}`);
+  
+  // Function to start server on a specific port
+  const startServer = (port: number) => {
+    return new Promise<void>((resolve, reject) => {
+      server.listen(port, HOST, () => {
+        log(`server successfully listening on ${HOST}:${port}`);
+        resolve();
+      }).on('error', (error: NodeJS.ErrnoException) => {
+        if (error.code === 'EACCES' || error.code === 'EADDRINUSE') {
+          log(`failed to bind to port ${port}: ${error.code}`);
+          reject(error);
+        } else {
+          log(`server error: ${error}`);
+          process.exit(1);
+        }
+      });
     });
+  };
+
+  // Try to start server on primary port, fall back to alternate if needed
+  (async () => {
+    try {
+      await startServer(PORT);
+    } catch (error) {
+      if (process.env.NODE_ENV === 'production') {
+        log(`attempting to start server on fallback port ${FALLBACK_PORT}`);
+        try {
+          await startServer(FALLBACK_PORT);
+        } catch (fallbackError) {
+          log(`failed to start server on fallback port: ${fallbackError}`);
+          process.exit(1);
+        }
+      } else {
+        process.exit(1);
+      }
+    }
+  })();
 })();
