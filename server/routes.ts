@@ -1,18 +1,58 @@
 import type { Express } from "express";
 import sgMail from '@sendgrid/mail';
 import OpenAI from 'openai';
+import axios from 'axios';
+import * as cheerio from 'cheerio';
 
 // Initialize OpenAI client
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-// Store the custom instructions for each generator globally
+// Store custom instructions for different generators
 const customInstructions = {
   linkedin: '',
   salesScript: '',
   coldEmail: ''
 };
+
+async function fetchWebsiteContent(url: string): Promise<string> {
+  try {
+    if (!url) return '';
+    
+    console.log('Fetching content from:', url);
+    const response = await axios.get(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+      }
+    });
+    
+    const $ = cheerio.load(response.data);
+    
+    // Remove scripts, styles, and other non-content elements
+    $('script').remove();
+    $('style').remove();
+    $('nav').remove();
+    $('footer').remove();
+    
+    // Extract text content from main content areas
+    const content = $('main, article, .content, #content, .main-content, body')
+      .text()
+      .replace(/\s+/g, ' ')
+      .trim();
+      
+    console.log('Successfully fetched website content:', {
+      url,
+      contentLength: content.length,
+      preview: content.substring(0, 200)
+    });
+    
+    return content;
+  } catch (error) {
+    console.error('Error fetching website content:', error);
+    return '';
+  }
+}
 
 function normalizeUrl(url: string): string {
   if (!url) return url;
@@ -182,14 +222,25 @@ Additional Information: ${additionalInfo || 'None provided'}
       const finalInstructions = newInstructions || customInstructions.coldEmail;
       const websiteUrl = rawWebsiteUrl ? normalizeUrl(rawWebsiteUrl) : '';
 
-      if (!websiteUrl && !productDescription) {
-        return res.status(400).json({ 
+      let websiteContent = '';
+      if (websiteUrl) {
+        websiteContent = await fetchWebsiteContent(websiteUrl);
+        if (!websiteContent && !productDescription) {
+          return res.status(400).json({
+            success: false,
+            error: 'Failed to fetch website content and no product description provided'
+          });
+        }
+      }
+
+      if (!websiteContent && !productDescription) {
+        return res.status(400).json({
           success: false,
-          error: 'Please provide either a website URL or product description' 
+          error: 'Please provide either a website URL or product description'
         });
       }
 
-      const contextInfo = productDescription || 'No specific product description provided';
+      const contextInfo = websiteContent || productDescription || 'No specific context provided';
       console.log('Generating cold email with context:', { contextInfo, hasCustomInstructions: !!finalInstructions });
 
       const completion = await openai.chat.completions.create({
@@ -280,11 +331,26 @@ ${contextInfo}`
       const finalInstructions = newInstructions || customInstructions.salesScript;
       const websiteUrl = rawWebsiteUrl ? normalizeUrl(rawWebsiteUrl) : '';
 
-      if (!websiteUrl && !productDescription) {
+      let websiteContent = '';
+      if (websiteUrl) {
+        websiteContent = await fetchWebsiteContent(websiteUrl);
+        if (!websiteContent && !productDescription) {
+          return res.status(400).json({
+            success: false,
+            error: 'Failed to fetch website content and no product description provided'
+          });
+        }
+      }
+
+      if (!websiteContent && !productDescription) {
         return res.status(400).json({ 
-          message: 'Please provide either a website URL or product description' 
+          success: false,
+          error: 'Please provide either a website URL or product description' 
         });
       }
+
+      const contextInfo = websiteContent || productDescription || 'No specific context provided';
+      console.log('Generating sales script with context:', { contextInfo, hasCustomInstructions: !!finalInstructions });
 
       const completion = await openai.chat.completions.create({
         model: "gpt-4",
@@ -341,7 +407,7 @@ ${finalInstructions ? `\nCustom Instructions:\n${finalInstructions}` : ''}`
             role: "user",
             content: `Write a sales script based on the following information:
 ${websiteUrl ? `\nWebsite URL: ${websiteUrl}` : ''}
-${productDescription ? `\nProduct Description: ${productDescription}` : ''}`
+${contextInfo}`
           }
         ]
       });

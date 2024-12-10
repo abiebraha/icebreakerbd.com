@@ -50,6 +50,8 @@
     "@types/html2canvas": "^1.0.0",
     "@types/jspdf": "^2.0.0",
     "@types/lodash": "^4.17.13",
+    "axios": "^1.7.9",
+    "cheerio": "^1.0.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
