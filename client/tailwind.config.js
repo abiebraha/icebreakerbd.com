@@ -7,10 +7,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "var(--primary)",
-        secondary: "var(--secondary)",
+        primary: {
+          DEFAULT: "var(--primary)",
+          darker: "var(--primary-darker)",
+        },
+        secondary: {
+          DEFAULT: "var(--secondary)",
+          lighter: "var(--secondary-lighter)",
+        },
         accent: "var(--accent)",
         background: "var(--background)",
+        foreground: "var(--foreground)",
         text: "var(--text)",
         muted: "var(--muted)",
         border: "var(--border)",
@@ -20,19 +27,20 @@ export default {
         heading: ["SF Pro Display", "-apple-system", "BlinkMacSystemFont", "system-ui", "sans-serif"],
         mono: ["SF Mono", "SFMono-Regular", "ui-monospace", "monospace"],
       },
-      safelist: [
-        'text-primary',
-        'text-secondary',
-        'text-accent',
-        'text-background',
-        'text-text',
-        'text-muted',
-        'bg-primary',
-        'bg-secondary',
-        'bg-accent',
-        'bg-background',
-      ]
     },
+    safelist: [
+      'text-primary',
+      'text-secondary',
+      'text-accent',
+      'text-background',
+      'text-foreground',
+      'text-text',
+      'text-muted',
+      'bg-primary',
+      'bg-secondary',
+      'bg-accent',
+      'bg-background'
+    ]
   },
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 }

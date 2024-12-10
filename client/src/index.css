@@ -15,8 +15,8 @@ body {
   }
 
   :root {
-    --background: theme('colors.white');
-    --foreground: theme('colors.black');
+    --background: #ffffff;
+    --foreground: #000000;
     --primary: #123e74;
     --primary-darker: #0d2d54;
     --secondary: #1a4e8f;
