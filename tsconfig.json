@@ -1,24 +1,23 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "ESNext",
-    "moduleResolution": "bundler",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "jsx": "react-jsx",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "baseUrl": "./client",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "src/*": ["src/*"]
+      "@/*": ["client/src/*"],
+      "src/*": ["client/src/*"]
     },
     "allowJs": true,
-    "noEmit": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "forceConsistentCasingInFileNames": true
   },
   "include": ["client/src/**/*"],
-  "exclude": ["node_modules", "dist", "build", "server"]
+  "exclude": ["node_modules", "dist", "build"]
 }

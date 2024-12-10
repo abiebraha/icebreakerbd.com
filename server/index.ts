@@ -1,11 +1,14 @@
 import express from "express";
 import { registerRoutes } from "./routes.js";
-import { setupVite } from "./vite.js";
+import { setupVite, serveStatic } from "./vite.js";
 import { createServer } from "http";
 import path from "path";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 import fs from "fs";
+import type { Stats } from 'fs';
+import type { Request, Response, NextFunction } from 'express';
+import type { Server } from "http";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -66,16 +69,16 @@ async function startServer() {
       index: false,
       etag: true,
       lastModified: true,
-      setHeaders: (res, filePath) => {
+      setHeaders: (res: express.Response, path: string, stat: Stats) => {
         // Set strict MIME types for security
-        if (filePath.endsWith('.js')) {
+        if (path.endsWith('.js')) {
           res.setHeader('Content-Type', 'application/javascript; charset=utf-8');
-        } else if (filePath.endsWith('.css')) {
+        } else if (path.endsWith('.css')) {
           res.setHeader('Content-Type', 'text/css; charset=utf-8');
         }
 
         // Set cache headers based on file type
-        if (filePath.endsWith('.html')) {
+        if (path.endsWith('.html')) {
           // Don't cache HTML files
           res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
           res.setHeader('Pragma', 'no-cache');
