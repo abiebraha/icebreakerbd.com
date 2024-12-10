@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Users, LineChart, Target, Plus, Minus, Calculator } from "lucide-react";
+import { Users, Mail, MessagesSquare, Plus, Minus, Calculator } from "lucide-react";
 
 // Add custom styles
 import "./styles.css";
@@ -277,7 +277,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <Link href="/tools/linkedin-generator">
               <motion.div
-                className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer min-h-[200px] flex flex-col"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -294,7 +294,7 @@ export default function Home() {
 
             <Link href="/tools/cold-email-generator">
               <motion.div
-                className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer min-h-[200px] flex flex-col"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -302,7 +302,7 @@ export default function Home() {
                 whileHover={{ y: -5 }}
               >
                 <div className="w-12 h-12 bg-[#00A3E1] rounded-lg flex items-center justify-center mb-4">
-                  <LineChart className="w-6 h-6 text-white" />
+                  <Mail className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Cold Email Generator</h3>
                 <p className="text-slate-600">Generate personalized cold emails that get responses</p>
@@ -311,7 +311,7 @@ export default function Home() {
 
             <Link href="/tools/sales-script-generator">
               <motion.div
-                className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer min-h-[200px] flex flex-col"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -319,7 +319,7 @@ export default function Home() {
                 whileHover={{ y: -5 }}
               >
                 <div className="w-12 h-12 bg-[#FF4D4D] rounded-lg flex items-center justify-center mb-4">
-                  <Target className="w-6 h-6 text-white" />
+                  <MessagesSquare className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Sales Script Generator</h3>
                 <p className="text-slate-600">Create effective sales scripts for your outreach calls</p>
@@ -328,7 +328,7 @@ export default function Home() {
 
             <Link href="/roi-calculator">
               <motion.div
-                className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer min-h-[200px] flex flex-col"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -375,12 +375,12 @@ export default function Home() {
                 description: "Build and scale high-performing SDR teams that consistently deliver results."
               },
               {
-                icon: LineChart,
+                icon: MessagesSquare,
                 title: "Process Optimization",
                 description: "Streamline your sales operations with proven methodologies."
               },
               {
-                icon: Target,
+                icon: Calculator,
                 title: "Growth Strategy",
                 description: "Develop targeted strategies that accelerate your sales growth."
               }
