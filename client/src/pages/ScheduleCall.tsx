@@ -56,7 +56,7 @@ export default function ScheduleCallPage() {
             <div 
               className="calendly-inline-widget" 
               data-url="https://calendly.com/icebreakerbd/meeting-with-abie-braha?hide_gdpr_banner=1"
-              style={{ minWidth: '320px', height: '700px' }}
+              style={{ minWidth: '320px', height: '1200px' }}
             />
           </div>
         </div>
