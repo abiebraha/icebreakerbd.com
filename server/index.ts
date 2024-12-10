@@ -1,6 +1,6 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
-import { setupVite, serveStatic } from "./vite";
+import { setupVite } from "./vite";
 import { createServer } from "http";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -61,27 +61,27 @@ app.use((req, res, next) => {
   app.use((err: any, req: Request, res: Response, _next: NextFunction) => {
     const status = err.status || err.statusCode || 500;
     const message = err.message || "Internal Server Error";
-    console.error('Server Error:', {
+    
+    log(`Error handling request to ${req.path}: ${JSON.stringify({
       status,
       message,
-      path: req.path,
-      stack: err.stack,
-      originalError: err
-    });
-    
-    // Send appropriate response based on the request type
-    if (req.accepts('html') && !req.path.startsWith('/api')) {
-      const indexPath = path.join(__dirname, '../dist/public/index.html');
-      log(`Attempting to serve index.html from ${indexPath} for error fallback`);
-      res.status(200).sendFile(indexPath, (err) => {
-        if (err) {
-          console.error('Error serving index.html:', err);
-          res.status(500).send('Error loading page');
-        }
-      });
-    } else {
+      error: err.stack || err
+    })}`);
+
+    if (req.path.startsWith('/api')) {
       res.status(status).json({ message });
+      return;
     }
+
+    // For non-API routes, always try to serve index.html
+    const indexPath = path.join(__dirname, '../dist/public/index.html');
+    log(`Serving index.html for path: ${req.path}`);
+    res.sendFile(indexPath, (err) => {
+      if (err) {
+        log(`Failed to serve index.html: ${err.message}`);
+        res.status(500).send('Internal Server Error');
+      }
+    });
   });
 
   // importantly only setup vite in development and after
@@ -90,60 +90,63 @@ app.use((req, res, next) => {
   log(`Current environment: ${app.get('env')}`);
   log(`NODE_ENV: ${process.env.NODE_ENV}`);
   
-  if (app.get("env") === "development") {
-    log('Starting in development mode with Vite middleware');
+  const isDev = app.get("env") === "development";
+  log(`Starting server in ${isDev ? 'development' : 'production'} mode`);
+  
+  if (isDev) {
     await setupVite(app, server);
   } else {
-    log('Starting in production mode');
     const distDir = path.join(__dirname, '../dist/public');
     const indexPath = path.join(distDir, 'index.html');
     
     try {
+      // Ensure build directory exists
       const fs = await import('fs');
       if (!fs.existsSync(distDir)) {
-        log(`WARNING: Build directory ${distDir} does not exist!`);
-        throw new Error('Build directory not found - run npm run build first');
+        throw new Error(`Build directory not found at ${distDir}. Run 'npm run build' first.`);
       }
-      
-      // Verify index.html exists
       if (!fs.existsSync(indexPath)) {
-        log(`WARNING: index.html not found at ${indexPath}`);
-        throw new Error('index.html not found - build may be incomplete');
+        throw new Error(`index.html not found at ${indexPath}. Build may be incomplete.`);
       }
-      
+
       log(`Serving static files from: ${distDir}`);
       
-      // Serve static files first
+      // Serve static assets with strong caching
+      app.use('/assets', express.static(path.join(distDir, 'assets'), {
+        maxAge: '1y',
+        immutable: true
+      }));
+
+      // Serve other static files with standard caching
       app.use(express.static(distDir, {
-        maxAge: '1d',
-        etag: true,
         index: false,
-        lastModified: true
+        maxAge: '1d'
       }));
       
-      // Then handle all other routes for client-side routing
+      // Handle all non-API routes for client-side routing
       app.get('*', (req, res, next) => {
-        // Skip API routes
         if (req.path.startsWith('/api')) {
           return next();
         }
-        
-        // Skip static assets
-        if (req.path.match(/\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$/)) {
+
+        // Skip if requesting an actual file
+        if (req.path.match(/\.(js|css|png|jpg|jpeg|gif|ico|json|map)$/)) {
           return next();
         }
-        
-        log(`Serving index.html for route: ${req.path}`);
+
+        log(`[SPA] Serving index.html for: ${req.path}`);
         res.sendFile(indexPath, (err) => {
           if (err) {
-            log(`Error serving index.html: ${err}`);
-            next(err);
+            log(`[ERROR] Failed to serve index.html for ${req.path}: ${err.message}`);
+            res.status(500).send('Internal Server Error');
           }
         });
       });
+      
     } catch (error) {
-      log(`Critical error with static files: ${error}`);
-      throw error;
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      log(`Failed to initialize production server: ${errorMessage}`);
+      process.exit(1);
     }
   }
 

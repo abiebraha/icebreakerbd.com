@@ -17,28 +17,24 @@ export default defineConfig({
       usePolling: true,
     },
   },
-  base: '/',
+  base: '',
   build: {
-    outDir: '../dist/public',
-    assetsDir: 'assets',
-    sourcemap: false,
+    outDir: path.resolve(__dirname, '../dist/public'),
     emptyOutDir: true,
-    minify: 'esbuild',
-    cssMinify: true,
     manifest: true,
+    sourcemap: true,
     rollupOptions: {
       output: {
         manualChunks: {
-          'vendor': ['react', 'react-dom', 'framer-motion'],
-          'ui': ['@radix-ui']
+          'vendor': ['react', 'react-dom'],
+          'ui': ['@radix-ui'],
+          'animations': ['framer-motion']
         },
         entryFileNames: 'assets/[name].[hash].js',
         chunkFileNames: 'assets/[name].[hash].js',
-        assetFileNames: 'assets/[name].[hash][extname]'
+        assetFileNames: 'assets/[name].[ext]'
       }
-    },
-    reportCompressedSize: true,
-    chunkSizeWarningLimit: 1000,
+    }
   },
   publicDir: 'public',
 })
