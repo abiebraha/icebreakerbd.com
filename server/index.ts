@@ -69,49 +69,37 @@ app.use((req, res, next) => {
     serveStatic(app);
   }
 
-  // Default to port 80 for production, with fallback ports if needed
-  const PRIMARY_PORT = process.env.NODE_ENV === 'production' ? 80 : 5000;
-  const FALLBACK_PORT = 3000;
+  // Always use port 3000 and let Replit handle port forwarding
+  const PORT = parseInt(process.env.PORT || '3000', 10);
   const HOST = '0.0.0.0';
   
-  const PORT = parseInt(process.env.PORT || PRIMARY_PORT.toString(), 10);
-  
-  log(`attempting to start server in ${process.env.NODE_ENV || 'development'} mode on ${HOST}:${PORT}`);
-  
-  // Function to start server on a specific port
-  const startServer = (port: number) => {
-    return new Promise<void>((resolve, reject) => {
-      server.listen(port, HOST, () => {
-        log(`server successfully listening on ${HOST}:${port}`);
-        resolve();
-      }).on('error', (error: NodeJS.ErrnoException) => {
-        if (error.code === 'EACCES' || error.code === 'EADDRINUSE') {
-          log(`failed to bind to port ${port}: ${error.code}`);
-          reject(error);
-        } else {
-          log(`server error: ${error}`);
-          process.exit(1);
-        }
-      });
+  function startServer() {
+    log(`attempting to start server in ${process.env.NODE_ENV || 'development'} mode on ${HOST}:${PORT}`);
+    
+    const serverInstance = server.listen(PORT, HOST, () => {
+      log(`server successfully listening on ${HOST}:${PORT}`);
     });
-  };
 
-  // Try to start server on primary port, fall back to alternate if needed
-  (async () => {
-    try {
-      await startServer(PORT);
-    } catch (error) {
-      if (process.env.NODE_ENV === 'production') {
-        log(`attempting to start server on fallback port ${FALLBACK_PORT}`);
-        try {
-          await startServer(FALLBACK_PORT);
-        } catch (fallbackError) {
-          log(`failed to start server on fallback port: ${fallbackError}`);
-          process.exit(1);
-        }
+    serverInstance.on('error', (error: NodeJS.ErrnoException) => {
+      if (error.code === 'EADDRINUSE') {
+        log(`Port ${PORT} is already in use. Retrying in 5 seconds...`);
+        setTimeout(() => {
+          serverInstance.close();
+          startServer();
+        }, 5000);
       } else {
+        log(`Failed to start server: ${error.message}`);
         process.exit(1);
       }
-    }
-  })();
+    });
+
+    return serverInstance;
+  }
+
+  try {
+    startServer();
+  } catch (error) {
+    log(`Unexpected error while starting server: ${error}`);
+    process.exit(1);
+  }
 })();

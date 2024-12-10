@@ -14,13 +14,25 @@ export default defineConfig({
     host: '0.0.0.0',
     strictPort: true,
     port: 3001,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+      }
+    },
     watch: {
       usePolling: true,
     },
   },
   preview: {
     host: '0.0.0.0',
-    port: 3001,
-    strictPort: true
+    port: 3000,
+    strictPort: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+      }
+    }
   }
 })
