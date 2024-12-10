@@ -348,7 +348,7 @@ export default function Home() {
 
       {/* Features Section */}
       <motion.section 
-        className="py-32 relative overflow-hidden"
+        className="py-24 relative overflow-hidden"
         style={{ y: featuresY }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
