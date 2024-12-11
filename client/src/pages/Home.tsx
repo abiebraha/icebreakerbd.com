@@ -450,20 +450,7 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 gap-12 relative">
             {/* Arrow between cards */}
-            <motion.div 
-              className="hidden md:block absolute left-[calc(50%-60px)] top-[calc(50%-20px)] z-10"
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ 
-                opacity: 1, 
-                x: 0,
-                scale: [1, 1.15, 1],
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                repeatType: "reverse"
-              }}
-            >
+            <div className="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
               <svg width="160" height="40" viewBox="0 0 160 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M0 20H150M150 20L130 5M150 20L130 35"
@@ -479,7 +466,7 @@ export default function Home() {
                   </linearGradient>
                 </defs>
               </svg>
-            </motion.div>
+            </div>
 
             <motion.div
               className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
