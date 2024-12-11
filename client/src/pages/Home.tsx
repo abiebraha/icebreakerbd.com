@@ -417,16 +417,11 @@ export default function Home() {
                 className="bg-white p-8 rounded-2xl"
               >
                 <motion.div 
-                  className="mb-6 bg-gradient-to-r from-[#FF2D55] to-[#FF00FF]"
-                  style={{
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text'
-                  }}
+                  className="mb-6"
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <feature.icon className="w-16 h-16" />
+                  <feature.icon className="w-16 h-16 text-transparent bg-gradient-to-r from-[#FF2D55] to-[#FF00FF] bg-clip-text" />
                 </motion.div>
                 <h3 className="text-2xl font-semibold mb-4">{feature.title}</h3>
                 <p className="text-slate-600 text-lg">{feature.description}</p>
