@@ -167,6 +167,7 @@ export default function Home() {
                       stiffness: 50,
                       damping: 20
                     }}
+                    style={{ perspective: "1000px" }}
                   >
                     <div className="relative w-full aspect-[3/4]">
                       <div
@@ -174,7 +175,7 @@ export default function Home() {
                         onClick={() => setHoveredCard(hoveredCard === index ? null : index)}
                         style={{
                           transformStyle: 'preserve-3d',
-                          transition: 'transform 0.6s',
+                          transition: 'all 0.6s ease',
                           transform: hoveredCard === index ? 'rotateY(180deg)' : 'rotateY(0deg)',
                           position: 'relative',
                           width: '100%',
@@ -183,16 +184,13 @@ export default function Home() {
                       >
                         {/* Front of card */}
                         <div 
-                          className="card-face card-front"
+                          className="card-face absolute w-full h-full rounded-lg"
                           style={{
                             backgroundImage: `url(${card.image}?quality=80&w=800)`,
                             backgroundPosition: 'center',
                             backgroundSize: 'cover',
-                            position: 'absolute',
                             backfaceVisibility: 'hidden',
-                            width: '100%',
-                            height: '100%',
-                            borderRadius: '0.5rem'
+                            WebkitBackfaceVisibility: 'hidden'
                           }}
                         >
                           <div className="absolute inset-0 bg-gradient-to-t from-[#4AE8B0]/40 to-transparent" />
@@ -215,20 +213,22 @@ export default function Home() {
 
                         {/* Back of card */}
                         <div 
-                          className="card-face card-back absolute w-full h-full rounded-lg overflow-hidden"
+                          className="card-face absolute w-full h-full rounded-lg"
                           style={{ 
                             background: 'linear-gradient(to bottom right, #4AE8B0, #25B086)',
                             backfaceVisibility: 'hidden',
+                            WebkitBackfaceVisibility: 'hidden',
                             transform: 'rotateY(180deg)',
+                            color: 'white'
                           }}
                         >
                           <div className="h-full p-6 overflow-y-auto hide-scrollbar">
                             <div className="space-y-4">
-                              <h3 className="text-2xl font-bold text-white mb-2">
+                              <h3 className="text-2xl font-bold !text-white mb-2">
                                 {card.title}
                               </h3>
-                              <div className="w-12 h-1 bg-white/30 mb-6"></div>
-                              <h4 className="text-xl font-bold text-white mb-4">
+                              <div className="w-12 h-1 !bg-white/30 mb-6"></div>
+                              <h4 className="text-xl font-bold !text-white mb-4">
                                 Key Features
                               </h4>
                               <div className="space-y-2">
@@ -236,7 +236,7 @@ export default function Home() {
                                   <p 
                                     key={i}
                                     className="!text-white text-sm py-1"
-                                    style={{ color: 'white' }}
+                                    style={{ color: 'white !important' }}
                                   >
                                     {feature}
                                   </p>
