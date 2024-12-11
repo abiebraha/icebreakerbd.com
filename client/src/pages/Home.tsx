@@ -382,7 +382,7 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h2 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight bg-gradient-to-r from-[#FF2D55] to-[#FF00FF] bg-clip-text text-transparent">
               Growth Accelerators
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
@@ -417,7 +417,12 @@ export default function Home() {
                 className="bg-white p-8 rounded-2xl"
               >
                 <motion.div 
-                  className="text-[#123e74] mb-6"
+                  className="mb-6 bg-gradient-to-r from-[#FF2D55] to-[#FF00FF]"
+                  style={{
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text'
+                  }}
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.3 }}
                 >
