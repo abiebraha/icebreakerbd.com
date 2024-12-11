@@ -121,7 +121,7 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#4AE8B0] to-[#25B086] bg-clip-text text-transparent mb-6 tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#4AE8B0] to-[#25B086] bg-clip-text text-transparent mb-6 tracking-tight leading-normal">
               Our Key Solutions
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
@@ -420,7 +420,7 @@ export default function Home() {
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <feature.icon className="w-16 h-16 text-transparent bg-gradient-to-r from-[#FF2D55] to-[#FF00FF] bg-clip-text" />
+                  <feature.icon className="w-16 h-16 stroke-[#FF2D55]" style={{ color: '#FF2D55' }} />
                 </motion.div>
                 <h3 className="text-2xl font-semibold mb-4">{feature.title}</h3>
                 <p className="text-slate-600 text-lg">{feature.description}</p>
