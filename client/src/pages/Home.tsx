@@ -194,7 +194,7 @@ export default function Home() {
                           }}
                         >
                           <div className="absolute bottom-0 left-0 right-0 p-6">
-                            <h3 className="text-2xl font-bold text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
+                            <h3 className="text-2xl font-bold bg-gradient-to-r from-[#4AE8B0] to-[#25B086] bg-clip-text text-transparent drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
                               {card.title}
                             </h3>
                           </div>
