@@ -112,20 +112,8 @@ export default function Home() {
       </motion.section>
 
       {/* Carousel Section */}
-      <section className="py-24 relative overflow-hidden">
-        {/* Background Image with Fade Effect */}
-        {/* Background Image with Fade Effect */}
-        <motion.div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: `url('/IMG_1392.jpeg')`,
-          }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.3 }}
-          transition={{ duration: 1 }}
-        />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <section className="py-24 relative overflow-hidden bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 40 }}
@@ -194,7 +182,7 @@ export default function Home() {
                             backgroundSize: 'cover'
                           }}
                         >
-                          <div className="absolute inset-0 bg-gradient-to-t from-[#123e74]/90 to-transparent" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#4AE8B0]/90 to-transparent" />
                           <div className="absolute bottom-0 left-0 right-0 p-6">
                             <h3 className="text-2xl font-bold text-white">
                               {card.title}
@@ -213,35 +201,35 @@ export default function Home() {
                         </div>
 
                         {/* Back of card */}
-                        <div className="card-face card-back bg-white">
+                        <div className="card-face card-back bg-gradient-to-br from-[#4AE8B0] to-[#25B086]">
                           <div className="h-full p-6 overflow-y-auto hide-scrollbar">
                             <div className="space-y-4">
-                              <h3 className="text-2xl font-bold text-[#123e74] mb-2">
+                              <h3 className="text-2xl font-bold text-white mb-2">
                                 {card.title}
                               </h3>
-                              <div className="w-12 h-1 bg-[#123e74]/30 mb-6"></div>
-                              <h4 className="text-xl font-bold text-[#123e74] mb-4">
+                              <div className="w-12 h-1 bg-white/30 mb-6"></div>
+                              <h4 className="text-xl font-bold text-white mb-4">
                                 Key Features
                               </h4>
                               <div className="space-y-2">
                                 {card.description.split('\n\n')[0].split('\n').slice(1).map((feature, i) => (
                                   <p 
                                     key={i}
-                                    className="text-slate-600 text-sm py-1"
+                                    className="text-white/90 text-sm py-1"
                                   >
                                     {feature}
                                   </p>
                                 ))}
                               </div>
                               
-                              <h4 className="text-xl font-bold text-[#123e74] mb-4 mt-6">
+                              <h4 className="text-xl font-bold text-white mb-4 mt-6">
                                 Results
                               </h4>
                               <div className="space-y-2">
                                 {card.description.split('\n\n')[2].split('\n').map((result, i) => (
                                   <p 
                                     key={i}
-                                    className="text-slate-600 text-sm py-1"
+                                    className="text-white/90 text-sm py-1"
                                   >
                                     {result}
                                   </p>
