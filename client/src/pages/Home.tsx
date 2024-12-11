@@ -449,7 +449,39 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid md:grid-cols-2 gap-12 relative">
+            {/* Arrow between cards */}
+            <motion.div 
+              className="hidden md:flex absolute left-[45%] top-1/2 -translate-y-1/2 z-10"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ 
+                opacity: 1, 
+                x: 0,
+                scale: [1, 1.1, 1],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                repeatType: "reverse"
+              }}
+            >
+              <svg width="120" height="24" viewBox="0 0 120 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M0 12H118M118 12L108 2M118 12L108 22"
+                  stroke="url(#arrow-gradient)"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <defs>
+                  <linearGradient id="arrow-gradient" x1="0" y1="12" x2="120" y2="12" gradientUnits="userSpaceOnUse">
+                    <stop stopColor="#34D399" />
+                    <stop offset="1" stopColor="#059669" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </motion.div>
+
             <motion.div
               className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
               initial={{ opacity: 0, y: 40 }}
