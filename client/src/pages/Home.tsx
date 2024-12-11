@@ -199,35 +199,35 @@ export default function Home() {
                         </div>
 
                         {/* Back of card */}
-                        <div className="card-face card-back bg-[#123e74]">
+                        <div className="card-face card-back bg-white">
                           <div className="h-full p-6 overflow-y-auto hide-scrollbar">
                             <div className="space-y-4">
-                              <h3 className="text-2xl font-bold text-white mb-2">
+                              <h3 className="text-2xl font-bold text-[#123e74] mb-2">
                                 {card.title}
                               </h3>
-                              <div className="w-12 h-1 bg-white/30 mb-6"></div>
-                              <h4 className="text-xl font-bold text-white mb-4">
+                              <div className="w-12 h-1 bg-[#123e74]/30 mb-6"></div>
+                              <h4 className="text-xl font-bold text-[#123e74] mb-4">
                                 Key Features
                               </h4>
                               <div className="space-y-2">
                                 {card.description.split('\n\n')[0].split('\n').slice(1).map((feature, i) => (
                                   <p 
                                     key={i}
-                                    className="text-white/90 text-sm py-1"
+                                    className="text-slate-600 text-sm py-1"
                                   >
                                     {feature}
                                   </p>
                                 ))}
                               </div>
                               
-                              <h4 className="text-xl font-bold text-white mb-4 mt-6">
+                              <h4 className="text-xl font-bold text-[#123e74] mb-4 mt-6">
                                 Results
                               </h4>
                               <div className="space-y-2">
                                 {card.description.split('\n\n')[2].split('\n').map((result, i) => (
                                   <p 
                                     key={i}
-                                    className="text-white/90 text-sm py-1"
+                                    className="text-slate-600 text-sm py-1"
                                   >
                                     {result}
                                   </p>
