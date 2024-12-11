@@ -448,25 +448,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-12 relative">
-            {/* Arrow between cards */}
-            <div className="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-              <svg width="160" height="40" viewBox="0 0 160 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M0 20H150M150 20L130 5M150 20L130 35"
-                  stroke="url(#arrow-gradient)"
-                  strokeWidth="6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <defs>
-                  <linearGradient id="arrow-gradient" x1="0" y1="12" x2="120" y2="12" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#34D399" />
-                    <stop offset="1" stopColor="#059669" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
+          <div className="grid md:grid-cols-2 gap-12">
 
             <motion.div
               className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
