@@ -124,7 +124,7 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#4AE8B0] to-[#25B086] bg-clip-text text-transparent mb-6 tracking-tight">
               Our Key Solutions
             </h2>
-            <p className="text-xl bg-gradient-to-r from-[#4AE8B0] to-[#25B086] bg-clip-text text-transparent max-w-3xl mx-auto">
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Discover how we can transform your sales process
             </p>
           </motion.div>
