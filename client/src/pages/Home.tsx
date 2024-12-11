@@ -201,7 +201,7 @@ export default function Home() {
                         </div>
 
                         {/* Back of card */}
-                        <div className="card-face card-back !bg-gradient-to-br !from-[#4AE8B0] !to-[#25B086] !text-white">
+                        <div className="card-face card-back" style={{ background: 'linear-gradient(to bottom right, #4AE8B0, #25B086)' }}>
                           <div className="h-full p-6 overflow-y-auto hide-scrollbar">
                             <div className="space-y-4">
                               <h3 className="text-2xl font-bold text-white mb-2">
