@@ -194,7 +194,7 @@ export default function Home() {
                           }}
                         >
                           <div className="absolute bottom-0 left-0 right-0 p-6">
-                            <h3 className="text-2xl font-medium text-black">
+                            <h3 className="text-2xl font-bold text-black">
                               {card.title}
                             </h3>
                           </div>
