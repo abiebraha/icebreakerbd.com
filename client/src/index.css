@@ -33,16 +33,6 @@ body {
     --chart-5: #4c7ec2;
   }
 
-  html {
-    background-color: var(--background);
-    color: var(--text);
-  }
-
-  body {
-    background-color: var(--background);
-    color: var(--text);
-  }
-
   /* 3D Effects */
   .preserve-3d {
     transform-style: preserve-3d;

@@ -8,28 +8,37 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
-    }
+    },
   },
   server: {
     host: '0.0.0.0',
     port: 5000,
+    strictPort: true,
     proxy: {
       '/api': {
-        target: 'http://localhost:3000',
-        changeOrigin: true
+        target: 'http://0.0.0.0:3000',
+        changeOrigin: true,
+        secure: false,
+        ws: true,
       }
+    },
+    watch: {
+      usePolling: true,
+    },
+    hmr: {
+      clientPort: 443,
+      host: '0.0.0.0'
     }
   },
-  build: {
-    outDir: '../dist/public',
-    emptyOutDir: true,
-    manifest: true,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom', 'framer-motion'],
-          ui: ['@radix-ui/react-navigation-menu', '@radix-ui/react-accordion']
-        }
+  preview: {
+    host: '0.0.0.0',
+    port: 5000,
+    strictPort: true,
+    proxy: {
+      '/api': {
+        target: 'http://0.0.0.0:3000',
+        changeOrigin: true,
+        secure: false,
       }
     }
   }
