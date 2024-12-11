@@ -451,7 +451,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-12 relative">
             {/* Arrow between cards */}
             <motion.div 
-              className="hidden md:block absolute left-[calc(50%-40px)] top-[calc(50%-20px)] z-10"
+              className="hidden md:block absolute left-[calc(50%-60px)] top-[calc(50%-20px)] z-10"
               initial={{ opacity: 0, x: -30 }}
               animate={{ 
                 opacity: 1, 
