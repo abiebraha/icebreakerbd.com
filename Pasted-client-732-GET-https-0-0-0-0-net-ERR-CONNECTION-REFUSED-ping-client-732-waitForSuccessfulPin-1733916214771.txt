@@ -1,0 +1,77 @@
+client:732 
+ GET https://0.0.0.0/ net::ERR_CONNECTION_REFUSED
+ping	@	client:732
+waitForSuccessfulPing	@	client:745
+(anonymous)	@	client:557
+chunk-WERSD76P.js?v=f116fa0e:21551 Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools
+main.tsx:25 Application initialization started
+main.tsx:114 Root element found, initializing React application
+main.tsx:122 React application rendered successfully
+framer-motion.js?v=a7a3d09d:7843 You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour.
+framer-motion.js?v=a7a3d09d:7843 You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour.
+client:732 
+ GET https://0.0.0.0/ net::ERR_CONNECTION_REFUSED
+ping	@	client:732
+waitForSuccessfulPing	@	client:751
+await in waitForSuccessfulPing		
+(anonymous)	@	client:557
+client:732 
+ GET https://0.0.0.0/ net::ERR_CONNECTION_REFUSED
+client:732 
+ GET https://0.0.0.0/ net::ERR_CONNECTION_REFUSED
+client:732 
+ GET https://0.0.0.0/ net::ERR_CONNECTION_REFUSED
+client:732 
+ GET https://0.0.0.0/ net::ERR_CONNECTION_REFUSED
+client:732 
+ GET https://0.0.0.0/ net::ERR_CONNECTION_REFUSED
+client:732 
+ GET https://0.0.0.0/ net::ERR_CONNECTION_REFUSED
+client:732 
+ GET https://0.0.0.0/ net::ERR_CONNECTION_REFUSED
+client:732 
+ GET https://0.0.0.0/ net::ERR_CONNECTION_REFUSED
+client:732 
+ GET https://0.0.0.0/ net::ERR_CONNECTION_REFUSED
+client:732 
+ GET https://0.0.0.0/ net::ERR_CONNECTION_REFUSED
+client:732 
+ GET https://0.0.0.0/ net::ERR_CONNECTION_REFUSED
+client:732 
+ GET https://0.0.0.0/ net::ERR_CONNECTION_REFUSED
+client:732 
+ GET https://0.0.0.0/ net::ERR_CONNECTION_REFUSED
+client:732 
+ GET https://0.0.0.0/ net::ERR_CONNECTION_REFUSED
+client:732 
+ GET https://0.0.0.0/ net::ERR_CONNECTION_REFUSED
+client:732 
+ GET https://0.0.0.0/ net::ERR_CONNECTION_REFUSED
+client:732 
+ GET https://0.0.0.0/ net::ERR_CONNECTION_REFUSED
+client:732 
+ GET https://0.0.0.0/ net::ERR_CONNECTION_REFUSED
+client:732 
+ GET https://0.0.0.0/ net::ERR_CONNECTION_REFUSED
+client:732 
+ GET https://0.0.0.0/ net::ERR_CONNECTION_REFUSED
+client:732 
+ GET https://0.0.0.0/ net::ERR_CONNECTION_REFUSED
+client:732 
+ GET https://0.0.0.0/ net::ERR_CONNECTION_REFUSED
+client:732 
+ GET https://0.0.0.0/ net::ERR_CONNECTION_REFUSED
+client:732 
+ GET https://0.0.0.0/ net::ERR_CONNECTION_REFUSED
+client:732 
+ GET https://0.0.0.0/ net::ERR_CONNECTION_REFUSED
+client:732 
+ GET https://0.0.0.0/ net::ERR_CONNECTION_REFUSED
+client:732 
+ GET https://0.0.0.0/ net::ERR_CONNECTION_REFUSED
+client:732 
+ GET https://0.0.0.0/ net::ERR_CONNECTION_REFUSED
+client:732 
+ GET https://0.0.0.0/ net::ERR_CONNECTION_REFUSED
+client:732 
+ GET https://0.0.0.0/ net::ERR_CONNECTION_REFUSED

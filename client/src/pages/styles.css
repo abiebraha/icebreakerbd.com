@@ -1,25 +1,40 @@
 /* Gradient Text Styles */
 .gradient-text-solutions {
-  background: linear-gradient(to right, #4AE8B0, #25B086);
+  color: #4AE8B0; /* Fallback */
+  background: -webkit-linear-gradient(45deg, #4AE8B0, #25B086);
+  background: -moz-linear-gradient(45deg, #4AE8B0, #25B086);
+  background: linear-gradient(45deg, #4AE8B0, #25B086);
   -webkit-background-clip: text;
+  -moz-background-clip: text;
   background-clip: text;
-  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
   display: inline-block;
 }
 
 .gradient-text-tools {
-  background: linear-gradient(to right, #0A66C2, #00A3E1, #FF4D4D, #FF4D4D);
+  color: #0A66C2; /* Fallback */
+  background: -webkit-linear-gradient(45deg, #0A66C2, #00A3E1, #FF4D4D);
+  background: -moz-linear-gradient(45deg, #0A66C2, #00A3E1, #FF4D4D);
+  background: linear-gradient(45deg, #0A66C2, #00A3E1, #FF4D4D);
   -webkit-background-clip: text;
+  -moz-background-clip: text;
   background-clip: text;
-  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
   display: inline-block;
 }
 
 .gradient-text-process {
-  background: linear-gradient(to right, #0066CC, #0077CC);
+  color: #0066CC; /* Fallback */
+  background: -webkit-linear-gradient(45deg, #0066CC, #0077CC);
+  background: -moz-linear-gradient(45deg, #0066CC, #0077CC);
+  background: linear-gradient(45deg, #0066CC, #0077CC);
   -webkit-background-clip: text;
+  -moz-background-clip: text;
   background-clip: text;
-  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
   display: inline-block;
 }
 
