@@ -194,7 +194,7 @@ export default function Home() {
                           }}
                         >
                           <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/50 to-transparent">
-                            <h3 className="text-2xl font-bold text-black">
+                            <h3 className="text-2xl font-bold text-white">
                               {card.title}
                             </h3>
                           </div>
