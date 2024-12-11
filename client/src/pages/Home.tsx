@@ -121,8 +121,8 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#4AE8B0] to-[#25B086] bg-clip-text text-transparent mb-6 tracking-tight leading-normal pb-2">
-              Our Key Solutions
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight leading-normal pb-2">
+              <span className="inline-block bg-gradient-to-r from-[#4AE8B0] to-[#25B086] bg-clip-text text-transparent !important">Our Key Solutions</span>
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Discover how we can transform your sales process
@@ -288,8 +288,8 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight bg-gradient-to-r from-[#0A66C2] via-[#00A3E1] via-[#FF4D4D] to-[#FF4D4D] bg-clip-text text-transparent">
-              Free Sales Tools
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
+              <span className="inline-block bg-gradient-to-r from-[#0A66C2] via-[#00A3E1] via-[#FF4D4D] to-[#FF4D4D] bg-clip-text text-transparent !important">Free Sales Tools</span>
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Boost your sales productivity with our suite of free tools
@@ -451,7 +451,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-12 relative">
             {/* Arrow between cards */}
             <motion.div 
-              className="hidden md:flex absolute left-[42%] top-1/2 -translate-y-1/2 z-10"
+              className="hidden md:flex absolute left-[50%] top-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
               initial={{ opacity: 0, x: -30 }}
               animate={{ 
                 opacity: 1, 
