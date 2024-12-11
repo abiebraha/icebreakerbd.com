@@ -441,7 +441,7 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h2 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight bg-gradient-to-r from-[#34D399] to-[#059669] bg-clip-text text-transparent">
               Our Two-Step Process
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
@@ -458,7 +458,7 @@ export default function Home() {
               transition={{ duration: 1 }}
             >
               <div className="mb-6">
-                <span className="text-6xl font-bold text-[#123e74]">1</span>
+                <span className="text-6xl font-bold bg-gradient-to-r from-[#34D399] to-[#059669] bg-clip-text text-transparent">1</span>
               </div>
               <h3 className="text-2xl font-bold mb-4">Sales System Setup</h3>
               <p className="text-slate-600 mb-6">
@@ -492,7 +492,7 @@ export default function Home() {
               transition={{ duration: 1, delay: 0.2 }}
             >
               <div className="mb-6">
-                <span className="text-6xl font-bold text-[#123e74]">2</span>
+                <span className="text-6xl font-bold bg-gradient-to-r from-[#34D399] to-[#059669] bg-clip-text text-transparent">2</span>
               </div>
               <h3 className="text-2xl font-bold mb-4">Build Your SDR Team</h3>
               <p className="text-slate-600 mb-6">
