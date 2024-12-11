@@ -117,8 +117,10 @@ export default function Home() {
         <motion.div
           className="absolute inset-0 bg-cover bg-center z-0"
           style={{
-            backgroundImage: "url('/IMG_1392.jpeg')",
-            opacity: 0.15
+            backgroundImage: "url('/src/assets/IMG_1392.jpeg')",
+            opacity: 0.3,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
           }}
           initial={{ opacity: 0.15 }}
           whileInView={{ opacity: 0.15 }}
