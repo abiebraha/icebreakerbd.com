@@ -20,16 +20,28 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Enable CORS for all environments
+// Enable CORS and security headers for all environments
 app.use((req, res, next) => {
+  // CORS headers
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   res.header('Access-Control-Allow-Credentials', 'true');
   
+  // Security headers
+  res.header('X-Content-Type-Options', 'nosniff');
+  res.header('X-Frame-Options', 'DENY');
+  res.header('X-XSS-Protection', '1; mode=block');
+  
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
+  next();
+});
+
+// Add request logging middleware
+app.use((req, res, next) => {
+  console.log(`${new Date().toISOString()} ${req.method} ${req.url}`);
   next();
 });
 
@@ -95,23 +107,53 @@ app.use((req, res, next) => {
       
       console.log('Serving static files from:', clientDistPath);
       
-      // Serve static files with caching
-      app.use(express.static(clientDistPath, {
-        maxAge: '1h',
-        index: false,
-        etag: true
-      }));
+      // Serve static files with proper headers and caching
+      app.use(
+        express.static(clientDistPath, {
+          maxAge: '30d',
+          etag: true,
+          lastModified: true,
+          setHeaders: (res, filePath) => {
+            // Don't cache HTML files
+            if (filePath.endsWith('.html')) {
+              res.setHeader('Cache-Control', 'no-cache');
+              res.setHeader('Pragma', 'no-cache');
+              res.setHeader('Expires', '0');
+            } else if (filePath.match(/\.(js|css|png|jpg|jpeg|gif|ico|svg)$/)) {
+              // Aggressive caching for assets
+              res.setHeader('Cache-Control', 'public, max-age=31536000');
+            }
+            // Security headers
+            res.setHeader('X-Content-Type-Options', 'nosniff');
+            res.setHeader('X-Frame-Options', 'DENY');
+            res.setHeader('X-XSS-Protection', '1; mode=block');
+          }
+        })
+      );
       
-      // API routes
+      // API routes with error handling
       app.use('/api', (req, res, next) => {
         console.log(`API request: ${req.method} ${req.path}`);
         next();
       });
       
-      // SPA fallback
-      app.get('*', (req, res) => {
-        console.log(`Serving index.html for: ${req.path}`);
-        res.sendFile(indexPath);
+      // SPA fallback with comprehensive error handling
+      app.get('*', (req, res, next) => {
+        if (req.path.startsWith('/api')) {
+          return next(); // Skip SPA handling for API routes
+        }
+
+        console.log(`[${new Date().toISOString()}] Serving index.html for: ${req.path}`);
+        res.sendFile(indexPath, (err) => {
+          if (err) {
+            console.error(`[${new Date().toISOString()}] Error serving index.html: ${err.message}`);
+            if (err.code === 'ENOENT') {
+              res.status(404).send('Not found');
+            } else {
+              res.status(500).send('Internal server error');
+            }
+          }
+        });
       });
     }
   } catch (error) {
@@ -124,32 +166,41 @@ app.use((req, res, next) => {
   const HOST = '0.0.0.0';
   
   function startServer() {
-    log(`attempting to start server in ${process.env.NODE_ENV || 'development'} mode on ${HOST}:${PORT}`);
-    
-    const serverInstance = server.listen(PORT, HOST, () => {
-      log(`server successfully listening on ${HOST}:${PORT}`);
-    });
+    return new Promise((resolve, reject) => {
+      log(`attempting to start server in ${process.env.NODE_ENV || 'development'} mode on ${HOST}:${PORT}`);
+      
+      // Ensure any existing connections are terminated
+      server.on('error', (error: NodeJS.ErrnoException) => {
+        if (error.code === 'EADDRINUSE') {
+          log(`Port ${PORT} is already in use. Retrying in 3 seconds...`);
+          setTimeout(() => {
+            server.close();
+            startServer().then(resolve).catch(reject);
+          }, 3000);
+        } else {
+          log(`Server error: ${error.message}`);
+          reject(error);
+        }
+      });
 
-    serverInstance.on('error', (error: NodeJS.ErrnoException) => {
-      if (error.code === 'EADDRINUSE') {
-        log(`Port ${PORT} is already in use. Retrying in 5 seconds...`);
-        setTimeout(() => {
-          serverInstance.close();
-          startServer();
-        }, 5000);
-      } else {
-        log(`Failed to start server: ${error.message}`);
-        process.exit(1);
-      }
-    });
+      const serverInstance = server.listen(PORT, HOST, () => {
+        log(`server successfully listening on ${HOST}:${PORT}`);
+        resolve(serverInstance);
+      });
 
-    return serverInstance;
+      // Handle process termination
+      process.on('SIGTERM', () => {
+        log('SIGTERM signal received: closing HTTP server');
+        serverInstance.close(() => {
+          log('HTTP server closed');
+          process.exit(0);
+        });
+      });
+    });
   }
 
-  try {
-    startServer();
-  } catch (error) {
-    log(`Unexpected error while starting server: ${error}`);
+  startServer().catch((error) => {
+    log(`Failed to start server: ${error.message}`);
     process.exit(1);
-  }
+  });
 })();

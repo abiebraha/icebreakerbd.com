@@ -28,16 +28,31 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     emptyOutDir: true,
-    minify: true,
+    minify: 'terser',
     sourcemap: false,
     reportCompressedSize: false,
-    target: ['es2020'],
+    chunkSizeWarningLimit: 1000,
+    assetsInlineLimit: 4096,
+    target: ['es2020', 'edge88', 'firefox78', 'chrome87', 'safari13'],
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true
+      }
+    },
     rollupOptions: {
       output: {
-        manualChunks: {
-          'vendor-react': ['react', 'react-dom'],
-          'vendor-ui': ['@radix-ui/react-icons', 'lucide-react']
-        }
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            if (id.includes('react')) return 'vendor-react';
+            if (id.includes('@radix-ui') || id.includes('lucide-react')) return 'vendor-ui';
+            if (id.includes('framer-motion')) return 'vendor-motion';
+            return 'vendor';
+          }
+        },
+        assetFileNames: 'assets/[name].[hash].[ext]',
+        chunkFileNames: 'assets/[name].[hash].js',
+        entryFileNames: 'assets/[name].[hash].js'
       }
     }
   },
