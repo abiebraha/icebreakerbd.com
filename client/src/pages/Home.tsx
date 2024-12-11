@@ -114,18 +114,15 @@ export default function Home() {
       {/* Carousel Section */}
       <section className="py-24 relative overflow-hidden">
         {/* Background Image with Fade Effect */}
+        {/* Background Image with Fade Effect */}
         <motion.div
-          className="absolute inset-0 bg-cover bg-center z-0"
+          className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('/src/assets/IMG_1392.jpeg')",
-            opacity: 0.3,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
+            backgroundImage: `url('/IMG_1392.jpeg')`,
           }}
-          initial={{ opacity: 0.15 }}
-          whileInView={{ opacity: 0.15 }}
-          viewport={{ once: false, margin: "-20% 0px -20% 0px" }}
-          exit={{ opacity: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.3 }}
+          transition={{ duration: 1 }}
         />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
