@@ -194,9 +194,11 @@ export default function Home() {
                           }}
                         >
                           <div className="absolute bottom-0 left-0 right-0 p-6">
-                            <h3 className="text-2xl font-bold text-black">
-                              {card.title}
-                            </h3>
+                            <div className="relative z-10 bg-black/30 p-3 rounded-lg inline-block">
+                              <h3 className="text-2xl font-bold text-white">
+                                {card.title}
+                              </h3>
+                            </div>
                           </div>
                           <button 
                             className="card-button"
