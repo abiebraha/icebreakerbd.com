@@ -99,25 +99,25 @@ export default function CaseStudyCard({
               <div className="space-y-6 overflow-y-auto flex-1">
                 <div>
                   <h3 className="text-2xl font-bold mb-2 bg-gradient-to-r from-[#FF8144] to-[#FF2063] bg-clip-text text-transparent">{company}</h3>
-                  <p className="text-lg font-medium text-slate-600">{industry}</p>
+                  <p className="text-lg font-medium text-white">{industry}</p>
                 </div>
                 
                 <div>
-                  <h4 className="text-lg font-semibold mb-2 bg-gradient-to-r from-[#FF8144] to-[#FF2063] bg-clip-text text-transparent">The Challenge</h4>
-                  <p className="text-sm text-slate-600">{challenge}</p>
+                  <h4 className="text-lg font-semibold mb-2 text-white">The Challenge</h4>
+                  <p className="text-sm text-white/90">{challenge}</p>
                 </div>
                 
                 <div>
-                  <h4 className="text-lg font-semibold mb-2 bg-gradient-to-r from-[#FF8144] to-[#FF2063] bg-clip-text text-transparent">Our Solution</h4>
-                  <p className="text-sm text-slate-600">{solution}</p>
+                  <h4 className="text-lg font-semibold mb-2 text-white">Our Solution</h4>
+                  <p className="text-sm text-white/90">{solution}</p>
                 </div>
                 
                 <div>
-                  <h4 className="text-lg font-semibold mb-2 bg-gradient-to-r from-[#FF8144] to-[#FF2063] bg-clip-text text-transparent">Key Results</h4>
+                  <h4 className="text-lg font-semibold mb-2 text-white">Key Results</h4>
                   <ul className="space-y-2">
                     {results.map((result, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm text-slate-600">
-                        <div className="w-1.5 h-1.5 rounded-full bg-[#FF8144] mt-1.5" />
+                      <li key={i} className="flex items-start gap-2 text-sm text-white/90">
+                        <div className="w-1.5 h-1.5 rounded-full bg-white mt-1.5" />
                         <span>{result}</span>
                       </li>
                     ))}
