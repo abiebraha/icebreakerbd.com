@@ -122,8 +122,8 @@ export default function Home() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight leading-normal pb-2">
-              <span className="inline-block bg-gradient-to-r from-[#4AE8B0] to-[#25B086] bg-clip-text text-transparent !important">Our Key Solutions</span>
-            </h2>
+                <span className="gradient-text-solutions">Our Key Solutions</span>
+              </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Discover how we can transform your sales process
             </p>
@@ -289,7 +289,7 @@ export default function Home() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
-              <span className="inline-block bg-gradient-to-r from-[#0A66C2] via-[#00A3E1] via-[#FF4D4D] to-[#FF4D4D] bg-clip-text text-transparent !important">Free Sales Tools</span>
+              <span className="gradient-text-tools">Free Sales Tools</span>
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Boost your sales productivity with our suite of free tools
@@ -451,7 +451,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-12 relative">
             {/* Arrow between cards */}
             <motion.div 
-              className="hidden md:flex absolute left-[50%] top-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
+              className="hidden md:block absolute left-[calc(50%-40px)] top-[calc(50%-20px)] z-10"
               initial={{ opacity: 0, x: -30 }}
               animate={{ 
                 opacity: 1, 
@@ -627,7 +627,7 @@ export default function Home() {
             <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tight">
               <span className="text-slate-900">Ready to Transform</span>
               <br />
-              <span className="bg-gradient-to-r from-[#0066CC] to-[#0077CC] bg-clip-text text-transparent">Your Sales Process?</span>
+              <span className="gradient-text-process">Your Sales Process?</span>
             </h2>
             <motion.div
               initial={{ opacity: 0, y: 20 }}

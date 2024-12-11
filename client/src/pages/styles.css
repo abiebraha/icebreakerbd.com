@@ -1,3 +1,28 @@
+/* Gradient Text Styles */
+.gradient-text-solutions {
+  background: linear-gradient(to right, #4AE8B0, #25B086);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+.gradient-text-tools {
+  background: linear-gradient(to right, #0A66C2, #00A3E1, #FF4D4D, #FF4D4D);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+.gradient-text-process {
+  background: linear-gradient(to right, #0066CC, #0077CC);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
 /* Card Flip Animation */
 .card-container,
 .case-study-container {
