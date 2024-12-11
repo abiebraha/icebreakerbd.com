@@ -28,7 +28,7 @@ export default function CaseStudyCard({
       transition={{ type: "spring", stiffness: 300 }}
       className="group cursor-pointer case-study-container"
     >
-      <Card className="relative w-full h-[500px] bg-white border-0 !border-none shadow-xl hover:shadow-2xl transition-shadow duration-300">
+      <Card className="relative w-full h-[500px] bg-white border-0 !border-none">
         <div 
           className="card"
           style={{ 
@@ -40,12 +40,7 @@ export default function CaseStudyCard({
             className={`card-face card-front ${isFlipped ? 'flipped' : ''}`}
             onClick={() => setIsFlipped(true)}
           >
-            <div className={`w-full h-full rounded-2xl p-12 flex flex-col items-center justify-center ${
-              company === "Platinum Travel" ? "bg-[#b7791f]" : // Changed to gold
-              company === "Enso Brands" ? "bg-[#0f766e]" :
-              company === "NBX Expo" ? "bg-[#9f1239]" :
-              "bg-[#334155]" // Default for Accounting Software
-            }`}>
+            <div className="w-full h-full rounded-2xl p-12 flex flex-col items-center justify-center bg-gradient-to-r from-[#FF8144] to-[#FF2063]">
               <div className="w-full text-center">
                 <div className="relative w-full h-48 mx-auto mb-8 flex items-center justify-center">
                   <div className="w-3/4 h-3/4">
@@ -85,7 +80,12 @@ export default function CaseStudyCard({
               setIsFlipped(false);
             }}
           >
-            <div className="w-full h-full bg-white rounded-2xl p-8 flex flex-col">
+            <div className={`w-full h-full rounded-2xl p-8 flex flex-col ${
+              company === "Platinum Travel" ? "bg-[#b7791f]" :
+              company === "Enso Brands" ? "bg-[#0f766e]" :
+              company === "NBX Expo" ? "bg-[#9f1239]" :
+              "bg-[#334155]"
+            }`}>
               <button 
                 className="card-button"
                 onClick={(e) => {
