@@ -89,12 +89,12 @@ app.use((req, res, next) => {
 
   // Always use port 3000 and let Replit handle port forwarding
   const PORT = parseInt(process.env.PORT || '3000', 10);
-  const HOST = '0.0.0.0';
+  const HOST = process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost';
   
   function startServer() {
     log(`attempting to start server in ${process.env.NODE_ENV || 'development'} mode on ${HOST}:${PORT}`);
     
-    const serverInstance = server.listen(PORT, HOST, () => {
+    const serverInstance = server.listen(PORT, '0.0.0.0', () => {
       log(`server successfully listening on ${HOST}:${PORT}`);
     });
 
