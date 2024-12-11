@@ -112,8 +112,21 @@ export default function Home() {
       </motion.section>
 
       {/* Carousel Section */}
-      <section className="py-24 relative overflow-hidden bg-gradient-to-r from-[#E6FFF5] to-[#D1F7E9]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 relative overflow-hidden">
+        {/* Background Image with Fade Effect */}
+        <motion.div
+          className="absolute inset-0 bg-cover bg-center z-0"
+          style={{
+            backgroundImage: "url('/IMG_1392.jpeg')",
+            opacity: 0.15
+          }}
+          initial={{ opacity: 0.15 }}
+          whileInView={{ opacity: 0.15 }}
+          viewport={{ once: false, margin: "-20% 0px -20% 0px" }}
+          exit={{ opacity: 0 }}
+        />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 40 }}
@@ -157,13 +170,15 @@ export default function Home() {
                   <motion.div
                     key={index}
                     className="card-container"
-                    initial={{ opacity: 0, x: 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
+                    initial={{ opacity: 0, y: 100 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
                     transition={{ 
                       delay: index * 0.2,
                       duration: 0.8,
-                      ease: [0.16, 1, 0.3, 1]
+                      type: "spring",
+                      stiffness: 50,
+                      damping: 20
                     }}
                   >
                     <div className="relative w-full aspect-[3/4]">
