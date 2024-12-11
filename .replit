@@ -8,7 +8,7 @@ channel = "stable-24_05"
 [deployment]
 deploymentTarget = "cloudrun"
 build = ["npm", "run", "build"]
-run = ["sh", "-c", "cd client && VITE_LOG_LEVEL=info npm run dev"]
+run = ["sh", "-c", "cd client && npm run dev"]
 
 [[ports]]
 localPort = 80
@@ -78,7 +78,7 @@ task = "packager.installForAll"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "cd client && VITE_LOG_LEVEL=info npm run dev"
+args = "cd client && npm run dev"
 waitForPort = 5000
 
 [[workflows.workflow]]
@@ -108,7 +108,7 @@ task = "packager.installForAll"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "cd client && VITE_LOG_LEVEL=info npm run build"
+args = "cd client && npm run build"
 
 [[workflows.workflow]]
 name = "Production"
@@ -122,7 +122,7 @@ task = "packager.installForAll"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "cd client && NODE_ENV=production npm run build && cd .. && NODE_ENV=production tsx server/index.ts"
+args = "cd client && npm run build && cd .. && NODE_ENV=production node server/index.js"
 waitForPort = 3000
 
 [[workflows.workflow]]
@@ -137,5 +137,5 @@ task = "packager.installForAll"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "cd client && npm run build && cd .. && NODE_ENV=production tsx server/index.ts"
+args = "cd client && npm run build && NODE_ENV=production node ../server/index.js"
 waitForPort = 3000
