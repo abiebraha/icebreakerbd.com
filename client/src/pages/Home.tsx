@@ -534,7 +534,7 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h2 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight bg-gradient-to-r from-[#FFD700] to-[#FFA500] bg-clip-text text-transparent">
               Proven Results
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
@@ -558,7 +558,7 @@ export default function Home() {
                 transition={{ duration: 1, delay: index * 0.2, ease: [0.16, 1, 0.3, 1] }}
               >
                 <motion.p 
-                  className="text-5xl font-bold mb-4 bg-gradient-to-r from-[#123e74] to-[#1a4e8f] bg-clip-text text-transparent"
+                  className="text-5xl font-bold mb-4 bg-gradient-to-r from-[#FFD700] to-[#FFA500] bg-clip-text text-transparent"
                   animate={{ 
                     backgroundPosition: ["0%", "100%"],
                   }}
