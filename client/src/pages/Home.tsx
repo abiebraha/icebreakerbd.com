@@ -64,7 +64,7 @@ export default function Home() {
           opacity: heroOpacity
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent" />
         
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
@@ -122,7 +122,7 @@ export default function Home() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight leading-normal pb-2">
-                <span className="gradient-text-solutions">Our Key Solutions</span>
+                <span className="inline-block bg-gradient-to-r from-[#4AE8B0] to-[#25B086] bg-clip-text text-transparent">Our Key Solutions</span>
               </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Discover how we can transform your sales process
@@ -289,7 +289,7 @@ export default function Home() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
-              <span className="gradient-text-tools">Free Sales Tools</span>
+              <span className="inline-block bg-gradient-to-r from-[#0A66C2] via-[#00A3E1] to-[#FF4D4D] bg-clip-text text-transparent">Free Sales Tools</span>
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Boost your sales productivity with our suite of free tools
@@ -627,7 +627,7 @@ export default function Home() {
             <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tight">
               <span className="text-slate-900">Ready to Transform</span>
               <br />
-              <span className="gradient-text-process">Your Sales Process?</span>
+              <span className="inline-block bg-gradient-to-r from-[#0066CC] to-[#0077CC] bg-clip-text text-transparent">Your Sales Process?</span>
             </h2>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
