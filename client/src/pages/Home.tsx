@@ -172,6 +172,14 @@ export default function Home() {
                       <div
                         className={`card ${hoveredCard === index ? 'flipped' : ''}`}
                         onClick={() => setHoveredCard(hoveredCard === index ? null : index)}
+                        style={{
+                          transformStyle: 'preserve-3d',
+                          transition: 'transform 0.6s',
+                          transform: hoveredCard === index ? 'rotateY(180deg)' : 'rotateY(0deg)',
+                          position: 'relative',
+                          width: '100%',
+                          height: '100%'
+                        }}
                       >
                         {/* Front of card */}
                         <div 
@@ -179,7 +187,12 @@ export default function Home() {
                           style={{
                             backgroundImage: `url(${card.image}?quality=80&w=800)`,
                             backgroundPosition: 'center',
-                            backgroundSize: 'cover'
+                            backgroundSize: 'cover',
+                            position: 'absolute',
+                            backfaceVisibility: 'hidden',
+                            width: '100%',
+                            height: '100%',
+                            borderRadius: '0.5rem'
                           }}
                         >
                           <div className="absolute inset-0 bg-gradient-to-t from-[#4AE8B0]/40 to-transparent" />
@@ -201,7 +214,14 @@ export default function Home() {
                         </div>
 
                         {/* Back of card */}
-                        <div className="card-face card-back" style={{ background: 'linear-gradient(to bottom right, #4AE8B0, #25B086)' }}>
+                        <div 
+                          className="card-face card-back absolute w-full h-full rounded-lg overflow-hidden"
+                          style={{ 
+                            background: 'linear-gradient(to bottom right, #4AE8B0, #25B086)',
+                            backfaceVisibility: 'hidden',
+                            transform: 'rotateY(180deg)',
+                          }}
+                        >
                           <div className="h-full p-6 overflow-y-auto hide-scrollbar">
                             <div className="space-y-4">
                               <h3 className="text-2xl font-bold text-white mb-2">
@@ -215,7 +235,8 @@ export default function Home() {
                                 {card.description.split('\n\n')[0].split('\n').slice(1).map((feature, i) => (
                                   <p 
                                     key={i}
-                                    className="text-white/90 text-sm py-1"
+                                    className="!text-white text-sm py-1"
+                                    style={{ color: 'white' }}
                                   >
                                     {feature}
                                   </p>
