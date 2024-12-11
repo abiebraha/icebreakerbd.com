@@ -121,7 +121,7 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#4AE8B0] to-[#25B086] bg-clip-text text-transparent mb-6 tracking-tight">
               Our Key Solutions
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
@@ -194,7 +194,7 @@ export default function Home() {
                           }}
                         >
                           <div className="absolute bottom-0 left-0 right-0 p-6">
-                            <h3 className="text-2xl font-bold text-white">
+                            <h3 className="text-2xl font-bold bg-gradient-to-r from-[#4AE8B0] to-[#25B086] bg-clip-text text-transparent">
                               {card.title}
                             </h3>
                           </div>
