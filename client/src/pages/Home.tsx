@@ -625,7 +625,7 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h2 className="text-4xl md:text-6xl font-bold text-slate-900 mb-8 tracking-tight">
+            <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tight bg-gradient-to-r from-[#0066CC] to-[#0077CC] bg-clip-text text-transparent">
               Ready to Transform
               <br />
               Your Sales Process?
