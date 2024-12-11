@@ -26,19 +26,18 @@ export default defineConfig({
     }
   },
   build: {
-    outDir: '../dist/public',
+    outDir: 'dist',
     emptyOutDir: true,
     minify: true,
-    cssCodeSplit: true,
+    sourcemap: false,
+    reportCompressedSize: false,
+    target: ['es2020'],
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ['react', 'react-dom', 'framer-motion'],
-          ui: ['@radix-ui/react-icons', 'lucide-react']
-        },
-        assetFileNames: 'assets/[name].[hash][extname]',
-        chunkFileNames: 'assets/[name].[hash].js',
-        entryFileNames: 'assets/[name].[hash].js'
+          'vendor-react': ['react', 'react-dom'],
+          'vendor-ui': ['@radix-ui/react-icons', 'lucide-react']
+        }
       }
     }
   },

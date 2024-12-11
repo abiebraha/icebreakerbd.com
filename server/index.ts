@@ -1,4 +1,6 @@
 import express, { type Request, Response, NextFunction } from "express";
+import path from "path";
+import fs from "fs";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic } from "./vite";
 import { createServer } from "http";
@@ -73,13 +75,48 @@ app.use((req, res, next) => {
     throw err;
   });
 
-  // importantly only setup vite in development and after
-  // setting up all the other routes so the catch-all route
-  // doesn't interfere with the other routes
-  if (app.get("env") === "development") {
-    await setupVite(app, server);
-  } else {
-    serveStatic(app);
+  try {
+    if (app.get("env") === "development") {
+      await setupVite(app, server);
+    } else {
+      console.log('Starting in production mode...');
+      const clientDistPath = path.resolve(__dirname, '../client/dist');
+      
+      if (!fs.existsSync(clientDistPath)) {
+        console.error(`Client dist directory not found at: ${clientDistPath}`);
+        throw new Error('Build directory not found');
+      }
+      
+      const indexPath = path.join(clientDistPath, 'index.html');
+      if (!fs.existsSync(indexPath)) {
+        console.error(`index.html not found at: ${indexPath}`);
+        throw new Error('index.html not found');
+      }
+      
+      console.log('Serving static files from:', clientDistPath);
+      
+      // Serve static files with caching
+      app.use(express.static(clientDistPath, {
+        maxAge: '1h',
+        index: false,
+        etag: true
+      }));
+      
+      // API routes
+      app.use('/api', (req, res, next) => {
+        console.log(`API request: ${req.method} ${req.path}`);
+        next();
+      });
+      
+      // SPA fallback
+      app.get('*', (req, res) => {
+        console.log(`Serving index.html for: ${req.path}`);
+        res.sendFile(indexPath);
+      });
+    }
+  } catch (error) {
+    console.error('Server initialization error:', error);
+    process.exit(1);
   }
 
   // Always use port 3000 and let Replit handle port forwarding
